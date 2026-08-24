@@ -1,0 +1,19 @@
+{
+  "dataset": "NEU-DET",
+  "source_archive_sha256": "cf04bb0b05d364f23e05031b191b20b908a0e5eb11466df74ee7fba98ec835d5",
+  "seed": 824,
+  "train_ratio": 0.8,
+  "val_ratio": 0.1,
+  "train_shots_per_class": 5,
+  "classes": ["crazing", "inclusion", "patches", "pitted_surface", "rolled-in_scale", "scratches"],
+  "image_counts": {
+    "train": {"crazing": 5, "inclusion": 5, "patches": 5, "pitted_surface": 5, "rolled-in_scale": 5, "scratches": 5},
+    "val": {"crazing": 30, "inclusion": 30, "patches": 30, "pitted_surface": 30, "rolled-in_scale": 30, "scratches": 30},
+    "test": {"crazing": 30, "inclusion": 30, "patches": 30, "pitted_surface": 30, "rolled-in_scale": 30, "scratches": 30}
+  },
+  "object_counts": {
+    "train": {"crazing": 11, "inclusion": 15, "patches": 11, "pitted_surface": 7, "rolled-in_scale": 10, "scratches": 8},
+    "val": {"crazing": 64, "inclusion": 86, "patches": 87, "pitted_surface": 42, "rolled-in_scale": 65, "scratches": 55},
+    "test": {"crazing": 68, "inclusion": 105, "patches": 84, "pitted_surface": 43, "rolled-in_scale": 66, "scratches": 54}
+  }
+}

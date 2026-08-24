@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "exit_code": 0,
+  "started_utc": "2026-08-24T14:40:53.618169+00:00",
+  "finished_utc": "2026-08-24T14:41:07.914886+00:00",
+  "wall_seconds": 14.297,
+  "device": "cpu",
+  "command": [
+    "yolo",
+    "train",
+    "cfg=smoke/c3/config/baselines/frozen_backbone_smoke.yaml",
+    "data=smoke/c3/config/datasets/neu_det_fewshot.yaml",
+    "device=cpu",
+    "name=neu_det_frozen_backbone_cpu_seed824",
+    "project=runs/vpeft_smoke",
+    "exist_ok=False",
+    "amp=false"
+  ],
+  "config": "smoke/c3/config/baselines/frozen_backbone_smoke.yaml",
+  "data": "smoke/c3/config/datasets/neu_det_fewshot.yaml",
+  "run_dir": "runs/detect/runs/vpeft_smoke/neu_det_frozen_backbone_cpu_seed824",
+  "resource_summary": {
+    "peak_cpu_percent": 794.6,
+    "peak_rss_mib": 665.66,
+    "peak_gpu_memory_mib": null
+  },
+  "artifact_count": 5,
+  "artifacts": [
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_frozen_backbone_cpu_seed824/args.yaml",
+      "size_bytes": 7861,
+      "sha256": "d3bef19919a2ab481b6ddc5d5f6b5c3e3e199d80fb61309fe5e64185e5274c72"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_frozen_backbone_cpu_seed824/results.csv",
+      "size_bytes": 337,
+      "sha256": "619e97ea0cc354a34b693dc660383bcd069fd3ed25ad12a9141362f93ce233ea"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_frozen_backbone_cpu_seed824/weights/best.pt",
+      "size_bytes": 5443930,
+      "sha256": "201038db2fa108f11a3035f9e8370ddf5837fdd59202955324ee114dae001dbf"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_frozen_backbone_cpu_seed824/weights/last.pt",
+      "size_bytes": 5443930,
+      "sha256": "c5acbad5d719f11bf0d00e26317ead0225581ebaffff9af2b7ff0c1729b523dc"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_frozen_backbone_cpu_seed824/weights/last_healthy.pt",
+      "size_bytes": 18357908,
+      "sha256": "ffaa08e88e8b0333497cd9abeb5f3de2ebd60069b08def7a1fa756002ce6da6a"
+    }
+  ],
+  "log_path_policy": "完整保留日志行，仅将仓库根目录和用户主目录前缀替换为占位符。",
+  "numerical_recovery": {
+    "detected": false,
+    "requested_epochs": 1,
+    "observed_epoch_attempts": 1,
+    "recovery_attempts": 0,
+    "amp_requested": false,
+    "amp_disabled_by_recovery": false,
+    "explicit_lora_restore_messages": 0,
+    "classification": "未检测到自动数值恢复"
+  }
+}

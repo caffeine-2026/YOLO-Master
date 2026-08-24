@@ -204,6 +204,7 @@ calibration_*.npy
 # Training logs
 args.yaml
 results.csv
+!smoke/c3/logs/**/*.log
 
 # Local reproduction archives and credential helpers
 artifacts/

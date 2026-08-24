@@ -1,0 +1,2 @@
+adapter_export=completed
+adapter_dir=runs/detect/runs/vpeft_smoke/neu_det_vpeft_cpu_seed824/lora_adapter

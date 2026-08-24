@@ -1,0 +1,751 @@
+===== 环境摘要 =====
+{
+  "schema_version": 2,
+  "captured_utc": "2026-08-24T16:29:20.843895+00:00",
+  "repository_commit": "d29ff5a70077018a25ea7dd432b30bb12f753418",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+  "machine": "x86_64",
+  "python": "3.10.12",
+  "packages": {
+    "ultralytics": "8.4.101",
+    "torch": "2.13.0+cu130",
+    "torchvision": "0.28.0+cu130",
+    "peft": "0.19.1",
+    "opencv": "5.0.0",
+    "pyyaml": "6.0.3"
+  },
+  "cuda": {
+    "gpu_execution_ready": true,
+    "readiness_policy": "必须同时通过字符设备、nvidia-smi、CUDA 版 PyTorch、设备枚举和张量分配检查",
+    "pci_nvidia_gpu_count": 8,
+    "pci_nvidia_gpus": [
+      "17:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "31:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "4b:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "65:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "98:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "b1:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "ca:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "e3:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)"
+    ],
+    "nvidia_smi_inventory": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory_total_mib": 49140,
+        "driver_version": "595.84"
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory_total_mib": 49140,
+        "driver_version": "595.84"
+      },
+      {
+        "index": 2,
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory_total_mib": 49140,
+        "driver_version": "595.84"
+      },
+      {
+        "index": 3,
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory_total_mib": 49140,
+        "driver_version": "595.84"
+      },
+      {
+        "index": 4,
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory_total_mib": 49140,
+        "driver_version": "595.84"
+      },
+      {
+        "index": 5,
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory_total_mib": 49140,
+        "driver_version": "595.84"
+      },
+      {
+        "index": 6,
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory_total_mib": 49140,
+        "driver_version": "595.84"
+      },
+      {
+        "index": 7,
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory_total_mib": 49140,
+        "driver_version": "595.84"
+      }
+    ],
+    "driver_version": "595.84",
+    "nvidia_smi_cuda_compatibility": "13.2",
+    "loaded_nvidia_kernel_modules": [
+      "nvidia_uvm           2060288  12",
+      "nvidia_drm            139264  0",
+      "nvidia_modeset       1744896  1 nvidia_drm",
+      "nvidia              14807040  117 nvidia_uvm,nvidia_modeset"
+    ],
+    "torch_cuda_build": "13.0",
+    "torch_cuda_available": true,
+    "device_count": 8,
+    "required_device_nodes": [
+      "/dev/nvidia0",
+      "/dev/nvidiactl",
+      "/dev/nvidia-uvm"
+    ],
+    "required_device_nodes_present": true,
+    "device_nodes": [
+      "/dev/nvidia-modeset",
+      "/dev/nvidia-uvm",
+      "/dev/nvidia-uvm-tools",
+      "/dev/nvidia0",
+      "/dev/nvidia1",
+      "/dev/nvidia2",
+      "/dev/nvidia3",
+      "/dev/nvidia4",
+      "/dev/nvidia5",
+      "/dev/nvidia6",
+      "/dev/nvidia7",
+      "/dev/nvidiactl"
+    ],
+    "matched_device_paths": [
+      "/dev/nvidia-modeset",
+      "/dev/nvidia-uvm",
+      "/dev/nvidia-uvm-tools",
+      "/dev/nvidia0",
+      "/dev/nvidia1",
+      "/dev/nvidia2",
+      "/dev/nvidia3",
+      "/dev/nvidia4",
+      "/dev/nvidia5",
+      "/dev/nvidia6",
+      "/dev/nvidia7",
+      "/dev/nvidiactl"
+    ],
+    "nvidia_smi_exit_code": 0,
+    "nvcc_exit_code": 0,
+    "allocation_test": {
+      "attempted": true,
+      "passed": true,
+      "error": null
+    },
+    "current_classification": "GPU 可执行"
+  },
+  "assets": {
+    "yolo11n_pt_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+    "neu_det_archive_sha256": "cf04bb0b05d364f23e05031b191b20b908a0e5eb11466df74ee7fba98ec835d5",
+    "neu_det_fewshot_manifest_sha256": "6cdf14f723f1d3f9f05696a6834d27d832d1362e5a8171995d376db5071d4e34"
+  },
+  "checks": {
+    "paper_anchor_exit_code": 0,
+    "yolo_checks_exit_code": 0
+  }
+}
+
+===== nvidia-smi =====
+Tue Aug 25 00:29:16 2026
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.84                 Driver Version: 595.84         CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 4090        Off |   00000000:17:00.0 Off |                  Off |
+| 31%   30C    P8             20W /  450W |       4MiB /  49140MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA GeForce RTX 4090        Off |   00000000:31:00.0 Off |                  Off |
+| 63%   29C    P8             19W /  450W |       4MiB /  49140MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA GeForce RTX 4090        Off |   00000000:4B:00.0 Off |                  Off |
+| 63%   25C    P8             17W /  450W |       4MiB /  49140MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA GeForce RTX 4090        Off |   00000000:65:00.0 Off |                  Off |
+| 61%   26C    P8              9W /  450W |       4MiB /  49140MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   4  NVIDIA GeForce RTX 4090        Off |   00000000:98:00.0 Off |                  Off |
+| 61%   25C    P8             14W /  450W |       4MiB /  49140MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   5  NVIDIA GeForce RTX 4090        Off |   00000000:B1:00.0 Off |                  Off |
+| 62%   27C    P8             15W /  450W |       4MiB /  49140MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   6  NVIDIA GeForce RTX 4090        Off |   00000000:CA:00.0 Off |                  Off |
+| 63%   27C    P8             15W /  450W |       4MiB /  49140MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   7  NVIDIA GeForce RTX 4090        Off |   00000000:E3:00.0 Off |                  Off |
+| 63%   26C    P8             14W /  450W |       4MiB /  49140MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+===== nvidia-smi inventory =====
+0, NVIDIA GeForce RTX 4090, 49140, 595.84
+1, NVIDIA GeForce RTX 4090, 49140, 595.84
+2, NVIDIA GeForce RTX 4090, 49140, 595.84
+3, NVIDIA GeForce RTX 4090, 49140, 595.84
+4, NVIDIA GeForce RTX 4090, 49140, 595.84
+5, NVIDIA GeForce RTX 4090, 49140, 595.84
+6, NVIDIA GeForce RTX 4090, 49140, 595.84
+7, NVIDIA GeForce RTX 4090, 49140, 595.84
+
+===== nvcc --version =====
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2021 NVIDIA Corporation
+Built on Thu_Nov_18_09:45:30_PST_2021
+Cuda compilation tools, release 11.5, V11.5.119
+Build cuda_11.5.r11.5/compiler.30672275_0
+
+===== lspci -nn =====
+00:00.0 System peripheral [0880]: Intel Corporation Device [8086:09a2] (rev 04)
+00:00.1 System peripheral [0880]: Intel Corporation Device [8086:09a4] (rev 04)
+00:00.2 System peripheral [0880]: Intel Corporation Device [8086:09a3] (rev 04)
+00:00.4 Host bridge [0600]: Intel Corporation Device [8086:0998]
+00:01.0 System peripheral [0880]: Intel Corporation Device [8086:0b00]
+00:01.1 System peripheral [0880]: Intel Corporation Device [8086:0b00]
+00:01.2 System peripheral [0880]: Intel Corporation Device [8086:0b00]
+00:01.3 System peripheral [0880]: Intel Corporation Device [8086:0b00]
+00:01.4 System peripheral [0880]: Intel Corporation Device [8086:0b00]
+00:01.5 System peripheral [0880]: Intel Corporation Device [8086:0b00]
+00:01.6 System peripheral [0880]: Intel Corporation Device [8086:0b00]
+00:01.7 System peripheral [0880]: Intel Corporation Device [8086:0b00]
+00:02.0 System peripheral [0880]: Intel Corporation Device [8086:09a6]
+00:02.1 System peripheral [0880]: Intel Corporation Device [8086:09a7]
+00:02.4 Non-Essential Instrumentation [1300]: Intel Corporation Device [8086:3456] (rev 01)
+00:11.0 Unassigned class [ff00]: Intel Corporation C620 Series Chipset Family MROM 0 [8086:a1ec] (rev 0a)
+00:11.5 SATA controller [0106]: Intel Corporation C620 Series Chipset Family SSATA Controller [AHCI mode] [8086:a1d2] (rev 0a)
+00:14.0 USB controller [0c03]: Intel Corporation C620 Series Chipset Family USB 3.0 xHCI Controller [8086:a1af] (rev 0a)
+00:14.2 Signal processing controller [1180]: Intel Corporation C620 Series Chipset Family Thermal Subsystem [8086:a1b1] (rev 0a)
+00:16.0 Communication controller [0780]: Intel Corporation C620 Series Chipset Family MEI Controller #1 [8086:a1ba] (rev 0a)
+00:16.1 Communication controller [0780]: Intel Corporation C620 Series Chipset Family MEI Controller #2 [8086:a1bb] (rev 0a)
+00:16.4 Communication controller [0780]: Intel Corporation C620 Series Chipset Family MEI Controller #3 [8086:a1be] (rev 0a)
+00:1b.0 PCI bridge [0604]: Intel Corporation C620 Series Chipset Family PCI Express Root Port #17 [8086:a1e7] (rev fa)
+00:1c.0 PCI bridge [0604]: Intel Corporation C620 Series Chipset Family PCI Express Root Port #1 [8086:a190] (rev fa)
+00:1c.4 PCI bridge [0604]: Intel Corporation C620 Series Chipset Family PCI Express Root Port #5 [8086:a194] (rev fa)
+00:1c.5 PCI bridge [0604]: Intel Corporation C620 Series Chipset Family PCI Express Root Port #6 [8086:a195] (rev fa)
+00:1c.7 PCI bridge [0604]: Intel Corporation C620 Series Chipset Family PCI Express Root Port #8 [8086:a197] (rev fa)
+00:1d.0 PCI bridge [0604]: Intel Corporation C620 Series Chipset Family PCI Express Root Port #9 [8086:a198] (rev fa)
+00:1d.4 PCI bridge [0604]: Intel Corporation C620 Series Chipset Family PCI Express Root Port #13 [8086:a19c] (rev fa)
+00:1f.0 ISA bridge [0601]: Intel Corporation Device [8086:a1cb] (rev 0a)
+00:1f.2 Memory controller [0580]: Intel Corporation C620 Series Chipset Family Power Management Controller [8086:a1a1] (rev 0a)
+00:1f.3 Audio device [0403]: Intel Corporation Device [8086:a1f0] (rev 0a)
+00:1f.4 SMBus [0c05]: Intel Corporation C620 Series Chipset Family SMBus [8086:a1a3] (rev 0a)
+00:1f.5 Serial bus controller [0c80]: Intel Corporation C620 Series Chipset Family SPI Controller [8086:a1a4] (rev 0a)
+02:00.0 Ethernet controller [0200]: Intel Corporation I350 Gigabit Network Connection [8086:1521] (rev 01)
+02:00.1 Ethernet controller [0200]: Intel Corporation I350 Gigabit Network Connection [8086:1521] (rev 01)
+03:00.0 PCI bridge [0604]: ASPEED Technology, Inc. AST1150 PCI-to-PCI Bridge [1a03:1150] (rev 06)
+04:00.0 VGA compatible controller [0300]: ASPEED Technology, Inc. ASPEED Graphics Family [1a03:2000] (rev 52)
+06:00.0 Non-Volatile memory controller [0108]: Device [203c:1102] (rev 01)
+08:00.0 Ethernet controller [0200]: Mellanox Technologies MT27800 Family [ConnectX-5] [15b3:1017]
+16:00.0 System peripheral [0880]: Intel Corporation Device [8086:09a2] (rev 04)
+16:00.1 System peripheral [0880]: Intel Corporation Device [8086:09a4] (rev 04)
+16:00.2 System peripheral [0880]: Intel Corporation Device [8086:09a3] (rev 04)
+16:00.4 Host bridge [0600]: Intel Corporation Device [8086:0998]
+16:02.0 PCI bridge [0604]: Intel Corporation Device [8086:347a] (rev 04)
+17:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)
+17:00.1 Audio device [0403]: NVIDIA Corporation Device [10de:22ba] (rev a1)
+30:00.0 System peripheral [0880]: Intel Corporation Device [8086:09a2] (rev 04)
+30:00.1 System peripheral [0880]: Intel Corporation Device [8086:09a4] (rev 04)
+30:00.2 System peripheral [0880]: Intel Corporation Device [8086:09a3] (rev 04)
+30:00.4 Host bridge [0600]: Intel Corporation Device [8086:0998]
+30:02.0 PCI bridge [0604]: Intel Corporation Device [8086:347a] (rev 04)
+31:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)
+31:00.1 Audio device [0403]: NVIDIA Corporation Device [10de:22ba] (rev a1)
+4a:00.0 System peripheral [0880]: Intel Corporation Device [8086:09a2] (rev 04)
+4a:00.1 System peripheral [0880]: Intel Corporation Device [8086:09a4] (rev 04)
+4a:00.2 System peripheral [0880]: Intel Corporation Device [8086:09a3] (rev 04)
+4a:00.4 Host bridge [0600]: Intel Corporation Device [8086:0998]
+4a:02.0 PCI bridge [0604]: Intel Corporation Device [8086:347a] (rev 04)
+4b:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)
+4b:00.1 Audio device [0403]: NVIDIA Corporation Device [10de:22ba] (rev a1)
+64:00.0 System peripheral [0880]: Intel Corporation Device [8086:09a2] (rev 04)
+64:00.1 System peripheral [0880]: Intel Corporation Device [8086:09a4] (rev 04)
+64:00.2 System peripheral [0880]: Intel Corporation Device [8086:09a3] (rev 04)
+64:00.4 Host bridge [0600]: Intel Corporation Device [8086:0998]
+64:02.0 PCI bridge [0604]: Intel Corporation Device [8086:347a] (rev 04)
+65:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)
+65:00.1 Audio device [0403]: NVIDIA Corporation Device [10de:22ba] (rev a1)
+7e:00.0 System peripheral [0880]: Intel Corporation Device [8086:3450]
+7e:00.1 System peripheral [0880]: Intel Corporation Device [8086:3451]
+7e:00.2 System peripheral [0880]: Intel Corporation Device [8086:3452]
+7e:00.3 Host bridge [0600]: Intel Corporation Device [8086:0998]
+7e:00.5 System peripheral [0880]: Intel Corporation Device [8086:3455]
+7e:02.0 System peripheral [0880]: Intel Corporation Device [8086:3440]
+7e:02.1 System peripheral [0880]: Intel Corporation Device [8086:3441]
+7e:02.2 System peripheral [0880]: Intel Corporation Device [8086:3442]
+7e:03.0 System peripheral [0880]: Intel Corporation Device [8086:3440]
+7e:03.1 System peripheral [0880]: Intel Corporation Device [8086:3441]
+7e:03.2 System peripheral [0880]: Intel Corporation Device [8086:3442]
+7e:04.0 System peripheral [0880]: Intel Corporation Device [8086:3440]
+7e:04.1 System peripheral [0880]: Intel Corporation Device [8086:3441]
+7e:04.2 System peripheral [0880]: Intel Corporation Device [8086:3442]
+7e:04.3 System peripheral [0880]: Intel Corporation Device [8086:3443]
+7e:05.0 System peripheral [0880]: Intel Corporation Device [8086:3445]
+7e:05.1 System peripheral [0880]: Intel Corporation Device [8086:3446]
+7e:05.2 System peripheral [0880]: Intel Corporation Device [8086:3447]
+7e:06.0 System peripheral [0880]: Intel Corporation Device [8086:3445]
+7e:06.1 System peripheral [0880]: Intel Corporation Device [8086:3446]
+7e:06.2 System peripheral [0880]: Intel Corporation Device [8086:3447]
+7e:07.0 System peripheral [0880]: Intel Corporation Device [8086:3445]
+7e:07.1 System peripheral [0880]: Intel Corporation Device [8086:3446]
+7e:07.2 System peripheral [0880]: Intel Corporation Device [8086:3447]
+7e:0b.0 System peripheral [0880]: Intel Corporation Device [8086:3448]
+7e:0b.1 System peripheral [0880]: Intel Corporation Device [8086:3448]
+7e:0b.2 System peripheral [0880]: Intel Corporation Device [8086:344b]
+7e:0c.0 Performance counters [1101]: Intel Corporation Device [8086:344a]
+7e:0d.0 Performance counters [1101]: Intel Corporation Device [8086:344a]
+7e:0e.0 Performance counters [1101]: Intel Corporation Device [8086:344a]
+7e:0f.0 Performance counters [1101]: Intel Corporation Device [8086:344a]
+7e:1a.0 Performance counters [1101]: Intel Corporation Device [8086:2880]
+7e:1b.0 Performance counters [1101]: Intel Corporation Device [8086:2880]
+7e:1c.0 Performance counters [1101]: Intel Corporation Device [8086:2880]
+7e:1d.0 Performance counters [1101]: Intel Corporation Device [8086:2880]
+7f:00.0 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:00.1 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:00.2 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:00.3 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:00.4 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:00.5 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:00.6 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:00.7 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:01.0 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:01.1 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:01.2 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:01.3 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:01.4 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:01.5 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:01.6 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:01.7 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:02.0 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:02.1 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:02.2 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:02.3 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:02.4 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:02.5 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:02.6 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:02.7 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:03.0 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:03.1 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:03.2 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:03.3 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:03.4 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:03.5 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:03.6 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:03.7 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:04.0 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:04.1 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:04.2 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:04.3 System peripheral [0880]: Intel Corporation Device [8086:344c]
+7f:0a.0 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0a.1 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0a.2 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0a.3 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0a.4 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0a.5 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0a.6 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0a.7 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0b.0 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0b.1 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0b.2 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0b.3 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0b.4 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0b.5 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0b.6 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0b.7 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0c.0 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0c.1 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0c.2 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0c.3 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0c.4 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0c.5 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0c.6 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0c.7 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0d.0 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0d.1 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0d.2 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0d.3 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0d.4 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0d.5 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0d.6 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0d.7 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0e.0 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0e.1 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0e.2 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:0e.3 System peripheral [0880]: Intel Corporation Device [8086:344d]
+7f:1d.0 System peripheral [0880]: Intel Corporation Device [8086:344f]
+7f:1d.1 System peripheral [0880]: Intel Corporation Device [8086:3457]
+7f:1e.0 System peripheral [0880]: Intel Corporation Device [8086:3458] (rev 06)
+7f:1e.1 System peripheral [0880]: Intel Corporation Device [8086:3459] (rev 06)
+7f:1e.2 System peripheral [0880]: Intel Corporation Device [8086:345a] (rev 06)
+7f:1e.3 System peripheral [0880]: Intel Corporation Device [8086:345b] (rev 06)
+7f:1e.4 System peripheral [0880]: Intel Corporation Device [8086:345c] (rev 06)
+7f:1e.5 System peripheral [0880]: Intel Corporation Device [8086:345d] (rev 06)
+7f:1e.6 System peripheral [0880]: Intel Corporation Device [8086:345e] (rev 06)
+7f:1e.7 System peripheral [0880]: Intel Corporation Device [8086:345f] (rev 06)
+80:00.0 System peripheral [0880]: Intel Corporation Device [8086:09a2] (rev 04)
+80:00.1 System peripheral [0880]: Intel Corporation Device [8086:09a4] (rev 04)
+80:00.2 System peripheral [0880]: Intel Corporation Device [8086:09a3] (rev 04)
+80:00.4 Host bridge [0600]: Intel Corporation Device [8086:0998]
+80:01.0 System peripheral [0880]: Intel Corporation Device [8086:0b00]
+80:01.1 System peripheral [0880]: Intel Corporation Device [8086:0b00]
+80:01.2 System peripheral [0880]: Intel Corporation Device [8086:0b00]
+80:01.3 System peripheral [0880]: Intel Corporation Device [8086:0b00]
+80:01.4 System peripheral [0880]: Intel Corporation Device [8086:0b00]
+80:01.5 System peripheral [0880]: Intel Corporation Device [8086:0b00]
+80:01.6 System peripheral [0880]: Intel Corporation Device [8086:0b00]
+80:01.7 System peripheral [0880]: Intel Corporation Device [8086:0b00]
+80:02.0 System peripheral [0880]: Intel Corporation Device [8086:09a6]
+80:02.1 System peripheral [0880]: Intel Corporation Device [8086:09a7]
+80:02.4 Non-Essential Instrumentation [1300]: Intel Corporation Device [8086:3456] (rev 01)
+97:00.0 System peripheral [0880]: Intel Corporation Device [8086:09a2] (rev 04)
+97:00.1 System peripheral [0880]: Intel Corporation Device [8086:09a4] (rev 04)
+97:00.2 System peripheral [0880]: Intel Corporation Device [8086:09a3] (rev 04)
+97:00.4 Host bridge [0600]: Intel Corporation Device [8086:0998]
+97:02.0 PCI bridge [0604]: Intel Corporation Device [8086:347a] (rev 04)
+98:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)
+98:00.1 Audio device [0403]: NVIDIA Corporation Device [10de:22ba] (rev a1)
+b0:00.0 System peripheral [0880]: Intel Corporation Device [8086:09a2] (rev 04)
+b0:00.1 System peripheral [0880]: Intel Corporation Device [8086:09a4] (rev 04)
+b0:00.2 System peripheral [0880]: Intel Corporation Device [8086:09a3] (rev 04)
+b0:00.4 Host bridge [0600]: Intel Corporation Device [8086:0998]
+b0:02.0 PCI bridge [0604]: Intel Corporation Device [8086:347a] (rev 04)
+b1:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)
+b1:00.1 Audio device [0403]: NVIDIA Corporation Device [10de:22ba] (rev a1)
+c9:00.0 System peripheral [0880]: Intel Corporation Device [8086:09a2] (rev 04)
+c9:00.1 System peripheral [0880]: Intel Corporation Device [8086:09a4] (rev 04)
+c9:00.2 System peripheral [0880]: Intel Corporation Device [8086:09a3] (rev 04)
+c9:00.4 Host bridge [0600]: Intel Corporation Device [8086:0998]
+c9:02.0 PCI bridge [0604]: Intel Corporation Device [8086:347a] (rev 04)
+ca:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)
+ca:00.1 Audio device [0403]: NVIDIA Corporation Device [10de:22ba] (rev a1)
+e2:00.0 System peripheral [0880]: Intel Corporation Device [8086:09a2] (rev 04)
+e2:00.1 System peripheral [0880]: Intel Corporation Device [8086:09a4] (rev 04)
+e2:00.2 System peripheral [0880]: Intel Corporation Device [8086:09a3] (rev 04)
+e2:00.4 Host bridge [0600]: Intel Corporation Device [8086:0998]
+e2:02.0 PCI bridge [0604]: Intel Corporation Device [8086:347a] (rev 04)
+e3:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)
+e3:00.1 Audio device [0403]: NVIDIA Corporation Device [10de:22ba] (rev a1)
+fe:00.0 System peripheral [0880]: Intel Corporation Device [8086:3450]
+fe:00.1 System peripheral [0880]: Intel Corporation Device [8086:3451]
+fe:00.2 System peripheral [0880]: Intel Corporation Device [8086:3452]
+fe:00.3 Host bridge [0600]: Intel Corporation Device [8086:0998]
+fe:00.5 System peripheral [0880]: Intel Corporation Device [8086:3455]
+fe:02.0 System peripheral [0880]: Intel Corporation Device [8086:3440]
+fe:02.1 System peripheral [0880]: Intel Corporation Device [8086:3441]
+fe:02.2 System peripheral [0880]: Intel Corporation Device [8086:3442]
+fe:03.0 System peripheral [0880]: Intel Corporation Device [8086:3440]
+fe:03.1 System peripheral [0880]: Intel Corporation Device [8086:3441]
+fe:03.2 System peripheral [0880]: Intel Corporation Device [8086:3442]
+fe:04.0 System peripheral [0880]: Intel Corporation Device [8086:3440]
+fe:04.1 System peripheral [0880]: Intel Corporation Device [8086:3441]
+fe:04.2 System peripheral [0880]: Intel Corporation Device [8086:3442]
+fe:04.3 System peripheral [0880]: Intel Corporation Device [8086:3443]
+fe:05.0 System peripheral [0880]: Intel Corporation Device [8086:3445]
+fe:05.1 System peripheral [0880]: Intel Corporation Device [8086:3446]
+fe:05.2 System peripheral [0880]: Intel Corporation Device [8086:3447]
+fe:06.0 System peripheral [0880]: Intel Corporation Device [8086:3445]
+fe:06.1 System peripheral [0880]: Intel Corporation Device [8086:3446]
+fe:06.2 System peripheral [0880]: Intel Corporation Device [8086:3447]
+fe:07.0 System peripheral [0880]: Intel Corporation Device [8086:3445]
+fe:07.1 System peripheral [0880]: Intel Corporation Device [8086:3446]
+fe:07.2 System peripheral [0880]: Intel Corporation Device [8086:3447]
+fe:0b.0 System peripheral [0880]: Intel Corporation Device [8086:3448]
+fe:0b.1 System peripheral [0880]: Intel Corporation Device [8086:3448]
+fe:0b.2 System peripheral [0880]: Intel Corporation Device [8086:344b]
+fe:0c.0 Performance counters [1101]: Intel Corporation Device [8086:344a]
+fe:0d.0 Performance counters [1101]: Intel Corporation Device [8086:344a]
+fe:0e.0 Performance counters [1101]: Intel Corporation Device [8086:344a]
+fe:0f.0 Performance counters [1101]: Intel Corporation Device [8086:344a]
+fe:1a.0 Performance counters [1101]: Intel Corporation Device [8086:2880]
+fe:1b.0 Performance counters [1101]: Intel Corporation Device [8086:2880]
+fe:1c.0 Performance counters [1101]: Intel Corporation Device [8086:2880]
+fe:1d.0 Performance counters [1101]: Intel Corporation Device [8086:2880]
+ff:00.0 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:00.1 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:00.2 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:00.3 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:00.4 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:00.5 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:00.6 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:00.7 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:01.0 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:01.1 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:01.2 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:01.3 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:01.4 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:01.5 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:01.6 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:01.7 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:02.0 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:02.1 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:02.2 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:02.3 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:02.4 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:02.5 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:02.6 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:02.7 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:03.0 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:03.1 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:03.2 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:03.3 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:03.4 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:03.5 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:03.6 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:03.7 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:04.0 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:04.1 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:04.2 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:04.3 System peripheral [0880]: Intel Corporation Device [8086:344c]
+ff:0a.0 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0a.1 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0a.2 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0a.3 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0a.4 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0a.5 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0a.6 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0a.7 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0b.0 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0b.1 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0b.2 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0b.3 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0b.4 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0b.5 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0b.6 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0b.7 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0c.0 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0c.1 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0c.2 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0c.3 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0c.4 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0c.5 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0c.6 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0c.7 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0d.0 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0d.1 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0d.2 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0d.3 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0d.4 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0d.5 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0d.6 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0d.7 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0e.0 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0e.1 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0e.2 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:0e.3 System peripheral [0880]: Intel Corporation Device [8086:344d]
+ff:1d.0 System peripheral [0880]: Intel Corporation Device [8086:344f]
+ff:1d.1 System peripheral [0880]: Intel Corporation Device [8086:3457]
+ff:1e.0 System peripheral [0880]: Intel Corporation Device [8086:3458] (rev 06)
+ff:1e.1 System peripheral [0880]: Intel Corporation Device [8086:3459] (rev 06)
+ff:1e.2 System peripheral [0880]: Intel Corporation Device [8086:345a] (rev 06)
+ff:1e.3 System peripheral [0880]: Intel Corporation Device [8086:345b] (rev 06)
+ff:1e.4 System peripheral [0880]: Intel Corporation Device [8086:345c] (rev 06)
+ff:1e.5 System peripheral [0880]: Intel Corporation Device [8086:345d] (rev 06)
+ff:1e.6 System peripheral [0880]: Intel Corporation Device [8086:345e] (rev 06)
+ff:1e.7 System peripheral [0880]: Intel Corporation Device [8086:345f] (rev 06)
+
+===== lsmod =====
+Module                  Size  Used by
+cpuid                  12288  0
+udp_diag               12288  0
+unix_diag              12288  0
+nf_conntrack_netlink    57344  0
+veth                   45056  0
+tcp_diag               12288  0
+inet_diag              28672  2 tcp_diag,udp_diag
+xt_conntrack           12288  1
+xt_MASQUERADE          16384  1
+bridge                425984  0
+stp                    12288  1 bridge
+llc                    16384  2 bridge,stp
+xfrm_user              61440  1
+xfrm_algo              16384  1 xfrm_user
+xt_set                 20480  0
+ip_set                 61440  1 xt_set
+nft_chain_nat          12288  5
+xt_addrtype            12288  4
+nft_compat             20480  6
+nf_tables             380928  57 nft_compat,nft_chain_nat
+nfnetlink              20480  5 nft_compat,nf_conntrack_netlink,nf_tables,ip_set
+nvidia_uvm           2060288  12
+uio_pci_generic        12288  0
+uio                    28672  1 uio_pci_generic
+vfio_pci               16384  0
+vfio_pci_core          94208  1 vfio_pci
+vfio_iommu_type1       49152  0
+vfio                   69632  3 vfio_pci_core,vfio_iommu_type1,vfio_pci
+iommufd                98304  1 vfio
+irqbypass              12288  1 vfio_pci_core
+cuse                   16384  0
+overlay               212992  0
+snd_hda_codec_hdmi     94208  8
+rdma_ucm               32768  0
+rdma_cm               147456  1 rdma_ucm
+iw_cm                  61440  1 rdma_cm
+ib_ipoib              155648  0
+ib_cm                 143360  2 rdma_cm,ib_ipoib
+ib_umad                45056  0
+nvidia_drm            139264  0
+nvidia_modeset       1744896  1 nvidia_drm
+openvswitch           212992  0
+nsh                    12288  1 openvswitch
+nf_conncount           24576  1 openvswitch
+nf_nat                 61440  3 openvswitch,nft_chain_nat,xt_MASQUERADE
+nf_conntrack          200704  6 xt_conntrack,nf_nat,openvswitch,nf_conntrack_netlink,nf_conncount,xt_MASQUERADE
+nf_defrag_ipv6         24576  1 nf_conntrack
+nf_defrag_ipv4         12288  1 nf_conntrack
+libcrc32c              12288  4 nf_conntrack,nf_nat,openvswitch,nf_tables
+binfmt_misc            24576  1
+intel_rapl_msr         20480  0
+intel_rapl_common      40960  1 intel_rapl_msr
+intel_uncore_frequency    16384  0
+intel_uncore_frequency_common    16384  1 intel_uncore_frequency
+i10nm_edac             20480  0
+skx_edac_common        24576  1 i10nm_edac
+nfit                   81920  1 skx_edac_common
+x86_pkg_temp_thermal    20480  0
+coretemp               24576  0
+crct10dif_pclmul       12288  1
+polyval_clmulni        12288  0
+polyval_generic        12288  1 polyval_clmulni
+ghash_clmulni_intel    16384  0
+sha256_ssse3           32768  0
+sha1_ssse3             32768  0
+aesni_intel           356352  0
+crypto_simd            16384  1 aesni_intel
+cryptd                 24576  2 crypto_simd,ghash_clmulni_intel
+nvidia              14807040  117 nvidia_uvm,nvidia_modeset
+ipmi_ssif              45056  0
+snd_hda_intel          61440  0
+snd_intel_dspcfg       36864  1 snd_hda_intel
+snd_intel_sdw_acpi     16384  1 snd_intel_dspcfg
+snd_hda_codec         204800  2 snd_hda_codec_hdmi,snd_hda_intel
+snd_hda_core          139264  3 snd_hda_codec_hdmi,snd_hda_intel,snd_hda_codec
+snd_hwdep              20480  1 snd_hda_codec
+snd_pcm               192512  4 snd_hda_codec_hdmi,snd_hda_intel,snd_hda_codec,snd_hda_core
+snd_seq_midi           24576  0
+snd_seq_midi_event     16384  1 snd_seq_midi
+snd_rawmidi            57344  1 snd_seq_midi
+mlx5_ib               532480  0
+snd_seq               122880  2 snd_seq_midi,snd_seq_midi_event
+ib_uverbs             167936  2 rdma_ucm,mlx5_ib
+snd_seq_device         16384  3 snd_seq,snd_seq_midi,snd_rawmidi
+snd_timer              49152  2 snd_seq,snd_pcm
+macsec                 77824  1 mlx5_ib
+rapl                   20480  0
+nls_iso8859_1          12288  1
+cmdlinepart            12288  0
+mei_me                 53248  0
+spi_nor               167936  0
+intel_th_gth           24576  0
+isst_if_mmio           12288  0
+isst_if_mbox_pci       12288  0
+snd                   143360  9 snd_seq,snd_seq_device,snd_hda_codec_hdmi,snd_hwdep,snd_hda_intel,snd_hda_codec,snd_timer,snd_pcm,snd_rawmidi
+intel_cstate           24576  0
+video                  77824  1 nvidia_modeset
+intel_th_pci           12288  0
+ib_core               540672  8 rdma_cm,ib_ipoib,iw_cm,ib_umad,rdma_ucm,ib_uverbs,mlx5_ib,ib_cm
+pcspkr                 12288  0
+mtd                    98304  3 spi_nor,cmdlinepart
+isst_if_common         24576  2 isst_if_mmio,isst_if_mbox_pci
+mei                   172032  1 mei_me
+ecc                    45056  1 nvidia
+ast                   118784  0
+soundcore              16384  1 snd
+ioatdma                90112  0
+intel_pch_thermal      20480  0
+intel_vsec             20480  0
+intel_th               32768  2 intel_th_gth,intel_th_pci
+acpi_power_meter       20480  0
+ipmi_si                86016  1
+acpi_ipmi              24576  1 acpi_power_meter
+ipmi_devintf           16384  0
+ipmi_msghandler        94208  4 ipmi_devintf,ipmi_si,acpi_ipmi,ipmi_ssif
+evbug                  12288  0
+mac_hid                12288  0
+sch_fq_codel           24576  80
+knem                   49152  0
+msr                    12288  0
+parport_pc             53248  0
+ppdev                  24576  0
+lp                     28672  0
+parport                73728  3 parport_pc,lp,ppdev
+efi_pstore             12288  0
+ip_tables              32768  0
+x_tables               65536  6 xt_conntrack,nft_compat,xt_addrtype,xt_set,ip_tables,xt_MASQUERADE
+autofs4                57344  2
+mlx5_core            2748416  1 mlx5_ib
+mlxfw                  36864  1 mlx5_core
+dax_hmem               16384  0
+psample                16384  1 mlx5_core
+cxl_acpi               24576  0
+mlxdevm               180224  1 mlx5_core
+cxl_port               16384  0
+nvme                   61440  2
+cxl_core              294912  2 cxl_port,cxl_acpi
+crc32_pclmul           12288  0
+tls                   155648  1 mlx5_core
+igb                   319488  0
+i2c_i801               36864  0
+spi_intel_pci          12288  0
+nvme_core             212992  3 nvme
+mlx_compat             20480  11 rdma_cm,ib_ipoib,mlxdevm,iw_cm,ib_umad,ib_core,rdma_ucm,ib_uverbs,mlx5_ib,ib_cm,mlx5_core
+ahci                   49152  1
+i2c_algo_bit           16384  2 igb,ast
+i2c_smbus              16384  1 i2c_i801
+spi_intel              32768  1 spi_intel_pci
+pci_hyperv_intf        12288  1 mlx5_core
+xhci_pci               24576  0
+nvme_auth              28672  1 nvme_core
+dca                    16384  2 igb,ioatdma
+libahci                53248  1 ahci
+xhci_pci_renesas       20480  1 xhci_pci
+wmi                    28672  1 video
+
+===== YOLO checks =====
+Ultralytics 8.4.101 🚀 Python-3.10.12 torch-2.13.0+cu130 CUDA:0 (NVIDIA GeForce RTX 4090, 48510MiB)
+Setup complete ✅ (144 CPUs, 251.5 GB RAM, 1820.4/1876.2 GB disk)
+
+OS                     Linux-6.8.0-136-generic-x86_64-with-glibc2.35
+Environment            Linux
+Python                 3.10.12
+Install                git
+Path                   <repo>/ultralytics
+RAM                    251.50 GB
+Disk                   1820.4/1876.2 GB
+CPU                    Intel Xeon Platinum 8373C CPU @ 2.60GHz
+CPU count              144
+GPU                    NVIDIA GeForce RTX 4090, 48510MiB
+GPU count              8
+CUDA                   13.0
+
+filelock               ✅ 3.32.3>=3.16.1
+numpy                  ✅ 2.2.6>=1.23.0
+matplotlib             ✅ 3.10.9>=3.3.0
+opencv-python          ✅ 5.0.0.93!=4.13.0.90,>=4.6.0
+pillow                 ✅ 12.3.0>=7.1.2
+pyyaml                 ✅ 6.0.3>=5.3.1
+requests               ✅ 2.34.2>=2.23.0
+torch                  ✅ 2.13.0+cu130>=1.8.0
+torch                  ✅ 2.13.0+cu130!=2.4.0,>=1.8.0; sys_platform == "win32"
+torchvision            ✅ 0.28.0+cu130>=0.9.0
+psutil                 ✅ 7.2.2>=5.8.0
+polars                 ✅ 1.44.0>=0.20.0
+nvidia-ml-py           ✅ 13.610.43>=12.0.0
+ultralytics-thop       ✅ 2.1.6>=2.0.18
+
+===== 论文锚点检查 =====
+YOLO-PEFT paper anchor OK (reports/yolo-peft-2608.07051-anchor.json)

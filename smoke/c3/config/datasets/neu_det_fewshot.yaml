@@ -1,0 +1,12 @@
+# NEU-DET 每类 5 张的确定性训练划分（seed 824）；验证集和测试集仍各保留每类 30 张。
+path: datasets/neu_det_fewshot_yolo
+train: images/train
+val: images/val
+test: images/test
+names:
+  0: crazing
+  1: inclusion
+  2: patches
+  3: pitted_surface
+  4: rolled-in_scale
+  5: scratches

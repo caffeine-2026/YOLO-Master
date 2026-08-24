@@ -1,0 +1,25 @@
+# 全参数微调基线。除适配器相关项外，训练条件与 V-PEFT 冒烟测试保持一致。
+task: detect
+mode: train
+model: yolo11n.pt
+data: smoke/c3/config/datasets/neu_det_fewshot.yaml
+device: 0
+
+epochs: 1
+batch: 1
+imgsz: 320
+workers: 0
+seed: 824
+deterministic: true
+amp: true
+cache: false
+val: true
+plots: false
+patience: 0
+close_mosaic: 0
+project: runs/vpeft_smoke
+name: full_sft
+exist_ok: false
+
+lora_r: 0
+freeze: 0

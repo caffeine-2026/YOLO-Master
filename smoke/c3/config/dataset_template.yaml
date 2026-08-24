@@ -1,0 +1,24 @@
+# YOLO-Master 使用的 YOLO 检测数据集结构。
+# 从仓库根目录执行命令，确保相对 `path` 按预期解析。
+
+path: datasets/<dataset_name> # 数据集根目录；也接受绝对路径。
+train: images/train # 必填：目录、图像列表文本文件，或两者的列表。
+val: images/val # 必填；别名 `validation` 会重命名为 `val`。
+test: images/test # 可选。
+
+# 类别 ID 必须从零开始且连续。`nc: <数量>` 可以替代 `names`，但显式名称更安全。
+names:
+  0: class_0
+  1: class_1
+
+# 可选字段：
+# channels: 3
+# download: https://example.invalid/dataset.zip
+
+# 对应的磁盘目录结构：
+# datasets/<dataset_name>/
+# ├── images/{train,val,test}/image.jpg
+# └── labels/{train,val,test}/image.txt
+#
+# 每行检测标签：class_id x_center y_center width height
+# 坐标归一化到 [0, 1]。负样本可以没有 .txt 文件，也可以使用空文件。

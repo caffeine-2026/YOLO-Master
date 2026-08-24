@@ -1,0 +1,9 @@
+# 当前阻塞：必须先通过 MVTec AD 官方表单合法获取数据，再使用
+# smoke/c3/tools/prepare_mvtec_yolo.py 转换。
+# 这是有监督检测冒烟转换，不是 MVTec AD 官方无监督基准协议。
+path: datasets/mvtec_yolo
+train: images/train
+val: images/val
+test: images/test
+names:
+  0: defect

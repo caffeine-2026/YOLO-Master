@@ -1,0 +1,1 @@
+yolo train cfg=smoke/c3/config/baselines/full_sft_smoke.yaml data=smoke/c3/config/datasets/neu_det_fewshot.yaml device=cpu name=neu_det_full_sft_cpu_seed824 project=runs/vpeft_smoke exist_ok=False amp=false

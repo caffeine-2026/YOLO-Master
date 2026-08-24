@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "captured_utc": "2026-08-24T14:57:21.628794+00:00",
+  "repository_commit": "d29ff5a70077018a25ea7dd432b30bb12f753418",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+  "machine": "x86_64",
+  "python": "3.10.12",
+  "packages": {
+    "ultralytics": "8.4.101",
+    "torch": "2.13.0+cpu",
+    "torchvision": "0.28.0+cpu",
+    "peft": "0.19.1",
+    "opencv": "5.0.0",
+    "pyyaml": "6.0.3"
+  },
+  "cuda": {
+    "gpu_execution_ready": false,
+    "readiness_policy": "必须同时通过字符设备、nvidia-smi、CUDA 版 PyTorch、设备枚举和张量分配检查",
+    "pci_nvidia_gpu_count": 8,
+    "pci_nvidia_gpus": [
+      "17:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "31:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "4b:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "65:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "98:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "b1:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "ca:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "e3:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)"
+    ],
+    "loaded_nvidia_kernel_modules": [
+      "nvidia_uvm           2060288  12",
+      "nvidia_drm            139264  0",
+      "nvidia_modeset       1744896  1 nvidia_drm",
+      "nvidia              14807040  117 nvidia_uvm,nvidia_modeset"
+    ],
+    "torch_cuda_build": null,
+    "torch_cuda_available": false,
+    "device_count": 0,
+    "required_device_nodes": [
+      "/dev/nvidia0",
+      "/dev/nvidiactl",
+      "/dev/nvidia-uvm"
+    ],
+    "required_device_nodes_present": false,
+    "device_nodes": [],
+    "matched_device_paths": [
+      "/dev/nvidia-caps"
+    ],
+    "nvidia_smi_exit_code": 9,
+    "nvcc_exit_code": 0,
+    "allocation_test": {
+      "attempted": false,
+      "passed": false,
+      "error": null
+    },
+    "current_classification": "GPU 不可执行；仅允许 CPU 辅助功能核验"
+  },
+  "assets": {
+    "yolo11n_pt_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+    "neu_det_archive_sha256": "cf04bb0b05d364f23e05031b191b20b908a0e5eb11466df74ee7fba98ec835d5",
+    "neu_det_fewshot_manifest_sha256": "6cdf14f723f1d3f9f05696a6834d27d832d1362e5a8171995d376db5071d4e34"
+  },
+  "checks": {
+    "paper_anchor_exit_code": 0,
+    "yolo_checks_exit_code": 0
+  }
+}

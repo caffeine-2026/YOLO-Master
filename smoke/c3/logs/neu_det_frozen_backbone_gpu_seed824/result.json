@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "exit_code": 0,
+  "started_utc": "2026-08-24T16:06:01.013968+00:00",
+  "finished_utc": "2026-08-24T16:06:22.771463+00:00",
+  "wall_seconds": 21.757,
+  "device": "0",
+  "command": [
+    "yolo",
+    "train",
+    "cfg=smoke/c3/config/baselines/frozen_backbone_smoke.yaml",
+    "data=smoke/c3/config/datasets/neu_det_fewshot.yaml",
+    "device=0",
+    "name=neu_det_frozen_backbone_gpu_seed824",
+    "project=runs/vpeft_smoke",
+    "exist_ok=False",
+    "amp=true"
+  ],
+  "config": "smoke/c3/config/baselines/frozen_backbone_smoke.yaml",
+  "data": "smoke/c3/config/datasets/neu_det_fewshot.yaml",
+  "run_dir": "runs/detect/runs/vpeft_smoke/neu_det_frozen_backbone_gpu_seed824",
+  "resource_summary": {
+    "peak_cpu_percent": 101.7,
+    "peak_rss_mib": 2813.61,
+    "peak_gpu_memory_mib": 636.0
+  },
+  "artifact_count": 5,
+  "artifacts": [
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_frozen_backbone_gpu_seed824/args.yaml",
+      "size_bytes": 7860,
+      "sha256": "ca22347fcc03af24090bb8f6ab29b41348b22a826e56ffc3c4f5eb24aa9cffae"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_frozen_backbone_gpu_seed824/results.csv",
+      "size_bytes": 337,
+      "sha256": "bcdbaf5965f992b94d915127b110149a93988478862275e56279343fdf288728"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_frozen_backbone_gpu_seed824/weights/best.pt",
+      "size_bytes": 5444181,
+      "sha256": "26ed47d437190286cc6119991e88bd80496a7b1f02ac80f1dd090e7a3b0352ba"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_frozen_backbone_gpu_seed824/weights/last.pt",
+      "size_bytes": 5444181,
+      "sha256": "fcfd5046c6a8ff494268c4e1191ce1bf59f73023cd5856b7d5f8edcc3d500e52"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_frozen_backbone_gpu_seed824/weights/last_healthy.pt",
+      "size_bytes": 18376850,
+      "sha256": "cb95defd0f80c60fd0b0dc0534b8b5067cc322de2679bb488901421987315fb0"
+    }
+  ],
+  "log_path_policy": "完整保留日志行，仅将仓库根目录和用户主目录前缀替换为占位符。",
+  "numerical_recovery": {
+    "detected": true,
+    "requested_epochs": 1,
+    "observed_epoch_attempts": 2,
+    "recovery_attempts": 1,
+    "amp_requested": true,
+    "amp_disabled_by_recovery": true,
+    "explicit_lora_restore_messages": 0,
+    "classification": "AMP 非有限值恢复后完成，属于降级运行"
+  }
+}

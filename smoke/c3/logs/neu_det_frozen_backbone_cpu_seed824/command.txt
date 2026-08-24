@@ -1,0 +1,1 @@
+yolo train cfg=smoke/c3/config/baselines/frozen_backbone_smoke.yaml data=smoke/c3/config/datasets/neu_det_fewshot.yaml device=cpu name=neu_det_frozen_backbone_cpu_seed824 project=runs/vpeft_smoke exist_ok=False amp=false

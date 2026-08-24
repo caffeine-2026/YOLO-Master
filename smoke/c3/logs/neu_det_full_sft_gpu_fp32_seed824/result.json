@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "exit_code": 0,
+  "started_utc": "2026-08-24T16:08:20.609333+00:00",
+  "finished_utc": "2026-08-24T16:08:33.824746+00:00",
+  "wall_seconds": 13.215,
+  "device": "0",
+  "command": [
+    "yolo",
+    "train",
+    "cfg=smoke/c3/config/baselines/full_sft_smoke.yaml",
+    "data=smoke/c3/config/datasets/neu_det_fewshot.yaml",
+    "device=0",
+    "name=neu_det_full_sft_gpu_fp32_seed824",
+    "project=runs/vpeft_smoke",
+    "exist_ok=False",
+    "amp=false"
+  ],
+  "config": "smoke/c3/config/baselines/full_sft_smoke.yaml",
+  "data": "smoke/c3/config/datasets/neu_det_fewshot.yaml",
+  "run_dir": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_gpu_fp32_seed824",
+  "resource_summary": {
+    "peak_cpu_percent": 104.2,
+    "peak_rss_mib": 2221.13,
+    "peak_gpu_memory_mib": 726.0
+  },
+  "artifact_count": 5,
+  "artifacts": [
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_gpu_fp32_seed824/args.yaml",
+      "size_bytes": 7856,
+      "sha256": "64e7ea0d287f7dad985f33d7df26a8e65c0b77a977488b1b00dad01d8a78cb03"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_gpu_fp32_seed824/results.csv",
+      "size_bytes": 333,
+      "sha256": "eb8d86650fa4baca6deccf3e7a3c650f7aa0d55a2c023ef3905dd50b8d892912"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_gpu_fp32_seed824/weights/best.pt",
+      "size_bytes": 5443866,
+      "sha256": "dc92c6b17decfeba7e5f0f7a446a5dfb737e14727e6e9f92da922ffd54745223"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_gpu_fp32_seed824/weights/last.pt",
+      "size_bytes": 5443866,
+      "sha256": "94b0189898d74aa43701ee0ec8d358a1b5563a03ef55c3f1ffc82762b1ef1c71"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_gpu_fp32_seed824/weights/last_healthy.pt",
+      "size_bytes": 26670828,
+      "sha256": "82f08f6038526eb4d2e69a6a4f613f9111241a73aa5dfe5842e7c4ba928bc3a8"
+    }
+  ],
+  "log_path_policy": "完整保留日志行，仅将仓库根目录和用户主目录前缀替换为占位符。",
+  "numerical_recovery": {
+    "detected": false,
+    "requested_epochs": 1,
+    "observed_epoch_attempts": 1,
+    "recovery_attempts": 0,
+    "amp_requested": false,
+    "amp_disabled_by_recovery": false,
+    "explicit_lora_restore_messages": 0,
+    "classification": "未检测到自动数值恢复"
+  }
+}

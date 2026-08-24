@@ -1,0 +1,6 @@
+sha256  size_bytes  path
+aa40c1ae987c1222e741575a7591efcc45a29a1b5146839f09aa7fc1130e3348  7846  runs/detect/runs/vpeft_smoke/neu_det_full_sft_cpu_seed824/args.yaml
+2d760bc006b4128a9b7de3245b6c5ca7cfeb08b13aa13f2d701b864a85627f01  336  runs/detect/runs/vpeft_smoke/neu_det_full_sft_cpu_seed824/results.csv
+d38a07e7c21f3260e3ce7f0267beb317bdc35dfad80b338cc3488272adb4a21c  5443930  runs/detect/runs/vpeft_smoke/neu_det_full_sft_cpu_seed824/weights/best.pt
+1d56a88eac836d163dc4eb715bf5039d50e8c372a4f7c1fa4aebf5a14b743919  5443930  runs/detect/runs/vpeft_smoke/neu_det_full_sft_cpu_seed824/weights/last.pt
+451801a4fee5ad38c131f4005b12e15333d0a77d8f5427fa43a21de850e6ae4b  26648812  runs/detect/runs/vpeft_smoke/neu_det_full_sft_cpu_seed824/weights/last_healthy.pt

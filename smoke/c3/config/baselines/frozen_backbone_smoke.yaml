@@ -1,0 +1,26 @@
+# 冻结 YOLO11 主干（模型层 0～10）的低成本基线。
+task: detect
+mode: train
+model: yolo11n.pt
+data: smoke/c3/config/datasets/neu_det_fewshot.yaml
+device: 0
+
+epochs: 1
+batch: 1
+imgsz: 320
+workers: 0
+seed: 824
+deterministic: true
+amp: true
+cache: false
+val: true
+plots: false
+patience: 0
+close_mosaic: 0
+project: runs/vpeft_smoke
+name: frozen_backbone
+exist_ok: false
+
+lora_r: 0
+# yolo11.yaml 的 backbone 共 11 个顶层模块，整数 11 表示冻结 model.0～model.10。
+freeze: 11

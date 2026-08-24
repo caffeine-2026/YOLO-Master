@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "exit_code": 0,
+  "started_utc": "2026-08-24T14:40:27.899656+00:00",
+  "finished_utc": "2026-08-24T14:40:44.187571+00:00",
+  "wall_seconds": 16.288,
+  "device": "cpu",
+  "command": [
+    "yolo",
+    "train",
+    "cfg=smoke/c3/config/baselines/full_sft_smoke.yaml",
+    "data=smoke/c3/config/datasets/neu_det_fewshot.yaml",
+    "device=cpu",
+    "name=neu_det_full_sft_cpu_seed824",
+    "project=runs/vpeft_smoke",
+    "exist_ok=False",
+    "amp=false"
+  ],
+  "config": "smoke/c3/config/baselines/full_sft_smoke.yaml",
+  "data": "smoke/c3/config/datasets/neu_det_fewshot.yaml",
+  "run_dir": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_cpu_seed824",
+  "resource_summary": {
+    "peak_cpu_percent": 797.7,
+    "peak_rss_mib": 700.97,
+    "peak_gpu_memory_mib": null
+  },
+  "artifact_count": 5,
+  "artifacts": [
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_cpu_seed824/args.yaml",
+      "size_bytes": 7846,
+      "sha256": "aa40c1ae987c1222e741575a7591efcc45a29a1b5146839f09aa7fc1130e3348"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_cpu_seed824/results.csv",
+      "size_bytes": 336,
+      "sha256": "2d760bc006b4128a9b7de3245b6c5ca7cfeb08b13aa13f2d701b864a85627f01"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_cpu_seed824/weights/best.pt",
+      "size_bytes": 5443930,
+      "sha256": "d38a07e7c21f3260e3ce7f0267beb317bdc35dfad80b338cc3488272adb4a21c"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_cpu_seed824/weights/last.pt",
+      "size_bytes": 5443930,
+      "sha256": "1d56a88eac836d163dc4eb715bf5039d50e8c372a4f7c1fa4aebf5a14b743919"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_cpu_seed824/weights/last_healthy.pt",
+      "size_bytes": 26648812,
+      "sha256": "451801a4fee5ad38c131f4005b12e15333d0a77d8f5427fa43a21de850e6ae4b"
+    }
+  ],
+  "log_path_policy": "完整保留日志行，仅将仓库根目录和用户主目录前缀替换为占位符。",
+  "numerical_recovery": {
+    "detected": false,
+    "requested_epochs": 1,
+    "observed_epoch_attempts": 1,
+    "recovery_attempts": 0,
+    "amp_requested": false,
+    "amp_disabled_by_recovery": false,
+    "explicit_lora_restore_messages": 0,
+    "classification": "未检测到自动数值恢复"
+  }
+}

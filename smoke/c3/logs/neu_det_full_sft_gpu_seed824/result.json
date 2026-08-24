@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "exit_code": 0,
+  "started_utc": "2026-08-24T16:05:29.837077+00:00",
+  "finished_utc": "2026-08-24T16:05:52.007178+00:00",
+  "wall_seconds": 22.17,
+  "device": "0",
+  "command": [
+    "yolo",
+    "train",
+    "cfg=smoke/c3/config/baselines/full_sft_smoke.yaml",
+    "data=smoke/c3/config/datasets/neu_det_fewshot.yaml",
+    "device=0",
+    "name=neu_det_full_sft_gpu_seed824",
+    "project=runs/vpeft_smoke",
+    "exist_ok=False",
+    "amp=true"
+  ],
+  "config": "smoke/c3/config/baselines/full_sft_smoke.yaml",
+  "data": "smoke/c3/config/datasets/neu_det_fewshot.yaml",
+  "run_dir": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_gpu_seed824",
+  "resource_summary": {
+    "peak_cpu_percent": 102.7,
+    "peak_rss_mib": 2910.83,
+    "peak_gpu_memory_mib": 722.0
+  },
+  "artifact_count": 5,
+  "artifacts": [
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_gpu_seed824/args.yaml",
+      "size_bytes": 7845,
+      "sha256": "3541e7ed98289632846746c679c91bff7286ea8afc067a562ee13888be5fa4c7"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_gpu_seed824/results.csv",
+      "size_bytes": 336,
+      "sha256": "9b4fc11a1798db1686554fc728738f328e3613a0dc10bf1129ec2636732a6555"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_gpu_seed824/weights/best.pt",
+      "size_bytes": 5444181,
+      "sha256": "189e6108c2afe0e816e209e8b7bbdddef263c2b0aa2186f024f1174b53540260"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_gpu_seed824/weights/last.pt",
+      "size_bytes": 5444181,
+      "sha256": "1796a23786f6fc4cb24f71160028643bbf1af40c46cff1e11f2fde2230f3ecbc"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_full_sft_gpu_seed824/weights/last_healthy.pt",
+      "size_bytes": 26671530,
+      "sha256": "842fce88b1a67e4fef8bb14a206ef1ecdfdcc7259e2a96db90353936d4536c18"
+    }
+  ],
+  "log_path_policy": "完整保留日志行，仅将仓库根目录和用户主目录前缀替换为占位符。",
+  "numerical_recovery": {
+    "detected": true,
+    "requested_epochs": 1,
+    "observed_epoch_attempts": 2,
+    "recovery_attempts": 1,
+    "amp_requested": true,
+    "amp_disabled_by_recovery": true,
+    "explicit_lora_restore_messages": 0,
+    "classification": "AMP 非有限值恢复后完成，属于降级运行"
+  }
+}

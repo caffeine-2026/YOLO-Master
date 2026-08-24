@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "captured_utc": "2026-08-24T16:29:20.843895+00:00",
+  "repository_commit": "d29ff5a70077018a25ea7dd432b30bb12f753418",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+  "machine": "x86_64",
+  "python": "3.10.12",
+  "packages": {
+    "ultralytics": "8.4.101",
+    "torch": "2.13.0+cu130",
+    "torchvision": "0.28.0+cu130",
+    "peft": "0.19.1",
+    "opencv": "5.0.0",
+    "pyyaml": "6.0.3"
+  },
+  "cuda": {
+    "gpu_execution_ready": true,
+    "readiness_policy": "必须同时通过字符设备、nvidia-smi、CUDA 版 PyTorch、设备枚举和张量分配检查",
+    "pci_nvidia_gpu_count": 8,
+    "pci_nvidia_gpus": [
+      "17:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "31:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "4b:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "65:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "98:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "b1:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "ca:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)",
+      "e3:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:2684] (rev a1)"
+    ],
+    "nvidia_smi_inventory": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory_total_mib": 49140,
+        "driver_version": "595.84"
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory_total_mib": 49140,
+        "driver_version": "595.84"
+      },
+      {
+        "index": 2,
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory_total_mib": 49140,
+        "driver_version": "595.84"
+      },
+      {
+        "index": 3,
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory_total_mib": 49140,
+        "driver_version": "595.84"
+      },
+      {
+        "index": 4,
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory_total_mib": 49140,
+        "driver_version": "595.84"
+      },
+      {
+        "index": 5,
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory_total_mib": 49140,
+        "driver_version": "595.84"
+      },
+      {
+        "index": 6,
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory_total_mib": 49140,
+        "driver_version": "595.84"
+      },
+      {
+        "index": 7,
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory_total_mib": 49140,
+        "driver_version": "595.84"
+      }
+    ],
+    "driver_version": "595.84",
+    "nvidia_smi_cuda_compatibility": "13.2",
+    "loaded_nvidia_kernel_modules": [
+      "nvidia_uvm           2060288  12",
+      "nvidia_drm            139264  0",
+      "nvidia_modeset       1744896  1 nvidia_drm",
+      "nvidia              14807040  117 nvidia_uvm,nvidia_modeset"
+    ],
+    "torch_cuda_build": "13.0",
+    "torch_cuda_available": true,
+    "device_count": 8,
+    "required_device_nodes": [
+      "/dev/nvidia0",
+      "/dev/nvidiactl",
+      "/dev/nvidia-uvm"
+    ],
+    "required_device_nodes_present": true,
+    "device_nodes": [
+      "/dev/nvidia-modeset",
+      "/dev/nvidia-uvm",
+      "/dev/nvidia-uvm-tools",
+      "/dev/nvidia0",
+      "/dev/nvidia1",
+      "/dev/nvidia2",
+      "/dev/nvidia3",
+      "/dev/nvidia4",
+      "/dev/nvidia5",
+      "/dev/nvidia6",
+      "/dev/nvidia7",
+      "/dev/nvidiactl"
+    ],
+    "matched_device_paths": [
+      "/dev/nvidia-modeset",
+      "/dev/nvidia-uvm",
+      "/dev/nvidia-uvm-tools",
+      "/dev/nvidia0",
+      "/dev/nvidia1",
+      "/dev/nvidia2",
+      "/dev/nvidia3",
+      "/dev/nvidia4",
+      "/dev/nvidia5",
+      "/dev/nvidia6",
+      "/dev/nvidia7",
+      "/dev/nvidiactl"
+    ],
+    "nvidia_smi_exit_code": 0,
+    "nvcc_exit_code": 0,
+    "allocation_test": {
+      "attempted": true,
+      "passed": true,
+      "error": null
+    },
+    "current_classification": "GPU 可执行"
+  },
+  "assets": {
+    "yolo11n_pt_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+    "neu_det_archive_sha256": "cf04bb0b05d364f23e05031b191b20b908a0e5eb11466df74ee7fba98ec835d5",
+    "neu_det_fewshot_manifest_sha256": "6cdf14f723f1d3f9f05696a6834d27d832d1362e5a8171995d376db5071d4e34"
+  },
+  "checks": {
+    "paper_anchor_exit_code": 0,
+    "yolo_checks_exit_code": 0
+  }
+}
