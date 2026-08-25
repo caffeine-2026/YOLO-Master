@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "metric": "mAP50-95",
+  "rule": {
+    "previous_window": "epochs 41-45",
+    "last_window": "epochs 46-50",
+    "not_converged_if_delta_gt": 0.01
+  },
+  "runs": [
+    {
+      "dataset": "NEU-DET",
+      "method": "Full-SFT",
+      "run_id": "neu_full_seed824_e50",
+      "previous_5_epoch_mean": 0.26351800000000003,
+      "last_5_epoch_mean": 0.28678,
+      "delta_last5_vs_prev5": 0.02326199999999995,
+      "best_epoch": 50,
+      "best_metric": 0.2923,
+      "last_epoch_metric": 0.2923,
+      "status": "NOT_CONVERGED"
+    },
+    {
+      "dataset": "NEU-DET",
+      "method": "Frozen Backbone",
+      "run_id": "neu_frozen_seed824_e50",
+      "previous_5_epoch_mean": 0.239738,
+      "last_5_epoch_mean": 0.255286,
+      "delta_last5_vs_prev5": 0.015548000000000006,
+      "best_epoch": 50,
+      "best_metric": 0.25979,
+      "last_epoch_metric": 0.25979,
+      "status": "NOT_CONVERGED"
+    },
+    {
+      "dataset": "NEU-DET",
+      "method": "V-PEFT",
+      "run_id": "neu_vpeft_seed824_e50",
+      "previous_5_epoch_mean": 0.253876,
+      "last_5_epoch_mean": 0.258444,
+      "delta_last5_vs_prev5": 0.0045680000000000165,
+      "best_epoch": 48,
+      "best_metric": 0.2602,
+      "last_epoch_metric": 0.25791,
+      "status": "CONVERGED_OR_PLATEAU"
+    },
+    {
+      "dataset": "DeepPCB",
+      "method": "Full-SFT",
+      "run_id": "deeppcb_full_seed824_e50",
+      "previous_5_epoch_mean": 0.48121,
+      "last_5_epoch_mean": 0.48393800000000003,
+      "delta_last5_vs_prev5": 0.002728000000000008,
+      "best_epoch": 45,
+      "best_metric": 0.50788,
+      "last_epoch_metric": 0.4707,
+      "status": "CONVERGED_OR_PLATEAU"
+    },
+    {
+      "dataset": "DeepPCB",
+      "method": "Frozen Backbone",
+      "run_id": "deeppcb_frozen_seed824_e50",
+      "previous_5_epoch_mean": 0.390756,
+      "last_5_epoch_mean": 0.40408799999999995,
+      "delta_last5_vs_prev5": 0.013331999999999955,
+      "best_epoch": 47,
+      "best_metric": 0.4053,
+      "last_epoch_metric": 0.40421,
+      "status": "NOT_CONVERGED"
+    },
+    {
+      "dataset": "DeepPCB",
+      "method": "V-PEFT",
+      "run_id": "deeppcb_vpeft_seed824_e50",
+      "previous_5_epoch_mean": 0.296432,
+      "last_5_epoch_mean": 0.313152,
+      "delta_last5_vs_prev5": 0.016720000000000013,
+      "best_epoch": 39,
+      "best_metric": 0.35462,
+      "last_epoch_metric": 0.30964,
+      "status": "NOT_CONVERGED"
+    }
+  ],
+  "epoch_decision": "EXTEND_ALL_TO_75",
+  "protocol_fairness": "PASS",
+  "multiseed_ready": false,
+  "execution_policy": "restart_all",
+  "plots": [
+    "smoke/c3/p1/visualizations/convergence_e50/neu_map5095.png",
+    "smoke/c3/p1/visualizations/convergence_e50/neu_map50.png",
+    "smoke/c3/p1/visualizations/convergence_e50/neu_loss.png",
+    "smoke/c3/p1/visualizations/convergence_e50/deeppcb_map5095.png",
+    "smoke/c3/p1/visualizations/convergence_e50/deeppcb_map50.png",
+    "smoke/c3/p1/visualizations/convergence_e50/deeppcb_loss.png"
+  ]
+}

@@ -1,8 +1,19 @@
 # V-PEFT 效率差距分析
 
-本分析读取既有 30-epoch pilot，并对其 checkpoint 做固定 batch、FP32、3 次 warmup + 10 次测量的内存不落盘微型分析。微型分析只用于定位开销，不能替代真实 pilot 的端到端资源数据。
+本分析保留 30-epoch pilot 的低侵入 profiler 证据，并用统一从零训练的 50-epoch candidate 重新核验端到端现象。微型分析只用于定位开销，不能替代真实训练的端到端资源数据。
 
-## Observed facts
+## 50-Epoch Revalidation — Observed facts
+
+| Dataset | Trainable parameter reduction | Peak memory saving | Training time change | GPU-hour change | Accuracy retention |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| NEU-DET | 76.32% | 1.16% | +16.09% | +16.09% | 82.02% |
+| DeepPCB | 76.32% | 1.15% | +9.26% | +9.26% | 68.21% |
+
+- 50 epoch 仍确认“可训练参数显著减少、完整训练峰值 reserved memory 仅约 1% 节省”。
+- 50 epoch 仍确认 V-PEFT wall time 高于 Full-SFT，但增幅随数据集变化；不能把单一百分比外推为固定开销。
+- 上述 accuracy retention 是 seed824、50-epoch candidate 的观测值；由于 4/6 曲线尚未平台化，不作为最终 P1 结论。
+
+## 30-Epoch Historical Pilot — Observed facts
 
 - NEU-DET: V-PEFT 可训练参数减少 76.32%，实际 pilot 峰值 reserved memory 仅减少 1.16%，训练时间变化 +12.60%。
 - DeepPCB: V-PEFT 可训练参数减少 76.32%，实际 pilot 峰值 reserved memory 仅减少 1.15%，训练时间变化 +14.83%。

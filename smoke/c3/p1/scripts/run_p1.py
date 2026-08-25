@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run one immutable C3 P1 pilot and emit complete reproducibility evidence."""
+"""Run one immutable C3 P1 comparison and emit complete reproducibility evidence."""
 
 from __future__ import annotations
 
@@ -37,6 +37,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--method", choices=METHODS, required=True)
     parser.add_argument("--seed", type=int, default=824)
     parser.add_argument("--device", default="0")
+    parser.add_argument("--epochs", type=int, choices=(30, 50), default=30)
     return parser.parse_args()
 
 
@@ -53,6 +54,10 @@ def clean_text(value: str) -> str:
     )
     for source, target in replacements:
         clean = clean.replace(source, target)
+    had_final_newline = clean.endswith("\n")
+    clean = "\n".join(line.rstrip() for line in clean.splitlines())
+    if had_final_newline:
+        clean += "\n"
     return clean
 
 
@@ -111,7 +116,7 @@ def sample_resources(process: subprocess.Popen[str], path: Path, stop: threading
     if tracked:
         tracked.cpu_percent(interval=None)
     with path.open("w", encoding="utf-8", newline="") as stream:
-        writer = csv.writer(stream)
+        writer = csv.writer(stream, lineterminator="\n")
         writer.writerow(
             (
                 "timestamp_utc",
@@ -357,7 +362,12 @@ def main() -> int:
     args = parse_args()
     if args.seed != 824:
         raise ValueError("This pilot stage is locked to seed=824; seeds 825/826 are outside the current scope")
-    run_id = f"{args.dataset}_{args.method}_seed{args.seed}"
+    if args.epochs == 30:
+        run_id = f"{args.dataset}_{args.method}_seed{args.seed}"
+    else:
+        dataset_name = {"neu_det": "neu", "deeppcb": "deeppcb"}[args.dataset]
+        method_name = {"full_sft": "full", "frozen_backbone": "frozen", "vpeft": "vpeft"}[args.method]
+        run_id = f"{dataset_name}_{method_name}_seed{args.seed}_e{args.epochs}"
     log_dir = P1_ROOT / "logs" / run_id
     artifact_dir = P1_ROOT / "artifacts" / run_id
     if log_dir.exists() or artifact_dir.exists():
@@ -372,7 +382,7 @@ def main() -> int:
             raise FileNotFoundError(relative(required))
     config_values = yaml.safe_load(config.read_text(encoding="utf-8"))
     if int(config_values.get("epochs", 0)) != 30 or bool(config_values.get("amp", True)):
-        raise ValueError("Pilot config must use 30 epochs and amp=false")
+        raise ValueError("Locked source config must use the original 30 epochs and amp=false")
 
     yolo = Path(sys.executable).with_name("yolo")
     if not yolo.is_file():
@@ -386,6 +396,7 @@ def main() -> int:
         f"seed={args.seed}",
         f"name={run_id}",
         f"save_dir={relative(artifact_dir)}",
+        f"epochs={args.epochs}",
         "exist_ok=False",
     ]
     public_train_command = ["yolo", *train_command[1:]]
@@ -504,7 +515,7 @@ def main() -> int:
             "cuda_gpu0_used": args.device == "0" and "CUDA:0 (NVIDIA GeForce RTX 4090" in stdout_text,
             "fixed_protocol": all(
                 (
-                    resolved.get("epochs") == 30,
+                    resolved.get("epochs") == args.epochs,
                     resolved.get("batch") == 8,
                     resolved.get("imgsz") == 640,
                     resolved.get("workers") == 0,
@@ -512,7 +523,7 @@ def main() -> int:
                     resolved.get("amp") is False,
                 )
             ),
-            "complete_finite_learning_curve": len(curve_rows) == 30 and curve_finite,
+            "complete_finite_learning_curve": len(curve_rows) == args.epochs and curve_finite,
             "no_numerical_recovery": not recovery_markers,
             "test_metrics_finite": finite_metrics,
             "checkpoints_present": all(path.is_file() for path in (checkpoint, best, last)),
