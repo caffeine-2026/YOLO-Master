@@ -1,4 +1,4 @@
-# C3 P1 对照报告（seed824，50-Epoch Candidate）
+# C3 P1 对照报告（seed824，75-Epoch Convergence Candidate）
 
 ## 1. Research Question
 
@@ -6,7 +6,7 @@
 
 ## 2. Protocol
 
-`restart_all`，YOLO11n/yolo11n.pt、每数据集 100 张训练图、50 epochs、batch 8、imgsz 640、AdamW、lr0=0.001、weight decay=0.0005、cosine scheduler、GPU0、FP32、seed824。30 epoch 结果仅为历史 pilot；50 epoch 是当前 convergence candidate。
+`restart_all`，YOLO11n/yolo11n.pt、每数据集 100 张训练图、75 epochs、batch 8、imgsz 640、AdamW、lr0=0.001、weight decay=0.0005、cosine scheduler、GPU0、FP32、seed824。30 epoch 是 early pilot，50 epoch 是 intermediate convergence check，75 epoch 是 current final-epoch candidate。
 
 ## 3. Dataset / Split
 
@@ -22,21 +22,21 @@ NEU-DET 与 DeepPCB 沿用 seed824 固定成员列表以及原 val/test，三种
 
 | Dataset | Method | mAP50-95 | mAP50 | Precision | Recall | Trainable / Total | Trainable Ratio | Peak GPU Mem | Memory Saving | Time | GPU-hours | Time Ratio | Checkpoint | Adapter | Status |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| NEU-DET | Full-SFT | 0.2901 | 0.5580 | 0.7520 | 0.4788 | 2,590,994 / 2,591,010 | 100.00% | 2652 MiB | 0.00% | 182.3s | 0.05065 | 1.000x | 5.24 MiB | 0.00 MiB | PASS |
-| NEU-DET | Frozen Backbone | 0.2708 | 0.5410 | 0.6636 | 0.4983 | 1,225,522 / 2,591,010 | 47.30% | 1700 MiB | 35.91% | 166.9s | 0.04635 | 0.915x | 5.24 MiB | 0.00 MiB | PASS |
-| NEU-DET | V-PEFT | 0.2379 | 0.4827 | 0.7208 | 0.4158 | 613,602 / 2,772,770 | 22.13% | 2621 MiB | 1.16% | 211.7s | 0.05879 | 1.161x | 5.75 MiB | 0.73 MiB | PASS |
-| DeepPCB | Full-SFT | 0.5324 | 0.8027 | 0.7696 | 0.7563 | 2,590,994 / 2,591,010 | 100.00% | 2673 MiB | 0.00% | 195.8s | 0.05439 | 1.000x | 5.24 MiB | 0.00 MiB | PASS |
-| DeepPCB | Frozen Backbone | 0.4045 | 0.6861 | 0.6586 | 0.6521 | 1,225,522 / 2,591,010 | 47.30% | 1710 MiB | 36.02% | 180.7s | 0.05020 | 0.923x | 5.24 MiB | 0.00 MiB | PASS |
-| DeepPCB | V-PEFT | 0.3631 | 0.5784 | 0.5217 | 0.6320 | 613,602 / 2,772,770 | 22.13% | 2642 MiB | 1.15% | 213.9s | 0.05942 | 1.093x | 5.75 MiB | 0.73 MiB | PASS |
+| NEU-DET | Full-SFT | 0.3242 | 0.6025 | 0.5384 | 0.5825 | 2,590,994 / 2,591,010 | 100.00% | 2652 MiB | 0.00% | 265.8s | 0.07385 | 1.000x | 5.24 MiB | 0.00 MiB | PASS |
+| NEU-DET | Frozen Backbone | 0.2870 | 0.5621 | 0.4984 | 0.5442 | 1,225,522 / 2,591,010 | 47.30% | 1700 MiB | 35.91% | 239.7s | 0.06658 | 0.902x | 5.24 MiB | 0.00 MiB | PASS |
+| NEU-DET | V-PEFT | 0.2933 | 0.5792 | 0.6980 | 0.5128 | 613,602 / 2,772,770 | 22.13% | 2621 MiB | 1.16% | 298.4s | 0.08288 | 1.122x | 5.75 MiB | 0.73 MiB | PASS |
+| DeepPCB | Full-SFT | 0.5951 | 0.9029 | 0.8870 | 0.8311 | 2,590,994 / 2,591,010 | 100.00% | 2673 MiB | 0.00% | 283.2s | 0.07866 | 1.000x | 5.24 MiB | 0.00 MiB | PASS |
+| DeepPCB | Frozen Backbone | 0.4534 | 0.7712 | 0.7575 | 0.7192 | 1,225,522 / 2,591,010 | 47.30% | 1710 MiB | 36.02% | 254.0s | 0.07056 | 0.897x | 5.24 MiB | 0.00 MiB | PASS |
+| DeepPCB | V-PEFT | 0.4633 | 0.7318 | 0.6960 | 0.6938 | 613,602 / 2,772,770 | 22.13% | 2642 MiB | 1.15% | 314.0s | 0.08721 | 1.109x | 5.75 MiB | 0.73 MiB | PASS |
 
-## 6. 30 vs 50
+## 6. 30/50/75
 
-见 `../results/e30_vs_e50.csv`。两个数据集的单 seed 方法顺序没有反转，但 50 epoch 仍未满足统一收敛门槛。
+见 `../results/e30_e50_e75.csv`。三个预算下的方法排序为“未稳定”；单 seed 排序不能外推为总体方法优劣。
 
 ## 7. V-PEFT Trade-off
 
-- NEU-DET: parameter reduction=76.32%, accuracy retention=82.02%, memory saving=1.16%, time change=+16.09%.
-- DeepPCB: parameter reduction=76.32%, accuracy retention=68.21%, memory saving=1.15%, time change=+9.26%.
+- NEU-DET: parameter reduction=76.32%, accuracy retention=90.48%, memory saving=1.16%, time change=+12.24%.
+- DeepPCB: parameter reduction=76.32%, accuracy retention=77.86%, memory saving=1.15%, time change=+10.88%.
 
 ## 8. Multi-seed Statistics
 
@@ -48,17 +48,17 @@ NEU-DET 与 DeepPCB 均为 Planner=ACCEPT、planner backend=vpeft、actual backe
 
 ## 10. Convergence and Limitations
 
-| Dataset | Method | Epoch 41-45 mean | Epoch 46-50 mean | Delta | Best epoch | Best | Last | Status |
+| Dataset | Method | Epoch 66-70 mean | Epoch 71-75 mean | Delta | Best epoch | Best | Last | Status |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| NEU-DET | Full-SFT | 0.263518 | 0.286780 | +0.023262 | 50 | 0.292300 | 0.292300 | NOT_CONVERGED |
-| NEU-DET | Frozen Backbone | 0.239738 | 0.255286 | +0.015548 | 50 | 0.259790 | 0.259790 | NOT_CONVERGED |
-| NEU-DET | V-PEFT | 0.253876 | 0.258444 | +0.004568 | 48 | 0.260200 | 0.257910 | CONVERGED_OR_PLATEAU |
-| DeepPCB | Full-SFT | 0.481210 | 0.483938 | +0.002728 | 45 | 0.507880 | 0.470700 | CONVERGED_OR_PLATEAU |
-| DeepPCB | Frozen Backbone | 0.390756 | 0.404088 | +0.013332 | 47 | 0.405300 | 0.404210 | NOT_CONVERGED |
-| DeepPCB | V-PEFT | 0.296432 | 0.313152 | +0.016720 | 39 | 0.354620 | 0.309640 | NOT_CONVERGED |
+| NEU-DET | Full-SFT | 0.321914 | 0.322986 | +0.001072 | 64 | 0.326280 | 0.321680 | CONVERGED_OR_PLATEAU |
+| NEU-DET | Frozen Backbone | 0.277736 | 0.280250 | +0.002514 | 62 | 0.284140 | 0.279660 | CONVERGED_OR_PLATEAU |
+| NEU-DET | V-PEFT | 0.281754 | 0.271284 | -0.010470 | 66 | 0.294180 | 0.270360 | CONVERGED_OR_PLATEAU |
+| DeepPCB | Full-SFT | 0.566432 | 0.585302 | +0.018870 | 58 | 0.608530 | 0.576220 | NOT_CONVERGED |
+| DeepPCB | Frozen Backbone | 0.441126 | 0.462256 | +0.021130 | 74 | 0.463270 | 0.463220 | NOT_CONVERGED |
+| DeepPCB | V-PEFT | 0.376926 | 0.371006 | -0.005920 | 62 | 0.460170 | 0.363560 | CONVERGED_OR_PLATEAU |
 
-本阶段仍为单 seed；`EXTEND_ALL_TO_75`，因此 50 epoch 不能称为 final P1 result，也不能声明任一方法普遍优于其他方法。
+本阶段仍为单 seed；`EXTEND_ALL_TO_100`。75 epoch 仍是 convergence candidate，不能称为 final P1 结果；下一阶段须六种条件统一扩展到 100 epoch。即使冻结预算，也不能用 seed824 声明任一方法普遍优于其他方法。
 
 ## 11. P1 Conclusion
 
-六组公平闭环均 PASS，但只有 2/6 达到固定 plateau 判据。`MULTISEED_READY = NO`，下一步必须继续统一预算审计。
+六组公平闭环均 PASS，4/6 达到固定 plateau 判据；`MULTISEED_READY = NO`。本轮未运行 seed825/826。

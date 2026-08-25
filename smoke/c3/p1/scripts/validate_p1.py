@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate P0 immutability and all six C3 P1 seed-824 pilot evidence bundles."""
+"""Validate P0 immutability and a six-run C3 P1 seed-824 evidence stage."""
 
 from __future__ import annotations
 
@@ -74,7 +74,16 @@ FAIR_KEYS = (
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", default="smoke/c3/p1/evidence/pilot_validation.json")
+    parser.add_argument("--epochs", type=int, choices=(30, 50, 75), default=30)
     return parser.parse_args()
+
+
+def run_id(dataset: str, method: str, epochs: int) -> str:
+    if epochs == 30:
+        return f"{dataset}_{method}_seed824"
+    dataset_tag = {"neu_det": "neu", "deeppcb": "deeppcb"}[dataset]
+    method_tag = {"full_sft": "full", "frozen_backbone": "frozen", "vpeft": "vpeft"}[method]
+    return f"{dataset_tag}_{method_tag}_seed824_e{epochs}"
 
 
 def sha256(path: Path) -> str:
@@ -173,15 +182,15 @@ def main() -> int:
     resolved_by_run: dict[str, dict[str, object]] = {}
     for dataset in DATASETS:
         for method in METHODS:
-            run_id = f"{dataset}_{method}_seed824"
-            log_dir = P1_ROOT / "logs" / run_id
+            identifier = run_id(dataset, method, args.epochs)
+            log_dir = P1_ROOT / "logs" / identifier
             missing = [name for name in REQUIRED_FILES if not (log_dir / name).is_file()]
             if missing:
-                run_checks[run_id] = {"status": "FAIL", "missing": missing}
+                run_checks[identifier] = {"status": "FAIL", "missing": missing}
                 continue
             metrics = json.loads((log_dir / "metrics.json").read_text(encoding="utf-8"))
             resolved = load_yaml(log_dir / "resolved_config.yaml")
-            resolved_by_run[run_id] = resolved
+            resolved_by_run[identifier] = resolved
             artifact_ok, artifact_count, artifact_errors = validate_artifacts(log_dir)
             curve_finite, curve_rows = finite_curve(log_dir / "learning_curve.csv")
             test = metrics.get("test", {})
@@ -190,7 +199,7 @@ def main() -> int:
                 "required_files_present": not missing,
                 "stdout_complete": (log_dir / "stdout.log").stat().st_size > 0,
                 "stderr_captured": (log_dir / "stderr.log").is_file(),
-                "curve_30_epochs_finite": curve_rows == 30 and curve_finite,
+                f"curve_{args.epochs}_epochs_finite": curve_rows == args.epochs and curve_finite,
                 "test_metrics_finite": all(
                     key in test and math.isfinite(float(test[key]))
                     for key in ("map50_95", "map50", "precision", "recall")
@@ -237,7 +246,7 @@ def main() -> int:
                     and bool(head_rows)
                     and all(int(row.get("trainable_parameters", 0)) > 0 for row in head_rows)
                 )
-            run_checks[run_id] = {
+            run_checks[identifier] = {
                 "status": "PASS" if all(checks.values()) else "FAIL",
                 "checks": checks,
                 "artifact_count": artifact_count,
@@ -246,22 +255,22 @@ def main() -> int:
 
     fairness_checks: dict[str, object] = {}
     if len(resolved_by_run) == 6:
-        reference = resolved_by_run["neu_det_full_sft_seed824"]
+        reference = resolved_by_run[run_id("neu_det", "full_sft", args.epochs)]
         fairness_checks["common_training_protocol"] = all(
             all(resolved.get(key) == reference.get(key) for key in FAIR_KEYS) for resolved in resolved_by_run.values()
         )
         fairness_checks["same_data_within_dataset"] = all(
-            len({resolved_by_run[f"{dataset}_{method}_seed824"].get("data") for method in METHODS}) == 1
+            len({resolved_by_run[run_id(dataset, method, args.epochs)].get("data") for method in METHODS}) == 1
             for dataset in DATASETS
         )
         fairness_checks["distinct_method_only_settings"] = all(
             all(
                 (
-                int(resolved_by_run[f"{dataset}_full_sft_seed824"].get("lora_r", 0) or 0) == 0,
-                int(resolved_by_run[f"{dataset}_full_sft_seed824"].get("freeze", 0) or 0) == 0,
-                int(resolved_by_run[f"{dataset}_frozen_backbone_seed824"].get("lora_r", 0) or 0) == 0,
-                int(resolved_by_run[f"{dataset}_frozen_backbone_seed824"].get("freeze", 0) or 0) == 11,
-                int(resolved_by_run[f"{dataset}_vpeft_seed824"].get("lora_r", 0) or 0) == 8,
+                int(resolved_by_run[run_id(dataset, "full_sft", args.epochs)].get("lora_r", 0) or 0) == 0,
+                int(resolved_by_run[run_id(dataset, "full_sft", args.epochs)].get("freeze", 0) or 0) == 0,
+                int(resolved_by_run[run_id(dataset, "frozen_backbone", args.epochs)].get("lora_r", 0) or 0) == 0,
+                int(resolved_by_run[run_id(dataset, "frozen_backbone", args.epochs)].get("freeze", 0) or 0) == 11,
+                int(resolved_by_run[run_id(dataset, "vpeft", args.epochs)].get("lora_r", 0) or 0) == 8,
                 )
             )
             for dataset in DATASETS
@@ -282,7 +291,7 @@ def main() -> int:
     )
     payload = {
         "schema_version": 1,
-        "scope": "C3 P1 seed824 pilot: two datasets x three methods",
+        "scope": f"C3 P1 seed824 {args.epochs}-epoch stage: two datasets x three methods",
         "p0_final_ref": P0_FINAL_REF,
         "p0_checks": p0_checks,
         "p0_diff": p0_diff,

@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "started_utc": "2026-08-25T15:13:21.150666+00:00",
+  "finished_utc": "2026-08-25T15:17:46.999912+00:00",
+  "training_seconds": 265.849,
+  "gpu_hours": 0.07384694,
+  "training_exit_code": 0
+}

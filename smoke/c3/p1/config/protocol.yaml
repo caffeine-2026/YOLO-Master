@@ -1,5 +1,5 @@
-schema_version: 3
-stage: e50_audited_pending_uniform_e75_extension
+schema_version: 4
+stage: e75_audited_pending_uniform_e100_extension
 research_question: 在工业缺陷小样本条件下，V-PEFT 是否能以显著更少的可训练参数和资源成本，保持或改善 Full-SFT / Frozen Backbone 的检测性能？
 
 provenance:
@@ -30,8 +30,9 @@ datasets:
 
 training:
   pilot_epochs: 30
-  convergence_candidate_epochs: 50
-  epochs: 75
+  intermediate_convergence_epochs: 50
+  convergence_candidate_epochs: 75
+  epochs: 100
   batch: 8
   imgsz: 640
   optimizer: AdamW
@@ -97,21 +98,25 @@ evaluation:
 extension_gate:
   seeds_after_pilot: [825, 826]
   multiseed_ready: false
-  epoch_decision: EXTEND_ALL_TO_75
+  epoch_decision: EXTEND_ALL_TO_100
   seed824_pilot_policy: preserve all six 30-epoch runs without overwrite
   e50_execution_policy: restart_all
   e50_execution_reason: the 30-epoch cosine schedule is not semantically equivalent to a from-scratch 50-epoch schedule
-  seed824_next_requirement: run all six strategies at the common 75-epoch budget before multi-seed
-  final_epoch_policy: re-audit all six common-budget curves at 75 epochs before fixing the multi-seed budget
+  e75_execution_policy: restart_all
+  e75_execution_reason: the 50-epoch cosine schedule is not semantically equivalent to a from-scratch 75-epoch schedule
+  seed824_next_requirement: run all six strategies at the common 100-epoch budget before multi-seed
+  final_epoch_policy: re-audit all six common-budget curves at 100 epochs before fixing the multi-seed budget
 
 convergence_rule:
   metric: mAP50-95
-  previous_window: epochs 41-45
-  last_window: epochs 46-50
+  previous_window: epochs 66-70
+  last_window: epochs 71-75
   delta: last_5_epoch_mean - previous_5_epoch_mean
   not_converged_if_delta_gt: 0.01
-  decision: EXTEND_ALL_TO_75
-  plateau_runs: 2
-  not_converged_runs: 4
-  audit: smoke/c3/p1/docs/CONVERGENCE_AUDIT_E50.md
+  decision: EXTEND_ALL_TO_100
+  plateau_runs: 4
+  not_converged_runs: 2
+  ranking_stable_across_e30_e50_e75: false
+  audit: smoke/c3/p1/docs/CONVERGENCE_AUDIT_E75.md
+  historical_e50_audit: smoke/c3/p1/docs/CONVERGENCE_AUDIT_E50.md
   historical_e30_audit: smoke/c3/p1/docs/CONVERGENCE_AUDIT.md

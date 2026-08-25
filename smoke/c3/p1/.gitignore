@@ -3,3 +3,4 @@ artifacts/
 !logs/**/*.log
 !visualizations/convergence/*.png
 !visualizations/convergence_e50/*.png
+!visualizations/convergence_e75/*.png
