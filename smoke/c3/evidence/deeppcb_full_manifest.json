@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "dataset": "DeepPCB",
+  "purpose": "YOLO detection smoke conversion using defective tested images only",
+  "source": {
+    "repository": "https://github.com/tangsanli5201/DeepPCB",
+    "commit": "08e98c4db5922613fb97176eb3d6497d48260cb1",
+    "checkout": "datasets/raw/DeepPCB",
+    "dataset_root": "datasets/raw/DeepPCB/PCBData",
+    "research_use_note": "Original README states that the dataset can only be used for research purposes.",
+    "key_file_sha256": {
+      "datasets/raw/DeepPCB/README.md": "7af2628c43ee4c516d1c948eb38507adf4552e5ed0c6e51e7406ac3fa29b4fb6",
+      "datasets/raw/DeepPCB/LICENSE": "e3f8bb38535cbb3a497255c13664de9a2dc4fbbd61a950cc6941be7d6b1afe71",
+      "datasets/raw/DeepPCB/PCBData/trainval.txt": "8b91b36368cf50b0cb8ccf70ecbf5042e49f81709f5021dc7bc3a5774d9c7b8e",
+      "datasets/raw/DeepPCB/PCBData/test.txt": "c3417f4beca9d606ea4cff54d501f57442c5384705ca4c4d67f90d0afece10aa"
+    },
+    "tested_images": 1500,
+    "template_images": 1501,
+    "annotations": 1500,
+    "extra_unpaired_templates": [
+      "90100034"
+    ]
+  },
+  "official_split": {
+    "trainval": 1000,
+    "test": 500
+  },
+  "derived_split_policy": {
+    "seed": 824,
+    "val_ratio_within_official_trainval": 0.2,
+    "train_shots_per_class": 0,
+    "test_preserved_from_official_split": true,
+    "few_shot_definition": "minimum positive training images containing each class; images may be multi-label"
+  },
+  "classes": [
+    "open",
+    "short",
+    "mousebite",
+    "spur",
+    "copper",
+    "pin-hole"
+  ],
+  "source_object_counts": {
+    "mousebite": 1965,
+    "spur": 1625,
+    "copper": 1474,
+    "pin-hole": 1501,
+    "open": 1942,
+    "short": 1506
+  },
+  "split_image_counts": {
+    "train": 800,
+    "val": 200,
+    "test": 500
+  },
+  "split_object_counts": {
+    "train": {
+      "mousebite": 1101,
+      "short": 823,
+      "spur": 896,
+      "copper": 818,
+      "pin-hole": 838,
+      "open": 1033
+    },
+    "val": {
+      "open": 250,
+      "short": 205,
+      "spur": 246,
+      "copper": 192,
+      "pin-hole": 193,
+      "mousebite": 278
+    },
+    "test": {
+      "open": 659,
+      "mousebite": 586,
+      "spur": 483,
+      "pin-hole": 470,
+      "copper": 464,
+      "short": 478
+    }
+  },
+  "split_positive_image_counts": {
+    "train": {
+      "open": 689,
+      "short": 588,
+      "mousebite": 683,
+      "spur": 646,
+      "copper": 673,
+      "pin-hole": 708
+    },
+    "val": {
+      "open": 173,
+      "short": 145,
+      "mousebite": 173,
+      "spur": 165,
+      "copper": 165,
+      "pin-hole": 169
+    },
+    "test": {
+      "open": 482,
+      "mousebite": 413,
+      "spur": 373,
+      "copper": 403,
+      "pin-hole": 438,
+      "short": 368
+    }
+  },
+  "split_overlap_count": 0,
+  "split_membership_sha256": "b6537e8c86d48f757b42cddf67b9195255742f6443e8ef366995a2bfecedcf76"
+}

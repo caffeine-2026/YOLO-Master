@@ -1,10 +1,12 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "status": "passed",
   "yaml_files": [
     "smoke/c3/config/baselines/frozen_backbone_smoke.yaml",
     "smoke/c3/config/baselines/full_sft_smoke.yaml",
     "smoke/c3/config/dataset_template.yaml",
+    "smoke/c3/config/datasets/deeppcb.yaml",
+    "smoke/c3/config/datasets/deeppcb_fewshot.yaml",
     "smoke/c3/config/datasets/mvtec_smoke.yaml",
     "smoke/c3/config/datasets/neu_det.yaml",
     "smoke/c3/config/datasets/neu_det_fewshot.yaml",
@@ -54,15 +56,87 @@
     },
     "manifest_sha256": "6cdf14f723f1d3f9f05696a6834d27d832d1362e5a8171995d376db5071d4e34"
   },
+  "deeppcb_dataset": {
+    "splits": {
+      "train": {
+        "images": 8,
+        "labels": 8,
+        "objects": 52,
+        "objects_by_class": {
+          "open": 10,
+          "short": 9,
+          "mousebite": 11,
+          "spur": 5,
+          "copper": 9,
+          "pin-hole": 8
+        }
+      },
+      "val": {
+        "images": 200,
+        "labels": 200,
+        "objects": 1364,
+        "objects_by_class": {
+          "open": 250,
+          "short": 205,
+          "mousebite": 278,
+          "spur": 246,
+          "copper": 192,
+          "pin-hole": 193
+        }
+      },
+      "test": {
+        "images": 500,
+        "labels": 500,
+        "objects": 3140,
+        "objects_by_class": {
+          "open": 659,
+          "short": 478,
+          "mousebite": 586,
+          "spur": 483,
+          "copper": 464,
+          "pin-hole": 470
+        }
+      }
+    },
+    "manifest_sha256": "f648c2ac0660eda0e7d388a1eb5c613fcddbb34cc7e764c5bd35b1d2a89e91e6"
+  },
+  "deeppcb_evidence": {
+    "source_commit": "08e98c4db5922613fb97176eb3d6497d48260cb1",
+    "source_images": 1500,
+    "source_annotations": 1500,
+    "classes": [
+      "open",
+      "short",
+      "mousebite",
+      "spur",
+      "copper",
+      "pin-hole"
+    ],
+    "split_image_counts": {
+      "train": 8,
+      "val": 200,
+      "test": 500
+    },
+    "data_validation": "PASS"
+  },
   "delivery": {
     "required_files": [
       "README.md",
       "docs/ADMISSION_20260825.md",
+      "docs/C3_P0_FINAL_REPORT.md",
       "PEFT_RUN_GUIDE.md",
       "config/vpeft_smoke.yaml",
+      "config/datasets/deeppcb.yaml",
+      "config/datasets/deeppcb_fewshot.yaml",
+      "tools/prepare_deeppcb.py",
+      "tools/validate_deeppcb_data.py",
       "logs/README.md",
       "evidence/gpu_smoke_comparison.json",
       "evidence/cpu_smoke_comparison.json",
+      "evidence/deeppcb_source_manifest.json",
+      "evidence/deeppcb_manifest.json",
+      "evidence/deeppcb_data_validation.json",
+      "evidence/c3_p0_summary.json",
       "evidence/environment.json",
       "evidence/environment_cpu_fallback.json"
     ],
@@ -147,8 +221,46 @@
         "peak_gpu_memory_mib": 630.0,
         "numerical_recovery_detected": false,
         "recovery_attempts": 0
+      },
+      "deeppcb_vpeft_gpu_fp32_seed824": {
+        "status": "completed",
+        "exit_code": 0,
+        "device": "0",
+        "amp": false,
+        "peak_gpu_memory_mib": 712.0,
+        "numerical_recovery_detected": false,
+        "recovery_attempts": 0
       }
     },
+    "official_p0_runs": {
+      "neu_det_vpeft_gpu_fp32_seed824": {
+        "planner_status": "ACCEPT",
+        "planner_backend": "vpeft",
+        "actual_backend": "peft",
+        "planned_targets": 59,
+        "applied_targets": 52,
+        "trainable_parameters": 613602,
+        "adapter_parameters": 181760,
+        "peak_gpu_memory_mib": 712.0,
+        "elapsed_seconds": 18.315,
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      "deeppcb_vpeft_gpu_fp32_seed824": {
+        "planner_status": "ACCEPT",
+        "planner_backend": "vpeft",
+        "actual_backend": "peft",
+        "planned_targets": 59,
+        "applied_targets": 52,
+        "trainable_parameters": 613602,
+        "adapter_parameters": 181760,
+        "peak_gpu_memory_mib": 712.0,
+        "elapsed_seconds": 17.075,
+        "exit_code": 0,
+        "status": "PASS"
+      }
+    },
+    "official_p0_status": "PASS",
     "gpu_gate": {
       "gpu_execution_ready": true,
       "classification": "GPU 可执行",
@@ -165,13 +277,21 @@
     "smoke/c3/config/baselines/frozen_backbone_smoke.yaml",
     "smoke/c3/config/baselines/full_sft_smoke.yaml",
     "smoke/c3/config/dataset_template.yaml",
+    "smoke/c3/config/datasets/deeppcb.yaml",
+    "smoke/c3/config/datasets/deeppcb_fewshot.yaml",
     "smoke/c3/config/datasets/mvtec_smoke.yaml",
     "smoke/c3/config/datasets/neu_det.yaml",
     "smoke/c3/config/datasets/neu_det_fewshot.yaml",
     "smoke/c3/config/vpeft_smoke.yaml",
     "smoke/c3/docs/ADMISSION_20260825.md",
+    "smoke/c3/docs/C3_P0_FINAL_REPORT.md",
     "smoke/c3/evidence/README.md",
+    "smoke/c3/evidence/c3_p0_summary.json",
     "smoke/c3/evidence/cpu_smoke_comparison.json",
+    "smoke/c3/evidence/deeppcb_data_validation.json",
+    "smoke/c3/evidence/deeppcb_full_manifest.json",
+    "smoke/c3/evidence/deeppcb_manifest.json",
+    "smoke/c3/evidence/deeppcb_source_manifest.json",
     "smoke/c3/evidence/environment.json",
     "smoke/c3/evidence/environment_cpu_fallback.json",
     "smoke/c3/evidence/gpu_smoke_comparison.json",
@@ -179,6 +299,17 @@
     "smoke/c3/evidence/neu_det_full_manifest.json",
     "smoke/c3/evidence/static_validation.json",
     "smoke/c3/logs/README.md",
+    "smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824/adapter_config.json",
+    "smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824/artifact_index.txt",
+    "smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824/command.txt",
+    "smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824/metrics.csv",
+    "smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824/postprocess.txt",
+    "smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824/resolved_config.yaml",
+    "smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824/resources.csv",
+    "smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824/result.json",
+    "smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824/time.txt",
+    "smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824/train.log",
+    "smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824/vpeft_runtime_metadata.json",
     "smoke/c3/logs/neu_det_frozen_backbone_cpu_seed824/artifact_index.txt",
     "smoke/c3/logs/neu_det_frozen_backbone_cpu_seed824/command.txt",
     "smoke/c3/logs/neu_det_frozen_backbone_cpu_seed824/metrics.csv",
@@ -262,10 +393,12 @@
     "smoke/c3/logs/neu_det_vpeft_gpu_seed824/vpeft_runtime_metadata.json",
     "smoke/c3/logs/preflight/environment.txt",
     "smoke/c3/tools/capture_environment.py",
+    "smoke/c3/tools/prepare_deeppcb.py",
     "smoke/c3/tools/prepare_mvtec_yolo.py",
     "smoke/c3/tools/prepare_neu_det.py",
     "smoke/c3/tools/run_smoke.py",
     "smoke/c3/tools/summarize_runs.py",
+    "smoke/c3/tools/validate_deeppcb_data.py",
     "smoke/c3/tools/validate_delivery.py"
   ]
 }
