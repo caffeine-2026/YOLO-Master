@@ -1,0 +1,457 @@
+{
+  "schema_version": 1,
+  "scope": "Fairness across three strategies within each dataset; dataset identity is the only cross-dataset difference.",
+  "evaluation_code": "smoke/c3/p1/scripts/evaluate_p1.py",
+  "evaluation_code_sha256": "d9b0d4a72706a8171239c97db3e735c851cce9feba8a410f3e0776d71bc4c26b",
+  "shared_fields": {
+    "model": {
+      "expected": "yolo11n.pt",
+      "values": {
+        "neu_det_full_sft_seed824": "yolo11n.pt",
+        "neu_det_frozen_backbone_seed824": "yolo11n.pt",
+        "neu_det_vpeft_seed824": "yolo11n.pt",
+        "deeppcb_full_sft_seed824": "yolo11n.pt",
+        "deeppcb_frozen_backbone_seed824": "yolo11n.pt",
+        "deeppcb_vpeft_seed824": "yolo11n.pt"
+      }
+    },
+    "pretrained": {
+      "expected": true,
+      "values": {
+        "neu_det_full_sft_seed824": true,
+        "neu_det_frozen_backbone_seed824": true,
+        "neu_det_vpeft_seed824": true,
+        "deeppcb_full_sft_seed824": true,
+        "deeppcb_frozen_backbone_seed824": true,
+        "deeppcb_vpeft_seed824": true
+      }
+    },
+    "epochs": {
+      "expected": 30,
+      "values": {
+        "neu_det_full_sft_seed824": 30,
+        "neu_det_frozen_backbone_seed824": 30,
+        "neu_det_vpeft_seed824": 30,
+        "deeppcb_full_sft_seed824": 30,
+        "deeppcb_frozen_backbone_seed824": 30,
+        "deeppcb_vpeft_seed824": 30
+      }
+    },
+    "batch": {
+      "expected": 8,
+      "values": {
+        "neu_det_full_sft_seed824": 8,
+        "neu_det_frozen_backbone_seed824": 8,
+        "neu_det_vpeft_seed824": 8,
+        "deeppcb_full_sft_seed824": 8,
+        "deeppcb_frozen_backbone_seed824": 8,
+        "deeppcb_vpeft_seed824": 8
+      }
+    },
+    "imgsz": {
+      "expected": 640,
+      "values": {
+        "neu_det_full_sft_seed824": 640,
+        "neu_det_frozen_backbone_seed824": 640,
+        "neu_det_vpeft_seed824": 640,
+        "deeppcb_full_sft_seed824": 640,
+        "deeppcb_frozen_backbone_seed824": 640,
+        "deeppcb_vpeft_seed824": 640
+      }
+    },
+    "workers": {
+      "expected": 0,
+      "values": {
+        "neu_det_full_sft_seed824": 0,
+        "neu_det_frozen_backbone_seed824": 0,
+        "neu_det_vpeft_seed824": 0,
+        "deeppcb_full_sft_seed824": 0,
+        "deeppcb_frozen_backbone_seed824": 0,
+        "deeppcb_vpeft_seed824": 0
+      }
+    },
+    "seed": {
+      "expected": 824,
+      "values": {
+        "neu_det_full_sft_seed824": 824,
+        "neu_det_frozen_backbone_seed824": 824,
+        "neu_det_vpeft_seed824": 824,
+        "deeppcb_full_sft_seed824": 824,
+        "deeppcb_frozen_backbone_seed824": 824,
+        "deeppcb_vpeft_seed824": 824
+      }
+    },
+    "deterministic": {
+      "expected": true,
+      "values": {
+        "neu_det_full_sft_seed824": true,
+        "neu_det_frozen_backbone_seed824": true,
+        "neu_det_vpeft_seed824": true,
+        "deeppcb_full_sft_seed824": true,
+        "deeppcb_frozen_backbone_seed824": true,
+        "deeppcb_vpeft_seed824": true
+      }
+    },
+    "amp": {
+      "expected": false,
+      "values": {
+        "neu_det_full_sft_seed824": false,
+        "neu_det_frozen_backbone_seed824": false,
+        "neu_det_vpeft_seed824": false,
+        "deeppcb_full_sft_seed824": false,
+        "deeppcb_frozen_backbone_seed824": false,
+        "deeppcb_vpeft_seed824": false
+      }
+    },
+    "cache": {
+      "expected": false,
+      "values": {
+        "neu_det_full_sft_seed824": false,
+        "neu_det_frozen_backbone_seed824": false,
+        "neu_det_vpeft_seed824": false,
+        "deeppcb_full_sft_seed824": false,
+        "deeppcb_frozen_backbone_seed824": false,
+        "deeppcb_vpeft_seed824": false
+      }
+    },
+    "val": {
+      "expected": true,
+      "values": {
+        "neu_det_full_sft_seed824": true,
+        "neu_det_frozen_backbone_seed824": true,
+        "neu_det_vpeft_seed824": true,
+        "deeppcb_full_sft_seed824": true,
+        "deeppcb_frozen_backbone_seed824": true,
+        "deeppcb_vpeft_seed824": true
+      }
+    },
+    "patience": {
+      "expected": 0,
+      "values": {
+        "neu_det_full_sft_seed824": 0,
+        "neu_det_frozen_backbone_seed824": 0,
+        "neu_det_vpeft_seed824": 0,
+        "deeppcb_full_sft_seed824": 0,
+        "deeppcb_frozen_backbone_seed824": 0,
+        "deeppcb_vpeft_seed824": 0
+      }
+    },
+    "optimizer": {
+      "expected": "AdamW",
+      "values": {
+        "neu_det_full_sft_seed824": "AdamW",
+        "neu_det_frozen_backbone_seed824": "AdamW",
+        "neu_det_vpeft_seed824": "AdamW",
+        "deeppcb_full_sft_seed824": "AdamW",
+        "deeppcb_frozen_backbone_seed824": "AdamW",
+        "deeppcb_vpeft_seed824": "AdamW"
+      }
+    },
+    "lr0": {
+      "expected": 0.001,
+      "values": {
+        "neu_det_full_sft_seed824": 0.001,
+        "neu_det_frozen_backbone_seed824": 0.001,
+        "neu_det_vpeft_seed824": 0.001,
+        "deeppcb_full_sft_seed824": 0.001,
+        "deeppcb_frozen_backbone_seed824": 0.001,
+        "deeppcb_vpeft_seed824": 0.001
+      }
+    },
+    "lrf": {
+      "expected": 0.01,
+      "values": {
+        "neu_det_full_sft_seed824": 0.01,
+        "neu_det_frozen_backbone_seed824": 0.01,
+        "neu_det_vpeft_seed824": 0.01,
+        "deeppcb_full_sft_seed824": 0.01,
+        "deeppcb_frozen_backbone_seed824": 0.01,
+        "deeppcb_vpeft_seed824": 0.01
+      }
+    },
+    "weight_decay": {
+      "expected": 0.0005,
+      "values": {
+        "neu_det_full_sft_seed824": 0.0005,
+        "neu_det_frozen_backbone_seed824": 0.0005,
+        "neu_det_vpeft_seed824": 0.0005,
+        "deeppcb_full_sft_seed824": 0.0005,
+        "deeppcb_frozen_backbone_seed824": 0.0005,
+        "deeppcb_vpeft_seed824": 0.0005
+      }
+    },
+    "momentum": {
+      "expected": 0.9,
+      "values": {
+        "neu_det_full_sft_seed824": 0.9,
+        "neu_det_frozen_backbone_seed824": 0.9,
+        "neu_det_vpeft_seed824": 0.9,
+        "deeppcb_full_sft_seed824": 0.9,
+        "deeppcb_frozen_backbone_seed824": 0.9,
+        "deeppcb_vpeft_seed824": 0.9
+      }
+    },
+    "cos_lr": {
+      "expected": true,
+      "values": {
+        "neu_det_full_sft_seed824": true,
+        "neu_det_frozen_backbone_seed824": true,
+        "neu_det_vpeft_seed824": true,
+        "deeppcb_full_sft_seed824": true,
+        "deeppcb_frozen_backbone_seed824": true,
+        "deeppcb_vpeft_seed824": true
+      }
+    },
+    "warmup_epochs": {
+      "expected": 3.0,
+      "values": {
+        "neu_det_full_sft_seed824": 3.0,
+        "neu_det_frozen_backbone_seed824": 3.0,
+        "neu_det_vpeft_seed824": 3.0,
+        "deeppcb_full_sft_seed824": 3.0,
+        "deeppcb_frozen_backbone_seed824": 3.0,
+        "deeppcb_vpeft_seed824": 3.0
+      }
+    },
+    "warmup_bias_lr": {
+      "expected": 0.0,
+      "values": {
+        "neu_det_full_sft_seed824": 0.0,
+        "neu_det_frozen_backbone_seed824": 0.0,
+        "neu_det_vpeft_seed824": 0.0,
+        "deeppcb_full_sft_seed824": 0.0,
+        "deeppcb_frozen_backbone_seed824": 0.0,
+        "deeppcb_vpeft_seed824": 0.0
+      }
+    },
+    "close_mosaic": {
+      "expected": 10,
+      "values": {
+        "neu_det_full_sft_seed824": 10,
+        "neu_det_frozen_backbone_seed824": 10,
+        "neu_det_vpeft_seed824": 10,
+        "deeppcb_full_sft_seed824": 10,
+        "deeppcb_frozen_backbone_seed824": 10,
+        "deeppcb_vpeft_seed824": 10
+      }
+    },
+    "hsv_h": {
+      "expected": 0.015,
+      "values": {
+        "neu_det_full_sft_seed824": 0.015,
+        "neu_det_frozen_backbone_seed824": 0.015,
+        "neu_det_vpeft_seed824": 0.015,
+        "deeppcb_full_sft_seed824": 0.015,
+        "deeppcb_frozen_backbone_seed824": 0.015,
+        "deeppcb_vpeft_seed824": 0.015
+      }
+    },
+    "hsv_s": {
+      "expected": 0.7,
+      "values": {
+        "neu_det_full_sft_seed824": 0.7,
+        "neu_det_frozen_backbone_seed824": 0.7,
+        "neu_det_vpeft_seed824": 0.7,
+        "deeppcb_full_sft_seed824": 0.7,
+        "deeppcb_frozen_backbone_seed824": 0.7,
+        "deeppcb_vpeft_seed824": 0.7
+      }
+    },
+    "hsv_v": {
+      "expected": 0.4,
+      "values": {
+        "neu_det_full_sft_seed824": 0.4,
+        "neu_det_frozen_backbone_seed824": 0.4,
+        "neu_det_vpeft_seed824": 0.4,
+        "deeppcb_full_sft_seed824": 0.4,
+        "deeppcb_frozen_backbone_seed824": 0.4,
+        "deeppcb_vpeft_seed824": 0.4
+      }
+    },
+    "degrees": {
+      "expected": 0.0,
+      "values": {
+        "neu_det_full_sft_seed824": 0.0,
+        "neu_det_frozen_backbone_seed824": 0.0,
+        "neu_det_vpeft_seed824": 0.0,
+        "deeppcb_full_sft_seed824": 0.0,
+        "deeppcb_frozen_backbone_seed824": 0.0,
+        "deeppcb_vpeft_seed824": 0.0
+      }
+    },
+    "translate": {
+      "expected": 0.1,
+      "values": {
+        "neu_det_full_sft_seed824": 0.1,
+        "neu_det_frozen_backbone_seed824": 0.1,
+        "neu_det_vpeft_seed824": 0.1,
+        "deeppcb_full_sft_seed824": 0.1,
+        "deeppcb_frozen_backbone_seed824": 0.1,
+        "deeppcb_vpeft_seed824": 0.1
+      }
+    },
+    "scale": {
+      "expected": 0.5,
+      "values": {
+        "neu_det_full_sft_seed824": 0.5,
+        "neu_det_frozen_backbone_seed824": 0.5,
+        "neu_det_vpeft_seed824": 0.5,
+        "deeppcb_full_sft_seed824": 0.5,
+        "deeppcb_frozen_backbone_seed824": 0.5,
+        "deeppcb_vpeft_seed824": 0.5
+      }
+    },
+    "shear": {
+      "expected": 0.0,
+      "values": {
+        "neu_det_full_sft_seed824": 0.0,
+        "neu_det_frozen_backbone_seed824": 0.0,
+        "neu_det_vpeft_seed824": 0.0,
+        "deeppcb_full_sft_seed824": 0.0,
+        "deeppcb_frozen_backbone_seed824": 0.0,
+        "deeppcb_vpeft_seed824": 0.0
+      }
+    },
+    "perspective": {
+      "expected": 0.0,
+      "values": {
+        "neu_det_full_sft_seed824": 0.0,
+        "neu_det_frozen_backbone_seed824": 0.0,
+        "neu_det_vpeft_seed824": 0.0,
+        "deeppcb_full_sft_seed824": 0.0,
+        "deeppcb_frozen_backbone_seed824": 0.0,
+        "deeppcb_vpeft_seed824": 0.0
+      }
+    },
+    "flipud": {
+      "expected": 0.0,
+      "values": {
+        "neu_det_full_sft_seed824": 0.0,
+        "neu_det_frozen_backbone_seed824": 0.0,
+        "neu_det_vpeft_seed824": 0.0,
+        "deeppcb_full_sft_seed824": 0.0,
+        "deeppcb_frozen_backbone_seed824": 0.0,
+        "deeppcb_vpeft_seed824": 0.0
+      }
+    },
+    "fliplr": {
+      "expected": 0.5,
+      "values": {
+        "neu_det_full_sft_seed824": 0.5,
+        "neu_det_frozen_backbone_seed824": 0.5,
+        "neu_det_vpeft_seed824": 0.5,
+        "deeppcb_full_sft_seed824": 0.5,
+        "deeppcb_frozen_backbone_seed824": 0.5,
+        "deeppcb_vpeft_seed824": 0.5
+      }
+    },
+    "mosaic": {
+      "expected": 1.0,
+      "values": {
+        "neu_det_full_sft_seed824": 1.0,
+        "neu_det_frozen_backbone_seed824": 1.0,
+        "neu_det_vpeft_seed824": 1.0,
+        "deeppcb_full_sft_seed824": 1.0,
+        "deeppcb_frozen_backbone_seed824": 1.0,
+        "deeppcb_vpeft_seed824": 1.0
+      }
+    },
+    "mixup": {
+      "expected": 0.0,
+      "values": {
+        "neu_det_full_sft_seed824": 0.0,
+        "neu_det_frozen_backbone_seed824": 0.0,
+        "neu_det_vpeft_seed824": 0.0,
+        "deeppcb_full_sft_seed824": 0.0,
+        "deeppcb_frozen_backbone_seed824": 0.0,
+        "deeppcb_vpeft_seed824": 0.0
+      }
+    },
+    "cutmix": {
+      "expected": 0.0,
+      "values": {
+        "neu_det_full_sft_seed824": 0.0,
+        "neu_det_frozen_backbone_seed824": 0.0,
+        "neu_det_vpeft_seed824": 0.0,
+        "deeppcb_full_sft_seed824": 0.0,
+        "deeppcb_frozen_backbone_seed824": 0.0,
+        "deeppcb_vpeft_seed824": 0.0
+      }
+    }
+  },
+  "shared_field_checks": {
+    "model": true,
+    "pretrained": true,
+    "epochs": true,
+    "batch": true,
+    "imgsz": true,
+    "workers": true,
+    "seed": true,
+    "deterministic": true,
+    "amp": true,
+    "cache": true,
+    "val": true,
+    "patience": true,
+    "optimizer": true,
+    "lr0": true,
+    "lrf": true,
+    "weight_decay": true,
+    "momentum": true,
+    "cos_lr": true,
+    "warmup_epochs": true,
+    "warmup_bias_lr": true,
+    "close_mosaic": true,
+    "hsv_h": true,
+    "hsv_s": true,
+    "hsv_v": true,
+    "degrees": true,
+    "translate": true,
+    "scale": true,
+    "shear": true,
+    "perspective": true,
+    "flipud": true,
+    "fliplr": true,
+    "mosaic": true,
+    "mixup": true,
+    "cutmix": true
+  },
+  "dataset_checks": {
+    "neu_det": {
+      "same_dataset_yaml": true,
+      "same_train_membership": true,
+      "same_val_test_definition": true,
+      "same_test_evaluation_arguments": true
+    },
+    "deeppcb": {
+      "same_dataset_yaml": true,
+      "same_train_membership": true,
+      "same_val_test_definition": true,
+      "same_test_evaluation_arguments": true
+    }
+  },
+  "method_checks": {
+    "neu_det": {
+      "full_sft": true,
+      "frozen_backbone": true,
+      "vpeft": true
+    },
+    "deeppcb": {
+      "full_sft": true,
+      "frozen_backbone": true,
+      "vpeft": true
+    }
+  },
+  "checks": {
+    "same_pretrained_model": true,
+    "same_train_sample_budget": true,
+    "same_val_test_within_dataset": true,
+    "same_epochs_batch_imgsz": true,
+    "same_optimizer_lr_weight_decay": true,
+    "same_augmentation": true,
+    "same_scheduler": true,
+    "same_seed": true,
+    "same_evaluation_code_and_arguments": true,
+    "method_boundaries_valid": true
+  },
+  "status": "PASS"
+}

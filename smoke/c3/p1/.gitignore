@@ -1,3 +1,4 @@
 # Checkpoints and native Ultralytics run artifacts remain local; hashes and compact evidence are committed.
 artifacts/
 !logs/**/*.log
+!visualizations/convergence/*.png

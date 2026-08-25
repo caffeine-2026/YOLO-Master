@@ -1,5 +1,5 @@
-schema_version: 1
-stage: pilot_seed824
+schema_version: 2
+stage: final_protocol_frozen_pending_seed824_extension
 research_question: 在工业缺陷小样本条件下，V-PEFT 是否能以显著更少的可训练参数和资源成本，保持或改善 Full-SFT / Frozen Backbone 的检测性能？
 
 provenance:
@@ -29,7 +29,8 @@ datasets:
     test_images: 500
 
 training:
-  epochs: 30
+  pilot_epochs: 30
+  epochs: 50
   batch: 8
   imgsz: 640
   optimizer: AdamW
@@ -94,6 +95,17 @@ evaluation:
 
 extension_gate:
   seeds_after_pilot: [825, 826]
-  reuse_seed824: true
-  final_epoch_policy: inspect all six common-budget learning curves; if 30 epochs is insufficient, increase equally for all methods
+  multiseed_ready: false
+  epoch_decision: EXTEND_ALL_TO_50
+  seed824_pilot_policy: preserve all six 30-epoch runs without overwrite
+  seed824_next_requirement: extend all six strategies to the common 50-epoch budget before multi-seed
+  final_epoch_policy: re-audit all six common-budget curves at 50 epochs; consider 100 only if the 50-epoch audit remains not converged
 
+convergence_rule:
+  metric: mAP50-95
+  previous_window: epochs 21-25
+  last_window: epochs 26-30
+  delta: last_5_epoch_mean - previous_5_epoch_mean
+  not_converged_if_delta_gt: 0.01
+  decision: EXTEND_ALL_TO_50
+  audit: smoke/c3/p1/docs/CONVERGENCE_AUDIT.md
