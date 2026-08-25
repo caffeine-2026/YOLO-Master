@@ -20,6 +20,18 @@
 - [NEU-DET V-PEFT 日志](logs/neu_det_vpeft_gpu_fp32_seed824/)
 - [DeepPCB V-PEFT 日志](logs/deeppcb_vpeft_gpu_fp32_seed824/)
 
+## Visual Evidence
+
+- [NEU-DET overview](visualizations/neu_det_overview.jpg)
+- [DeepPCB overview](visualizations/deeppcb_overview.jpg)
+- [NEU-DET GT vs Prediction samples](visualizations/neu_det/comparison/)
+- [DeepPCB GT vs Prediction samples](visualizations/deeppcb/comparison/)
+- [NEU-DET prediction JSON](evidence/neu_det_visual_predictions.json)
+- [DeepPCB prediction JSON](evidence/deeppcb_visual_predictions.json)
+- [Visualization manifest](evidence/visualization_manifest.json)
+
+这些图片使用已完成的 V-PEFT `best.pt` 在固定 test 样本上执行真实 GPU inference，用于证明模型确实完成了实际目标检测闭环。`conf=0.25` 下两组固定样本均没有预测框，证据按原结果保留，没有降低阈值或替换样本。P0 的 1 epoch / single-seed 结果不用于证明最终方法优劣。
+
 ## 边界
 
 - Official C3 P0 = NEU-DET + DeepPCB 各一次 V-PEFT；MVTec AD 仅是未来可选扩展。

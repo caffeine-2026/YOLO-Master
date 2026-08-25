@@ -1,0 +1,492 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "generated_utc": "2026-08-25T04:30:00.281770+00:00",
+  "purpose": "Human-reviewable fixed-sample GT and real V-PEFT inference evidence; no training performed",
+  "selection_policy": "Exactly 10 images sampled from each official test split with independent random.Random(824); no result-based replacement",
+  "model_loading": "The repository YOLO(best.pt) API loads each checkpoint's active PEFT wrapper and trained detection head; exported adapter directories are recorded but not merged or modified.",
+  "inference": {
+    "device": "0",
+    "imgsz": 320,
+    "conf": 0.25,
+    "seed": 824
+  },
+  "datasets": [
+    {
+      "dataset": "NEU-DET",
+      "split": "test",
+      "data_config": "smoke/c3/config/datasets/neu_det_fewshot.yaml",
+      "seed": 824,
+      "checkpoint": "runs/detect/runs/vpeft_smoke/neu_det_vpeft_gpu_fp32_seed824/weights/best.pt",
+      "checkpoint_sha256": "90bf0eb0d690edd46943248ef20adbeca20283f40f9fd96bc7251b27d3ab3b41",
+      "adapter": "runs/detect/runs/vpeft_smoke/neu_det_vpeft_gpu_fp32_seed824/lora_adapter",
+      "adapter_model_sha256": "53b64befbe57c528710efb1301d2932de2e19e67cf194ebb06bb25ad3fe60e88",
+      "resolved_config": "smoke/c3/logs/neu_det_vpeft_gpu_fp32_seed824/resolved_config.yaml",
+      "model_loading_api": "ultralytics.YOLO(best.pt)",
+      "peft_backend": "peft",
+      "applied_targets": 52,
+      "adapter_tensor_count": 104,
+      "inference": {
+        "requested_device": "0",
+        "actual_device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce RTX 4090",
+        "imgsz": 320,
+        "conf": 0.25
+      },
+      "samples": [
+        {
+          "dataset": "NEU-DET",
+          "split": "test",
+          "sample_id": "crazing_120",
+          "sample_path": "datasets/neu_det_fewshot_yolo/images/test/crazing_120.jpg",
+          "gt_object_count": 5,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/neu_det/original/crazing_120.jpg",
+            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/crazing_120.jpg",
+            "prediction": "smoke/c3/visualizations/neu_det/predictions/crazing_120.jpg",
+            "comparison": "smoke/c3/visualizations/neu_det/comparison/crazing_120.jpg"
+          },
+          "output_sha256": {
+            "original": "9e88d467b31b526f0cf3732264d72af070365a87edfcbcccbe0f9a3845a30974",
+            "ground_truth": "56a9ff37c81d4c6c724d96cc737706f834a43974ac186111005382e32ccf1f47",
+            "prediction": "e68a780de9843a9bd78ab191ee9af2715cab3cad20b7e5617841e89b75f42d2d",
+            "comparison": "7f1fdedfe12546b1f6bc14d5df8cf7c53f77b081c6dffd93a63b7e97bd2996b8"
+          }
+        },
+        {
+          "dataset": "NEU-DET",
+          "split": "test",
+          "sample_id": "crazing_179",
+          "sample_path": "datasets/neu_det_fewshot_yolo/images/test/crazing_179.jpg",
+          "gt_object_count": 2,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/neu_det/original/crazing_179.jpg",
+            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/crazing_179.jpg",
+            "prediction": "smoke/c3/visualizations/neu_det/predictions/crazing_179.jpg",
+            "comparison": "smoke/c3/visualizations/neu_det/comparison/crazing_179.jpg"
+          },
+          "output_sha256": {
+            "original": "a796d606ae9c573d722bdec9d282c53cd543006e1d49e4a5152072fe61505d08",
+            "ground_truth": "fb92280e78ec97c36cf7468380ce87878ed75216468a67efa41b4c3b24dee331",
+            "prediction": "13021526c454b5b0c473943148dbdeaff98db6dff2db8ff145e1afa83a81bc01",
+            "comparison": "50a9b775ba33d10123afa1133ff1f78443a2c5b2a714ac422a27c70a60bfa448"
+          }
+        },
+        {
+          "dataset": "NEU-DET",
+          "split": "test",
+          "sample_id": "crazing_199",
+          "sample_path": "datasets/neu_det_fewshot_yolo/images/test/crazing_199.jpg",
+          "gt_object_count": 2,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/neu_det/original/crazing_199.jpg",
+            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/crazing_199.jpg",
+            "prediction": "smoke/c3/visualizations/neu_det/predictions/crazing_199.jpg",
+            "comparison": "smoke/c3/visualizations/neu_det/comparison/crazing_199.jpg"
+          },
+          "output_sha256": {
+            "original": "045dd7295bb1c32e3d180ab5092618fd4015852c747a667a67c5b53048c0fd2a",
+            "ground_truth": "5d13c9007921476c44db9d2de0dd06efdad2e6554228c88feabf05dece82a281",
+            "prediction": "f5f6f483b0603d6b9233dd503ee578e03b6b4179ea96f003279275cc1658342e",
+            "comparison": "a41510ff080da9963c3e50e1206649b783504780bc674ec29330ca79d90005e5"
+          }
+        },
+        {
+          "dataset": "NEU-DET",
+          "split": "test",
+          "sample_id": "crazing_217",
+          "sample_path": "datasets/neu_det_fewshot_yolo/images/test/crazing_217.jpg",
+          "gt_object_count": 2,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/neu_det/original/crazing_217.jpg",
+            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/crazing_217.jpg",
+            "prediction": "smoke/c3/visualizations/neu_det/predictions/crazing_217.jpg",
+            "comparison": "smoke/c3/visualizations/neu_det/comparison/crazing_217.jpg"
+          },
+          "output_sha256": {
+            "original": "dd0e2f8a2c6901cc540c53aa7194af40fa2e8ed38a0825608e1b56c846fcf01e",
+            "ground_truth": "03c8186a3edfe96e3c9f5d16b070328a69ead231db0a914669575b07b885d970",
+            "prediction": "27b64a35da88b76a07dde10914619c66d1896a0c769622db79a351638b378570",
+            "comparison": "30e2f9fa7462cf3e9aae93d1c5fd1121aa83b0761d9965a3b2988b1d39929616"
+          }
+        },
+        {
+          "dataset": "NEU-DET",
+          "split": "test",
+          "sample_id": "inclusion_152",
+          "sample_path": "datasets/neu_det_fewshot_yolo/images/test/inclusion_152.jpg",
+          "gt_object_count": 3,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/neu_det/original/inclusion_152.jpg",
+            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/inclusion_152.jpg",
+            "prediction": "smoke/c3/visualizations/neu_det/predictions/inclusion_152.jpg",
+            "comparison": "smoke/c3/visualizations/neu_det/comparison/inclusion_152.jpg"
+          },
+          "output_sha256": {
+            "original": "b001742d109eaca3abdbcda69c81e660f07eb26b687e98f13cafda10656d5b49",
+            "ground_truth": "1f3d4f5e0f9c1576bcafbcc91390c2b82c69ad06972823ed5eafe9ee6c9de97a",
+            "prediction": "17c862dd20c032c061681edaa6738f0890afa09915852e5d62c8873ef889b562",
+            "comparison": "d033a964c43aba32afa0c2b5f6d3b0cecf1a4b02fb2c4a5216b34be00254ec56"
+          }
+        },
+        {
+          "dataset": "NEU-DET",
+          "split": "test",
+          "sample_id": "inclusion_153",
+          "sample_path": "datasets/neu_det_fewshot_yolo/images/test/inclusion_153.jpg",
+          "gt_object_count": 2,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/neu_det/original/inclusion_153.jpg",
+            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/inclusion_153.jpg",
+            "prediction": "smoke/c3/visualizations/neu_det/predictions/inclusion_153.jpg",
+            "comparison": "smoke/c3/visualizations/neu_det/comparison/inclusion_153.jpg"
+          },
+          "output_sha256": {
+            "original": "45d7514244ee1334c276973371a33bf1d5791ba3ee8548a19ed996ecc4279bf5",
+            "ground_truth": "521512bc2bb4e63986dfc305539c5ef4534e46fb7cf3a01469a150be51defd74",
+            "prediction": "cee5b71676382341ce9e994ec9fc160f96f695c4db8dd0754236ff11fef636b2",
+            "comparison": "e70e545c192f516274b88681350b01587901614668d5066140eac320f7fe60dc"
+          }
+        },
+        {
+          "dataset": "NEU-DET",
+          "split": "test",
+          "sample_id": "patches_98",
+          "sample_path": "datasets/neu_det_fewshot_yolo/images/test/patches_98.jpg",
+          "gt_object_count": 2,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/neu_det/original/patches_98.jpg",
+            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/patches_98.jpg",
+            "prediction": "smoke/c3/visualizations/neu_det/predictions/patches_98.jpg",
+            "comparison": "smoke/c3/visualizations/neu_det/comparison/patches_98.jpg"
+          },
+          "output_sha256": {
+            "original": "e366ca0d4ab2d15235a71ada431c48963cbac46c44d730364afd6413648c7edf",
+            "ground_truth": "19c6473a3640b62a4bcc6b452bbbb772f9b70e61a3c722296594c850e69837d5",
+            "prediction": "492dc2105b483ad0d670944d84eef57ccf4a459dcbc8f05832859cc80f26f237",
+            "comparison": "048971a6efa18c5312bf456142be6118647383346bf2e93b2e695b59540676cc"
+          }
+        },
+        {
+          "dataset": "NEU-DET",
+          "split": "test",
+          "sample_id": "rolled-in_scale_27",
+          "sample_path": "datasets/neu_det_fewshot_yolo/images/test/rolled-in_scale_27.jpg",
+          "gt_object_count": 1,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/neu_det/original/rolled-in_scale_27.jpg",
+            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/rolled-in_scale_27.jpg",
+            "prediction": "smoke/c3/visualizations/neu_det/predictions/rolled-in_scale_27.jpg",
+            "comparison": "smoke/c3/visualizations/neu_det/comparison/rolled-in_scale_27.jpg"
+          },
+          "output_sha256": {
+            "original": "708329b86ab6061f1adc9cd0c71b22b2e80fb88a60b15b799023e00b3e1dc24a",
+            "ground_truth": "a5b1234c12bf4f7f7dc7f024e34bfda7b299b8b9792576afdbcd347d73906b1a",
+            "prediction": "505b4b7523513650d93b81cbc94767a45f7b83786c1de5dbdd5110bbf4ea8743",
+            "comparison": "fc9ccfc8bc4f4c93d1d5cfd72224b412f5b3a4676b276ffbc46d8abb51af981e"
+          }
+        },
+        {
+          "dataset": "NEU-DET",
+          "split": "test",
+          "sample_id": "scratches_242",
+          "sample_path": "datasets/neu_det_fewshot_yolo/images/test/scratches_242.jpg",
+          "gt_object_count": 3,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/neu_det/original/scratches_242.jpg",
+            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/scratches_242.jpg",
+            "prediction": "smoke/c3/visualizations/neu_det/predictions/scratches_242.jpg",
+            "comparison": "smoke/c3/visualizations/neu_det/comparison/scratches_242.jpg"
+          },
+          "output_sha256": {
+            "original": "18297530aa9ba8fc6cb75c1b4b04d643dd668b1ab6930e8f1fffe33f6db6179e",
+            "ground_truth": "1e4e1e3669d6e2d77df0b537a799c972fbfe1797a425d01c3301647c6ae3a26b",
+            "prediction": "ea55e9e37924bdcd5494fd026319cced31348100c581a59c5e0f452010ee4b01",
+            "comparison": "7c469e9eda32800b24d12f875c0420efc941c46aed68db9be41e510eabe0d509"
+          }
+        },
+        {
+          "dataset": "NEU-DET",
+          "split": "test",
+          "sample_id": "scratches_70",
+          "sample_path": "datasets/neu_det_fewshot_yolo/images/test/scratches_70.jpg",
+          "gt_object_count": 2,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/neu_det/original/scratches_70.jpg",
+            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/scratches_70.jpg",
+            "prediction": "smoke/c3/visualizations/neu_det/predictions/scratches_70.jpg",
+            "comparison": "smoke/c3/visualizations/neu_det/comparison/scratches_70.jpg"
+          },
+          "output_sha256": {
+            "original": "5e36d31d04d2f41d47ade42df79f55cc74d4a8c32e40c9316a1a0f08ffc50768",
+            "ground_truth": "6d3f0bf3fd9c2cd2bce732c191b3ade35792db51c8d252fa19f798f3e37e2fd2",
+            "prediction": "61d53b0a11a54efc1d07d85a17265b4e9af8d9641cbcdbdc2ff4dd806d833f43",
+            "comparison": "25ed4f5f0bd4f59ab121e05014b81087da82293983d89995c6ac527beeb9bb34"
+          }
+        }
+      ],
+      "prediction_json": "smoke/c3/evidence/neu_det_visual_predictions.json",
+      "overview": "smoke/c3/visualizations/neu_det_overview.jpg",
+      "overview_sample_ids": [
+        "crazing_120",
+        "crazing_179",
+        "crazing_199",
+        "crazing_217",
+        "inclusion_152",
+        "inclusion_153"
+      ],
+      "existing_run_plots": []
+    },
+    {
+      "dataset": "DeepPCB",
+      "split": "test",
+      "data_config": "smoke/c3/config/datasets/deeppcb_fewshot.yaml",
+      "seed": 824,
+      "checkpoint": "runs/detect/runs/vpeft_smoke/deeppcb_vpeft_gpu_fp32_seed824/weights/best.pt",
+      "checkpoint_sha256": "ecd34f1e87cf4e53c3e8dc3f5e1ea0bd501658f9d24f474fc63f4298e333b727",
+      "adapter": "runs/detect/runs/vpeft_smoke/deeppcb_vpeft_gpu_fp32_seed824/lora_adapter",
+      "adapter_model_sha256": "0423611f5ff84b082dc6a94a8ac0e051305e9803bec3ce53f22bcdf7d1ddac1a",
+      "resolved_config": "smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824/resolved_config.yaml",
+      "model_loading_api": "ultralytics.YOLO(best.pt)",
+      "peft_backend": "peft",
+      "applied_targets": 52,
+      "adapter_tensor_count": 104,
+      "inference": {
+        "requested_device": "0",
+        "actual_device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce RTX 4090",
+        "imgsz": 320,
+        "conf": 0.25
+      },
+      "samples": [
+        {
+          "dataset": "DeepPCB",
+          "split": "test",
+          "sample_id": "12000001_test",
+          "sample_path": "datasets/deeppcb_fewshot_yolo/images/test/12000001_test.jpg",
+          "gt_object_count": 9,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/deeppcb/original/12000001_test.jpg",
+            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/12000001_test.jpg",
+            "prediction": "smoke/c3/visualizations/deeppcb/predictions/12000001_test.jpg",
+            "comparison": "smoke/c3/visualizations/deeppcb/comparison/12000001_test.jpg"
+          },
+          "output_sha256": {
+            "original": "0005b3e481bde2cc632ed5733e4280341cc01e50713ba2379a83d72d2f28a236",
+            "ground_truth": "43a64f1d4d57592cc540013e87ce102c961f0e4b37c9207c74aa9d84653da8ef",
+            "prediction": "5d62ac99c4c399e825aa4d4ceeab609a1e8aa94d41e749662ed53cdca81e63d7",
+            "comparison": "b20135dc5ee4d85115a4869214084aa57a7ba43711ed95c959cfa4ca626a2686"
+          }
+        },
+        {
+          "dataset": "DeepPCB",
+          "split": "test",
+          "sample_id": "12100038_test",
+          "sample_path": "datasets/deeppcb_fewshot_yolo/images/test/12100038_test.jpg",
+          "gt_object_count": 6,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/deeppcb/original/12100038_test.jpg",
+            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/12100038_test.jpg",
+            "prediction": "smoke/c3/visualizations/deeppcb/predictions/12100038_test.jpg",
+            "comparison": "smoke/c3/visualizations/deeppcb/comparison/12100038_test.jpg"
+          },
+          "output_sha256": {
+            "original": "696b5777f29535c3e7fcc71a1b4359113557bbc1aebfe6a17fef4cecafc3dc9d",
+            "ground_truth": "e878c58a29868aff083d50adab51f386eb1632edfb8f536d7eb023c65b9b85ca",
+            "prediction": "680e130fb91ad4543e92ab8a403eeeba00eef4a2035e2e17e7821519f9699bc2",
+            "comparison": "dd45da9f7d03b4d45bb5b6efbfe3b24925aaa88c2c28464e50585d052184872e"
+          }
+        },
+        {
+          "dataset": "DeepPCB",
+          "split": "test",
+          "sample_id": "12100040_test",
+          "sample_path": "datasets/deeppcb_fewshot_yolo/images/test/12100040_test.jpg",
+          "gt_object_count": 4,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/deeppcb/original/12100040_test.jpg",
+            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/12100040_test.jpg",
+            "prediction": "smoke/c3/visualizations/deeppcb/predictions/12100040_test.jpg",
+            "comparison": "smoke/c3/visualizations/deeppcb/comparison/12100040_test.jpg"
+          },
+          "output_sha256": {
+            "original": "717fea3a8f9817ce3b984aed37c9fdfd30560c95c215d183857da8a8d517a1de",
+            "ground_truth": "1d26dfbade5774a52be7697c46d919f9bfa0a0ea86331be913b375178d39a62d",
+            "prediction": "f00fd630f61f37cb4a3d1eaa818f1306b5b5d58e3b1a9473dd2506acec4079ae",
+            "comparison": "80be1c9f4217ab92aec0e399a6ec4d0240b9ca6dace598077ccb7d2d651ddd0e"
+          }
+        },
+        {
+          "dataset": "DeepPCB",
+          "split": "test",
+          "sample_id": "12100199_test",
+          "sample_path": "datasets/deeppcb_fewshot_yolo/images/test/12100199_test.jpg",
+          "gt_object_count": 8,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/deeppcb/original/12100199_test.jpg",
+            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/12100199_test.jpg",
+            "prediction": "smoke/c3/visualizations/deeppcb/predictions/12100199_test.jpg",
+            "comparison": "smoke/c3/visualizations/deeppcb/comparison/12100199_test.jpg"
+          },
+          "output_sha256": {
+            "original": "625217602141f02df45723e1c50a936fc5930c9471b8bf40633430a3501df3ac",
+            "ground_truth": "425b956b2c6821780cf11ba2ac96bc90abba36c03dfb9cb0f7ab427a7df1d8b6",
+            "prediction": "62eaa6bc02660814feb7d29b55299a3a284705e39c6b4e5c0aaa05c653711374",
+            "comparison": "825610d8b6f8af2ac4583b34cce81396c2ee2a4215b85aceef16700362fe2316"
+          }
+        },
+        {
+          "dataset": "DeepPCB",
+          "split": "test",
+          "sample_id": "13000198_test",
+          "sample_path": "datasets/deeppcb_fewshot_yolo/images/test/13000198_test.jpg",
+          "gt_object_count": 4,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/deeppcb/original/13000198_test.jpg",
+            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/13000198_test.jpg",
+            "prediction": "smoke/c3/visualizations/deeppcb/predictions/13000198_test.jpg",
+            "comparison": "smoke/c3/visualizations/deeppcb/comparison/13000198_test.jpg"
+          },
+          "output_sha256": {
+            "original": "e6a2f398e3aa129baa206de3aa1b469358a35b74cd5ba349add854939e7548e1",
+            "ground_truth": "6803490b6b1255bbe04eda775a43cc9381211bdc214bd95cbbfa2685e2896a01",
+            "prediction": "78a9157216d336d7470a3297b079376c45c1911abbd3c4ce1c079fbae17acdff",
+            "comparison": "9d411218418047685e738c5afeba50215b65d22ca346f64d7751995f7d181e27"
+          }
+        },
+        {
+          "dataset": "DeepPCB",
+          "split": "test",
+          "sample_id": "20085324_test",
+          "sample_path": "datasets/deeppcb_fewshot_yolo/images/test/20085324_test.jpg",
+          "gt_object_count": 5,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/deeppcb/original/20085324_test.jpg",
+            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/20085324_test.jpg",
+            "prediction": "smoke/c3/visualizations/deeppcb/predictions/20085324_test.jpg",
+            "comparison": "smoke/c3/visualizations/deeppcb/comparison/20085324_test.jpg"
+          },
+          "output_sha256": {
+            "original": "d6a004d424dbac7efe6a536fb0e237e249b6b0552cb075b19bc13ed0a1373062",
+            "ground_truth": "6519f0d9ad7f026310f56249834c92e76547a6bd242df1a8422b9575d470da7d",
+            "prediction": "d4f747a68a97ec7f0c875e74da67f9f1ee4cdb9196b270c2add5d313eff82901",
+            "comparison": "ba2b1c13f6bbddc40d8e708579d083f270ba3caacee02c809fe37f7c758b3784"
+          }
+        },
+        {
+          "dataset": "DeepPCB",
+          "split": "test",
+          "sample_id": "50600055_test",
+          "sample_path": "datasets/deeppcb_fewshot_yolo/images/test/50600055_test.jpg",
+          "gt_object_count": 4,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/deeppcb/original/50600055_test.jpg",
+            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/50600055_test.jpg",
+            "prediction": "smoke/c3/visualizations/deeppcb/predictions/50600055_test.jpg",
+            "comparison": "smoke/c3/visualizations/deeppcb/comparison/50600055_test.jpg"
+          },
+          "output_sha256": {
+            "original": "325bc31e1c07e0214eb22a10ec12166d1986575fc58a3f42108e152e7fb1c4a6",
+            "ground_truth": "5ce015e37b56ec57b082d797c06a1c0889967b15de03f09708e47f8e7db196fd",
+            "prediction": "b6a52cecc361ab3e836c290813ea95e021ab9c01d7b5fa413fc4eaf127eb3f31",
+            "comparison": "bc845ab3b7b5a5cd4b8201cd6dd684f765520137c3ad6b8413a5f1b00c4743b3"
+          }
+        },
+        {
+          "dataset": "DeepPCB",
+          "split": "test",
+          "sample_id": "50600059_test",
+          "sample_path": "datasets/deeppcb_fewshot_yolo/images/test/50600059_test.jpg",
+          "gt_object_count": 5,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/deeppcb/original/50600059_test.jpg",
+            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/50600059_test.jpg",
+            "prediction": "smoke/c3/visualizations/deeppcb/predictions/50600059_test.jpg",
+            "comparison": "smoke/c3/visualizations/deeppcb/comparison/50600059_test.jpg"
+          },
+          "output_sha256": {
+            "original": "fedec4d31b3bcce375b077e0b9e07d63e4d07721772292ada6c3990c0a911415",
+            "ground_truth": "dd9fb38041d2c58820dace03597f5dd130e08c5fcb9070a2b85b3973e9cc2a6e",
+            "prediction": "6c568c2e75c9578798916a1e05066d2888d195fc9fb6068965cd29227190f9d8",
+            "comparison": "0f56357165d30479938ac2b614987c13639bb128bcde79421f0495859601557e"
+          }
+        },
+        {
+          "dataset": "DeepPCB",
+          "split": "test",
+          "sample_id": "90100000_test",
+          "sample_path": "datasets/deeppcb_fewshot_yolo/images/test/90100000_test.jpg",
+          "gt_object_count": 6,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/deeppcb/original/90100000_test.jpg",
+            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/90100000_test.jpg",
+            "prediction": "smoke/c3/visualizations/deeppcb/predictions/90100000_test.jpg",
+            "comparison": "smoke/c3/visualizations/deeppcb/comparison/90100000_test.jpg"
+          },
+          "output_sha256": {
+            "original": "b3e6e4ddd3ccb346160a708cefa4e11c6de41edeb4456817a581281d18e0a422",
+            "ground_truth": "75b54d0b8f9bf1936b21ff0ae8fa22f2b71c8ca930901a85ae7148ee549ec150",
+            "prediction": "1ee6bbc520ac1a6651abaa465091fea8fd51c5d534f406d332910b75df426f5c",
+            "comparison": "e40991f7b257df906c98bf5c591b519b1c16899c8a0d368ba93c235962b3d476"
+          }
+        },
+        {
+          "dataset": "DeepPCB",
+          "split": "test",
+          "sample_id": "90100049_test",
+          "sample_path": "datasets/deeppcb_fewshot_yolo/images/test/90100049_test.jpg",
+          "gt_object_count": 6,
+          "prediction_count": 0,
+          "outputs": {
+            "original": "smoke/c3/visualizations/deeppcb/original/90100049_test.jpg",
+            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/90100049_test.jpg",
+            "prediction": "smoke/c3/visualizations/deeppcb/predictions/90100049_test.jpg",
+            "comparison": "smoke/c3/visualizations/deeppcb/comparison/90100049_test.jpg"
+          },
+          "output_sha256": {
+            "original": "671c9ddc8d78dadedbf5488d7763a826101f61722ba9086027de30eefdfd1301",
+            "ground_truth": "a333c53761a73d655f37fbacb2958c712323082aeccb7c44ea24482cbef624cf",
+            "prediction": "78501b956f7923388f4f35a090a58cbf05e011a714572cad72678bbeaca14de5",
+            "comparison": "cfd1a63f83bf7ce69c7f8aa007cab3843cb36f8d72b564135e27b4b324ad6222"
+          }
+        }
+      ],
+      "prediction_json": "smoke/c3/evidence/deeppcb_visual_predictions.json",
+      "overview": "smoke/c3/visualizations/deeppcb_overview.jpg",
+      "overview_sample_ids": [
+        "12000001_test",
+        "12100038_test",
+        "12100040_test",
+        "12100199_test",
+        "13000198_test",
+        "20085324_test"
+      ],
+      "existing_run_plots": []
+    }
+  ],
+  "verification": {
+    "ground_truth_loaded_from_yolo_labels": true,
+    "prediction_generated_by_checkpoint": true,
+    "comparison_generated_for_all_samples": true,
+    "no_training_performed": true
+  }
+}
