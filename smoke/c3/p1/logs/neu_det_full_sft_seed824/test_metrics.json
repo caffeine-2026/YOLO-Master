@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "split": "test",
+  "device": "0",
+  "batch": 8,
+  "imgsz": 640,
+  "precision": 0.45738001127806777,
+  "recall": 0.5391605506591008,
+  "map50": 0.49185461166939914,
+  "map50_95": 0.25744452354132374,
+  "fitness": 0.25744452354132374,
+  "speed_ms_per_image": {
+    "preprocess": 0.36943970868984854,
+    "inference": 1.8172812053105898,
+    "loss": 0.0009286864143278864,
+    "postprocess": 0.9225920450666713
+  },
+  "save_dir": "smoke/c3/p1/artifacts/neu_det_full_sft_seed824/test_eval"
+}

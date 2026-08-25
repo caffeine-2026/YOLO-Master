@@ -1,0 +1,99 @@
+schema_version: 1
+stage: pilot_seed824
+research_question: 在工业缺陷小样本条件下，V-PEFT 是否能以显著更少的可训练参数和资源成本，保持或改善 Full-SFT / Frozen Backbone 的检测性能？
+
+provenance:
+  p0_final_ref: 73d56d2
+  p1_start_ref: 73d56d2
+  task_source: user-provided C3 P1 requirements
+
+model:
+  architecture: YOLO11n detection
+  base_model: yolo11n.pt
+  pretrained: true
+  pretrained_sha256: 0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1
+
+datasets:
+  names: [NEU-DET, DeepPCB]
+  train_sample_count_per_dataset: 100
+  selection_seed: 824
+  neu_det:
+    source_train_images: 1440
+    selection: deterministic source-class stratified allocation 17/17/17/17/16/16
+    val_images: 180
+    test_images: 180
+  deeppcb:
+    source_train_images: 800
+    selection: deterministic uniform sample without replacement; multi-label distribution audited
+    val_images: 200
+    test_images: 500
+
+training:
+  epochs: 30
+  batch: 8
+  imgsz: 640
+  optimizer: AdamW
+  learning_rate: 0.001
+  final_learning_rate_factor: 0.01
+  weight_decay: 0.0005
+  momentum: 0.9
+  scheduler: cosine
+  warmup_epochs: 3.0
+  patience: 0
+  device: 0
+  amp: false
+  workers: 0
+  deterministic: true
+  seed: 824
+  cache: false
+  validation_each_epoch: true
+  checkpoint_selection: best validation fitness
+  final_evaluation_split: test
+
+augmentation:
+  hsv_h: 0.015
+  hsv_s: 0.7
+  hsv_v: 0.4
+  degrees: 0.0
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  mosaic: 1.0
+  close_mosaic: 10
+  mixup: 0.0
+  cutmix: 0.0
+
+methods:
+  full_sft:
+    lora_r: 0
+    freeze: 0
+  frozen_backbone:
+    lora_r: 0
+    freeze: 11
+    frozen_top_level_modules: model.0-model.10
+    trainable_top_level_modules: model.11-model.23
+    boundary_source: ultralytics/cfg/models/11/yolo11.yaml
+  vpeft:
+    lora_r: 8
+    lora_alpha: 16
+    lora_planner_enabled: true
+    lora_planner_backend: vpeft
+    lora_planner_solver: ao
+    lora_vpeft_strict: true
+    required_actual_backend: peft
+
+evaluation:
+  metrics: [mAP50-95, mAP50, precision, recall]
+  resource_metrics: [trainable_parameters, total_parameters, peak_gpu_memory_mib, training_seconds, gpu_hours]
+  artifact_metrics: [checkpoint_size_bytes, adapter_size_bytes, sha256]
+  confidence_policy: validator_default
+  comparison_rule: no ranking by mAP alone
+
+extension_gate:
+  seeds_after_pilot: [825, 826]
+  reuse_seed824: true
+  final_epoch_policy: inspect all six common-budget learning curves; if 30 epochs is insufficient, increase equally for all methods
+

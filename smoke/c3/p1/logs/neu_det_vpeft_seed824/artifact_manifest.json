@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "run_id": "neu_det_vpeft_seed824",
+  "artifacts": [
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/BoxF1_curve.png",
+      "size_bytes": 265767,
+      "sha256": "4ed12dcec3f59ea2c7472485ad183e03ad3f698491d571f1dc8126c596073535"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/BoxPR_curve.png",
+      "size_bytes": 189468,
+      "sha256": "cbbce135d0f0b8519c377d0c154f77e1464f465b2d520b9db08157a475c37e25"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/BoxP_curve.png",
+      "size_bytes": 302128,
+      "sha256": "ef3418b3514b2eb9795be9782d118967a8df0a3b5a2dfe7f41d28b1fa9acc4ab"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/BoxR_curve.png",
+      "size_bytes": 238079,
+      "sha256": "74d8f899862f09f7129f6274a4258789a55ad010a78967c5972e9de1222289f2"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/args.yaml",
+      "size_bytes": 10154,
+      "sha256": "e2225b368e4e89422a6b2b0292b6ffb54c26b522b203fb304e61ee6d423df074"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/confusion_matrix.png",
+      "size_bytes": 181028,
+      "sha256": "f06e0b8354056cdf6a5ccc54fda31dfdac5dfee5d331a4fed3ab250c2946f1de"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/confusion_matrix_normalized.png",
+      "size_bytes": 209101,
+      "sha256": "6c5ad852e4c7a90809ae11a2432698bfe79a61b2eb86706f1cc1621f7f9b91c3"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/labels.jpg",
+      "size_bytes": 199972,
+      "sha256": "0f33e78ac2a8bc1604d076fc0fda33cf7668cf8b129c55803e58fb3d7a386b33"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/lora_adapter/README.md",
+      "size_bytes": 5074,
+      "sha256": "30f14bc991c08c786976f4a02217ff46bd666e7658dd191dc266d67ca23d2f6b"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/lora_adapter/adapter_config.json",
+      "size_bytes": 4138,
+      "sha256": "9a8cf68aec5084b92ed301e519e44843c3040b6ed2a93a70b189158610da5a40"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/lora_adapter/adapter_model.safetensors",
+      "size_bytes": 738896,
+      "sha256": "ef625a576e6e3291de5e7978a98075ee2992ccbd8e5fb90d2aa120443f18610a"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/lora_adapter/runtime_metadata.json",
+      "size_bytes": 15640,
+      "sha256": "1b0e5f3c083af1fd419d7e334d2760954126f15bdd285e222e9c60b159a85d0e"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/results.csv",
+      "size_bytes": 4965,
+      "sha256": "f56d0a102d584296745a4cfb0a8b149ce510299d6a23605b0f8b465d27615aa4"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/results.png",
+      "size_bytes": 301011,
+      "sha256": "0a6102fb96cb3f60bf416c8fce96ee65d318a4fc7093b18fe35bd47c2da372ef"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/test_eval/BoxF1_curve.png",
+      "size_bytes": 261548,
+      "sha256": "3386419c0a5cc8dd94662af685e35cdf6e31f654ab46a66a170f81a3e8f3a779"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/test_eval/BoxPR_curve.png",
+      "size_bytes": 195590,
+      "sha256": "386e78f7f9e86ad05b4c09128f0554456fa3a31adc748e4d7f78cd4f2f75e350"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/test_eval/BoxP_curve.png",
+      "size_bytes": 296277,
+      "sha256": "d5cefda6f9dea6e6d2a1c8deb112c3bd90ce3ac9639fb2e39a2f3f633c1ab09b"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/test_eval/BoxR_curve.png",
+      "size_bytes": 233902,
+      "sha256": "6768146ffbd804ece63117a0267a9112590535d0e00fa1dc9ed1d31744eee0e7"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/test_eval/confusion_matrix.png",
+      "size_bytes": 178158,
+      "sha256": "b195158472691031d16994c4780c5ee31d3079bb4fc0b6d53bc65ab6dde4e42b"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/test_eval/confusion_matrix_normalized.png",
+      "size_bytes": 212061,
+      "sha256": "cbf7d91d94873729e96ddde16ff6b10c7c5eb2651d9a95e00ed92f68d0239704"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/test_eval/val_batch0_labels.jpg",
+      "size_bytes": 473725,
+      "sha256": "08a37aebce85351eca1c1386fa35c08b3d575f6eca5b506ddebe8997dec23883"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/test_eval/val_batch0_pred.jpg",
+      "size_bytes": 420436,
+      "sha256": "66c5df72f1916ad3e8c2d8af15a0125b64db7607a0efd491a61ea404ec4d50e2"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/test_eval/val_batch1_labels.jpg",
+      "size_bytes": 493900,
+      "sha256": "c9c54a2a1caa27c180d0f409657ec125a48abc4a49154763a23fabbc65d43f90"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/test_eval/val_batch1_pred.jpg",
+      "size_bytes": 443276,
+      "sha256": "a389184712e2e65b90987f97ddbf828b69a1c2e0631f41d8a3a20d691dde2b87"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/test_eval/val_batch2_labels.jpg",
+      "size_bytes": 464618,
+      "sha256": "35e0b6619bc847ad1472199c58dd709aef27028bc4e7d191e30e082b5fac144e"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/test_eval/val_batch2_pred.jpg",
+      "size_bytes": 437238,
+      "sha256": "80c0ae19df53b74b34edd2f6267c9ae1835e50491722e9f77af15a16321e4fe8"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/train_batch0.jpg",
+      "size_bytes": 335715,
+      "sha256": "c7bab2062d6305754403d30bee6fdbb3fcf355f819aa4fb7d6cf8740a1f127a5"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/train_batch1.jpg",
+      "size_bytes": 331576,
+      "sha256": "8c40479cf870a9c2d9d8f200a489fc94cdee5cee2f4c87589160e9ec6464d18c"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/train_batch2.jpg",
+      "size_bytes": 369804,
+      "sha256": "c2869410ab4649412af582d0f9fd335b5d7d3f570d5c0441eece71276dd732b5"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/train_batch260.jpg",
+      "size_bytes": 307116,
+      "sha256": "971ad02362d1ba69a1103023376c7afed3329318e7d707bdd48d78731f99d62b"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/train_batch261.jpg",
+      "size_bytes": 283075,
+      "sha256": "772473ed4a52b22300baccb533d7a671bbbc5cb0376c33e7babc060bf72743ee"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/train_batch262.jpg",
+      "size_bytes": 274078,
+      "sha256": "c6c30d857eb9262f9710e636e5665c2f4dd07c8c494b7c4b79b5dd1c26646891"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/val_batch0_labels.jpg",
+      "size_bytes": 649644,
+      "sha256": "8b1ac1724a098fa02bf50a32d99ada3c796943ab7404237c851e5713387233aa"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/val_batch0_pred.jpg",
+      "size_bytes": 568829,
+      "sha256": "1fc1caaf302de063db71f1e3855703484b6ecfab6ed3b5687ba4e02f1e5f22fe"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/val_batch1_labels.jpg",
+      "size_bytes": 604437,
+      "sha256": "dd007409e705951164f9e291f23604a2bdcc1237c25116b9925838c199437b11"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/val_batch1_pred.jpg",
+      "size_bytes": 563209,
+      "sha256": "d38326f0c5a478dfbfc43ddd2c320a78a1788ffc1ba4cfc248952d46fc98b72b"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/val_batch2_labels.jpg",
+      "size_bytes": 353231,
+      "sha256": "8eac322945819a0698a297826a6bc23d5e491a7cb0693f82357049ded7890219"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/val_batch2_pred.jpg",
+      "size_bytes": 380156,
+      "sha256": "4f7cfab821ef0a292b82825907a0adafc2bba3701c72572c4cba33339e15bfe3"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/weights/best.pt",
+      "size_bytes": 6026450,
+      "sha256": "d56b011a3b45e5a74f7e5afe0d75ca961a7b7b677a0ff844a34008ae490c02ae"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/weights/last.pt",
+      "size_bytes": 6026450,
+      "sha256": "7deae45d579646d913e1dc76438d2b1b2e14f2e0a54755b7e89c61d4a647807c"
+    },
+    {
+      "path": "smoke/c3/p1/artifacts/neu_det_vpeft_seed824/weights/last_healthy.pt",
+      "size_bytes": 15859163,
+      "sha256": "24a78e756c37cd82881cab26fe96ec553fbb5c9634fcb888f841614a55cb902e"
+    },
+    {
+      "path": "smoke/c3/p1/logs/neu_det_vpeft_seed824/command.txt",
+      "size_bytes": 569,
+      "sha256": "15d09506dd8dda9120510c6bf69e53dea5bac26ef27df2c2e5c4281256bdc955"
+    },
+    {
+      "path": "smoke/c3/p1/logs/neu_det_vpeft_seed824/environment.json",
+      "size_bytes": 393,
+      "sha256": "abb98cfe0e504ea35ec89f646c01a3ec5718240da15a291c3bd4335680801173"
+    },
+    {
+      "path": "smoke/c3/p1/logs/neu_det_vpeft_seed824/learning_curve.csv",
+      "size_bytes": 4965,
+      "sha256": "f56d0a102d584296745a4cfb0a8b149ce510299d6a23605b0f8b465d27615aa4"
+    },
+    {
+      "path": "smoke/c3/p1/logs/neu_det_vpeft_seed824/metrics.json",
+      "size_bytes": 2772,
+      "sha256": "6929301a69aa1f38e606acb3aca173ecc6a5aa37547c65373cf98f0af9af2a30"
+    },
+    {
+      "path": "smoke/c3/p1/logs/neu_det_vpeft_seed824/resolved_config.yaml",
+      "size_bytes": 10139,
+      "sha256": "21bd27d1421ada7d36c009c26b558263388c099003d46cf6098ed94c0fc90bef"
+    },
+    {
+      "path": "smoke/c3/p1/logs/neu_det_vpeft_seed824/resource_usage.json",
+      "size_bytes": 403,
+      "sha256": "8269cb5a1334cbe44894ab7994900be52ee11694dd23ed21755ad791fe0f0f79"
+    },
+    {
+      "path": "smoke/c3/p1/logs/neu_det_vpeft_seed824/stderr.log",
+      "size_bytes": 36,
+      "sha256": "48b7e64f7bc9964d2c9fa103de15b02ae02731346f002651bd4648de51ea361e"
+    },
+    {
+      "path": "smoke/c3/p1/logs/neu_det_vpeft_seed824/stdout.log",
+      "size_bytes": 116635,
+      "sha256": "dce9aa09110299ff3cdec653c817b2493c7c0d010afd0f354dbfab224d6d30e4"
+    },
+    {
+      "path": "smoke/c3/p1/logs/neu_det_vpeft_seed824/test_metrics.json",
+      "size_bytes": 509,
+      "sha256": "48c3e44a00f0f9a068a4039209816120297e159176e390a88276cbd839cd8779"
+    },
+    {
+      "path": "smoke/c3/p1/logs/neu_det_vpeft_seed824/timing.json",
+      "size_bytes": 218,
+      "sha256": "a6008b31d717821286eb8bc8132c51d0acd814b38df87f7c8aae4e5e2c1a7d45"
+    }
+  ],
+  "artifact_count": 51
+}

@@ -1,0 +1,5 @@
+# training
+yolo train cfg=smoke/c3/p1/config/deeppcb/full_sft.yaml data=smoke/c3/p1/config/deeppcb/dataset.yaml device=0 seed=824 name=deeppcb_full_sft_seed824 save_dir=smoke/c3/p1/artifacts/deeppcb_full_sft_seed824 exist_ok=False
+
+# locked test evaluation
+python smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/deeppcb_full_sft_seed824/weights/best.pt --data smoke/c3/p1/config/deeppcb/dataset.yaml --save-dir smoke/c3/p1/artifacts/deeppcb_full_sft_seed824/test_eval --output smoke/c3/p1/logs/deeppcb_full_sft_seed824/test_metrics.json --device 0 --batch 8 --imgsz 640
