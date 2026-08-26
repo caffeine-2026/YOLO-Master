@@ -206,6 +206,8 @@ args.yaml
 results.csv
 !smoke/c3/logs/**/*.log
 !smoke/c3/p1/visualizations/final/**/*.png
+!smoke/c3/p2/logs/**/*.log
+!smoke/c3/p2/visualizations/**/*.png
 
 # Local reproduction archives and credential helpers
 artifacts/

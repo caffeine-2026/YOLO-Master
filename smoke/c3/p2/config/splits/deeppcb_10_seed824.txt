@@ -1,0 +1,10 @@
+datasets/deeppcb_yolo/images/train/13000027_test.jpg
+datasets/deeppcb_yolo/images/train/20085260_test.jpg
+datasets/deeppcb_yolo/images/train/20085069_test.jpg
+datasets/deeppcb_yolo/images/train/44000091_test.jpg
+datasets/deeppcb_yolo/images/train/13000108_test.jpg
+datasets/deeppcb_yolo/images/train/00041045_test.jpg
+datasets/deeppcb_yolo/images/train/00041079_test.jpg
+datasets/deeppcb_yolo/images/train/13000031_test.jpg
+datasets/deeppcb_yolo/images/train/20085153_test.jpg
+datasets/deeppcb_yolo/images/train/00041180_test.jpg

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "split": "test",
+  "device": "0",
+  "batch": 8,
+  "imgsz": 640,
+  "precision": 0.5071978738289356,
+  "recall": 0.5653082263351177,
+  "map50": 0.5550510631251292,
+  "map50_95": 0.27933154709227803,
+  "fitness": 0.27933154709227803,
+  "speed_ms_per_image": {
+    "preprocess": 0.2102562433315648,
+    "inference": 1.8362076862508225,
+    "loss": 0.0008860641779998939,
+    "postprocess": 0.972755204161836
+  },
+  "save_dir": "smoke/c3/p2/artifacts/neu_50_full_seed824/test_eval"
+}

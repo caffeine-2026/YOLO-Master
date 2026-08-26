@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "split": "test",
+  "device": "3",
+  "batch": 8,
+  "imgsz": 640,
+  "precision": 0.8217564339701902,
+  "recall": 0.7757698140053293,
+  "map50": 0.839925559666692,
+  "map50_95": 0.5577085083655379,
+  "fitness": 0.5577085083655379,
+  "speed_ms_per_image": {
+    "preprocess": 0.20546166179701686,
+    "inference": 1.2148645496927202,
+    "loss": 0.0008681812323629856,
+    "postprocess": 0.820258716121316
+  },
+  "save_dir": "smoke/c3/p2/artifacts/deeppcb_50_full_seed824/test_eval"
+}

@@ -1,0 +1,10 @@
+datasets/neu_det_yolo/images/train/scratches_141.jpg
+datasets/neu_det_yolo/images/train/pitted_surface_214.jpg
+datasets/neu_det_yolo/images/train/crazing_86.jpg
+datasets/neu_det_yolo/images/train/rolled-in_scale_260.jpg
+datasets/neu_det_yolo/images/train/scratches_244.jpg
+datasets/neu_det_yolo/images/train/pitted_surface_272.jpg
+datasets/neu_det_yolo/images/train/patches_179.jpg
+datasets/neu_det_yolo/images/train/scratches_140.jpg
+datasets/neu_det_yolo/images/train/crazing_119.jpg
+datasets/neu_det_yolo/images/train/rolled-in_scale_210.jpg

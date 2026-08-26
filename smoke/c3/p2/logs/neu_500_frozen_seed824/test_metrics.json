@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "split": "test",
+  "device": "1",
+  "batch": 8,
+  "imgsz": 640,
+  "precision": 0.6211521551060577,
+  "recall": 0.6607346256438503,
+  "map50": 0.6857505053234415,
+  "map50_95": 0.3859145787103497,
+  "fitness": 0.3859145787103497,
+  "speed_ms_per_image": {
+    "preprocess": 0.39008165218143,
+    "inference": 1.7100129367059305,
+    "loss": 0.000957914421127902,
+    "postprocess": 0.6931455275561247
+  },
+  "save_dir": "smoke/c3/p2/artifacts/neu_500_frozen_seed824/test_eval"
+}
