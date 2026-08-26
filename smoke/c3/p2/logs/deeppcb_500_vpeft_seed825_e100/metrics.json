@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "stage": "c3_p2_multiseed_scaling",
+  "run_id": "deeppcb_500_vpeft_seed825_e100",
+  "dataset": "deeppcb",
+  "sample_size": 500,
+  "method": "vpeft",
+  "seed": 825,
+  "status": "PASS",
+  "exit_code": 0,
+  "test": {
+    "schema_version": 1,
+    "split": "test",
+    "device": "5",
+    "batch": 8,
+    "imgsz": 640,
+    "precision": 0.905890405805362,
+    "recall": 0.8671197974405068,
+    "map50": 0.9271216641152984,
+    "map50_95": 0.6481052221131816,
+    "fitness": 0.6481052221131816,
+    "speed_ms_per_image": {
+      "preprocess": 0.299697186332196,
+      "inference": 2.484137919265777,
+      "loss": 0.0008537834510207176,
+      "postprocess": 0.5343166668899357
+    },
+    "save_dir": "smoke/c3/p2/artifacts/deeppcb_500_vpeft_seed825_e100/test_eval"
+  },
+  "parameters": {
+    "total_parameters": 2772770,
+    "trainable_parameters": 613602,
+    "trainable_parameter_ratio": 0.2212956718371881,
+    "adapter_parameters": 181760,
+    "frozen_modules": [],
+    "trainable_modules": [],
+    "top_level_modules": []
+  },
+  "resources": {
+    "peak_cpu_percent": 150.3,
+    "peak_rss_mib": 2773.48,
+    "peak_device_memory_mib": 3268.0,
+    "peak_process_tree_gpu_memory_mib": 3258.0,
+    "epoch_reported_peak_gpu_memory_mib": 2621.44,
+    "peak_gpu_memory_mib": 2621.44,
+    "measurement_note": "Primary peak is trainer-reported GPU_mem; one-second device and process-tree samples are retained."
+  },
+  "timing": {
+    "schema_version": 1,
+    "started_utc": "2026-08-26T04:44:10.807918+00:00",
+    "finished_utc": "2026-08-26T05:05:11.128754+00:00",
+    "training_seconds": 1260.32,
+    "gpu_hours": 0.35008902,
+    "training_exit_code": 0
+  },
+  "epoch_summary": {
+    "best_epoch": 59,
+    "best_map50_95": 0.6742,
+    "last_epoch_map50_95": 0.62417
+  },
+  "checkpoint": {
+    "path": "smoke/c3/p2/artifacts/deeppcb_500_vpeft_seed825_e100/weights/best.pt",
+    "size_bytes": 6037266,
+    "sha256": "e89e48f691f473827753963fc9ff6565f5986a450b21661abb9397c4ed1b7f3b"
+  },
+  "adapter": {
+    "path": "smoke/c3/p2/artifacts/deeppcb_500_vpeft_seed825_e100/lora_adapter",
+    "size_bytes": 763748,
+    "enabled": true,
+    "planner_status": "ACCEPT",
+    "planner_backend": "vpeft",
+    "actual_backend": "peft",
+    "planned_targets": 59,
+    "applied_targets": 52
+  },
+  "split": {
+    "train_list": "smoke/c3/p2/config/splits/deeppcb_500_seed824.txt",
+    "train_list_sha256": "762ca09621fa34c1a535b7b8c253d122ce51a59f21834c0af8a4164edd1bb5eb"
+  },
+  "numerical_recovery": {
+    "detected": false,
+    "markers": []
+  },
+  "checks": {
+    "exit_code_zero": true,
+    "requested_cuda_gpu_used": true,
+    "fixed_protocol": true,
+    "complete_finite_learning_curve": true,
+    "no_numerical_recovery": true,
+    "test_metrics_finite": true,
+    "checkpoints_present": true,
+    "resolved_config_present": true,
+    "resources_present": true,
+    "strict_vpeft": true
+  }
+}

@@ -1,0 +1,74 @@
+{"authorized_seeds": [825, 826], "event": "suite_start", "gpu_queues": {"0": ["neu_500_full_seed825_e100", "neu_500_vpeft_seed826_e100"], "1": ["neu_500_frozen_seed825_e100", "deeppcb_500_full_seed826_e100"], "2": ["neu_500_vpeft_seed825_e100", "deeppcb_500_frozen_seed826_e100"], "3": ["deeppcb_500_full_seed825_e100", "deeppcb_500_vpeft_seed826_e100"], "4": ["deeppcb_500_frozen_seed825_e100", "neu_10_full_seed825_e100", "neu_50_frozen_seed825_e100", "deeppcb_10_vpeft_seed825_e100", "neu_10_full_seed826_e100", "neu_50_frozen_seed826_e100", "deeppcb_10_vpeft_seed826_e100"], "5": ["deeppcb_500_vpeft_seed825_e100", "neu_10_frozen_seed825_e100", "neu_50_vpeft_seed825_e100", "deeppcb_50_full_seed825_e100", "neu_10_frozen_seed826_e100", "neu_50_vpeft_seed826_e100", "deeppcb_50_full_seed826_e100"], "6": ["neu_500_full_seed826_e100", "neu_10_vpeft_seed825_e100", "deeppcb_10_full_seed825_e100", "deeppcb_50_frozen_seed825_e100", "neu_10_vpeft_seed826_e100", "deeppcb_10_full_seed826_e100", "deeppcb_50_frozen_seed826_e100"], "7": ["neu_500_frozen_seed826_e100", "neu_50_full_seed825_e100", "deeppcb_10_frozen_seed825_e100", "deeppcb_50_vpeft_seed825_e100", "neu_50_full_seed826_e100", "deeppcb_10_frozen_seed826_e100", "deeppcb_50_vpeft_seed826_e100"]}, "new_runs": 36, "sample_sizes": [10, 50, 500], "time_utc": "2026-08-26T04:44:08.260407+00:00"}
+{"device": 0, "event": "run_start", "run_id": "neu_500_full_seed825_e100", "time_utc": "2026-08-26T04:44:08.260817+00:00"}
+{"device": 1, "event": "run_start", "run_id": "neu_500_frozen_seed825_e100", "time_utc": "2026-08-26T04:44:08.261932+00:00"}
+{"device": 2, "event": "run_start", "run_id": "neu_500_vpeft_seed825_e100", "time_utc": "2026-08-26T04:44:08.262146+00:00"}
+{"device": 3, "event": "run_start", "run_id": "deeppcb_500_full_seed825_e100", "time_utc": "2026-08-26T04:44:08.262396+00:00"}
+{"device": 4, "event": "run_start", "run_id": "deeppcb_500_frozen_seed825_e100", "time_utc": "2026-08-26T04:44:08.263491+00:00"}
+{"device": 5, "event": "run_start", "run_id": "deeppcb_500_vpeft_seed825_e100", "time_utc": "2026-08-26T04:44:08.264160+00:00"}
+{"device": 6, "event": "run_start", "run_id": "neu_500_full_seed826_e100", "time_utc": "2026-08-26T04:44:08.265503+00:00"}
+{"device": 7, "event": "run_start", "run_id": "neu_500_frozen_seed826_e100", "time_utc": "2026-08-26T04:44:08.265752+00:00"}
+{"device": 1, "event": "run_finish", "returncode": 0, "run_id": "neu_500_frozen_seed825_e100", "time_utc": "2026-08-26T05:01:32.264826+00:00"}
+{"device": 1, "event": "run_start", "run_id": "deeppcb_500_full_seed826_e100", "time_utc": "2026-08-26T05:01:32.265039+00:00"}
+{"device": 7, "event": "run_finish", "returncode": 0, "run_id": "neu_500_frozen_seed826_e100", "time_utc": "2026-08-26T05:01:47.045737+00:00"}
+{"device": 7, "event": "run_start", "run_id": "neu_50_full_seed825_e100", "time_utc": "2026-08-26T05:01:47.045931+00:00"}
+{"device": 4, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_500_frozen_seed825_e100", "time_utc": "2026-08-26T05:02:07.234541+00:00"}
+{"device": 4, "event": "run_start", "run_id": "neu_10_full_seed825_e100", "time_utc": "2026-08-26T05:02:07.235153+00:00"}
+{"device": 3, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_500_full_seed825_e100", "time_utc": "2026-08-26T05:03:51.503305+00:00"}
+{"device": 3, "event": "run_start", "run_id": "deeppcb_500_vpeft_seed826_e100", "time_utc": "2026-08-26T05:03:51.503652+00:00"}
+{"device": 6, "event": "run_finish", "returncode": 0, "run_id": "neu_500_full_seed826_e100", "time_utc": "2026-08-26T05:03:56.901192+00:00"}
+{"device": 6, "event": "run_start", "run_id": "neu_10_vpeft_seed825_e100", "time_utc": "2026-08-26T05:03:56.901663+00:00"}
+{"device": 0, "event": "run_finish", "returncode": 0, "run_id": "neu_500_full_seed825_e100", "time_utc": "2026-08-26T05:04:03.908524+00:00"}
+{"device": 0, "event": "run_start", "run_id": "neu_500_vpeft_seed826_e100", "time_utc": "2026-08-26T05:04:03.908988+00:00"}
+{"device": 2, "event": "run_finish", "returncode": 0, "run_id": "neu_500_vpeft_seed825_e100", "time_utc": "2026-08-26T05:05:19.456594+00:00"}
+{"device": 2, "event": "run_start", "run_id": "deeppcb_500_frozen_seed826_e100", "time_utc": "2026-08-26T05:05:19.457104+00:00"}
+{"device": 5, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_500_vpeft_seed825_e100", "time_utc": "2026-08-26T05:05:26.278719+00:00"}
+{"device": 5, "event": "run_start", "run_id": "neu_10_frozen_seed825_e100", "time_utc": "2026-08-26T05:05:26.278865+00:00"}
+{"device": 4, "event": "run_finish", "returncode": 0, "run_id": "neu_10_full_seed825_e100", "time_utc": "2026-08-26T05:05:31.022324+00:00"}
+{"device": 4, "event": "run_start", "run_id": "neu_50_frozen_seed825_e100", "time_utc": "2026-08-26T05:05:31.022460+00:00"}
+{"device": 7, "event": "run_finish", "returncode": 0, "run_id": "neu_50_full_seed825_e100", "time_utc": "2026-08-26T05:06:25.434031+00:00"}
+{"device": 7, "event": "run_start", "run_id": "deeppcb_10_frozen_seed825_e100", "time_utc": "2026-08-26T05:06:25.434300+00:00"}
+{"device": 6, "event": "run_finish", "returncode": 0, "run_id": "neu_10_vpeft_seed825_e100", "time_utc": "2026-08-26T05:07:54.261261+00:00"}
+{"device": 6, "event": "run_start", "run_id": "deeppcb_10_full_seed825_e100", "time_utc": "2026-08-26T05:07:54.261472+00:00"}
+{"device": 5, "event": "run_finish", "returncode": 0, "run_id": "neu_10_frozen_seed825_e100", "time_utc": "2026-08-26T05:08:34.716600+00:00"}
+{"device": 5, "event": "run_start", "run_id": "neu_50_vpeft_seed825_e100", "time_utc": "2026-08-26T05:08:34.716963+00:00"}
+{"device": 4, "event": "run_finish", "returncode": 0, "run_id": "neu_50_frozen_seed825_e100", "time_utc": "2026-08-26T05:09:38.493707+00:00"}
+{"device": 4, "event": "run_start", "run_id": "deeppcb_10_vpeft_seed825_e100", "time_utc": "2026-08-26T05:09:38.493855+00:00"}
+{"device": 7, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_10_frozen_seed825_e100", "time_utc": "2026-08-26T05:10:02.095734+00:00"}
+{"device": 7, "event": "run_start", "run_id": "deeppcb_50_vpeft_seed825_e100", "time_utc": "2026-08-26T05:10:02.095883+00:00"}
+{"device": 6, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_10_full_seed825_e100", "time_utc": "2026-08-26T05:11:30.353430+00:00"}
+{"device": 6, "event": "run_start", "run_id": "deeppcb_50_frozen_seed825_e100", "time_utc": "2026-08-26T05:11:30.353578+00:00"}
+{"device": 5, "event": "run_finish", "returncode": 0, "run_id": "neu_50_vpeft_seed825_e100", "time_utc": "2026-08-26T05:14:01.459841+00:00"}
+{"device": 5, "event": "run_start", "run_id": "deeppcb_50_full_seed825_e100", "time_utc": "2026-08-26T05:14:01.459991+00:00"}
+{"device": 4, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_10_vpeft_seed825_e100", "time_utc": "2026-08-26T05:14:07.944598+00:00"}
+{"device": 4, "event": "run_start", "run_id": "neu_10_full_seed826_e100", "time_utc": "2026-08-26T05:14:07.944993+00:00"}
+{"device": 7, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_50_vpeft_seed825_e100", "time_utc": "2026-08-26T05:15:51.317957+00:00"}
+{"device": 7, "event": "run_start", "run_id": "neu_50_full_seed826_e100", "time_utc": "2026-08-26T05:15:51.318109+00:00"}
+{"device": 6, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_50_frozen_seed825_e100", "time_utc": "2026-08-26T05:16:07.635553+00:00"}
+{"device": 6, "event": "run_start", "run_id": "neu_10_vpeft_seed826_e100", "time_utc": "2026-08-26T05:16:07.635723+00:00"}
+{"device": 4, "event": "run_finish", "returncode": 0, "run_id": "neu_10_full_seed826_e100", "time_utc": "2026-08-26T05:17:29.315671+00:00"}
+{"device": 4, "event": "run_start", "run_id": "neu_50_frozen_seed826_e100", "time_utc": "2026-08-26T05:17:29.315817+00:00"}
+{"device": 5, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_50_full_seed825_e100", "time_utc": "2026-08-26T05:18:49.969626+00:00"}
+{"device": 5, "event": "run_start", "run_id": "neu_10_frozen_seed826_e100", "time_utc": "2026-08-26T05:18:49.969768+00:00"}
+{"device": 6, "event": "run_finish", "returncode": 0, "run_id": "neu_10_vpeft_seed826_e100", "time_utc": "2026-08-26T05:20:04.754864+00:00"}
+{"device": 6, "event": "run_start", "run_id": "deeppcb_10_full_seed826_e100", "time_utc": "2026-08-26T05:20:04.755007+00:00"}
+{"device": 7, "event": "run_finish", "returncode": 0, "run_id": "neu_50_full_seed826_e100", "time_utc": "2026-08-26T05:20:34.962970+00:00"}
+{"device": 7, "event": "run_start", "run_id": "deeppcb_10_frozen_seed826_e100", "time_utc": "2026-08-26T05:20:34.963114+00:00"}
+{"device": 1, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_500_full_seed826_e100", "time_utc": "2026-08-26T05:20:59.925765+00:00"}
+{"device": 4, "event": "run_finish", "returncode": 0, "run_id": "neu_50_frozen_seed826_e100", "time_utc": "2026-08-26T05:21:39.476756+00:00"}
+{"device": 4, "event": "run_start", "run_id": "deeppcb_10_vpeft_seed826_e100", "time_utc": "2026-08-26T05:21:39.477163+00:00"}
+{"device": 5, "event": "run_finish", "returncode": 0, "run_id": "neu_10_frozen_seed826_e100", "time_utc": "2026-08-26T05:21:54.638909+00:00"}
+{"device": 5, "event": "run_start", "run_id": "neu_50_vpeft_seed826_e100", "time_utc": "2026-08-26T05:21:54.639645+00:00"}
+{"device": 2, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_500_frozen_seed826_e100", "time_utc": "2026-08-26T05:23:13.127996+00:00"}
+{"device": 6, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_10_full_seed826_e100", "time_utc": "2026-08-26T05:23:45.727114+00:00"}
+{"device": 6, "event": "run_start", "run_id": "deeppcb_50_frozen_seed826_e100", "time_utc": "2026-08-26T05:23:45.727486+00:00"}
+{"device": 7, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_10_frozen_seed826_e100", "time_utc": "2026-08-26T05:24:04.334301+00:00"}
+{"device": 7, "event": "run_start", "run_id": "deeppcb_50_vpeft_seed826_e100", "time_utc": "2026-08-26T05:24:04.334718+00:00"}
+{"device": 0, "event": "run_finish", "returncode": 0, "run_id": "neu_500_vpeft_seed826_e100", "time_utc": "2026-08-26T05:25:06.972968+00:00"}
+{"device": 3, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_500_vpeft_seed826_e100", "time_utc": "2026-08-26T05:25:14.391445+00:00"}
+{"device": 4, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_10_vpeft_seed826_e100", "time_utc": "2026-08-26T05:25:58.161586+00:00"}
+{"device": 5, "event": "run_finish", "returncode": 0, "run_id": "neu_50_vpeft_seed826_e100", "time_utc": "2026-08-26T05:27:05.410049+00:00"}
+{"device": 5, "event": "run_start", "run_id": "deeppcb_50_full_seed826_e100", "time_utc": "2026-08-26T05:27:05.410197+00:00"}
+{"device": 6, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_50_frozen_seed826_e100", "time_utc": "2026-08-26T05:28:09.278939+00:00"}
+{"device": 7, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_50_vpeft_seed826_e100", "time_utc": "2026-08-26T05:29:35.178816+00:00"}
+{"device": 5, "event": "run_finish", "returncode": 0, "run_id": "deeppcb_50_full_seed826_e100", "time_utc": "2026-08-26T05:31:48.753684+00:00"}
+{"completed": 36, "event": "suite_finish", "failures": [], "time_utc": "2026-08-26T05:31:48.754751+00:00"}

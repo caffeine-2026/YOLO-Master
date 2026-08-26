@@ -1,6 +1,6 @@
 schema_version: 1
-stage: seed824_initial_scaling
-status: seed824_complete
+stage: final_multiseed_scaling
+status: complete
 research_question: Which training strategy is most suitable at each industrial few-shot data scale?
 
 datasets:
@@ -28,8 +28,9 @@ training:
   patience: 0
   amp: false
   deterministic: true
-  seeds_this_stage: [824]
-  prohibited_seeds_this_stage: [825, 826]
+  final_seeds: [824, 825, 826]
+  new_seeds_this_stage: [825, 826]
+  immutable_reused_seed: 824
   device_policy: one exclusive NVIDIA GeForce RTX 4090 per run
 
 methods:
@@ -50,11 +51,11 @@ methods:
     required_actual_backend: peft
 
 execution:
-  matrix_cells: 24
-  p1_100_seed824_reuse_cells: 6
-  new_seed824_runs: 18
-  completed_new_seed824_runs: 18
-  completed_seed824_cells: 24
+  final_matrix_cells: 72
+  p1_100_multiseed_reuse_cells: 18
+  immutable_seed824_p2_runs: 18
+  new_multiseed_runs: 36
+  completed_new_multiseed_runs: 36
   new_sample_sizes: [10, 50, 500]
   p1_history_mutation_allowed: false
   overwrite_allowed: false
@@ -66,7 +67,8 @@ statistics:
   trainable_parameter_efficiency: accuracy_vs_trainable_parameter_ratio
 
 multiseed_gate:
-  status: READY
+  status: COMPLETE
   decision: MULTISEED_READY=YES
-  overall_c3_p2: IN_PROGRESS
-  auto_run_seed825_826: false
+  overall_c3_p2: PASS
+  authorized_new_seeds: [825, 826]
+  authorized_new_sample_sizes: [10, 50, 500]

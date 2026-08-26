@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "split": "test",
+  "device": "4",
+  "batch": 8,
+  "imgsz": 640,
+  "precision": 0.41952401070628537,
+  "recall": 0.5396022825678396,
+  "map50": 0.4611847407674284,
+  "map50_95": 0.21562872913172765,
+  "fitness": 0.21562872913172765,
+  "speed_ms_per_image": {
+    "preprocess": 0.35143553201730054,
+    "inference": 1.6236458659275539,
+    "loss": 0.0008904206980433728,
+    "postprocess": 0.8245452746955886
+  },
+  "save_dir": "smoke/c3/p2/artifacts/neu_50_frozen_seed825_e100/test_eval"
+}

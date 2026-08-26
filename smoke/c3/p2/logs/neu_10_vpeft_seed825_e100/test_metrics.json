@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "split": "test",
+  "device": "6",
+  "batch": 8,
+  "imgsz": 640,
+  "precision": 0.2739144767284816,
+  "recall": 0.4122213864752231,
+  "map50": 0.27139982029457116,
+  "map50_95": 0.12721070602783963,
+  "fitness": 0.12721070602783963,
+  "speed_ms_per_image": {
+    "preprocess": 0.21754251275625494,
+    "inference": 3.85129844588745,
+    "loss": 0.0009961245167586538,
+    "postprocess": 0.9811264682664639
+  },
+  "save_dir": "smoke/c3/p2/artifacts/neu_10_vpeft_seed825_e100/test_eval"
+}

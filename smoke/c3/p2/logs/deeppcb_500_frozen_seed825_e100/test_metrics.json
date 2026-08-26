@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "split": "test",
+  "device": "4",
+  "batch": 8,
+  "imgsz": 640,
+  "precision": 0.895524848468464,
+  "recall": 0.8910712779157085,
+  "map50": 0.929881199573376,
+  "map50_95": 0.6053362592087985,
+  "fitness": 0.6053362592087985,
+  "speed_ms_per_image": {
+    "preprocess": 0.23749931855127215,
+    "inference": 1.1159293334931135,
+    "loss": 0.0008250814862549305,
+    "postprocess": 0.5605735434219241
+  },
+  "save_dir": "smoke/c3/p2/artifacts/deeppcb_500_frozen_seed825_e100/test_eval"
+}

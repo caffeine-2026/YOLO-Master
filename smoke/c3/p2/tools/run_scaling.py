@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run one immutable seed824 C3 P2 scaling experiment with full evidence."""
+"""Run one immutable C3 P2 multi-seed scaling experiment with full evidence."""
 
 from __future__ import annotations
 
@@ -33,14 +33,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dataset", choices=DATASETS, required=True)
     parser.add_argument("--sample-size", type=int, choices=SAMPLE_SIZES, required=True)
     parser.add_argument("--method", choices=METHODS, required=True)
-    parser.add_argument("--seed", type=int, choices=(824,), default=824)
+    parser.add_argument("--seed", type=int, choices=(825, 826), required=True)
     parser.add_argument("--device", required=True)
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
-    run_id = f"{args.dataset}_{args.sample_size}_{METHOD_TAGS[args.method]}_seed824"
+    run_id = f"{args.dataset}_{args.sample_size}_{METHOD_TAGS[args.method]}_seed{args.seed}_e100"
     log_dir = P2_ROOT / "logs" / run_id
     artifact_dir = P2_ROOT / "artifacts" / run_id
     if log_dir.exists() or artifact_dir.exists():
@@ -55,7 +55,7 @@ def main() -> int:
             raise FileNotFoundError(common.relative(required))
     config_values = yaml.safe_load(config.read_text(encoding="utf-8"))
     if int(config_values.get("epochs", 0)) != 100 or int(config_values.get("seed", 0)) != 824:
-        raise ValueError("P2 source config must be locked to 100 epochs and seed824")
+        raise ValueError("P2 source config must remain the locked 100-epoch seed824 template")
 
     yolo = Path(sys.executable).with_name("yolo")
     train_command = [
@@ -64,6 +64,7 @@ def main() -> int:
         f"cfg={common.relative(config)}",
         f"data={common.relative(data)}",
         f"device={args.device}",
+        f"seed={args.seed}",
         f"name={run_id}",
         f"save_dir={common.relative(artifact_dir)}",
         "exist_ok=False",
@@ -195,7 +196,7 @@ def main() -> int:
                     resolved.get("batch") == 8,
                     resolved.get("imgsz") == 640,
                     resolved.get("workers") == 0,
-                    resolved.get("seed") == 824,
+                    resolved.get("seed") == args.seed,
                     resolved.get("optimizer") == "AdamW",
                     resolved.get("lr0") == 0.001,
                     resolved.get("weight_decay") == 0.0005,
@@ -232,12 +233,12 @@ def main() -> int:
         status = "PASS" if all(checks.values()) else "FAILED"
         metrics = {
             "schema_version": 1,
-            "stage": "c3_p2_seed824_scaling",
+            "stage": "c3_p2_multiseed_scaling",
             "run_id": run_id,
             "dataset": args.dataset,
             "sample_size": args.sample_size,
             "method": args.method,
-            "seed": 824,
+            "seed": args.seed,
             "status": status,
             "exit_code": exit_code,
             "test": test_metrics,
