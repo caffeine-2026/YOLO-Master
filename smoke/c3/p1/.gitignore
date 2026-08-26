@@ -1,5 +1,6 @@
-# Checkpoints and native Ultralytics run artifacts remain local; hashes and compact evidence are committed.
-artifacts/
+# C3 experiment artifacts are versioned; binary payloads are stored through Git LFS.
+!artifacts/
+!artifacts/**
 !logs/**/*.log
 !visualizations/convergence/*.png
 !visualizations/convergence_e50/*.png

@@ -1,0 +1,4 @@
+smoke/c3/**/*.pt filter=lfs diff=lfs merge=lfs -text
+smoke/c3/**/*.safetensors filter=lfs diff=lfs merge=lfs -text
+smoke/c3/**/artifacts/**/*.jpg filter=lfs diff=lfs merge=lfs -text
+smoke/c3/**/artifacts/**/*.png filter=lfs diff=lfs merge=lfs -text
