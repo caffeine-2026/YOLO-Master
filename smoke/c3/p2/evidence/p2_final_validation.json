@@ -55,9 +55,9 @@
     "deeppcb/500/vpeft": true
   },
   "source_counts": {
-    "reused_p1_100_multiseed": 18,
+    "immutable_p2_seed824": 18,
     "new_p2_multiseed": 36,
-    "immutable_p2_seed824": 18
+    "reused_p1_100_multiseed": 18
   },
   "run_validation": {
     "expected": 72,

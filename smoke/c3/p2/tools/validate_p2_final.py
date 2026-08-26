@@ -205,7 +205,8 @@ def main() -> int:
     }
     found_cells = {(r["dataset"], r["sample_size"], r["method"], r["seed"]) for r in all_rows}
     source_counts = {
-        source: sum(row["source"] == source for row in all_rows) for source in {row["source"] for row in all_rows}
+        source: sum(row["source"] == source for row in all_rows)
+        for source in ("immutable_p2_seed824", "new_p2_multiseed", "reused_p1_100_multiseed")
     }
     checks = {
         "nested_split_integrity": all(all(row.values()) for row in split_checks.values()),
