@@ -27,6 +27,7 @@ REPO_ROOT = Path(__file__).resolve().parents[4]
 P1_ROOT = REPO_ROOT / "smoke" / "c3" / "p1"
 DATASETS = ("neu_det", "deeppcb")
 METHODS = ("full_sft", "frozen_backbone", "vpeft")
+SEEDS = (824, 825, 826)
 ADAPTER_MARKERS = ("lora_", "hada_", "lokr_", "oft_", "boft_", "ia3_", "hra_")
 ANSI_RE = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]")
 
@@ -360,8 +361,8 @@ def artifact_rows(paths: list[Path]) -> list[dict[str, object]]:
 
 def main() -> int:
     args = parse_args()
-    if args.seed != 824:
-        raise ValueError("This pilot stage is locked to seed=824; seeds 825/826 are outside the current scope")
+    if args.seed not in SEEDS:
+        raise ValueError(f"The final P1 protocol only permits seeds {SEEDS}")
     if args.epochs == 30:
         run_id = f"{args.dataset}_{args.method}_seed{args.seed}"
     else:
@@ -376,7 +377,9 @@ def main() -> int:
 
     config = P1_ROOT / "config" / args.dataset / f"{args.method}.yaml"
     data = P1_ROOT / "config" / args.dataset / "dataset.yaml"
-    train_list = P1_ROOT / "config" / args.dataset / f"train_seed{args.seed}.txt"
+    # Dataset membership is frozen by the original seed824 sampling manifest. The
+    # run seed controls only training stochasticity; it must not select new images.
+    train_list = P1_ROOT / "config" / args.dataset / "train_seed824.txt"
     for required in (config, data, train_list):
         if not required.is_file():
             raise FileNotFoundError(relative(required))
@@ -512,14 +515,14 @@ def main() -> int:
         resolved = yaml.safe_load((log_dir / "resolved_config.yaml").read_text(encoding="utf-8"))
         checks = {
             "exit_code_zero": exit_code == 0,
-            "cuda_gpu0_used": args.device == "0" and "CUDA:0 (NVIDIA GeForce RTX 4090" in stdout_text,
+            "requested_cuda_gpu_used": f"CUDA:{args.device} (NVIDIA GeForce RTX 4090" in stdout_text,
             "fixed_protocol": all(
                 (
                     resolved.get("epochs") == args.epochs,
                     resolved.get("batch") == 8,
                     resolved.get("imgsz") == 640,
                     resolved.get("workers") == 0,
-                    resolved.get("seed") == 824,
+                    resolved.get("seed") == args.seed,
                     resolved.get("amp") is False,
                 )
             ),

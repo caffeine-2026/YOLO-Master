@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "split": "test",
+  "device": "3",
+  "batch": 8,
+  "imgsz": 640,
+  "precision": 0.8787144010147796,
+  "recall": 0.8762019116536198,
+  "map50": 0.9213028064240264,
+  "map50_95": 0.651232817709559,
+  "fitness": 0.651232817709559,
+  "speed_ms_per_image": {
+    "preprocess": 0.17747295228764415,
+    "inference": 1.0467348494566977,
+    "loss": 0.0007600174285471439,
+    "postprocess": 0.5078803668729961
+  },
+  "save_dir": "smoke/c3/p1/artifacts/deeppcb_full_seed826_e100/test_eval"
+}

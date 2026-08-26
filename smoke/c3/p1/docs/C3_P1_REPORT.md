@@ -1,95 +1,91 @@
-# C3 P1 对照报告（seed824，100-Epoch Final-Epoch Protocol）
+# C3 P1 Final Report — Three-seed 100-Epoch Protocol
 
 ## 1. Research Question
 
-在工业缺陷小样本条件下，V-PEFT 是否能以显著更少的可训练参数和资源成本，保持或改善 Full-SFT / Frozen Backbone 的检测性能？
+在两个工业缺陷小样本数据集上，V-PEFT 能否在显著降低可训练参数的同时，跨 seed 保持 Full-SFT 的准确率并改善 GPU 资源效率？
 
-## 2. Protocol
+## 2. Final Protocol
 
-`restart_all`，YOLO11n/yolo11n.pt、每数据集 100 张训练图、100 epochs、batch 8、imgsz 640、AdamW、lr0=0.001、weight decay=0.0005、cosine scheduler、GPU0、FP32、seed824。30 epoch = early pilot；50 epoch = intermediate；75 epoch = convergence candidate；100 epoch = final single-seed candidate。
+YOLO11n (`yolo11n.pt`)，每数据集固定 100 张训练图，100 epochs，batch=8，imgsz=640，AdamW，lr0=0.001，weight decay=0.0005，cosine scheduler，FP32，seeds=824/825/826。seed824 未重跑；seed825/826 只改变训练 seed。
 
-## 3. Dataset / Split
+## 3. Datasets and Splits
 
-NEU-DET 与 DeepPCB 沿用 seed824 固定成员列表以及原 val/test，三种方法在同一数据集内成员完全相同。
+NEU-DET 与 DeepPCB 均复用 seed824 固定训练成员列表和原有 val/test split。三种方法、三个 seed 的 sample IDs 完全一致。
 
-## 4. Three Methods
+## 4. Three Training Strategies
 
-- Full-SFT：`lora_r=0, freeze=0`。
-- Frozen Backbone：冻结 `model.0-model.10`，训练 `model.11-model.23`。
-- V-PEFT：rank=8、alpha=16、strict AO Planner，actual backend=`peft`，不允许 silent fallback。
+- Full-SFT：全模型训练。
+- Frozen Backbone：冻结 `model.0`–`model.10`，训练其余层。
+- V-PEFT：rank=8、alpha=16、strict AO planner、backend=`vpeft`，运行时 actual backend=`peft`，不允许 silent fallback。
 
-## 5. Accuracy and Resource Results
+## 5. 18-run Experiment Matrix
 
-| Dataset | Method | mAP50-95 | mAP50 | Precision | Recall | Trainable / Total | Trainable Ratio | Peak GPU Mem | Memory Saving | Time | GPU-hours | Time Ratio | Checkpoint | Adapter | Status |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| NEU-DET | Full-SFT | 0.3293 | 0.6401 | 0.5927 | 0.6448 | 2,590,994 / 2,591,010 | 100.00% | 2652 MiB | 0.00% | 349.7s | 0.09713 | 1.000x | 5.24 MiB | 0.00 MiB | PASS |
-| NEU-DET | Frozen Backbone | 0.2901 | 0.5736 | 0.4913 | 0.5862 | 1,225,522 / 2,591,010 | 47.30% | 1700 MiB | 35.91% | 317.4s | 0.08817 | 0.908x | 5.24 MiB | 0.00 MiB | PASS |
-| NEU-DET | V-PEFT | 0.3280 | 0.6239 | 0.6162 | 0.5839 | 613,602 / 2,772,770 | 22.13% | 2621 MiB | 1.16% | 395.1s | 0.10976 | 1.130x | 5.76 MiB | 0.73 MiB | PASS |
-| DeepPCB | Full-SFT | 0.6345 | 0.9208 | 0.9040 | 0.8558 | 2,590,994 / 2,591,010 | 100.00% | 2673 MiB | 0.00% | 369.0s | 0.10250 | 1.000x | 5.24 MiB | 0.00 MiB | PASS |
-| DeepPCB | Frozen Backbone | 0.4754 | 0.7938 | 0.7525 | 0.7587 | 1,225,522 / 2,591,010 | 47.30% | 1710 MiB | 36.02% | 335.6s | 0.09322 | 0.909x | 5.24 MiB | 0.00 MiB | PASS |
-| DeepPCB | V-PEFT | 0.5115 | 0.7794 | 0.7591 | 0.7177 | 613,602 / 2,772,770 | 22.13% | 2642 MiB | 1.15% | 412.1s | 0.11448 | 1.117x | 5.76 MiB | 0.73 MiB | PASS |
+2 datasets × 3 methods × 3 seeds = 18 runs。NEU 9/9、DeepPCB 9/9 均为 PASS；12 个新增 run 各自独占 GPU 和输出目录，seed824 六个正式结果保持冻结。
 
-## 6. 30/50/75/100
+## 6. Multi-seed Accuracy Results
 
-见 `../results/e30_e50_e75_e100.csv`。排序为“75→100 稳定”，但全历史“30/50 与 75/100 不完全一致”。
+| Dataset | Method | mAP50-95 mean ± SD | 95% CI | mAP50 mean ± SD | 95% CI | Precision mean ± SD | Recall mean ± SD | Peak GPU MiB | Time (s) | GPU-hours |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| NEU-DET | Full-SFT | 0.3329 ± 0.0039 | [0.3233, 0.3425] | 0.6378 ± 0.0020 | [0.6328, 0.6427] | 0.5957 ± 0.0459 | 0.6175 ± 0.0475 | 2652.2 | 356.2 | 0.09894 |
+| NEU-DET | Frozen Backbone | 0.2935 ± 0.0069 | [0.2764, 0.3106] | 0.5769 ± 0.0040 | [0.5668, 0.5869] | 0.5232 ± 0.0287 | 0.5779 ± 0.0149 | 1699.8 | 325.1 | 0.09031 |
+| NEU-DET | V-PEFT | 0.3203 ± 0.0081 | [0.3002, 0.3404] | 0.6110 ± 0.0129 | [0.5791, 0.6430] | 0.6668 ± 0.0472 | 0.5361 ± 0.0439 | 2621.4 | 402.6 | 0.11184 |
+| DeepPCB | Full-SFT | 0.6486 ± 0.0129 | [0.6164, 0.6808] | 0.9226 ± 0.0026 | [0.9161, 0.9290] | 0.8996 ± 0.0191 | 0.8659 ± 0.0102 | 2665.8 | 373.8 | 0.10383 |
+| DeepPCB | Frozen Backbone | 0.4844 ± 0.0149 | [0.4473, 0.5214] | 0.8060 ± 0.0171 | [0.7634, 0.8485] | 0.7842 ± 0.0296 | 0.7542 ± 0.0052 | 1706.7 | 340.1 | 0.09448 |
+| DeepPCB | V-PEFT | 0.5166 ± 0.0142 | [0.4813, 0.5519] | 0.7958 ± 0.0161 | [0.7559, 0.8358] | 0.7790 ± 0.0199 | 0.7303 ± 0.0111 | 2631.7 | 423.7 | 0.11771 |
 
-- NEU-DET: e30=Full-SFT > Frozen Backbone > V-PEFT; e50=Full-SFT > Frozen Backbone > V-PEFT; e75=Full-SFT > V-PEFT > Frozen Backbone; e100=Full-SFT > V-PEFT > Frozen Backbone
-- DeepPCB: e30=Full-SFT > Frozen Backbone > V-PEFT; e50=Full-SFT > Frozen Backbone > V-PEFT; e75=Full-SFT > V-PEFT > Frozen Backbone; e100=Full-SFT > V-PEFT > Frozen Backbone
+## 7. Resource Efficiency Results
 
-因此三种方法的排序在 75→100 已稳定；单 seed 排序不能外推为总体方法优劣。
+资源指标为三 seed 均值。排序只描述对应维度，不合并成单一 winner：
 
-## 7. V-PEFT Trade-off
+- NEU-DET accuracy: Full-SFT > V-PEFT > Frozen Backbone
+- NEU-DET parameter efficiency: V-PEFT > Frozen Backbone > Full-SFT
+- NEU-DET memory efficiency: Frozen Backbone > V-PEFT > Full-SFT
+- NEU-DET time efficiency: Frozen Backbone > Full-SFT > V-PEFT
+- DeepPCB accuracy: Full-SFT > V-PEFT > Frozen Backbone
+- DeepPCB parameter efficiency: V-PEFT > Frozen Backbone > Full-SFT
+- DeepPCB memory efficiency: Frozen Backbone > V-PEFT > Full-SFT
+- DeepPCB time efficiency: Frozen Backbone > Full-SFT > V-PEFT
 
-- NEU-DET: parameter reduction=76.32%, accuracy retention=99.62%, accuracy drop=0.0012, memory saving=1.16%, time change=+13.00%, GPU-hour change=+13.00%.
-- DeepPCB: parameter reduction=76.32%, accuracy retention=80.62%, accuracy drop=0.1230, memory saving=1.15%, time change=+11.69%, GPU-hour change=+11.69%.
+## 8. V-PEFT Trade-off
 
-### Accuracy vs trainable params
+- NEU-DET：parameter reduction=76.32%，accuracy retention=96.20%，accuracy drop=0.0126，memory saving=1.16%，training time change=+13.04%，GPU-hour change=+13.04%。
+- DeepPCB：parameter reduction=76.32%，accuracy retention=79.65%，accuracy drop=0.1320，memory saving=1.28%，training time change=+13.37%，GPU-hour change=+13.37%。
 
-V-PEFT 两个数据集均只训练 613,602 个参数，相对 Full-SFT 的 2,590,994 个可训练参数减少 76.32%。NEU-DET mAP50-95 仅低 0.0012；DeepPCB 低 0.1230。
+V-PEFT 的 76.32% 可训练参数减少在两个数据集和三个 seed 上是结构常数。是否带来准确率、显存或时间收益必须分别判断，不能由参数量直接推断。
 
-### Accuracy vs GPU memory
+## 9. Paired Seed Analysis
 
-V-PEFT 的峰值显存仅比 Full-SFT 低约 1.15%，未随可训练参数减少而同比下降。Frozen Backbone 的峰值显存节省约 36%，说明本协议下冻结计算路径与 adapter 路径的资源结果不同。
+- NEU-DET V-PEFT − Full-SFT：seed deltas=(-0.0012, -0.0161, -0.0207)，mean=-0.0126，95% CI=[-0.0378, +0.0126]，方向=0/3 positive; 3/3 negative。
+- DeepPCB V-PEFT − Full-SFT：seed deltas=(-0.1230, -0.1274, -0.1456)，mean=-0.1320，95% CI=[-0.1618, -0.1022]，方向=0/3 positive; 3/3 negative。
 
-### Accuracy vs GPU-hours
+n=3 很小，因此主要报告配对差值、spread、CI 与方向一致性，不用 p-value 支撑强结论。
 
-V-PEFT 的 GPU-hours 相对 Full-SFT 在 NEU-DET 增加 13.00%，在 DeepPCB 增加 11.69%；参数效率没有转化为训练吞吐优势。
+## 10. Qualitative Comparison
 
-## 8. Three Questions
+每数据集从按文件名排序的固定 test split 中等间距选取 10 张，选择发生在推理前且与模型结果无关。四栏固定为 GT / Full-SFT / Frozen / V-PEFT，均使用预先指定的 seed824 100-epoch `best.pt`，confidence threshold=0.25，imgsz=640；未针对方法调阈值。
 
-### Q1 — V-PEFT 是否保持明显的参数效率优势？
+## 11. Planner Analysis
 
-是。两个数据集均观测到 76.32% 的可训练参数减少。
+六个 V-PEFT runs 均满足 strict=true、planner status=ACCEPT 或合法 ADAPT、planner backend=vpeft、actual backend=peft、applied targets>0、adapter export 成功，且无 silent fallback。
 
-### Q2 — 参数减少是否转化为显存或训练时间优势？
+## 12. Negative / Positive Findings
 
-否。显存仅节省约 1.15%，训练时间和 GPU-hours 反而增加 11.69%–13.00%。
+- Positive：V-PEFT 的可训练参数减少跨 seed 稳定为 76.32%。
+- Accuracy：NEU accuracy retention=96.20%；DeepPCB=79.65%。数据集间 trade-off 明显不同。
+- Resource：V-PEFT 的 memory saving 为 NEU 1.16%、DeepPCB 1.28%；time change 为 NEU +13.04%、DeepPCB +13.37%。这说明当前实现的参数减少没有自动转化为同比显存或时间减少。
 
-### Q3 — 两个工业数据集上的 accuracy retention 是否达到可接受范围？
+对预先提出的跨 seed 观察逐项复核：
 
-结果不一致：NEU-DET 为 99.62%，接近 Full-SFT；DeepPCB 为 80.62%，绝对 mAP50-95 下降 0.1230。由于协议没有预先定义“可接受”的 retention threshold，数据支持“NEU 近乎保留、DeepPCB 有明显损失”，不支持声称两个数据集都已普遍达到可接受范围。
+- A — NEU：V-PEFT 三个 seed 均低于对应 Full-SFT；mean drop=0.0126、retention=96.20%，配对 CI 跨 0。数据支持“均值接近但未达到 parity”，不支持“无损”。
+- B — DeepPCB：三个配对差值均为负，mean drop=0.1320，配对 95% CI 完全低于 0；较大性能损失跨 seed 持续存在。
+- C — 参数：76.32% reduction 是所有 V-PEFT run 的结构常数，稳定。
+- D — 显存：NEU 各 seed saving 为 1.16%/1.16%/1.16%；DeepPCB 为 1.15%/1.16%/1.53%。近乎为零的 saving 稳定。
+- E — 时间：NEU 各 seed change 为 +13.00%/+13.96%/+12.18%；DeepPCB 为 +11.69%/+12.02%/+16.35%。六个配对均为 overhead。
 
-## 9. Multi-seed Statistics
+## 13. Limitations
 
-未运行 seed825/826；不报告 mean/std/95% CI。
+每组只有三个 seed，t-based 95% CI 很宽且对单个 run 敏感；每数据集仅用 100 张训练图；结论限于 YOLO11n、当前冻结边界、V-PEFT rank/planner 与 RTX 4090 FP32 实现。并行运行使用相同型号独占 GPU，但 seed824 与新增 runs 的系统时段不同。qualitative comparison 使用预先指定 seed824，不代表跨 seed 集成模型。
 
-## 10. Planner Analysis
+## 14. Final P1 Conclusion
 
-NEU-DET 与 DeepPCB 均为 Planner=ACCEPT、planner backend=vpeft、actual backend=peft、planned/applied targets=59/52，adapter 导出成功。
-
-## 11. Convergence and Limitations
-
-| Dataset | Method | Epoch 91-95 mean | Epoch 96-100 mean | Delta | Best epoch | Best | Last | Status |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| NEU-DET | Full-SFT | 0.316820 | 0.315564 | -0.001256 | 85 | 0.328660 | 0.316170 | CONVERGED_OR_PLATEAU |
-| NEU-DET | Frozen Backbone | 0.254322 | 0.261958 | +0.007636 | 79 | 0.269400 | 0.266420 | CONVERGED_OR_PLATEAU |
-| NEU-DET | V-PEFT | 0.307594 | 0.303062 | -0.004532 | 87 | 0.317860 | 0.303940 | CONVERGED_OR_PLATEAU |
-| DeepPCB | Full-SFT | 0.588734 | 0.555780 | -0.032954 | 75 | 0.634960 | 0.547630 | CONVERGED_OR_PLATEAU |
-| DeepPCB | Frozen Backbone | 0.473090 | 0.482846 | +0.009756 | 63 | 0.486680 | 0.478640 | CONVERGED_OR_PLATEAU |
-| DeepPCB | V-PEFT | 0.404170 | 0.391320 | -0.012850 | 70 | 0.517760 | 0.379310 | CONVERGED_OR_PLATEAU |
-
-本阶段仍为单 seed；`KEEP_100`。100 epoch 已冻结为 multi-seed 的统一最终预算。即使冻结预算，也不能用 seed824 声明任一方法普遍优于其他方法。
-
-## 12. P1 Conclusion
-
-六组公平闭环均 PASS，6/6 达到固定 plateau 判据；`MULTISEED_READY = YES`。本轮未运行 seed825/826。
+Overall C3 P1 = PASS：18/18 runs 可追踪，protocol fairness、统计汇总、准确率/资源比较、trade-off、配对分析、qualitative comparison 与 artifact integrity 均完成。数据支持 V-PEFT 具有显著且稳定的 trainable-parameter efficiency；其准确率保留具有数据集依赖性，且当前实现下不能声称显存或训练时间随参数量同比下降。

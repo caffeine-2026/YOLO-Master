@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "selection_rule": "10 equally spaced positions in the lexicographically sorted fixed test split",
+  "reference_seed": 824,
+  "reference_seed_rationale": "pre-designated completed seed; no metric-based checkpoint selection",
+  "confidence_threshold": 0.25,
+  "imgsz": 640,
+  "device": "6",
+  "datasets": {
+    "neu_det": {
+      "label": "NEU-DET",
+      "sample_count": 10,
+      "checkpoints": {
+        "Full-SFT": {
+          "path": "smoke/c3/p1/artifacts/neu_full_seed824_e100/weights/best.pt",
+          "sha256": "64544d58e0cb9331244022288738e429c4fb9555556bf38a7df2dd7ebcbbd4ab"
+        },
+        "Frozen": {
+          "path": "smoke/c3/p1/artifacts/neu_frozen_seed824_e100/weights/best.pt",
+          "sha256": "9023c29898ff9480b07f86bd456c3175e7f88fb2f245b0bb6f1c559e73998ba3"
+        },
+        "V-PEFT": {
+          "path": "smoke/c3/p1/artifacts/neu_vpeft_seed824_e100/weights/best.pt",
+          "sha256": "a8b9f1dc7285dc73560b4aea962dde02f7daa581edbaf3428184c1d6154e3c35"
+        }
+      },
+      "samples": [
+        {
+          "source": "datasets/neu_det_yolo/images/test/crazing_1.jpg",
+          "source_sha256": "5278cd3695adbcbd7a16a7e4b2c6bc27f18095ab8a1e034d2b06c0fc42020eca",
+          "comparison": "smoke/c3/p1/visualizations/final/neu_det/01_crazing_1.png",
+          "comparison_sha256": "4ad9f4e3e0bae86f30652dcef8acd9848777bcdb91aa63e20e8fbbcf23a6e72a"
+        },
+        {
+          "source": "datasets/neu_det_yolo/images/test/crazing_260.jpg",
+          "source_sha256": "f8f182527157c5fad4a77848f79231a203f2366ed8cee3eb7d0dee516d3f1143",
+          "comparison": "smoke/c3/p1/visualizations/final/neu_det/02_crazing_260.png",
+          "comparison_sha256": "844f6b8c0a20d5ead8ff9c0f717c0803af063d95e46bdd74a9b35cdc2e0cdc9b"
+        },
+        {
+          "source": "datasets/neu_det_yolo/images/test/inclusion_195.jpg",
+          "source_sha256": "788bea257894ff1be02820f29d5b4d71b8618189615a989db9122c64cf14fb07",
+          "comparison": "smoke/c3/p1/visualizations/final/neu_det/03_inclusion_195.png",
+          "comparison_sha256": "c038da0a59c0f7a929184faa66efa4e7bfdf32070b6f2b34b2c36a2039b29cc3"
+        },
+        {
+          "source": "datasets/neu_det_yolo/images/test/patches_105.jpg",
+          "source_sha256": "4d2de82731b86cdbc7a66f2a9bfb01074bb4cb65e47bccf06b66470d53857071",
+          "comparison": "smoke/c3/p1/visualizations/final/neu_det/04_patches_105.png",
+          "comparison_sha256": "9edb0097f9096a79b8399306f1f9ae9f66353dcd0df2a017a5a01137495d321d"
+        },
+        {
+          "source": "datasets/neu_det_yolo/images/test/patches_32.jpg",
+          "source_sha256": "f1cc2da29bceb16f3845896cbfb025a48bbf86e14b38773042a8f3355cbf9ee0",
+          "comparison": "smoke/c3/p1/visualizations/final/neu_det/05_patches_32.png",
+          "comparison_sha256": "804728cea523550ba0a18573944dd6ad7351dbc8d0d1bdccb7de89efa8d44505"
+        },
+        {
+          "source": "datasets/neu_det_yolo/images/test/pitted_surface_228.jpg",
+          "source_sha256": "a10e61fcd8ebed18668bd1ff308bf7a7e51147e25d5aabe55cf37730058b94b7",
+          "comparison": "smoke/c3/p1/visualizations/final/neu_det/06_pitted_surface_228.png",
+          "comparison_sha256": "2466a2e72beaf7af0a78228636d51342ea6919d6e39c62413ba49fcfcad2478a"
+        },
+        {
+          "source": "datasets/neu_det_yolo/images/test/pitted_surface_96.jpg",
+          "source_sha256": "ff293ea52301d6628bc0141a0632b70e6f2f4cbd9d05b0299d70a5b0d5e5cce0",
+          "comparison": "smoke/c3/p1/visualizations/final/neu_det/07_pitted_surface_96.png",
+          "comparison_sha256": "d938d045a4e50310014ea45ddc4d356e8a26be57991131ca535feda4968bd60c"
+        },
+        {
+          "source": "datasets/neu_det_yolo/images/test/rolled-in_scale_27.jpg",
+          "source_sha256": "708329b86ab6061f1adc9cd0c71b22b2e80fb88a60b15b799023e00b3e1dc24a",
+          "comparison": "smoke/c3/p1/visualizations/final/neu_det/08_rolled-in_scale_27.png",
+          "comparison_sha256": "2b909c5f01fc9f33c2b26f1e5ac85dbbc3af368841b0dc072f5b5074d45c2e6e"
+        },
+        {
+          "source": "datasets/neu_det_yolo/images/test/scratches_197.jpg",
+          "source_sha256": "c5f04d4f1bbb7f4fc54dca0f0bf1449ef5febc3dc11a11a074b0c60cf9170095",
+          "comparison": "smoke/c3/p1/visualizations/final/neu_det/09_scratches_197.png",
+          "comparison_sha256": "ebfa189bf418eeed0ef396b7239cfed046b0b06ea8d83815b594474a0a79693f"
+        },
+        {
+          "source": "datasets/neu_det_yolo/images/test/scratches_85.jpg",
+          "source_sha256": "31a229ddb970db1b9da2ba0c08670ee44380d9e1ecfb0921780a5806bda96663",
+          "comparison": "smoke/c3/p1/visualizations/final/neu_det/10_scratches_85.png",
+          "comparison_sha256": "312fe55b5ea2d6891f87b6853d141a2fe6f5826c522444286bce4cc73f4bee76"
+        }
+      ]
+    },
+    "deeppcb": {
+      "label": "DeepPCB",
+      "sample_count": 10,
+      "checkpoints": {
+        "Full-SFT": {
+          "path": "smoke/c3/p1/artifacts/deeppcb_full_seed824_e100/weights/best.pt",
+          "sha256": "009094ae65537cb54f503b4e4189313c9a942242c03e2e80afebfca13950fc49"
+        },
+        "Frozen": {
+          "path": "smoke/c3/p1/artifacts/deeppcb_frozen_seed824_e100/weights/best.pt",
+          "sha256": "c06bb163afab664ba39e8830bf45a6a215f6b6e6ea8b00c365ca4879d0ba7585"
+        },
+        "V-PEFT": {
+          "path": "smoke/c3/p1/artifacts/deeppcb_vpeft_seed824_e100/weights/best.pt",
+          "sha256": "644ef542fe807454db05767477871721acebbcbd47dedf720b61d4cc45c4360a"
+        }
+      },
+      "samples": [
+        {
+          "source": "datasets/deeppcb_yolo/images/test/00041200_test.jpg",
+          "source_sha256": "252a00450eb408a307fc49142b609e6852d087be5af77f5f77f3b366eb0a588e",
+          "comparison": "smoke/c3/p1/visualizations/final/deeppcb/01_00041200_test.png",
+          "comparison_sha256": "3595945e4cba852d49a9f4fba214d2044dd298b86a74b45c7142a695a0e87b6a"
+        },
+        {
+          "source": "datasets/deeppcb_yolo/images/test/12100020_test.jpg",
+          "source_sha256": "4075efcea54672f568d20323e1d4cf0535fcff31a1ecd76b51e4b343ecf6d85f",
+          "comparison": "smoke/c3/p1/visualizations/final/deeppcb/02_12100020_test.png",
+          "comparison_sha256": "7017cb2272fd7466916009676212f45b459a7a9ca6772383dae3dbc66caa3c3a"
+        },
+        {
+          "source": "datasets/deeppcb_yolo/images/test/12100131_test.jpg",
+          "source_sha256": "df692f1495ef64831b08e0404d45244427f4772622919dab0b81d3f74ef758e2",
+          "comparison": "smoke/c3/p1/visualizations/final/deeppcb/03_12100131_test.png",
+          "comparison_sha256": "52410a7bc1057c92eff6d799bdbad6ec9b7244f64351e7536e1a9cfdaf417bcb"
+        },
+        {
+          "source": "datasets/deeppcb_yolo/images/test/12100186_test.jpg",
+          "source_sha256": "b27f27960d5f3efb150d3932a7f25add6fa00a28f82b28c414d184c16a75b7e5",
+          "comparison": "smoke/c3/p1/visualizations/final/deeppcb/04_12100186_test.png",
+          "comparison_sha256": "6adec6af2ee6e59e43ecc5580110b79c788ecb2e2103db081f2699d41140c3f3"
+        },
+        {
+          "source": "datasets/deeppcb_yolo/images/test/12300131_test.jpg",
+          "source_sha256": "80dc6e71be3e1cc711033ac6e9236a040f1b4e2d8414fc229fabea16c07470c3",
+          "comparison": "smoke/c3/p1/visualizations/final/deeppcb/05_12300131_test.png",
+          "comparison_sha256": "a41c261257f90a4487f521633af80c0d4c212bbc47fb5123263e59c8db58774e"
+        },
+        {
+          "source": "datasets/deeppcb_yolo/images/test/12300247_test.jpg",
+          "source_sha256": "79ceb89509e9f6367f3a58cc3c8ba646e431b706dfca56ff776a1eb86247036f",
+          "comparison": "smoke/c3/p1/visualizations/final/deeppcb/06_12300247_test.png",
+          "comparison_sha256": "c684f268e3bee27f44887a5dca3affb1e25b7e6c4b7f8d8ed5a4e13362173332"
+        },
+        {
+          "source": "datasets/deeppcb_yolo/images/test/44000013_test.jpg",
+          "source_sha256": "f0220e2775259d9cd4ef81feabf8209126c604f19c5b49f6895aa8ddac19c31f",
+          "comparison": "smoke/c3/p1/visualizations/final/deeppcb/07_44000013_test.png",
+          "comparison_sha256": "064cc847c2bf5c05e9a0ecb8425d07e1f155addea55933d90ff63ae6338eb89d"
+        },
+        {
+          "source": "datasets/deeppcb_yolo/images/test/50600057_test.jpg",
+          "source_sha256": "aa03bbe203748ac58ba4c8fb2a87518dab91ad7efc017075ea62c693fef7b4ea",
+          "comparison": "smoke/c3/p1/visualizations/final/deeppcb/08_50600057_test.png",
+          "comparison_sha256": "f0e77e36a04c45901b5d5f39b95f9cd4212a88e48e4821d40bd3b4d62f256ec5"
+        },
+        {
+          "source": "datasets/deeppcb_yolo/images/test/90100030_test.jpg",
+          "source_sha256": "53b6a3d35d0e02a00aa7b977ddbac75ec659b185e621b171285f4a1375d1fd8a",
+          "comparison": "smoke/c3/p1/visualizations/final/deeppcb/09_90100030_test.png",
+          "comparison_sha256": "820fba6959aeccb70294ffd55173fc443afd01e07f42d680aac2614888c79615"
+        },
+        {
+          "source": "datasets/deeppcb_yolo/images/test/92000119_test.jpg",
+          "source_sha256": "d09905ea8a7a1eee711ef61bfe3649ca9332ec8c047a4e0c3e47c9c69cf14cac",
+          "comparison": "smoke/c3/p1/visualizations/final/deeppcb/10_92000119_test.png",
+          "comparison_sha256": "40c0f8c2c1c208e779ecb637159091ce9c267fef590a38fd7d226771c4951ac4"
+        }
+      ]
+    }
+  }
+}

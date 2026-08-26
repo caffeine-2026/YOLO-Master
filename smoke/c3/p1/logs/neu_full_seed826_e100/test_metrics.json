@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "split": "test",
+  "device": "0",
+  "batch": 8,
+  "imgsz": 640,
+  "precision": 0.5513602632128839,
+  "recall": 0.6451096267883724,
+  "map50": 0.6363486812378666,
+  "map50_95": 0.3325672867674142,
+  "fitness": 0.3325672867674142,
+  "speed_ms_per_image": {
+    "preprocess": 0.19324789884396726,
+    "inference": 1.6589675590188966,
+    "loss": 0.0008721370249986649,
+    "postprocess": 0.8021163327308992
+  },
+  "save_dir": "smoke/c3/p1/artifacts/neu_full_seed826_e100/test_eval"
+}

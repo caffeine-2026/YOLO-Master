@@ -1,5 +1,5 @@
-schema_version: 5
-stage: e100_final_single_seed_protocol
+schema_version: 6
+stage: multiseed_final_protocol
 research_question: 在工业缺陷小样本条件下，V-PEFT 是否能以显著更少的可训练参数和资源成本，保持或改善 Full-SFT / Frozen Backbone 的检测性能？
 
 provenance:
@@ -44,11 +44,11 @@ training:
   scheduler: cosine
   warmup_epochs: 3.0
   patience: 0
-  device: 0
+  device_policy: one exclusive NVIDIA GeForce RTX 4090 per run
   amp: false
   workers: 0
   deterministic: true
-  seed: 824
+  seeds: [824, 825, 826]
   cache: false
   validation_each_epoch: true
   checkpoint_selection: best validation fitness
@@ -93,7 +93,8 @@ evaluation:
   metrics: [mAP50-95, mAP50, precision, recall]
   resource_metrics: [trainable_parameters, total_parameters, peak_gpu_memory_mib, training_seconds, gpu_hours]
   artifact_metrics: [checkpoint_size_bytes, adapter_size_bytes, sha256]
-  confidence_policy: validator_default
+  quantitative_confidence_policy: validator_default
+  qualitative_confidence_threshold: 0.25
   comparison_rule: no ranking by mAP alone
 
 extension_gate:
@@ -109,6 +110,9 @@ extension_gate:
   e100_execution_reason: e75 checkpoints lack independently restorable scheduler and random/RNG state; cosine schedule is parameterized by final epoch budget
   seed824_status: complete_at_100_epochs
   final_epoch_policy: reuse seed824 e100; plan only seed825/826 for the remaining 12 runs
+  multiseed_status: complete
+  completed_runs: 18
+  overall_c3_p1: PASS
 
 convergence_rule:
   metric: mAP50-95
