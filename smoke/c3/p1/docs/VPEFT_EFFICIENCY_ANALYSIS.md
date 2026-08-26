@@ -1,6 +1,32 @@
 # V-PEFT 效率差距分析
 
-本分析保留 30-epoch pilot 的低侵入 profiler 证据，并用统一从零训练的 50/75-epoch candidate 重新核验端到端现象。微型分析只用于定位开销，不能替代真实训练的端到端资源数据。
+本分析保留 30-epoch pilot 的低侵入 profiler 证据，并用统一从零训练的 50/75/100-epoch run 重新核验端到端现象。微型分析只用于定位开销，不能替代真实训练的端到端资源数据。
+
+## 100-Epoch Final Single-Seed Candidate
+
+### Observed Fact
+
+| Dataset | Trainable parameter reduction | Peak memory saving | Training time change | GPU-hour change | Accuracy retention |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| NEU-DET | 76.32% | 1.16% | +13.00% | +13.00% | 99.62% |
+| DeepPCB | 76.32% | 1.15% | +11.69% | +11.69% | 80.62% |
+
+- 在相同 model、split、100-image budget、batch、imgsz、optimizer、scheduler、seed、GPU 和 100 epochs 下，V-PEFT 的可训练参数均从 Full-SFT 的 2,590,994 降至 613,602，减少 76.32%。
+- trainer 同口径 peak reserved memory 仅从 2652.16/2672.64 MiB 降至 2621.44/2641.92 MiB，NEU-DET/DeepPCB 分别只节省 1.16%/1.15%。
+- V-PEFT wall time 分别为 395.15s/412.14s，高于 Full-SFT 的 349.68s/369.01s；GPU-hours 同比例增加 13.00%/11.69%。
+- 因此，“trainable params 大幅降低、memory 几乎不降低、time 不降低且增加”是 P1 的正式 observed result。
+
+### Supported Explanation
+
+- 既有同 batch 微型 profiler 显示 optimizer state 从 19.77 MiB 降至 4.68 MiB，但 peak allocated 只从 1857 MiB 降至 1762 MiB；这支持“参数与 optimizer state 不是本训练峰值显存的主要组成部分”。
+- 同一 profiler 测得 V-PEFT forward 约 38.9 ms，高于 Full-SFT 的 24.3–25.2 ms；这支持未融合 adapter 分支具有额外计算开销，并支持端到端时间增加的方向。
+- 上述证据只支持方向与局部开销，不足以把完整 wall-time 差值全部归因于某一个 kernel 或训练阶段。
+
+### Hypothesis
+
+- V-PEFT optimizer-step 的额外时间可能来自更多小 adapter tensor、parameter group 或 kernel launch；尚无逐 kernel trace，不能作为事实。
+- 端到端 reserved-memory saving 小于微型 profiler 差异，可能与 allocator history、验证阶段和完整 trainer 生命周期有关；需要阶段性 CUDA memory snapshot 才能验证。
+- 数据加载和验证所占 wall time 可能影响最终时间比例；当前没有逐阶段计时，不能据此完成机制归因。
 
 ## 75-Epoch Revalidation — Observed facts
 

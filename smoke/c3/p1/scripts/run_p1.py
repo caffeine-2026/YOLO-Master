@@ -37,7 +37,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--method", choices=METHODS, required=True)
     parser.add_argument("--seed", type=int, default=824)
     parser.add_argument("--device", default="0")
-    parser.add_argument("--epochs", type=int, choices=(30, 50, 75), default=30)
+    parser.add_argument("--epochs", type=int, choices=(30, 50, 75, 100), default=30)
     return parser.parse_args()
 
 

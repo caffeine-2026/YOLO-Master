@@ -1,0 +1,94 @@
+schema_version: 1
+stage: c3_p1_multiseed
+status: PLANNED_NOT_STARTED
+final_single_seed_epoch: 100
+seeds:
+- 824
+- 825
+- 826
+seed824:
+  status: complete
+  reuse_existing_e100_results: true
+  rerun: false
+pending_seeds:
+- 825
+- 826
+protocol:
+  datasets:
+  - neu_det
+  - deeppcb
+  methods:
+  - full_sft
+  - frozen_backbone
+  - vpeft
+  model: yolo11n.pt
+  epochs: 100
+  batch: 8
+  imgsz: 640
+  optimizer: AdamW
+  lr0: 0.001
+  weight_decay: 0.0005
+  scheduler: cosine
+runs:
+- dataset: neu_det
+  method: full_sft
+  seed: 825
+  run_id: neu_full_seed825_e100
+  status: pending
+- dataset: neu_det
+  method: frozen_backbone
+  seed: 825
+  run_id: neu_frozen_seed825_e100
+  status: pending
+- dataset: neu_det
+  method: vpeft
+  seed: 825
+  run_id: neu_vpeft_seed825_e100
+  status: pending
+- dataset: deeppcb
+  method: full_sft
+  seed: 825
+  run_id: deeppcb_full_seed825_e100
+  status: pending
+- dataset: deeppcb
+  method: frozen_backbone
+  seed: 825
+  run_id: deeppcb_frozen_seed825_e100
+  status: pending
+- dataset: deeppcb
+  method: vpeft
+  seed: 825
+  run_id: deeppcb_vpeft_seed825_e100
+  status: pending
+- dataset: neu_det
+  method: full_sft
+  seed: 826
+  run_id: neu_full_seed826_e100
+  status: pending
+- dataset: neu_det
+  method: frozen_backbone
+  seed: 826
+  run_id: neu_frozen_seed826_e100
+  status: pending
+- dataset: neu_det
+  method: vpeft
+  seed: 826
+  run_id: neu_vpeft_seed826_e100
+  status: pending
+- dataset: deeppcb
+  method: full_sft
+  seed: 826
+  run_id: deeppcb_full_seed826_e100
+  status: pending
+- dataset: deeppcb
+  method: frozen_backbone
+  seed: 826
+  run_id: deeppcb_frozen_seed826_e100
+  status: pending
+- dataset: deeppcb
+  method: vpeft
+  seed: 826
+  run_id: deeppcb_vpeft_seed826_e100
+  status: pending
+run_count: 12
+auto_run: false

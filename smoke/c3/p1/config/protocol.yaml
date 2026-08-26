@@ -1,5 +1,5 @@
-schema_version: 4
-stage: e75_audited_pending_uniform_e100_extension
+schema_version: 5
+stage: e100_final_single_seed_protocol
 research_question: 在工业缺陷小样本条件下，V-PEFT 是否能以显著更少的可训练参数和资源成本，保持或改善 Full-SFT / Frozen Backbone 的检测性能？
 
 provenance:
@@ -32,6 +32,7 @@ training:
   pilot_epochs: 30
   intermediate_convergence_epochs: 50
   convergence_candidate_epochs: 75
+  final_single_seed_epochs: 100
   epochs: 100
   batch: 8
   imgsz: 640
@@ -97,26 +98,32 @@ evaluation:
 
 extension_gate:
   seeds_after_pilot: [825, 826]
-  multiseed_ready: false
-  epoch_decision: EXTEND_ALL_TO_100
+  multiseed_ready: true
+  epoch_decision: KEEP_100
   seed824_pilot_policy: preserve all six 30-epoch runs without overwrite
   e50_execution_policy: restart_all
   e50_execution_reason: the 30-epoch cosine schedule is not semantically equivalent to a from-scratch 50-epoch schedule
   e75_execution_policy: restart_all
   e75_execution_reason: the 50-epoch cosine schedule is not semantically equivalent to a from-scratch 75-epoch schedule
-  seed824_next_requirement: run all six strategies at the common 100-epoch budget before multi-seed
-  final_epoch_policy: re-audit all six common-budget curves at 100 epochs before fixing the multi-seed budget
+  e100_execution_policy: restart_all
+  e100_execution_reason: e75 checkpoints lack independently restorable scheduler and random/RNG state; cosine schedule is parameterized by final epoch budget
+  seed824_status: complete_at_100_epochs
+  final_epoch_policy: reuse seed824 e100; plan only seed825/826 for the remaining 12 runs
 
 convergence_rule:
   metric: mAP50-95
-  previous_window: epochs 66-70
-  last_window: epochs 71-75
+  previous_window: epochs 91-95
+  last_window: epochs 96-100
   delta: last_5_epoch_mean - previous_5_epoch_mean
   not_converged_if_delta_gt: 0.01
-  decision: EXTEND_ALL_TO_100
-  plateau_runs: 4
-  not_converged_runs: 2
-  ranking_stable_across_e30_e50_e75: false
-  audit: smoke/c3/p1/docs/CONVERGENCE_AUDIT_E75.md
+  decision: KEEP_100
+  plateau_runs: 6
+  not_converged_runs: 0
+  ranking_stable_across_all_budgets: false
+  ranking_stable_e75_e100: true
+  final_single_seed_epoch: 100
+  multiseed_ready: true
+  audit: smoke/c3/p1/docs/CONVERGENCE_AUDIT_E100.md
+  historical_e75_audit: smoke/c3/p1/docs/CONVERGENCE_AUDIT_E75.md
   historical_e50_audit: smoke/c3/p1/docs/CONVERGENCE_AUDIT_E50.md
   historical_e30_audit: smoke/c3/p1/docs/CONVERGENCE_AUDIT.md

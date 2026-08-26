@@ -74,7 +74,7 @@ FAIR_KEYS = (
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", default="smoke/c3/p1/evidence/pilot_validation.json")
-    parser.add_argument("--epochs", type=int, choices=(30, 50, 75), default=30)
+    parser.add_argument("--epochs", type=int, choices=(30, 50, 75, 100), default=30)
     return parser.parse_args()
 
 
