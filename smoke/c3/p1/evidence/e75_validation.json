@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "scope": "C3 P1 seed824 75-epoch stage: two datasets x three methods",
+  "p0_final_ref": "73d56d2a33b37c758c1b135997fb4bb66d786a34",
+  "p0_checks": {
+    "recorded_p0_pass": true,
+    "frozen_paths_unchanged_since_p0_final_ref": true
+  },
+  "p0_diff": "",
+  "split_checks": {
+    "neu_det": {
+      "manifest_status_pass": true,
+      "sample_count_100": true,
+      "membership_sha_valid": true,
+      "no_overlap": true,
+      "distribution_pass": true
+    },
+    "deeppcb": {
+      "manifest_status_pass": true,
+      "sample_count_100": true,
+      "membership_sha_valid": true,
+      "no_overlap": true,
+      "distribution_pass": true
+    }
+  },
+  "run_checks": {
+    "neu_full_seed824_e75": {
+      "status": "PASS",
+      "checks": {
+        "runner_status_pass": true,
+        "required_files_present": true,
+        "stdout_complete": true,
+        "stderr_captured": true,
+        "curve_75_epochs_finite": true,
+        "test_metrics_finite": true,
+        "parameters_recorded": true,
+        "gpu_memory_recorded": true,
+        "timing_recorded": true,
+        "checkpoint_recorded": true,
+        "artifact_hashes_valid": true,
+        "no_numerical_recovery": true,
+        "method_boundary": true
+      },
+      "artifact_count": 47,
+      "artifact_errors": []
+    },
+    "neu_frozen_seed824_e75": {
+      "status": "PASS",
+      "checks": {
+        "runner_status_pass": true,
+        "required_files_present": true,
+        "stdout_complete": true,
+        "stderr_captured": true,
+        "curve_75_epochs_finite": true,
+        "test_metrics_finite": true,
+        "parameters_recorded": true,
+        "gpu_memory_recorded": true,
+        "timing_recorded": true,
+        "checkpoint_recorded": true,
+        "artifact_hashes_valid": true,
+        "no_numerical_recovery": true,
+        "method_boundary": true
+      },
+      "artifact_count": 47,
+      "artifact_errors": []
+    },
+    "neu_vpeft_seed824_e75": {
+      "status": "PASS",
+      "checks": {
+        "runner_status_pass": true,
+        "required_files_present": true,
+        "stdout_complete": true,
+        "stderr_captured": true,
+        "curve_75_epochs_finite": true,
+        "test_metrics_finite": true,
+        "parameters_recorded": true,
+        "gpu_memory_recorded": true,
+        "timing_recorded": true,
+        "checkpoint_recorded": true,
+        "artifact_hashes_valid": true,
+        "no_numerical_recovery": true,
+        "vpeft_strict_peft": true
+      },
+      "artifact_count": 51,
+      "artifact_errors": []
+    },
+    "deeppcb_full_seed824_e75": {
+      "status": "PASS",
+      "checks": {
+        "runner_status_pass": true,
+        "required_files_present": true,
+        "stdout_complete": true,
+        "stderr_captured": true,
+        "curve_75_epochs_finite": true,
+        "test_metrics_finite": true,
+        "parameters_recorded": true,
+        "gpu_memory_recorded": true,
+        "timing_recorded": true,
+        "checkpoint_recorded": true,
+        "artifact_hashes_valid": true,
+        "no_numerical_recovery": true,
+        "method_boundary": true
+      },
+      "artifact_count": 47,
+      "artifact_errors": []
+    },
+    "deeppcb_frozen_seed824_e75": {
+      "status": "PASS",
+      "checks": {
+        "runner_status_pass": true,
+        "required_files_present": true,
+        "stdout_complete": true,
+        "stderr_captured": true,
+        "curve_75_epochs_finite": true,
+        "test_metrics_finite": true,
+        "parameters_recorded": true,
+        "gpu_memory_recorded": true,
+        "timing_recorded": true,
+        "checkpoint_recorded": true,
+        "artifact_hashes_valid": true,
+        "no_numerical_recovery": true,
+        "method_boundary": true
+      },
+      "artifact_count": 47,
+      "artifact_errors": []
+    },
+    "deeppcb_vpeft_seed824_e75": {
+      "status": "PASS",
+      "checks": {
+        "runner_status_pass": true,
+        "required_files_present": true,
+        "stdout_complete": true,
+        "stderr_captured": true,
+        "curve_75_epochs_finite": true,
+        "test_metrics_finite": true,
+        "parameters_recorded": true,
+        "gpu_memory_recorded": true,
+        "timing_recorded": true,
+        "checkpoint_recorded": true,
+        "artifact_hashes_valid": true,
+        "no_numerical_recovery": true,
+        "vpeft_strict_peft": true
+      },
+      "artifact_count": 51,
+      "artifact_errors": []
+    }
+  },
+  "fairness_checks": {
+    "common_training_protocol": true,
+    "same_data_within_dataset": true,
+    "distinct_method_only_settings": true
+  },
+  "overall_status": "PASS",
+  "multi_seed_status": "NOT_RUN_BY_SCOPE"
+}

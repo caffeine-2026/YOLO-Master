@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "run_id": "deeppcb_50_full_seed825_e100",
+  "artifacts": [
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/BoxF1_curve.png",
+      "size_bytes": 286619,
+      "sha256": "23e7337ebfa713c333e21d0703d32cfb1bbeb0ddbeab006f1adfa99040e0a899"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/BoxPR_curve.png",
+      "size_bytes": 198966,
+      "sha256": "da5d07623c4d9b9f562abc03c06d2c88eb72a14924a36a14809317e1c4e2e313"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/BoxP_curve.png",
+      "size_bytes": 225465,
+      "sha256": "1370ae5bbe92532e237ab0d8ec73760a1cc5fa0b0a9e2b8ee5d34d8d356d6206"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/BoxR_curve.png",
+      "size_bytes": 256359,
+      "sha256": "969152245d3343c305ea271bb7ef3fa863805a0dc0e5dd356707b44b3f6e3403"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/args.yaml",
+      "size_bytes": 7824,
+      "sha256": "0df09ffbad7e2328b92bf19b6d2fcf899bb74a66a7b3f75433e09f72eb94065e"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/confusion_matrix.png",
+      "size_bytes": 173760,
+      "sha256": "306bbd950010f635b88e06e6a39e0cf15c8e8dc23c313b7151fef64cd5793b97"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/confusion_matrix_normalized.png",
+      "size_bytes": 207253,
+      "sha256": "a48459e23a26124be1e2a5fdcb12d0d12ed7651783d78ab52ca160ba8ab9bb51"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/labels.jpg",
+      "size_bytes": 132312,
+      "sha256": "5d0f37da0cc2c09e7c196b1b95c26997ec94eda6329ec6d2a24bb5bb6fca1baf"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/results.csv",
+      "size_bytes": 15029,
+      "sha256": "1ce137a3cac7823262933aa260f2785507e4b8f94acdcf09f0b356e9855cdf88"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/results.png",
+      "size_bytes": 270615,
+      "sha256": "975a5451b6006ee85c5d5a57f960da0128d4726941a93bf4c75f1f478ac049b3"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/test_eval/BoxF1_curve.png",
+      "size_bytes": 285654,
+      "sha256": "747eb2e57b9057a1a3e4960b3ee9a9643383faacd155583a99a528790caf9e72"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/test_eval/BoxPR_curve.png",
+      "size_bytes": 217340,
+      "sha256": "2ee35fbf9903a04e3b3cbbd52d2dd00aeeafaeb6666ff131e3f772978803f8dc"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/test_eval/BoxP_curve.png",
+      "size_bytes": 226527,
+      "sha256": "c1b5179e34502d07fd10bf275579a283fa48df80d29cd46a5d2d11c1bea587ec"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/test_eval/BoxR_curve.png",
+      "size_bytes": 264381,
+      "sha256": "2b3ec7f18205fc2561d2452e1ae4691c6677a9b15c8d7aed62ac29581935abba"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/test_eval/confusion_matrix.png",
+      "size_bytes": 183911,
+      "sha256": "f00bd2974d2bd2f018ac6c35e96b233d5859b14a33ed9ac911d2ebcf3ae83422"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/test_eval/confusion_matrix_normalized.png",
+      "size_bytes": 197244,
+      "sha256": "cfd3d4d9e832612acc6f1b83a230fdde95c1aede352c247ddc27149bcd894add"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/test_eval/val_batch0_labels.jpg",
+      "size_bytes": 480812,
+      "sha256": "589a0f5c1a9227b1a9f463b9555cff1d4b710dc98282ca29a636241995b2f7e2"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/test_eval/val_batch0_pred.jpg",
+      "size_bytes": 487052,
+      "sha256": "a26513292bd4d193d0761803ba819c32595487083c3a3659872b3557fb787226"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/test_eval/val_batch1_labels.jpg",
+      "size_bytes": 519546,
+      "sha256": "e23ae39610ffece860fc460700ac92867894fd6de4769f51a3dece9263f8a3b4"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/test_eval/val_batch1_pred.jpg",
+      "size_bytes": 540515,
+      "sha256": "c466d5ca2f8eb633c56098f18fccaa9abbc0991725365c07dc357a8c4e8a693c"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/test_eval/val_batch2_labels.jpg",
+      "size_bytes": 494186,
+      "sha256": "742971a779b2cf0c7cfdf5295f93c9ee94c5739f3a37726dc999c8f64dfb3e7d"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/test_eval/val_batch2_pred.jpg",
+      "size_bytes": 541006,
+      "sha256": "d51c62a84590be22053c5c4ccc68c70f3aa063f67a5f97dcb1517cced4bb2856"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/train_batch0.jpg",
+      "size_bytes": 305806,
+      "sha256": "ccef3f86c582c48b170ccb93c7de3c6764f05011e665b87c4bd2d5db693db3d3"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/train_batch1.jpg",
+      "size_bytes": 347030,
+      "sha256": "9be72ecda59cd073397668b69a32bfb6023b0cdd8415940890f3d3985c9423a2"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/train_batch2.jpg",
+      "size_bytes": 454092,
+      "sha256": "b327463809c175ef0488211340a7467403af79a957ec97e5d06d28fa305bc94f"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/train_batch630.jpg",
+      "size_bytes": 377037,
+      "sha256": "be22cd493a66ce4d8d1ac5b4d2ac91db5ec0249747565b45b3a588e3140e412e"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/train_batch631.jpg",
+      "size_bytes": 324251,
+      "sha256": "ab5f35f594c6a12f4b8cd3950a63fbb4db38c3a863c93572b66123690785390b"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/train_batch632.jpg",
+      "size_bytes": 346393,
+      "sha256": "43d88452db2cc06afb5849990f541239ba62abede746c6ae8b422839c5764722"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/val_batch0_labels.jpg",
+      "size_bytes": 584630,
+      "sha256": "892383c36fbddb6ff7e19716341b85a6cdacfea3bc2d738eb87eab38549cbafa"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/val_batch0_pred.jpg",
+      "size_bytes": 656361,
+      "sha256": "3b6b93cb21f055cb99743291e9b7cccdd68c473a02fbb99a56e8a35856ccf38b"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/val_batch1_labels.jpg",
+      "size_bytes": 588175,
+      "sha256": "6ad0389cb18947dfe648624f6d882d93b85f84f86e6949877eaf99f2249fe1d3"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/val_batch1_pred.jpg",
+      "size_bytes": 632721,
+      "sha256": "30eb60b87f592552b833f59073a11914fc93152f47992fabecc59a04754610a4"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/val_batch2_labels.jpg",
+      "size_bytes": 645713,
+      "sha256": "004f5892bc6685d01566bfa203139e492ac4af5b17b7207b7123524d36073cff"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/val_batch2_pred.jpg",
+      "size_bytes": 681642,
+      "sha256": "3d6ed95d18a7eb616dc43e76f142b5980b7468832d45576744b6ff9f2071706f"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/weights/best.pt",
+      "size_bytes": 5498650,
+      "sha256": "c914d3a5725f22c99fb2f963b90d109e5664c10a8471f4146e9a8d64932ad9f0"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/weights/last.pt",
+      "size_bytes": 5498650,
+      "sha256": "9a8a9219f91681e3e121d24085b97fb508d331eb9fba1f36731fc1ea6c1c0094"
+    },
+    {
+      "path": "smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/weights/last_healthy.pt",
+      "size_bytes": 26725548,
+      "sha256": "8cf9f5d9cadf2514bddd568623766908c10d6563f163adcd15e86d232b58f775"
+    },
+    {
+      "path": "smoke/c3/p2/logs/deeppcb_50_full_seed825_e100/command.txt",
+      "size_bytes": 616,
+      "sha256": "fa0845d472813f4c00c0d47e2e01e4370f3c0886f3c23a094d85ad82d7ebf651"
+    },
+    {
+      "path": "smoke/c3/p2/logs/deeppcb_50_full_seed825_e100/environment.json",
+      "size_bytes": 393,
+      "sha256": "8ff81ff6d518e8b07c1420bb6870efc8f3f6c2c95c82ab67ad519dd566101e77"
+    },
+    {
+      "path": "smoke/c3/p2/logs/deeppcb_50_full_seed825_e100/learning_curve.csv",
+      "size_bytes": 15029,
+      "sha256": "1ce137a3cac7823262933aa260f2785507e4b8f94acdcf09f0b356e9855cdf88"
+    },
+    {
+      "path": "smoke/c3/p2/logs/deeppcb_50_full_seed825_e100/metrics.json",
+      "size_bytes": 5752,
+      "sha256": "936ae7c84628123a071fd59290fcab3f0f4b7775b60d11fc37679e2b515bedf9"
+    },
+    {
+      "path": "smoke/c3/p2/logs/deeppcb_50_full_seed825_e100/resolved_config.yaml",
+      "size_bytes": 7809,
+      "sha256": "ffd801a1724be8e9d8bdba6c2e92e1b130f0c3fe2a2d59596f8c7e161ed5d895"
+    },
+    {
+      "path": "smoke/c3/p2/logs/deeppcb_50_full_seed825_e100/resource_usage.json",
+      "size_bytes": 348,
+      "sha256": "ff230c6e7f60c64dbde561f4a8fa5c150c5b554cd7de3ab036c83182ede364c6"
+    },
+    {
+      "path": "smoke/c3/p2/logs/deeppcb_50_full_seed825_e100/stderr.log",
+      "size_bytes": 36,
+      "sha256": "48b7e64f7bc9964d2c9fa103de15b02ae02731346f002651bd4648de51ea361e"
+    },
+    {
+      "path": "smoke/c3/p2/logs/deeppcb_50_full_seed825_e100/stdout.log",
+      "size_bytes": 255310,
+      "sha256": "f292984b7cb04824f4b8af1845ec5e135ffd6e9da093cde325954f0bc85ca58f"
+    },
+    {
+      "path": "smoke/c3/p2/logs/deeppcb_50_full_seed825_e100/test_metrics.json",
+      "size_bytes": 515,
+      "sha256": "a056450f2ed564a5fc762b17ba06bf9f2686d7db6cea01c0fd708260cf237664"
+    },
+    {
+      "path": "smoke/c3/p2/logs/deeppcb_50_full_seed825_e100/timing.json",
+      "size_bytes": 217,
+      "sha256": "226c6330a2a766087fd08b2134c35148973770cd1caca1ff3496bb3bd6aa0091"
+    }
+  ],
+  "artifact_count": 47
+}

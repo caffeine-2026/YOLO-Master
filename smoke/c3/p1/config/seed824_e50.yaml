@@ -1,0 +1,28 @@
+schema_version: 1
+stage: seed824_common_budget_extension
+execution_policy: restart_all
+execution_policy_reason: >-
+  The 30-epoch pilot used a cosine schedule parameterized for 30 epochs, so its first
+  30 learning-rate steps are not equivalent to a from-scratch 50-epoch schedule.
+seed: 824
+epochs: 50
+device: 0
+source_config_epochs: 30
+only_protocol_change: epochs
+locked:
+  model: yolo11n.pt
+  train_images_per_dataset: 100
+  batch: 8
+  imgsz: 640
+  optimizer: AdamW
+  lr0: 0.001
+  weight_decay: 0.0005
+  scheduler: cosine
+  amp: false
+runs:
+  - {dataset: neu_det, method: full_sft, run_id: neu_full_seed824_e50}
+  - {dataset: neu_det, method: frozen_backbone, run_id: neu_frozen_seed824_e50}
+  - {dataset: neu_det, method: vpeft, run_id: neu_vpeft_seed824_e50}
+  - {dataset: deeppcb, method: full_sft, run_id: deeppcb_full_seed824_e50}
+  - {dataset: deeppcb, method: frozen_backbone, run_id: deeppcb_frozen_seed824_e50}
+  - {dataset: deeppcb, method: vpeft, run_id: deeppcb_vpeft_seed824_e50}

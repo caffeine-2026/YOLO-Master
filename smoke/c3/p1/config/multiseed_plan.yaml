@@ -1,0 +1,119 @@
+schema_version: 1
+stage: c3_p1_multiseed
+status: COMPLETE
+final_single_seed_epoch: 100
+seeds:
+- 824
+- 825
+- 826
+seed824:
+  status: complete
+  reuse_existing_e100_results: true
+  rerun: false
+pending_seeds: []
+completed_seeds:
+- 825
+- 826
+gpu_schedule:
+  policy: one exclusive RTX 4090 per run; same dataset-method uses the same GPU across new seeds
+  neu_det:
+    full_sft: 0
+    frozen_backbone: 1
+    vpeft: 2
+  deeppcb:
+    full_sft: 3
+    frozen_backbone: 4
+    vpeft: 5
+protocol:
+  datasets:
+  - neu_det
+  - deeppcb
+  methods:
+  - full_sft
+  - frozen_backbone
+  - vpeft
+  model: yolo11n.pt
+  epochs: 100
+  batch: 8
+  imgsz: 640
+  optimizer: AdamW
+  lr0: 0.001
+  weight_decay: 0.0005
+  scheduler: cosine
+runs:
+- dataset: neu_det
+  method: full_sft
+  seed: 825
+  run_id: neu_full_seed825_e100
+  status: PASS
+  device: 0
+- dataset: neu_det
+  method: frozen_backbone
+  seed: 825
+  run_id: neu_frozen_seed825_e100
+  status: PASS
+  device: 1
+- dataset: neu_det
+  method: vpeft
+  seed: 825
+  run_id: neu_vpeft_seed825_e100
+  status: PASS
+  device: 2
+- dataset: deeppcb
+  method: full_sft
+  seed: 825
+  run_id: deeppcb_full_seed825_e100
+  status: PASS
+  device: 3
+- dataset: deeppcb
+  method: frozen_backbone
+  seed: 825
+  run_id: deeppcb_frozen_seed825_e100
+  status: PASS
+  device: 4
+- dataset: deeppcb
+  method: vpeft
+  seed: 825
+  run_id: deeppcb_vpeft_seed825_e100
+  status: PASS
+  device: 5
+- dataset: neu_det
+  method: full_sft
+  seed: 826
+  run_id: neu_full_seed826_e100
+  status: PASS
+  device: 0
+- dataset: neu_det
+  method: frozen_backbone
+  seed: 826
+  run_id: neu_frozen_seed826_e100
+  status: PASS
+  device: 1
+- dataset: neu_det
+  method: vpeft
+  seed: 826
+  run_id: neu_vpeft_seed826_e100
+  status: PASS
+  device: 2
+- dataset: deeppcb
+  method: full_sft
+  seed: 826
+  run_id: deeppcb_full_seed826_e100
+  status: PASS
+  device: 3
+- dataset: deeppcb
+  method: frozen_backbone
+  seed: 826
+  run_id: deeppcb_frozen_seed826_e100
+  status: PASS
+  device: 4
+- dataset: deeppcb
+  method: vpeft
+  seed: 826
+  run_id: deeppcb_vpeft_seed826_e100
+  status: PASS
+  device: 5
+run_count: 12
+auto_run: false
+completed_run_count: 12
+overall_c3_p1: PASS

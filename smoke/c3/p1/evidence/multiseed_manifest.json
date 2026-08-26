@@ -1,0 +1,409 @@
+{
+  "schema_version": 1,
+  "experiment_matrix": {
+    "datasets": 2,
+    "methods": 3,
+    "seeds": 3,
+    "total_runs": 18
+  },
+  "seed824_rerun": false,
+  "new_runs": 12,
+  "runs": [
+    {
+      "run_id": "neu_full_seed824_e100",
+      "dataset": "NEU-DET",
+      "method": "Full-SFT",
+      "seed": 824,
+      "reused_existing": true,
+      "status": "PASS",
+      "device": "0",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/neu_full_seed824_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/neu_full_seed824_e100/weights/best.pt",
+        "size_bytes": 5498650,
+        "sha256": "64544d58e0cb9331244022288738e429c4fb9555556bf38a7df2dd7ebcbbd4ab"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/neu_full_seed824_e100/artifact_manifest.json",
+        "artifact_count": 47,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "neu_full_seed825_e100",
+      "dataset": "NEU-DET",
+      "method": "Full-SFT",
+      "seed": 825,
+      "reused_existing": false,
+      "status": "PASS",
+      "device": "0",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/neu_full_seed825_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/neu_full_seed825_e100/weights/best.pt",
+        "size_bytes": 5498650,
+        "sha256": "03dce18365106be6a8b7348255e6dbdc640043b38f92448f3d8fe918c1e428fb"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/neu_full_seed825_e100/artifact_manifest.json",
+        "artifact_count": 47,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "neu_full_seed826_e100",
+      "dataset": "NEU-DET",
+      "method": "Full-SFT",
+      "seed": 826,
+      "reused_existing": false,
+      "status": "PASS",
+      "device": "0",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/neu_full_seed826_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/neu_full_seed826_e100/weights/best.pt",
+        "size_bytes": 5498650,
+        "sha256": "55e2662abffa455d1120a0d41623dbeb3239dc37a16dc3ed843777498ef6e641"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/neu_full_seed826_e100/artifact_manifest.json",
+        "artifact_count": 47,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "neu_frozen_seed824_e100",
+      "dataset": "NEU-DET",
+      "method": "Frozen Backbone",
+      "seed": 824,
+      "reused_existing": true,
+      "status": "PASS",
+      "device": "0",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/neu_frozen_seed824_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/neu_frozen_seed824_e100/weights/best.pt",
+        "size_bytes": 5498650,
+        "sha256": "9023c29898ff9480b07f86bd456c3175e7f88fb2f245b0bb6f1c559e73998ba3"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/neu_frozen_seed824_e100/artifact_manifest.json",
+        "artifact_count": 47,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "neu_frozen_seed825_e100",
+      "dataset": "NEU-DET",
+      "method": "Frozen Backbone",
+      "seed": 825,
+      "reused_existing": false,
+      "status": "PASS",
+      "device": "1",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/neu_frozen_seed825_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/neu_frozen_seed825_e100/weights/best.pt",
+        "size_bytes": 5498650,
+        "sha256": "1f1ddb72d92fc69318d297c8d32ee4767c4029326b92969f559d2e890d439c6c"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/neu_frozen_seed825_e100/artifact_manifest.json",
+        "artifact_count": 47,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "neu_frozen_seed826_e100",
+      "dataset": "NEU-DET",
+      "method": "Frozen Backbone",
+      "seed": 826,
+      "reused_existing": false,
+      "status": "PASS",
+      "device": "1",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/neu_frozen_seed826_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/neu_frozen_seed826_e100/weights/best.pt",
+        "size_bytes": 5498650,
+        "sha256": "70438258909196af9fb5d56797842e5b962d4d80b9b8eab8648fe873f3763892"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/neu_frozen_seed826_e100/artifact_manifest.json",
+        "artifact_count": 47,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "neu_vpeft_seed824_e100",
+      "dataset": "NEU-DET",
+      "method": "V-PEFT",
+      "seed": 824,
+      "reused_existing": true,
+      "status": "PASS",
+      "device": "0",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/neu_vpeft_seed824_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/neu_vpeft_seed824_e100/weights/best.pt",
+        "size_bytes": 6037266,
+        "sha256": "a8b9f1dc7285dc73560b4aea962dde02f7daa581edbaf3428184c1d6154e3c35"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/neu_vpeft_seed824_e100/artifact_manifest.json",
+        "artifact_count": 51,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "neu_vpeft_seed825_e100",
+      "dataset": "NEU-DET",
+      "method": "V-PEFT",
+      "seed": 825,
+      "reused_existing": false,
+      "status": "PASS",
+      "device": "2",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/neu_vpeft_seed825_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/neu_vpeft_seed825_e100/weights/best.pt",
+        "size_bytes": 6037266,
+        "sha256": "8ec0119db01a3c8124d0e21f1e5e656319467496c65400edd33d89381f04e360"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/neu_vpeft_seed825_e100/artifact_manifest.json",
+        "artifact_count": 51,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "neu_vpeft_seed826_e100",
+      "dataset": "NEU-DET",
+      "method": "V-PEFT",
+      "seed": 826,
+      "reused_existing": false,
+      "status": "PASS",
+      "device": "2",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/neu_vpeft_seed826_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/neu_vpeft_seed826_e100/weights/best.pt",
+        "size_bytes": 6037266,
+        "sha256": "395ddb28985c7bbe3b438aa72525a0ff0970167c800ea1f10a36e05864ba2f3d"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/neu_vpeft_seed826_e100/artifact_manifest.json",
+        "artifact_count": 51,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "deeppcb_full_seed824_e100",
+      "dataset": "DeepPCB",
+      "method": "Full-SFT",
+      "seed": 824,
+      "reused_existing": true,
+      "status": "PASS",
+      "device": "0",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/deeppcb_full_seed824_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/deeppcb_full_seed824_e100/weights/best.pt",
+        "size_bytes": 5498650,
+        "sha256": "009094ae65537cb54f503b4e4189313c9a942242c03e2e80afebfca13950fc49"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/deeppcb_full_seed824_e100/artifact_manifest.json",
+        "artifact_count": 47,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "deeppcb_full_seed825_e100",
+      "dataset": "DeepPCB",
+      "method": "Full-SFT",
+      "seed": 825,
+      "reused_existing": false,
+      "status": "PASS",
+      "device": "3",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/deeppcb_full_seed825_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/deeppcb_full_seed825_e100/weights/best.pt",
+        "size_bytes": 5498650,
+        "sha256": "0c7090c44017656417ced27450ff37e10b1b46e3b7449e9ec80150efecebf7d1"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/deeppcb_full_seed825_e100/artifact_manifest.json",
+        "artifact_count": 47,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "deeppcb_full_seed826_e100",
+      "dataset": "DeepPCB",
+      "method": "Full-SFT",
+      "seed": 826,
+      "reused_existing": false,
+      "status": "PASS",
+      "device": "3",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/deeppcb_full_seed826_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/deeppcb_full_seed826_e100/weights/best.pt",
+        "size_bytes": 5498650,
+        "sha256": "cf4651f7762869753d7afc6232600a14015e723384cce681383ebf9f941901c3"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/deeppcb_full_seed826_e100/artifact_manifest.json",
+        "artifact_count": 47,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "deeppcb_frozen_seed824_e100",
+      "dataset": "DeepPCB",
+      "method": "Frozen Backbone",
+      "seed": 824,
+      "reused_existing": true,
+      "status": "PASS",
+      "device": "0",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/deeppcb_frozen_seed824_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/deeppcb_frozen_seed824_e100/weights/best.pt",
+        "size_bytes": 5498650,
+        "sha256": "c06bb163afab664ba39e8830bf45a6a215f6b6e6ea8b00c365ca4879d0ba7585"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/deeppcb_frozen_seed824_e100/artifact_manifest.json",
+        "artifact_count": 47,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "deeppcb_frozen_seed825_e100",
+      "dataset": "DeepPCB",
+      "method": "Frozen Backbone",
+      "seed": 825,
+      "reused_existing": false,
+      "status": "PASS",
+      "device": "4",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/deeppcb_frozen_seed825_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/deeppcb_frozen_seed825_e100/weights/best.pt",
+        "size_bytes": 5498650,
+        "sha256": "f9bb9684512617cb3ea6e58e2a9646b44af3c4396f5ceb16d7fc43b839afbeba"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/deeppcb_frozen_seed825_e100/artifact_manifest.json",
+        "artifact_count": 47,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "deeppcb_frozen_seed826_e100",
+      "dataset": "DeepPCB",
+      "method": "Frozen Backbone",
+      "seed": 826,
+      "reused_existing": false,
+      "status": "PASS",
+      "device": "4",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/deeppcb_frozen_seed826_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/deeppcb_frozen_seed826_e100/weights/best.pt",
+        "size_bytes": 5498650,
+        "sha256": "48412005c62de4ce76f8c27dd41230a7d5c30e0ab90b46e97fdb3f9672b656ed"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/deeppcb_frozen_seed826_e100/artifact_manifest.json",
+        "artifact_count": 47,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "deeppcb_vpeft_seed824_e100",
+      "dataset": "DeepPCB",
+      "method": "V-PEFT",
+      "seed": 824,
+      "reused_existing": true,
+      "status": "PASS",
+      "device": "0",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/deeppcb_vpeft_seed824_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/deeppcb_vpeft_seed824_e100/weights/best.pt",
+        "size_bytes": 6037266,
+        "sha256": "644ef542fe807454db05767477871721acebbcbd47dedf720b61d4cc45c4360a"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/deeppcb_vpeft_seed824_e100/artifact_manifest.json",
+        "artifact_count": 51,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "deeppcb_vpeft_seed825_e100",
+      "dataset": "DeepPCB",
+      "method": "V-PEFT",
+      "seed": 825,
+      "reused_existing": false,
+      "status": "PASS",
+      "device": "5",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/deeppcb_vpeft_seed825_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/deeppcb_vpeft_seed825_e100/weights/best.pt",
+        "size_bytes": 6037266,
+        "sha256": "a29fd4d59b918b982182c91320c85e343bdd94b4212755eeb3ae6e893d859500"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/deeppcb_vpeft_seed825_e100/artifact_manifest.json",
+        "artifact_count": 51,
+        "verified": true,
+        "failures": []
+      }
+    },
+    {
+      "run_id": "deeppcb_vpeft_seed826_e100",
+      "dataset": "DeepPCB",
+      "method": "V-PEFT",
+      "seed": 826,
+      "reused_existing": false,
+      "status": "PASS",
+      "device": "5",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "log_dir": "smoke/c3/p1/logs/deeppcb_vpeft_seed826_e100",
+      "checkpoint": {
+        "path": "smoke/c3/p1/artifacts/deeppcb_vpeft_seed826_e100/weights/best.pt",
+        "size_bytes": 6037266,
+        "sha256": "80bb42ffb2945281e633695132d7205066fc77800306082d820312b26c466bd3"
+      },
+      "artifact_manifest": {
+        "manifest": "smoke/c3/p1/logs/deeppcb_vpeft_seed826_e100/artifact_manifest.json",
+        "artifact_count": 51,
+        "verified": true,
+        "failures": []
+      }
+    }
+  ]
+}

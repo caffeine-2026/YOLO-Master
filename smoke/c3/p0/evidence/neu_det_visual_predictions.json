@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "dataset": "NEU-DET",
+  "split": "test",
+  "seed": 824,
+  "checkpoint": "runs/detect/runs/vpeft_smoke/neu_det_vpeft_gpu_fp32_seed824/weights/best.pt",
+  "checkpoint_sha256": "90bf0eb0d690edd46943248ef20adbeca20283f40f9fd96bc7251b27d3ab3b41",
+  "adapter": "runs/detect/runs/vpeft_smoke/neu_det_vpeft_gpu_fp32_seed824/lora_adapter",
+  "adapter_model_sha256": "53b64befbe57c528710efb1301d2932de2e19e67cf194ebb06bb25ad3fe60e88",
+  "model_loading_api": "ultralytics.YOLO(best.pt); best.pt contains the active PEFT wrapper and trained head",
+  "inference": {
+    "device": "0",
+    "actual_device": "cuda:0",
+    "imgsz": 320,
+    "conf": 0.25
+  },
+  "prediction_record_fields": [
+    "image",
+    "class_id",
+    "class",
+    "confidence",
+    "bbox_xyxy"
+  ],
+  "samples": [
+    {
+      "image": "datasets/neu_det_fewshot_yolo/images/test/crazing_120.jpg",
+      "sample_id": "crazing_120",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/neu_det_fewshot_yolo/images/test/crazing_179.jpg",
+      "sample_id": "crazing_179",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/neu_det_fewshot_yolo/images/test/crazing_199.jpg",
+      "sample_id": "crazing_199",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/neu_det_fewshot_yolo/images/test/crazing_217.jpg",
+      "sample_id": "crazing_217",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/neu_det_fewshot_yolo/images/test/inclusion_152.jpg",
+      "sample_id": "inclusion_152",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/neu_det_fewshot_yolo/images/test/inclusion_153.jpg",
+      "sample_id": "inclusion_153",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/neu_det_fewshot_yolo/images/test/patches_98.jpg",
+      "sample_id": "patches_98",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/neu_det_fewshot_yolo/images/test/rolled-in_scale_27.jpg",
+      "sample_id": "rolled-in_scale_27",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/neu_det_fewshot_yolo/images/test/scratches_242.jpg",
+      "sample_id": "scratches_242",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/neu_det_fewshot_yolo/images/test/scratches_70.jpg",
+      "sample_id": "scratches_70",
+      "prediction_count": 0
+    }
+  ],
+  "predictions": []
+}

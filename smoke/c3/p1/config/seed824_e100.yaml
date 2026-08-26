@@ -1,0 +1,37 @@
+schema_version: 1
+stage: seed824_final_single_seed_candidate
+execution_policy: restart_all
+execution_policy_reason: >-
+  The six 75-epoch last_healthy checkpoints contain optimizer and epoch state but
+  do not contain independently restorable scheduler or random/RNG state. In
+  addition, the cosine schedule is parameterized by the final epoch budget. All
+  six conditions therefore restart from the same pretrained model.
+resume_audit:
+  source_epoch: 75
+  optimizer_state_present_all: true
+  epoch_state_present_all: true
+  scheduler_state_present_all: false
+  random_state_present_all: false
+  complete_resume_proven: false
+seed: 824
+epochs: 100
+device: 0
+source_config_epochs: 30
+only_protocol_change: epochs
+locked:
+  model: yolo11n.pt
+  train_images_per_dataset: 100
+  batch: 8
+  imgsz: 640
+  optimizer: AdamW
+  lr0: 0.001
+  weight_decay: 0.0005
+  scheduler: cosine
+  amp: false
+runs:
+  - {dataset: neu_det, method: full_sft, run_id: neu_full_seed824_e100}
+  - {dataset: neu_det, method: frozen_backbone, run_id: neu_frozen_seed824_e100}
+  - {dataset: neu_det, method: vpeft, run_id: neu_vpeft_seed824_e100}
+  - {dataset: deeppcb, method: full_sft, run_id: deeppcb_full_seed824_e100}
+  - {dataset: deeppcb, method: frozen_backbone, run_id: deeppcb_frozen_seed824_e100}
+  - {dataset: deeppcb, method: vpeft, run_id: deeppcb_vpeft_seed824_e100}

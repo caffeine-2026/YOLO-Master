@@ -1,0 +1,525 @@
+{
+  "backend": "peft",
+  "runtime_metadata": {
+    "requested_backend": "auto",
+    "effective_backend": "peft",
+    "requested_variant": "lora",
+    "effective_variant": "lora",
+    "peft_type": "lora",
+    "requested_init_lora_weights": true,
+    "effective_init_lora_weights": true,
+    "include_head": false,
+    "freeze_bn": false,
+    "target_modules": [
+      "10.cv1.conv",
+      "10.cv2.conv",
+      "10.m.0.ffn.1.conv",
+      "13.cv1.conv",
+      "13.cv2.conv",
+      "13.m.0.cv1.conv",
+      "13.m.0.cv2.conv",
+      "16.cv1.conv",
+      "16.cv2.conv",
+      "16.m.0.cv1.conv",
+      "16.m.0.cv2.conv",
+      "17.conv",
+      "19.cv1.conv",
+      "19.cv2.conv",
+      "19.m.0.cv1.conv",
+      "19.m.0.cv2.conv",
+      "22.cv1.conv",
+      "22.cv2.conv",
+      "22.m.0.cv1.conv",
+      "22.m.0.cv2.conv",
+      "22.m.0.cv3.conv",
+      "22.m.0.m.0.cv1.conv",
+      "22.m.0.m.0.cv2.conv",
+      "22.m.0.m.1.cv1.conv",
+      "22.m.0.m.1.cv2.conv",
+      "3.conv",
+      "4.cv1.conv",
+      "4.cv2.conv",
+      "4.m.0.cv1.conv",
+      "4.m.0.cv2.conv",
+      "5.conv",
+      "6.cv1.conv",
+      "6.cv2.conv",
+      "6.m.0.cv1.conv",
+      "6.m.0.cv2.conv",
+      "6.m.0.cv3.conv",
+      "6.m.0.m.0.cv1.conv",
+      "6.m.0.m.0.cv2.conv",
+      "6.m.0.m.1.cv1.conv",
+      "6.m.0.m.1.cv2.conv",
+      "7.conv",
+      "8.cv1.conv",
+      "8.cv2.conv",
+      "8.m.0.cv1.conv",
+      "8.m.0.cv2.conv",
+      "8.m.0.cv3.conv",
+      "8.m.0.m.0.cv1.conv",
+      "8.m.0.m.0.cv2.conv",
+      "8.m.0.m.1.cv1.conv",
+      "8.m.0.m.1.cv2.conv",
+      "9.cv1.conv",
+      "9.cv2.conv"
+    ],
+    "target_audit": {
+      "peft_type": "lora",
+      "rank": 8,
+      "valid_count": 54,
+      "selected_count": 52,
+      "requested_targets": [
+        "1.conv",
+        "2.cv1.conv",
+        "2.cv2.conv",
+        "2.m.0.cv1.conv",
+        "2.m.0.cv2.conv",
+        "3.conv",
+        "4.cv1.conv",
+        "4.cv2.conv",
+        "4.m.0.cv1.conv",
+        "4.m.0.cv2.conv",
+        "5.conv",
+        "6.cv1.conv",
+        "6.cv2.conv",
+        "6.m.0.cv1.conv",
+        "6.m.0.cv2.conv",
+        "6.m.0.cv3.conv",
+        "6.m.0.m.0.cv1.conv",
+        "6.m.0.m.0.cv2.conv",
+        "6.m.0.m.1.cv1.conv",
+        "6.m.0.m.1.cv2.conv",
+        "7.conv",
+        "8.cv1.conv",
+        "8.cv2.conv",
+        "8.m.0.cv1.conv",
+        "8.m.0.cv2.conv",
+        "8.m.0.cv3.conv",
+        "8.m.0.m.0.cv1.conv",
+        "8.m.0.m.0.cv2.conv",
+        "8.m.0.m.1.cv1.conv",
+        "8.m.0.m.1.cv2.conv",
+        "9.cv1.conv",
+        "9.cv2.conv",
+        "10.cv1.conv",
+        "10.cv2.conv",
+        "10.m.0.attn.qkv.conv",
+        "10.m.0.attn.proj.conv",
+        "10.m.0.ffn.1.conv",
+        "13.cv1.conv",
+        "13.cv2.conv",
+        "13.m.0.cv1.conv",
+        "13.m.0.cv2.conv",
+        "16.cv1.conv",
+        "16.cv2.conv",
+        "16.m.0.cv1.conv",
+        "16.m.0.cv2.conv",
+        "17.conv",
+        "19.cv1.conv",
+        "19.cv2.conv",
+        "19.m.0.cv1.conv",
+        "19.m.0.cv2.conv",
+        "22.cv1.conv",
+        "22.cv2.conv",
+        "22.m.0.cv1.conv",
+        "22.m.0.cv2.conv",
+        "22.m.0.cv3.conv",
+        "22.m.0.m.0.cv1.conv",
+        "22.m.0.m.0.cv2.conv",
+        "22.m.0.m.1.cv1.conv",
+        "22.m.0.m.1.cv2.conv"
+      ],
+      "exclude_count": 22,
+      "incompatible_grouped_conv_count": 7,
+      "filtered_by_user_count": 2,
+      "selected_sample": [
+        "10.cv1.conv",
+        "10.cv2.conv",
+        "10.m.0.ffn.1.conv",
+        "13.cv1.conv",
+        "13.cv2.conv",
+        "13.m.0.cv1.conv",
+        "13.m.0.cv2.conv",
+        "16.cv1.conv",
+        "16.cv2.conv",
+        "16.m.0.cv1.conv",
+        "16.m.0.cv2.conv",
+        "17.conv",
+        "19.cv1.conv",
+        "19.cv2.conv",
+        "19.m.0.cv1.conv",
+        "19.m.0.cv2.conv",
+        "22.cv1.conv",
+        "22.cv2.conv",
+        "22.m.0.cv1.conv",
+        "22.m.0.cv2.conv"
+      ],
+      "incompatible_grouped_conv_sample": [
+        "10.m.0.attn.pe.conv",
+        "23.cv3.0.0.0.conv",
+        "23.cv3.0.1.0.conv",
+        "23.cv3.1.0.0.conv",
+        "23.cv3.1.1.0.conv",
+        "23.cv3.2.0.0.conv",
+        "23.cv3.2.1.0.conv"
+      ],
+      "filtered_by_user_sample": [
+        "10.m.0.ffn.0.conv",
+        "20.conv"
+      ]
+    },
+    "safety_profile": null,
+    "safety_overrides": null,
+    "planner_decision": null,
+    "placement_plan": {
+      "schema_version": 1,
+      "model_fingerprint": "1d2fb66b8525ba1c2e2654cc60c33e086d7b247acff64e8b6743ac3934248115",
+      "planner_backend": "vpeft",
+      "solver": "ao",
+      "budget": {
+        "max_adapter_params": 2100000,
+        "used_adapter_params": 191616
+      },
+      "targets": [
+        {
+          "name": "1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "2.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "2.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "2.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "2.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "3.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "4.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "4.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "4.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "4.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "5.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.m.0.cv3.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.m.0.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.m.0.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.m.0.m.1.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.m.0.m.1.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "7.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.m.0.cv3.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.m.0.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.m.0.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.m.0.m.1.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.m.0.m.1.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "9.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "9.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "10.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "10.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "10.m.0.attn.qkv.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "10.m.0.attn.proj.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "10.m.0.ffn.1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "13.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "13.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "13.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "13.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "16.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "16.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "16.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "16.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "17.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "19.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "19.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "19.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "19.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "22.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "22.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "22.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "22.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "22.m.0.cv3.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "22.m.0.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "22.m.0.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "22.m.0.m.1.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "22.m.0.m.1.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        }
+      ],
+      "constraints": {
+        "hard": [
+          "C_op",
+          "C_sem",
+          "C_budget",
+          "C_deploy",
+          "C_compat",
+          "C_moe",
+          "C_div"
+        ],
+        "soft": [
+          "C_budget",
+          "C_deploy"
+        ]
+      },
+      "predicted_delta": null,
+      "confidence": null,
+      "status": "ACCEPT",
+      "refusal_reason": null,
+      "metadata": {
+        "utility": 29.5,
+        "reason": "",
+        "graph_nodes": 169,
+        "solver_diagnostics": {
+          "solver": "AlternatingOptimizationSolver",
+          "n_nodes": 169,
+          "n_variant_candidates": 2,
+          "variant_candidates": [
+            "ia3",
+            "lora"
+          ],
+          "optimize_variant": true,
+          "max_iter": 15,
+          "elapsed_seconds": 2.224006253061816,
+          "final_utility": 29.5,
+          "budget_used": 191616,
+          "budget_remaining": 1908384,
+          "target_module_count": 59,
+          "status": "ACCEPT"
+        }
+      },
+      "plan_fingerprint": "311afcc56a0b203996bac45cd52a6e0a710ba741c59a9260a771ab2a0fea80d7"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "split": "test",
+  "device": "0",
+  "batch": 8,
+  "imgsz": 640,
+  "precision": 0.7207969868821077,
+  "recall": 0.4158119061684806,
+  "map50": 0.48269639042168033,
+  "map50_95": 0.23793668634520096,
+  "fitness": 0.23793668634520096,
+  "speed_ms_per_image": {
+    "preprocess": 0.20644395715660518,
+    "inference": 3.5596492014721863,
+    "loss": 0.0008845404307875368,
+    "postprocess": 0.8178626135405567
+  },
+  "save_dir": "smoke/c3/p1/artifacts/neu_vpeft_seed824_e50/test_eval"
+}

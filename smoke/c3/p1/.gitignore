@@ -1,0 +1,8 @@
+# C3 experiment artifacts are versioned; binary payloads are stored through Git LFS.
+!artifacts/
+!artifacts/**
+!logs/**/*.log
+!visualizations/convergence/*.png
+!visualizations/convergence_e50/*.png
+!visualizations/convergence_e75/*.png
+!visualizations/convergence_e100/*.png

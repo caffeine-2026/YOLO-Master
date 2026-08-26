@@ -1,0 +1,4 @@
+# Keep the human-reviewable C3 inference evidence despite the repository-wide image ignore rule.
+!visualizations/
+!visualizations/*.jpg
+!visualizations/**/*.jpg

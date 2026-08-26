@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-08-25T15:32:12.090592+00:00",
+  "python": "3.10.12",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+  "torch": "2.13.0+cu130",
+  "cuda_build": "13.0",
+  "cuda_available": true,
+  "cuda_device_count": 8,
+  "device_argument": "0",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "git_ref": "7103378c9b60bd2a4ed1f5d6a9b23659f651c8cc"
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "run_id": "deeppcb_frozen_seed826_e100",
+  "dataset": "deeppcb",
+  "method": "frozen_backbone",
+  "seed": 826,
+  "status": "PASS",
+  "exit_code": 0,
+  "protocol": {
+    "model": "yolo11n.pt",
+    "epochs": 100,
+    "batch": 8,
+    "imgsz": 640,
+    "optimizer": "AdamW",
+    "lr0": 0.001,
+    "weight_decay": 0.0005,
+    "amp": false,
+    "device": "4"
+  },
+  "test": {
+    "schema_version": 1,
+    "split": "test",
+    "device": "4",
+    "batch": 8,
+    "imgsz": 640,
+    "precision": 0.789292572727485,
+    "recall": 0.748471989692464,
+    "map50": 0.798599873648271,
+    "map50_95": 0.47609064156689274,
+    "fitness": 0.47609064156689274,
+    "speed_ms_per_image": {
+      "preprocess": 0.20830974401906133,
+      "inference": 1.2401118879206479,
+      "loss": 0.0015406585298478603,
+      "postprocess": 0.7037900937721133
+    },
+    "save_dir": "smoke/c3/p1/artifacts/deeppcb_frozen_seed826_e100/test_eval"
+  },
+  "parameters": {
+    "total_parameters": 2591010,
+    "trainable_parameters": 1225522,
+    "trainable_parameter_ratio": 0.4729900695095735,
+    "adapter_parameters": 0,
+    "frozen_modules": [
+      "model.0",
+      "model.1",
+      "model.2",
+      "model.3",
+      "model.4",
+      "model.5",
+      "model.6",
+      "model.7",
+      "model.8",
+      "model.9",
+      "model.10"
+    ],
+    "trainable_modules": [
+      "model.13",
+      "model.16",
+      "model.17",
+      "model.19",
+      "model.20",
+      "model.22",
+      "model.23"
+    ],
+    "top_level_modules": [
+      {
+        "module": "model.0",
+        "total_parameters": 464,
+        "trainable_parameters": 0,
+        "frozen": true
+      },
+      {
+        "module": "model.1",
+        "total_parameters": 4672,
+        "trainable_parameters": 0,
+        "frozen": true
+      },
+      {
+        "module": "model.2",
+        "total_parameters": 6640,
+        "trainable_parameters": 0,
+        "frozen": true
+      },
+      {
+        "module": "model.3",
+        "total_parameters": 36992,
+        "trainable_parameters": 0,
+        "frozen": true
+      },
+      {
+        "module": "model.4",
+        "total_parameters": 26080,
+        "trainable_parameters": 0,
+        "frozen": true
+      },
+      {
+        "module": "model.5",
+        "total_parameters": 147712,
+        "trainable_parameters": 0,
+        "frozen": true
+      },
+      {
+        "module": "model.6",
+        "total_parameters": 87040,
+        "trainable_parameters": 0,
+        "frozen": true
+      },
+      {
+        "module": "model.7",
+        "total_parameters": 295424,
+        "trainable_parameters": 0,
+        "frozen": true
+      },
+      {
+        "module": "model.8",
+        "total_parameters": 346112,
+        "trainable_parameters": 0,
+        "frozen": true
+      },
+      {
+        "module": "model.9",
+        "total_parameters": 164608,
+        "trainable_parameters": 0,
+        "frozen": true
+      },
+      {
+        "module": "model.10",
+        "total_parameters": 249728,
+        "trainable_parameters": 0,
+        "frozen": true
+      },
+      {
+        "module": "model.13",
+        "total_parameters": 111296,
+        "trainable_parameters": 111296,
+        "frozen": false
+      },
+      {
+        "module": "model.16",
+        "total_parameters": 32096,
+        "trainable_parameters": 32096,
+        "frozen": false
+      },
+      {
+        "module": "model.17",
+        "total_parameters": 36992,
+        "trainable_parameters": 36992,
+        "frozen": false
+      },
+      {
+        "module": "model.19",
+        "total_parameters": 86720,
+        "trainable_parameters": 86720,
+        "frozen": false
+      },
+      {
+        "module": "model.20",
+        "total_parameters": 147712,
+        "trainable_parameters": 147712,
+        "frozen": false
+      },
+      {
+        "module": "model.22",
+        "total_parameters": 378880,
+        "trainable_parameters": 378880,
+        "frozen": false
+      },
+      {
+        "module": "model.23",
+        "total_parameters": 431842,
+        "trainable_parameters": 431826,
+        "frozen": false
+      }
+    ]
+  },
+  "resources": {
+    "peak_cpu_percent": 148.6,
+    "peak_rss_mib": 2868.23,
+    "peak_device_memory_mib": 2324.0,
+    "peak_process_tree_gpu_memory_mib": 2314.0,
+    "epoch_reported_peak_gpu_memory_mib": 1710.08,
+    "peak_gpu_memory_mib": 1710.08,
+    "measurement_note": "Primary peak is the maximum GPU_mem reported by the trainer; device and process-tree nvidia-smi samples are retained separately at one-second resolution."
+  },
+  "timing": {
+    "schema_version": 1,
+    "started_utc": "2026-08-26T03:29:55.845377+00:00",
+    "finished_utc": "2026-08-26T03:35:37.355249+00:00",
+    "training_seconds": 341.509,
+    "gpu_hours": 0.09486375,
+    "training_exit_code": 0
+  },
+  "checkpoint": {
+    "path": "smoke/c3/p1/artifacts/deeppcb_frozen_seed826_e100/weights/best.pt",
+    "size_bytes": 5498650,
+    "sha256": "48412005c62de4ce76f8c27dd41230a7d5c30e0ab90b46e97fdb3f9672b656ed"
+  },
+  "adapter": {
+    "path": null,
+    "size_bytes": 0,
+    "enabled": false,
+    "planner_status": null,
+    "planner_backend": null,
+    "actual_backend": null,
+    "planned_targets": 0,
+    "applied_targets": 0
+  },
+  "numerical_recovery": {
+    "detected": false,
+    "markers": []
+  },
+  "checks": {
+    "exit_code_zero": true,
+    "requested_cuda_gpu_used": true,
+    "fixed_protocol": true,
+    "complete_finite_learning_curve": true,
+    "no_numerical_recovery": true,
+    "test_metrics_finite": true,
+    "checkpoints_present": true,
+    "resolved_config_present": true,
+    "resources_present": true,
+    "lora_disabled": true
+  }
+}

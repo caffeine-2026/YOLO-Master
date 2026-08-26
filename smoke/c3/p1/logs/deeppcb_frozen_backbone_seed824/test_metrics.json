@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "split": "test",
+  "device": "0",
+  "batch": 8,
+  "imgsz": 640,
+  "precision": 0.4856682905067022,
+  "recall": 0.5893487999627604,
+  "map50": 0.5263801148378326,
+  "map50_95": 0.30567215414437726,
+  "fitness": 0.30567215414437726,
+  "speed_ms_per_image": {
+    "preprocess": 0.17493737861514091,
+    "inference": 1.0606320002116263,
+    "loss": 0.0008046911098062992,
+    "postprocess": 1.6599266175180674
+  },
+  "save_dir": "smoke/c3/p1/artifacts/deeppcb_frozen_backbone_seed824/test_eval"
+}

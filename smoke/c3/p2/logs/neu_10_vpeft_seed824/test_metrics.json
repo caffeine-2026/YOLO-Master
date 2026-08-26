@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "split": "test",
+  "device": "2",
+  "batch": 8,
+  "imgsz": 640,
+  "precision": 0.2939914556860772,
+  "recall": 0.31241069988543485,
+  "map50": 0.2323102700825018,
+  "map50_95": 0.10536051224054682,
+  "fitness": 0.10536051224054682,
+  "speed_ms_per_image": {
+    "preprocess": 0.21149014743665856,
+    "inference": 3.495018458407786,
+    "loss": 0.0009680774787233936,
+    "postprocess": 0.9493821973188057
+  },
+  "save_dir": "smoke/c3/p2/artifacts/neu_10_vpeft_seed824/test_eval"
+}

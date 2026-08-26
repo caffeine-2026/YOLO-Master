@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "dataset": "DeepPCB",
+  "split": "test",
+  "seed": 824,
+  "checkpoint": "runs/detect/runs/vpeft_smoke/deeppcb_vpeft_gpu_fp32_seed824/weights/best.pt",
+  "checkpoint_sha256": "ecd34f1e87cf4e53c3e8dc3f5e1ea0bd501658f9d24f474fc63f4298e333b727",
+  "adapter": "runs/detect/runs/vpeft_smoke/deeppcb_vpeft_gpu_fp32_seed824/lora_adapter",
+  "adapter_model_sha256": "0423611f5ff84b082dc6a94a8ac0e051305e9803bec3ce53f22bcdf7d1ddac1a",
+  "model_loading_api": "ultralytics.YOLO(best.pt); best.pt contains the active PEFT wrapper and trained head",
+  "inference": {
+    "device": "0",
+    "actual_device": "cuda:0",
+    "imgsz": 320,
+    "conf": 0.25
+  },
+  "prediction_record_fields": [
+    "image",
+    "class_id",
+    "class",
+    "confidence",
+    "bbox_xyxy"
+  ],
+  "samples": [
+    {
+      "image": "datasets/deeppcb_fewshot_yolo/images/test/12000001_test.jpg",
+      "sample_id": "12000001_test",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/deeppcb_fewshot_yolo/images/test/12100038_test.jpg",
+      "sample_id": "12100038_test",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/deeppcb_fewshot_yolo/images/test/12100040_test.jpg",
+      "sample_id": "12100040_test",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/deeppcb_fewshot_yolo/images/test/12100199_test.jpg",
+      "sample_id": "12100199_test",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/deeppcb_fewshot_yolo/images/test/13000198_test.jpg",
+      "sample_id": "13000198_test",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/deeppcb_fewshot_yolo/images/test/20085324_test.jpg",
+      "sample_id": "20085324_test",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/deeppcb_fewshot_yolo/images/test/50600055_test.jpg",
+      "sample_id": "50600055_test",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/deeppcb_fewshot_yolo/images/test/50600059_test.jpg",
+      "sample_id": "50600059_test",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/deeppcb_fewshot_yolo/images/test/90100000_test.jpg",
+      "sample_id": "90100000_test",
+      "prediction_count": 0
+    },
+    {
+      "image": "datasets/deeppcb_fewshot_yolo/images/test/90100049_test.jpg",
+      "sample_id": "90100049_test",
+      "prediction_count": 0
+    }
+  ],
+  "predictions": []
+}

@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "validated_utc": "2026-08-25T04:04:21.942721+00:00",
+  "data": "smoke/c3/config/datasets/deeppcb_fewshot.yaml",
+  "manifest": "smoke/c3/evidence/deeppcb_manifest.json",
+  "manifest_sha256": "f648c2ac0660eda0e7d388a1eb5c613fcddbb34cc7e764c5bd35b1d2a89e91e6",
+  "classes": [
+    "open",
+    "short",
+    "mousebite",
+    "spur",
+    "copper",
+    "pin-hole"
+  ],
+  "splits": {
+    "train": {
+      "images": 8,
+      "labels": 8,
+      "objects": 52,
+      "objects_by_class": {
+        "open": 10,
+        "short": 9,
+        "mousebite": 11,
+        "spur": 5,
+        "copper": 9,
+        "pin-hole": 8
+      },
+      "positive_images_by_class": {
+        "open": 6,
+        "short": 5,
+        "mousebite": 7,
+        "spur": 5,
+        "copper": 7,
+        "pin-hole": 7
+      }
+    },
+    "val": {
+      "images": 200,
+      "labels": 200,
+      "objects": 1364,
+      "objects_by_class": {
+        "open": 250,
+        "short": 205,
+        "mousebite": 278,
+        "spur": 246,
+        "copper": 192,
+        "pin-hole": 193
+      },
+      "positive_images_by_class": {
+        "open": 173,
+        "short": 145,
+        "mousebite": 173,
+        "spur": 165,
+        "copper": 165,
+        "pin-hole": 169
+      }
+    },
+    "test": {
+      "images": 500,
+      "labels": 500,
+      "objects": 3140,
+      "objects_by_class": {
+        "open": 659,
+        "short": 478,
+        "mousebite": 586,
+        "spur": 483,
+        "copper": 464,
+        "pin-hole": 470
+      },
+      "positive_images_by_class": {
+        "open": 482,
+        "short": 368,
+        "mousebite": 413,
+        "spur": 373,
+        "copper": 403,
+        "pin-hole": 438
+      }
+    }
+  },
+  "split_overlap_count": 0,
+  "annotation_checks": {
+    "nonempty": true,
+    "five_columns": true,
+    "class_ids_in_range": true,
+    "finite_coordinates": true,
+    "positive_box_size": true,
+    "boxes_inside_images": true
+  },
+  "dataloader_smoke": {
+    "loaded": true,
+    "image_shape": [
+      1,
+      3,
+      320,
+      320
+    ],
+    "image_dtype": "torch.uint8",
+    "class_ids": [
+      0,
+      1,
+      2,
+      4,
+      5
+    ],
+    "box_count": 12
+  }
+}

@@ -1,0 +1,3 @@
+# C3 experiment artifacts are versioned; binary payloads are stored through Git LFS.
+!artifacts/
+!artifacts/**

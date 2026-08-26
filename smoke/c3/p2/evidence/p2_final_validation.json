@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "stage": "final_multiseed_scaling",
+  "checks": {
+    "nested_split_integrity": true,
+    "p1_100_reuse_integrity": true,
+    "all_required_cells": true,
+    "source_accounting": true,
+    "new_run_execution": true,
+    "protocol_fairness": true,
+    "multi_seed_completeness": true,
+    "vpeft_strict_24_of_24": true,
+    "statistics_completeness": true,
+    "artifact_integrity": true,
+    "final_figures_14_of_14": true,
+    "final_report": true,
+    "p1_history_unmodified": true
+  },
+  "split_checks": {
+    "neu": {
+      "manifest_pass": true,
+      "split_seed_824": true,
+      "strict_nested": true,
+      "all_train_hashes_match": true,
+      "fixed_val_test": true,
+      "all_classes_covered": true
+    },
+    "deeppcb": {
+      "manifest_pass": true,
+      "split_seed_824": true,
+      "strict_nested": true,
+      "all_train_hashes_match": true,
+      "fixed_val_test": true,
+      "all_classes_covered": true
+    }
+  },
+  "config_fairness": {
+    "neu/10/full_sft": true,
+    "neu/10/frozen_backbone": true,
+    "neu/10/vpeft": true,
+    "neu/50/full_sft": true,
+    "neu/50/frozen_backbone": true,
+    "neu/50/vpeft": true,
+    "neu/500/full_sft": true,
+    "neu/500/frozen_backbone": true,
+    "neu/500/vpeft": true,
+    "deeppcb/10/full_sft": true,
+    "deeppcb/10/frozen_backbone": true,
+    "deeppcb/10/vpeft": true,
+    "deeppcb/50/full_sft": true,
+    "deeppcb/50/frozen_backbone": true,
+    "deeppcb/50/vpeft": true,
+    "deeppcb/500/full_sft": true,
+    "deeppcb/500/frozen_backbone": true,
+    "deeppcb/500/vpeft": true
+  },
+  "source_counts": {
+    "immutable_p2_seed824": 18,
+    "new_p2_multiseed": 36,
+    "reused_p1_100_multiseed": 18
+  },
+  "run_validation": {
+    "expected": 72,
+    "pass": 72
+  },
+  "vpeft_validation": {
+    "expected": 24,
+    "pass": 24
+  },
+  "statistics": {
+    "summary": 24,
+    "retention": 8,
+    "paired": 24
+  },
+  "artifact_integrity": {
+    "manifest_rows": 72,
+    "status": "PASS"
+  },
+  "P2 status": "PASS",
+  "Overall C3 P2": "PASS"
+}

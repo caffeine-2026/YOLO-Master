@@ -1,0 +1,9 @@
+{
+  "peak_cpu_percent": 151.5,
+  "peak_rss_mib": 2650.37,
+  "peak_device_memory_mib": 2224.0,
+  "peak_process_tree_gpu_memory_mib": 2214.0,
+  "epoch_reported_peak_gpu_memory_mib": 1607.68,
+  "peak_gpu_memory_mib": 1607.68,
+  "measurement_note": "Primary peak is trainer-reported GPU_mem; one-second device and process-tree samples are retained."
+}

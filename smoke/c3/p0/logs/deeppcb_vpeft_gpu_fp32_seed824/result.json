@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "exit_code": 0,
+  "started_utc": "2026-08-25T04:04:52.241939+00:00",
+  "finished_utc": "2026-08-25T04:05:09.317362+00:00",
+  "wall_seconds": 17.075,
+  "device": "0",
+  "command": [
+    "yolo",
+    "train",
+    "cfg=smoke/c3/config/vpeft_smoke.yaml",
+    "data=smoke/c3/config/datasets/deeppcb_fewshot.yaml",
+    "device=0",
+    "name=deeppcb_vpeft_gpu_fp32_seed824",
+    "project=runs/vpeft_smoke",
+    "exist_ok=False",
+    "amp=false"
+  ],
+  "config": "smoke/c3/config/vpeft_smoke.yaml",
+  "data": "smoke/c3/config/datasets/deeppcb_fewshot.yaml",
+  "run_dir": "runs/detect/runs/vpeft_smoke/deeppcb_vpeft_gpu_fp32_seed824",
+  "resource_summary": {
+    "peak_cpu_percent": 105.7,
+    "peak_rss_mib": 2222.66,
+    "peak_gpu_memory_mib": 712.0
+  },
+  "numerical_recovery": {
+    "detected": false,
+    "requested_epochs": 1,
+    "observed_epoch_attempts": 1,
+    "recovery_attempts": 0,
+    "amp_requested": false,
+    "amp_disabled_by_recovery": false,
+    "explicit_lora_restore_messages": 0,
+    "classification": "未检测到自动数值恢复"
+  },
+  "artifact_count": 9,
+  "artifacts": [
+    {
+      "path": "runs/detect/runs/vpeft_smoke/deeppcb_vpeft_gpu_fp32_seed824/args.yaml",
+      "size_bytes": 10197,
+      "sha256": "0a9210260e0320d195d3643d196e85abdf8aea9f2d1636ce6c5d5b5951152ba1"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/deeppcb_vpeft_gpu_fp32_seed824/lora_adapter/README.md",
+      "size_bytes": 5074,
+      "sha256": "30f14bc991c08c786976f4a02217ff46bd666e7658dd191dc266d67ca23d2f6b"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/deeppcb_vpeft_gpu_fp32_seed824/lora_adapter/adapter_config.json",
+      "size_bytes": 4138,
+      "sha256": "26d8c750c1922d78246e00fd58861c3c9e9a3b22cc2830c352f92a65cacd6ddf"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/deeppcb_vpeft_gpu_fp32_seed824/lora_adapter/adapter_model.safetensors",
+      "size_bytes": 738896,
+      "sha256": "0423611f5ff84b082dc6a94a8ac0e051305e9803bec3ce53f22bcdf7d1ddac1a"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/deeppcb_vpeft_gpu_fp32_seed824/lora_adapter/runtime_metadata.json",
+      "size_bytes": 15639,
+      "sha256": "455a3e5ce68e1ea0b9ed09622724855e755a7e9c5954d1887c960bc02f473b23"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/deeppcb_vpeft_gpu_fp32_seed824/results.csv",
+      "size_bytes": 327,
+      "sha256": "0a378dc4bd8a85b6cfb14dfe46d44f29b386b8572db720b963a66455593b2aaf"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/deeppcb_vpeft_gpu_fp32_seed824/weights/best.pt",
+      "size_bytes": 5981586,
+      "sha256": "ecd34f1e87cf4e53c3e8dc3f5e1ea0bd501658f9d24f474fc63f4298e333b727"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/deeppcb_vpeft_gpu_fp32_seed824/weights/last.pt",
+      "size_bytes": 5981586,
+      "sha256": "d3c5af8bc478c354e0238b304777552939744039f8f054b9b417bee1d600b38a"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/deeppcb_vpeft_gpu_fp32_seed824/weights/last_healthy.pt",
+      "size_bytes": 15814363,
+      "sha256": "002ccefdfa0950f21535c4ba5df453022d5a944123a6f79af34102947a76637d"
+    }
+  ],
+  "log_path_policy": "完整保留日志行，仅将仓库根目录和用户主目录前缀替换为占位符。"
+}

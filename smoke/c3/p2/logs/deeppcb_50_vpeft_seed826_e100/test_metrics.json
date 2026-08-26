@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "split": "test",
+  "device": "7",
+  "batch": 8,
+  "imgsz": 640,
+  "precision": 0.5637553336479929,
+  "recall": 0.6292448808611967,
+  "map50": 0.6067435983735331,
+  "map50_95": 0.3789538906490525,
+  "fitness": 0.3789538906490525,
+  "speed_ms_per_image": {
+    "preprocess": 0.1956025413237512,
+    "inference": 2.4362061922438443,
+    "loss": 0.0008211443200707436,
+    "postprocess": 0.9531636345200241
+  },
+  "save_dir": "smoke/c3/p2/artifacts/deeppcb_50_vpeft_seed826_e100/test_eval"
+}
