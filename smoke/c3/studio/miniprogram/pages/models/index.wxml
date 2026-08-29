@@ -22,7 +22,7 @@
       <slider min="10" max="90" step="1" value="{{iouPercent}}" activeColor="#22c55e" block-size="18" bindchange="onIouChange" />
     </view>
     <button class="primary-button save-button" bindtap="saveSettings">Save settings</button>
-    <view class="settings-note">生产版必须在微信公众平台配置 downloadFile / request 合法域名。HTTP 仅能用于关闭域名校验的本地开发。</view>
+    <view class="settings-note">生产版必须在微信公众平台配置 downloadFile / uploadFile 合法域名。HTTP 仅能用于关闭域名校验的本地开发。</view>
   </view>
 
   <view class="section-title model-section-title">Available models</view>
