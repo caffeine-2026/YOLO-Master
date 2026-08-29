@@ -124,4 +124,4 @@ Live Inference 根据 `p1_all_runs.csv` 自动定位每个 dataset / method 的 
 - Bench：5 次 warmup 后执行 30/100 次 model-only benchmark，报告 mean/p50/p95/min/max/FPS
 - Models：NEU-DET 与 DeepPCB 模型下载、SHA-256 校验、IndexedDB 离线缓存、后端加载测试
 
-图片不会上传服务器。运行时依次尝试 WebGPU、WebGL、WASM；不支持的后端会自动回退。模型沿用小程序导出的相同静态 ONNX，源码不包含 checkpoint 或 ONNX 大文件。开发、构建和部署说明见 `smoke/c3/studio/pwa/README.md`。
+图片不会上传服务器。运行时优先尝试 WebGL，再回退到兼容性更广的 WASM。模型沿用小程序导出的相同静态 ONNX，源码不包含 checkpoint 或 ONNX 大文件。开发、构建和部署说明见 `smoke/c3/studio/pwa/README.md`。

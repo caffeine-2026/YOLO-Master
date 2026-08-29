@@ -1,4 +1,4 @@
-import type * as Ort from 'onnxruntime-web/all';
+import type * as Ort from 'onnxruntime-web';
 
 import { prepareCanvasSource } from '@/lib/image';
 import { ensureModelBytes } from '@/lib/model-cache';
@@ -19,11 +19,10 @@ export type InferenceResult = {
   height: number;
 };
 
-type Backend = 'webgpu' | 'webgl' | 'wasm';
+type Backend = 'webgl' | 'wasm';
 
 function backendCandidates(): Backend[] {
   const backends: Backend[] = [];
-  if ('gpu' in navigator) backends.push('webgpu');
   const canvas = document.createElement('canvas');
   if (canvas.getContext('webgl2') || canvas.getContext('webgl')) backends.push('webgl');
   backends.push('wasm');
@@ -41,14 +40,18 @@ export class EdgeInferenceEngine {
     if (this.session && this.model?.id === model.id) return { backend: this.backend, source: 'memory' as const };
     this.release();
     const artifact = await ensureModelBytes(model, onProgress);
-    const ort = await import('onnxruntime-web/all');
-    ort.env.wasm.numThreads = globalThis.crossOriginIsolated
-      ? Math.max(1, Math.min(4, navigator.hardwareConcurrency || 2))
-      : 1;
-    ort.env.wasm.proxy = false;
     const failures: string[] = [];
     for (const backend of backendCandidates()) {
       try {
+        const ort: typeof Ort = backend === 'webgl'
+          ? await import('onnxruntime-web/webgl')
+          : await import('onnxruntime-web/wasm');
+        if (backend === 'wasm') {
+          ort.env.wasm.numThreads = globalThis.crossOriginIsolated
+            ? Math.max(1, Math.min(4, navigator.hardwareConcurrency || 2))
+            : 1;
+          ort.env.wasm.proxy = false;
+        }
         const session = await ort.InferenceSession.create(new Uint8Array(artifact.bytes), {
           executionProviders: [backend],
           graphOptimizationLevel: 'all',

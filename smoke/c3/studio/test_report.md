@@ -132,4 +132,4 @@ Result: **All checks passed**.
 | 模型 artifact 校验 | PASS；NEU-DET 与 DeepPCB 文件 SHA-256 均与 catalog 固定值一致 |
 | 隐私边界 | PASS；相机帧与选中图片只在浏览器内存处理，不上传服务器 |
 
-浏览器端 runtime 按 WebGPU → WebGL → WASM 顺序尝试，并在 provider 编译失败时自动回退。最终移动设备 FPS、发热与降频结果仍需在目标手机上实测；PWA 不声称浏览器未公开的 thermal state 或逐算子硬件 placement。
+浏览器端 runtime 按 WebGL → WASM 顺序尝试，并在 provider 编译失败时自动回退。最终移动设备 FPS、发热与降频结果仍需在目标手机上实测；PWA 不声称浏览器未公开的 thermal state 或逐算子硬件 placement。

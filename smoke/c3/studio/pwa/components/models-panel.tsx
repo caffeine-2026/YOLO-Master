@@ -15,7 +15,6 @@ type CacheMap = Record<string, boolean>;
 function supportedBackends(): string[] {
   if (typeof window === 'undefined') return [];
   const result: string[] = [];
-  if ('gpu' in navigator) result.push('WebGPU');
   const canvas = document.createElement('canvas');
   if (canvas.getContext('webgl2') || canvas.getContext('webgl')) result.push('WebGL');
   result.push('WASM');
