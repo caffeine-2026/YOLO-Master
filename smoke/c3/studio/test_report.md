@@ -116,3 +116,20 @@ Result: **All checks passed**.
 ### 尚需真机确认
 
 微信开发者工具和真机测试依赖用户的小程序 AppID、已备案 HTTPS 合法域名以及实际 iOS/Android 设备，当前服务器环境无法替代这些外部条件。因此没有声称已测得手机 FPS、温度或整图 NPU placement。微信 API 不公开 thermal state 和逐算子硬件放置；UI 明确显示 `NPU requested`，Bench 只报告可测量的 model-only wall-clock latency。
+
+## 可安装 PWA 交付（C3 Edge Lab）
+
+由于微信小程序主体资质属于外部发布条件，增加 `smoke/c3/studio/pwa/` 作为无需微信账号、可直接通过 HTTPS 安装到主屏幕的移动端入口。PWA 复用同一批通过 real-image parity 的固定 ONNX，不重新训练，也不改动 P0/P1/P2。
+
+| Check | Result |
+|---|---|
+| 核心 JavaScript/TypeScript 单元测试 | PASS；3/3（catalog/hash、channel-first decode + class-aware NMS、IoU/latency summary） |
+| 产品源码 lint | PASS；0 warnings / 0 errors |
+| TypeScript strict typecheck | PASS |
+| Vinext/Vite production build | PASS |
+| npm production dependency audit | PASS；0 vulnerabilities |
+| PWA manifest / service worker | PASS；manifest HTTP 200；app shell 离线缓存；模型由 IndexedDB 独立管理 |
+| 模型 artifact 校验 | PASS；NEU-DET 与 DeepPCB 文件 SHA-256 均与 catalog 固定值一致 |
+| 隐私边界 | PASS；相机帧与选中图片只在浏览器内存处理，不上传服务器 |
+
+浏览器端 runtime 按 WebGPU → WebGL → WASM 顺序尝试，并在 provider 编译失败时自动回退。最终移动设备 FPS、发热与降频结果仍需在目标手机上实测；PWA 不声称浏览器未公开的 thermal state 或逐算子硬件 placement。

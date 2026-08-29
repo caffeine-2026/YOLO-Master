@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="C3 Edge Lab">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c2230"/>
+      <stop offset="1" stop-color="#071019"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#67e8f9"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="118" fill="url(#bg)"/>
+  <path d="M144 125h74v28h-46v48h-28zm150 0h74v76h-28v-48h-46zM144 311h28v48h46v28h-74zm196 0h28v76h-74v-28h46z" fill="url(#accent)"/>
+  <circle cx="256" cy="256" r="87" fill="none" stroke="#38bdf8" stroke-width="24"/>
+  <circle cx="256" cy="256" r="28" fill="#34d399"/>
+</svg>
