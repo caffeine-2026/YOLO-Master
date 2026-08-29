@@ -9,7 +9,7 @@ Installable, account-independent mobile edge inference for the validated C3 V-PE
 - **Bench** — five warmups plus 30/100 model-only runs with mean, p50, p95, min, max and FPS
 - **Models** — IndexedDB cache, SHA-256 verification, backend detection, download and load test
 
-The runtime attempts WebGPU, WebGL and WASM in that order. A failed provider compile automatically falls through to the next provider. Browser APIs do not expose thermal state or per-operator hardware placement, so the UI does not claim either.
+The runtime attempts WebGL and then falls back to the broadly compatible WASM provider. Browser APIs do not expose thermal state or per-operator hardware placement, so the UI does not claim either.
 
 ## Local development
 
