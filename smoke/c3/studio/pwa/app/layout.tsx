@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://c3-edge-lab.ryeoryeong00.chatgpt.site'),
   title: 'C3 Edge Lab',
   description: 'Installable on-device industrial defect inference and benchmark lab.',
   applicationName: 'C3 Edge Lab',
@@ -28,6 +29,20 @@ export const metadata: Metadata = {
   icons: {
     icon: '/icon.svg',
     apple: '/icon-192.png',
+  },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    title: 'C3 Edge Lab',
+    description: 'Private on-device industrial defect inference and benchmark lab.',
+    siteName: 'C3 Edge Lab',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'C3 Edge Lab on-device defect inspection' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'C3 Edge Lab',
+    description: 'Private on-device industrial defect inference and benchmark lab.',
+    images: ['/og.png'],
   },
 };
 
