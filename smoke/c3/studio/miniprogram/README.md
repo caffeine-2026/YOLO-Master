@@ -51,7 +51,7 @@ ONNX 与生成 manifest 被 `.gitignore` 排除，不会误提交大模型。不
 
 1. 安装微信开发者工具，导入 `smoke/c3/studio/miniprogram/`。
 2. `project.config.json` 已配置 C3 小程序 AppID；个人私有设置放在不提交的 `project.private.config.json`，不要在仓库保存 AppSecret。
-3. 在微信公众平台配置 `downloadFile` 与 `request` 合法 HTTPS 域名。
+3. 在微信公众平台配置模型 CDN 的 `downloadFile` 与 fallback API 的 `uploadFile` 合法 HTTPS 域名；当前版本不使用 socket/UDP/TCP，`request` 也可暂时留空。
 4. 上传 `dist/models/*.onnx` 到对象存储/CDN。
 5. 打开小程序 **Models**，将 Model base URL 设为模型文件所在目录，例如 `https://cdn.example.com/c3-models`。
 6. 在真机选择 **Download** → **Load test**。开发者工具可以检查 UI/JS，但最终 ONNX 编译、NPU eligibility、相机 FPS 必须真机验证。
