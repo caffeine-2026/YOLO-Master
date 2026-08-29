@@ -24,6 +24,9 @@ class InferenceOutput:
     status: str
     device: str
     latency_ms: float
+    preprocess_ms: float
+    inference_ms: float
+    postprocess_ms: float
 
 
 def _external_gpu0_processes() -> list[tuple[int, int]]:
@@ -158,6 +161,10 @@ class ModelManager:
             if len(results) != 1:
                 raise RuntimeError(f"Expected one inference result, got {len(results)}")
             result = results[0]
+            speed = result.speed or {}
+            preprocess_ms = float(speed.get("preprocess", 0.0))
+            inference_ms = float(speed.get("inference", 0.0))
+            postprocess_ms = float(speed.get("postprocess", 0.0))
             annotated = Image.fromarray(result.plot()[..., ::-1])
             names = result.names
             rows = []
@@ -183,10 +190,22 @@ class ModelManager:
                 f"### {detection_text}\n\n"
                 f"- **Threshold:** `{float(confidence):.2f}`\n"
                 f"- **Device:** `{'GPU 0' if device == '0' else 'CPU'}` — {reason}\n"
-                f"- **Latency:** `{latency_ms:.1f} ms`\n"
+                f"- **End-to-end latency:** `{latency_ms:.1f} ms`\n"
+                f"- **Stages:** preprocess `{preprocess_ms:.1f} ms` · model `{inference_ms:.1f} ms` · "
+                f"postprocess/NMS `{postprocess_ms:.1f} ms`\n"
                 f"- **Checkpoint:** `{relative_path(checkpoint)}` (100-epoch final, SHA-256 verified)"
             )
-            return InferenceOutput(original, annotated, detections, status, device, latency_ms)
+            return InferenceOutput(
+                original,
+                annotated,
+                detections,
+                status,
+                device,
+                latency_ms,
+                preprocess_ms,
+                inference_ms,
+                postprocess_ms,
+            )
 
 
 MODEL_MANAGER = ModelManager()

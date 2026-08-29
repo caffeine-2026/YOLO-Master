@@ -1,6 +1,6 @@
 # C3 Industrial PEFT Studio v0.1 — Test Report
 
-Date: 2026-08-29 (Asia/Shanghai)
+Date: 2026-08-30 (Asia/Shanghai)
 
 Result: **PASS**
 
@@ -48,7 +48,7 @@ Result: **10 tests passed**.
 | 6. Charts render | PASS | Comparison 4-panel chart and all 5 scaling metrics generated; browser exposed rendered plot images |
 | 7. Planner loads | PASS | Existing metrics JSON yielded ACCEPT / vpeft / peft / 59 planned / 52 applied |
 | 8. CPU pages work without GPU | PASS | Full app construction and all dashboard tests passed with `C3_STUDIO_FORCE_CPU=1`; initial server GPU usage stayed at 4 MiB / 0% on all GPUs |
-| 9. Real inference | PASS | NEU-DET V-PEFT, final 100-epoch checkpoint, conf 0.25, imgsz 640, GPU 0; 2 detections; UI latency 712.6 ms |
+| 9. Real inference | PASS | Existing single-image path and new realtime-frame function both used the final NEU-DET V-PEFT checkpoint at conf 0.25/imgsz 640. A real NEU frame produced 3 detections; CPU safety mode took 259.7 ms/frame and warmed server GPU inference took 71.6 ms end to end. Stage timing and FPS rendered. |
 | 10. P0/P1/P2 unchanged | PASS | `git status` / diff scope contained only `smoke/c3/studio/` |
 
 ## Model and checkpoint validation
@@ -65,6 +65,7 @@ Result: **10 tests passed**.
 - Comparison dataset and sample-size controls updated table and chart.
 - Scaling dataset and metric controls updated mean ± 95% CI view.
 - Live Inference displayed original, annotated result, class, confidence, bounding boxes, latency, threshold, device, and repository-relative checkpoint path.
+- The nested **Realtime Camera** tab rendered after server restart with browser webcam input, live detection output, and FPS/stage-timing status. Camera permission was intentionally left for the user; frame processing was independently exercised with a real NEU image.
 - Evidence page displayed repository-relative paths only and no secret/environment values.
 
 Screenshots:

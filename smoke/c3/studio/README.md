@@ -7,7 +7,7 @@
 - 展示 P0/P1/P2 与 72/72 P2 matrix 状态。
 - 对比 NEU-DET / DeepPCB 在 10、50、100、500-shot 下的 Full-SFT、Frozen Backbone、V-PEFT。
 - 绘制多种子 mean 与 95% CI scaling 曲线。
-- 使用已完成的 100-epoch final checkpoint 做真实单图 YOLO inference。
+- 使用已完成的 100-epoch final checkpoint 做真实单图与浏览器相机实时 YOLO inference。
 - 从既有 `metrics.json` 展示 V-PEFT Planner 决策。
 - 索引报告、protocol、split manifest、summary CSV、validation JSON 与最终图表。
 
@@ -16,7 +16,7 @@
 1. **Overview**：阶段状态、核心参数压缩与精度保持结论；明确 V-PEFT 不是 universal winner。
 2. **3-Way Comparison**：按 dataset / sample size 查看准确率、可训练参数、显存与训练时间。
 3. **Few-shot Scaling**：mAP、accuracy retention、GPU memory、GPU-hours 的 mean ± 95% CI。
-4. **Live Inference**：上传图片，选择 dataset / model / confidence 后运行真实推理。
+4. **Live Inference**：支持上传单图或浏览器实时相机；显示检测框、stream FPS、端到端延迟，以及 preprocess / model / postprocess-NMS 分阶段延迟。
 5. **V-PEFT Planner**：自动读取 planner status、backend、targets 与参数统计。
 6. **Evidence / Reproduction**：只显示仓库相对路径、Git provenance 和非训练复现命令。
 
@@ -55,7 +55,7 @@ ssh -L 7860:127.0.0.1:7860 pll@10.103.69.211
 ## 6. GPU / CPU 说明
 
 - Overview、Comparison、Scaling、Planner、Evidence 全部只读 CSV/JSON 并在 CPU 上绘图。
-- Torch 与 Ultralytics 仅在点击 **Run real inference** 后延迟导入。
+- Torch 与 Ultralytics 仅在执行单图或相机推理后延迟导入。
 - 进程强制 `CUDA_VISIBLE_DEVICES=0`，不会访问其他 GPU。
 - 如果 GPU 0 存在其他 compute process、CUDA 不可用或设置 `C3_STUDIO_FORCE_CPU=1`，推理降级 CPU，并在 UI 显示实际 device。
 - Studio 同时只缓存一个模型，切换模型时释放旧引用与 CUDA cache。
@@ -89,6 +89,8 @@ Live Inference 根据 `p1_all_runs.csv` 自动定位每个 dataset / method 的 
 
 - Dashboard 展示三种子统计；Live Inference 为稳定演示固定使用 CSV 中 seed 824 的最终 checkpoint。
 - 首次切换模型需要从磁盘加载 checkpoint，延迟高于后续同模型推理。
+- Realtime Camera 把浏览器帧发送到服务器 GPU/CPU 推理；它不是 iPhone Core ML / Android NCNN 的端侧 benchmark，FPS 还包含浏览器采集、传输与 Gradio 调度开销。
+- 浏览器相机需要安全上下文；本机 `http://127.0.0.1` 可直接使用，手机从局域网访问时需 HTTPS 或设备本地安全隧道。
 - UI 不接受任意服务器路径，不提供 shell 输入，不显示 token、密码或私有环境变量。
 - `P0_REF` / `P1_REF` / `P2_REF` 仅在既有证据明确记录时显示；当前未记录的字段显示 `Not recorded`。
 
