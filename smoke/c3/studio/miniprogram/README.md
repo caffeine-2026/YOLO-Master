@@ -50,7 +50,7 @@ ONNX 与生成 manifest 被 `.gitignore` 排除，不会误提交大模型。不
 ## 2. 配置微信开发者工具
 
 1. 安装微信开发者工具，导入 `smoke/c3/studio/miniprogram/`。
-2. 将 `project.config.json` 中的 `touristappid` 替换为自己的小程序 AppID；个人私有设置放在不提交的 `project.private.config.json`。
+2. `project.config.json` 已配置 C3 小程序 AppID；个人私有设置放在不提交的 `project.private.config.json`，不要在仓库保存 AppSecret。
 3. 在微信公众平台配置 `downloadFile` 与 `request` 合法 HTTPS 域名。
 4. 上传 `dist/models/*.onnx` 到对象存储/CDN。
 5. 打开小程序 **Models**，将 Model base URL 设为模型文件所在目录，例如 `https://cdn.example.com/c3-models`。
