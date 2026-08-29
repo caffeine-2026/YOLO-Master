@@ -83,3 +83,36 @@ Screenshots:
 ```
 
 Result: **All checks passed**.
+
+## 微信小程序端侧交付（C3 Edge Lab）
+
+实现范围：`smoke/c3/studio/miniprogram/`，包含 Live、Photo、Bench、Models 四页、微信原生 ONNX 推理、JavaScript class-aware NMS、模型缓存/SHA-256 校验、JSON 报告导出与可选照片 fallback API。
+
+### 模型导出与 parity
+
+两个模型均从 P1 CSV 指向的 seed-824、100-epoch PASS V-PEFT checkpoint 导出。导出脚本先复制 checkpoint 到临时目录，再执行 LoRA merge；导出前后重新计算源 checkpoint SHA-256，源文件未改变。ONNX 使用固定 `1×3×640×640` 输入、opset 12、batch 1、graph 内无 NMS。
+
+| Dataset | ONNX bytes | SHA-256 | Real-image parity |
+|---|---:|---|---|
+| NEU-DET | 10,568,717 | `09fbeaaa79c17a0146f030945274f37774696e1a2dc61c9c18ae80e0f68c065d` | PASS；3 detections；max score delta `6.97e-06`；max bbox delta `4.96e-05 px` |
+| DeepPCB | 10,568,692 | `4d75d75a44e444c3b7912986ee4834e80f51ef6fcd535cd31d628827ac1edac1` | PASS；8 detections；max score delta `1.61e-06`；max bbox delta `6.48e-05 px` |
+
+生成的 ONNX 与 manifest 位于忽略的 `miniprogram/dist/`，没有加入 Git，也没有写回 P0/P1/P2。
+
+### 小程序与 fallback 检查
+
+| Check | Result |
+|---|---|
+| 全部小程序 JavaScript `node --check` | PASS |
+| preprocess / class-aware NMS / latency summary 单元测试 | PASS |
+| 四页 WXML/WXSS/JS/JSON 完整性 | PASS |
+| 可提交源码包大小 | 79,598 bytes / 2 MiB，PASS |
+| Python Ruff check + format check | PASS |
+| fallback `/health` 与 `/v1/models` | PASS；2 models |
+| 模型下载响应与 SHA-256 | PASS；header、下载文件与 catalog 一致 |
+| fallback 真实 NEU 图片推理 | PASS；3 detections；CPU；222.7 ms end-to-end |
+| 原 Studio regression | PASS；10/10 tests |
+
+### 尚需真机确认
+
+微信开发者工具和真机测试依赖用户的小程序 AppID、已备案 HTTPS 合法域名以及实际 iOS/Android 设备，当前服务器环境无法替代这些外部条件。因此没有声称已测得手机 FPS、温度或整图 NPU placement。微信 API 不公开 thermal state 和逐算子硬件放置；UI 明确显示 `NPU requested`，Bench 只报告可测量的 model-only wall-clock latency。

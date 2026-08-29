@@ -1,0 +1,54 @@
+<view class="page-shell models-page">
+  <view class="hero glass-card">
+    <text class="eyebrow">Model Runtime</text>
+    <view class="hero-title">模型下载与端侧环境</view>
+    <view class="hero-copy">ONNX 模型不进入 2MB 代码包；首次从已备案 HTTPS 域名下载，之后使用本地 SHA-256 缓存。</view>
+    <view class="engine-status {{environment.supported ? 'supported' : ''}}">
+      <text>{{environment.supported ? 'Native inference available' : 'Native inference unavailable'}}</text>
+      <text>{{environment.version}}</text>
+    </view>
+  </view>
+
+  <view class="settings-card glass-card">
+    <view class="section-title">Runtime endpoints</view>
+    <label class="field-label">Model base URL</label>
+    <input class="url-input" value="{{modelBaseUrl}}" placeholder="https://cdn.example.com/c3-models" bindinput="onModelUrlInput" />
+    <label class="field-label">Fallback API URL · optional</label>
+    <input class="url-input" value="{{fallbackApiBaseUrl}}" placeholder="https://api.example.com" bindinput="onFallbackUrlInput" />
+    <view class="threshold-settings">
+      <view><text>Confidence</text><text>{{confidenceText}}</text></view>
+      <slider min="5" max="90" step="1" value="{{confidencePercent}}" activeColor="#38bdf8" block-size="18" bindchange="onConfidenceChange" />
+      <view><text>NMS IoU</text><text>{{iouText}}</text></view>
+      <slider min="10" max="90" step="1" value="{{iouPercent}}" activeColor="#22c55e" block-size="18" bindchange="onIouChange" />
+    </view>
+    <button class="primary-button save-button" bindtap="saveSettings">Save settings</button>
+    <view class="settings-note">生产版必须在微信公众平台配置 downloadFile / request 合法域名。HTTP 仅能用于关闭域名校验的本地开发。</view>
+  </view>
+
+  <view class="section-title model-section-title">Available models</view>
+  <view class="model-card glass-card" wx:for="{{modelRows}}" wx:key="id">
+    <view class="model-head">
+      <view>
+        <text class="model-title">{{item.title}}</text>
+        <text class="model-note">{{item.note}}</text>
+      </view>
+      <view class="cache-pill {{item.cached ? 'cached' : ''}}">{{item.cached ? 'Cached' : 'Remote'}}</view>
+    </view>
+    <view class="model-meta">
+      <text>{{item.inputSize}}×{{item.inputSize}}</text>
+      <text>{{item.labels.length}} classes</text>
+      <text>opset 12</text>
+    </view>
+    <view class="hash-line">SHA-256 · {{item.shaShort}}</view>
+    <view class="model-actions">
+      <button class="secondary-button" size="mini" data-id="{{item.id}}" bindtap="download">{{item.cached ? 'Verify' : 'Download'}}</button>
+      <button class="secondary-button" size="mini" data-id="{{item.id}}" bindtap="loadTest">Load test</button>
+      <button class="danger-button" size="mini" data-id="{{item.id}}" bindtap="remove">Delete</button>
+    </view>
+    <view wx:if="{{activeDownloadId === item.id}}" class="download-progress">
+      <view class="download-fill" style="width: {{downloadProgress}}%;"></view>
+    </view>
+  </view>
+
+  <view wx:if="{{message}}" class="message-card glass-card">{{message}}</view>
+</view>

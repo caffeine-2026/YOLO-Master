@@ -1,0 +1,7 @@
+dist/models/*.onnx
+dist/model-manifest.json
+miniprogram_npm/
+node_modules/
+project.private.config.json
+__pycache__/
+*.pyc

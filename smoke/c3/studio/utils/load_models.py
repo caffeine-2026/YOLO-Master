@@ -117,11 +117,20 @@ class ModelManager:
         self._key = key
         return model
 
-    def infer(self, image: Image.Image, dataset: str, method: str, confidence: float) -> InferenceOutput:
+    def infer(
+        self,
+        image: Image.Image,
+        dataset: str,
+        method: str,
+        confidence: float,
+        iou_threshold: float = 0.70,
+    ) -> InferenceOutput:
         if image is None:
             raise ValueError("Upload an image before running inference")
         if not 0.01 <= float(confidence) <= 1.0:
             raise ValueError("Confidence threshold must be between 0.01 and 1.00")
+        if not 0.01 <= float(iou_threshold) <= 1.0:
+            raise ValueError("IoU threshold must be between 0.01 and 1.00")
         original = image.convert("RGB")
         with self._lock:
             model = self._load(dataset, method)
@@ -133,6 +142,7 @@ class ModelManager:
                     device=device,
                     imgsz=640,
                     conf=float(confidence),
+                    iou=float(iou_threshold),
                     save=False,
                     save_txt=False,
                     save_conf=False,
@@ -151,6 +161,7 @@ class ModelManager:
                     device="cpu",
                     imgsz=640,
                     conf=float(confidence),
+                    iou=float(iou_threshold),
                     save=False,
                     save_txt=False,
                     save_conf=False,
@@ -189,6 +200,7 @@ class ModelManager:
             status = (
                 f"### {detection_text}\n\n"
                 f"- **Threshold:** `{float(confidence):.2f}`\n"
+                f"- **NMS IoU:** `{float(iou_threshold):.2f}`\n"
                 f"- **Device:** `{'GPU 0' if device == '0' else 'CPU'}` — {reason}\n"
                 f"- **End-to-end latency:** `{latency_ms:.1f} ms`\n"
                 f"- **Stages:** preprocess `{preprocess_ms:.1f} ms` · model `{inference_ms:.1f} ms` · "

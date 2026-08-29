@@ -1,0 +1,151 @@
+.bench-page {
+  padding-bottom: 60rpx;
+}
+
+.hero {
+  padding: 30rpx;
+  background:
+    radial-gradient(circle at 88% 15%, rgba(34, 211, 238, 0.22), transparent 36%),
+    linear-gradient(135deg, rgba(12, 74, 110, 0.72), rgba(15, 30, 48, 0.94));
+}
+
+.hero-title {
+  margin-top: 10rpx;
+  font-size: 40rpx;
+  font-weight: 880;
+}
+
+.hero-copy {
+  margin-top: 16rpx;
+  color: #b7c8dc;
+  font-size: 22rpx;
+  line-height: 1.65;
+}
+
+.controls,
+.progress-card,
+.error-card,
+.device-card {
+  margin-top: 22rpx;
+  padding: 26rpx;
+}
+
+.control-row,
+.context-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72rpx;
+  border-bottom: 1rpx solid var(--line);
+  color: #c7d6e7;
+  font-size: 23rpx;
+}
+
+.control-row:last-child,
+.context-row:last-of-type {
+  border-bottom: 0;
+}
+
+.selector,
+.value {
+  max-width: 430rpx;
+  color: #7dd3fc;
+  text-align: right;
+}
+
+.action-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16rpx;
+  margin-top: 22rpx;
+}
+
+.action-row button {
+  width: 100%;
+  margin: 0;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 22rpx;
+}
+
+.progress-track {
+  height: 10rpx;
+  margin-top: 18rpx;
+  overflow: hidden;
+  border-radius: 999rpx;
+  background: rgba(148, 163, 184, 0.18);
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999rpx;
+  background: linear-gradient(90deg, #22c55e, #38bdf8);
+}
+
+.error-card {
+  color: #fecdd3;
+  background: rgba(76, 5, 25, 0.54);
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16rpx;
+  margin-top: 22rpx;
+}
+
+.metric-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 150rpx;
+  box-sizing: border-box;
+  padding: 22rpx;
+}
+
+.metric-card.accent {
+  border-color: rgba(56, 189, 248, 0.46);
+  background: linear-gradient(135deg, rgba(8, 145, 178, 0.28), rgba(15, 30, 48, 0.94));
+}
+
+.metric-label {
+  color: var(--muted);
+  font-size: 21rpx;
+}
+
+.metric-value {
+  margin-top: 14rpx;
+  color: #f8fafc;
+  font-size: 48rpx;
+  font-weight: 880;
+}
+
+.accent .metric-value {
+  color: #67e8f9;
+}
+
+.metric-unit {
+  position: absolute;
+  right: 22rpx;
+  bottom: 22rpx;
+  color: var(--muted);
+  font-size: 20rpx;
+}
+
+.context-row {
+  font-size: 21rpx;
+}
+
+.context-row text:last-child {
+  max-width: 430rpx;
+  color: #a5dff6;
+  text-align: right;
+}
+
+.export-button {
+  width: 100%;
+  margin-top: 24rpx;
+}

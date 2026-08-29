@@ -103,3 +103,14 @@ Live Inference 根据 `p1_all_runs.csv` 自动定位每个 dataset / method 的 
 - `smoke/c3/studio/screenshots/planner.png`
 
 测试结果见 `smoke/c3/studio/test_report.md`。
+
+## 11. 微信小程序端侧产品
+
+`smoke/c3/studio/miniprogram/` 提供独立的 **C3 Edge Lab**：
+
+- 微信相机实时帧与端侧 ONNX inference
+- Live / Photo / Bench / Models 四页产品
+- V-PEFT checkpoint 临时 merge、固定 ONNX export、SHA-256 与 PyTorch/ONNX parity
+- 可选的 loopback photo fallback API
+
+完整导出、微信开发者工具、模型 CDN 与真机测试说明见 `smoke/c3/studio/miniprogram/README.md`。模型产物位于 `miniprogram/dist/` 并被 Git 忽略；不会提交 checkpoint 或 ONNX 大文件。
