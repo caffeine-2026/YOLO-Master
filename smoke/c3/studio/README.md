@@ -114,3 +114,14 @@ Live Inference 根据 `p1_all_runs.csv` 自动定位每个 dataset / method 的 
 - 可选的 loopback photo fallback API
 
 完整导出、微信开发者工具、模型 CDN 与真机测试说明见 `smoke/c3/studio/miniprogram/README.md`。模型产物位于 `miniprogram/dist/` 并被 Git 忽略；不会提交 checkpoint 或 ONNX 大文件。
+
+## 12. 可安装 PWA 端侧产品（推荐入口）
+
+`smoke/c3/studio/pwa/` 提供不依赖微信主体资质的 **C3 Edge Lab PWA**。用户通过 HTTPS 链接打开后，可在 iOS Safari 或 Android Chrome 中添加到主屏幕并以独立 App 方式运行：
+
+- Live：手机相机实时推理、检测框、FPS 与 preprocess/model/NMS/total 分段耗时
+- Photo：最多 9 张本地照片顺序推理、结果浏览与 JSON 报告导出
+- Bench：5 次 warmup 后执行 30/100 次 model-only benchmark，报告 mean/p50/p95/min/max/FPS
+- Models：NEU-DET 与 DeepPCB 模型下载、SHA-256 校验、IndexedDB 离线缓存、后端加载测试
+
+图片不会上传服务器。运行时依次尝试 WebGPU、WebGL、WASM；不支持的后端会自动回退。模型沿用小程序导出的相同静态 ONNX，源码不包含 checkpoint 或 ONNX 大文件。开发、构建和部署说明见 `smoke/c3/studio/pwa/README.md`。
