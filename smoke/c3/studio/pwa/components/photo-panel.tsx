@@ -117,7 +117,7 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
     };
     const file = new File([JSON.stringify(report, null, 2)], `c3-photo-${Date.now()}.json`, { type: 'application/json' });
     if (navigator.share && navigator.canShare?.({ files: [file] })) {
-      await navigator.share({ files: [file], title: 'C3 Edge Lab photo report' });
+      await navigator.share({ files: [file], title: 'YOLO-V-PEFT photo report' });
       return;
     }
     const url = URL.createObjectURL(file);

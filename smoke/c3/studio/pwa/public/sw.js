@@ -1,4 +1,4 @@
-const CACHE_NAME = 'c3-edge-shell-v3';
+const CACHE_NAME = 'yolo-v-peft-shell-v4';
 const APP_SHELL = ['/', '/manifest.webmanifest', '/icon-64.png', '/icon-180.png', '/icon-192.png', '/icon-512.png'];
 
 self.addEventListener('install', (event) => {
