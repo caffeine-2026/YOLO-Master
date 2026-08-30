@@ -14,14 +14,14 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://yoloc3vpeft.com'),
-  title: 'C3 Edge Lab',
+  title: 'YOLO-V-PEFT',
   description: 'On-device runtime and dataset-scope inference for the C3 V-PEFT research benchmark.',
-  applicationName: 'C3 Edge Lab',
+  applicationName: 'YOLO-V-PEFT',
   manifest: '/manifest.webmanifest',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'C3 Edge',
+    title: 'YOLO-V-PEFT',
   },
   formatDetection: {
     telephone: false,
@@ -36,14 +36,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: '/',
-    title: 'C3 Edge Lab',
+    title: 'YOLO-V-PEFT',
     description: 'On-device runtime and dataset-scope inference for the C3 V-PEFT research benchmark.',
-    siteName: 'C3 Edge Lab',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'C3 Edge Lab V-PEFT research benchmark' }],
+    siteName: 'YOLO-V-PEFT',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'YOLO-V-PEFT research benchmark' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'C3 Edge Lab',
+    title: 'YOLO-V-PEFT',
     description: 'On-device runtime and dataset-scope inference for the C3 V-PEFT research benchmark.',
     images: ['/og.png'],
   },

@@ -45,11 +45,11 @@ export function EdgeWorkspace() {
         <header className="mb-3 flex items-center justify-between gap-3 sm:mb-5">
           <div className="flex min-w-0 items-center gap-3">
             <div className="relative size-10 shrink-0 overflow-hidden rounded-[14px] border border-cyan-300/20 bg-cyan-300/10 shadow-[0_0_30px_rgb(34_211_238/10%)]">
-              <Image src="/icon-192.png" alt="C3 Edge Lab penguin inspector" width={40} height={40} className="size-full object-cover" priority />
+              <Image src="/icon-192.png" alt="YOLO-V-PEFT penguin inspector" width={40} height={40} className="size-full object-cover" priority />
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <h1 className="truncate text-base font-semibold tracking-[-0.02em] sm:text-lg">C3 Edge Lab</h1>
+                <h1 className="truncate text-base font-semibold tracking-[-0.02em] sm:text-lg">YOLO-V-PEFT</h1>
                 <Badge className="border border-emerald-300/20 bg-emerald-300/10 text-emerald-300">PWA</Badge>
                 <span className={`hidden size-2 rounded-full sm:block ${online ? 'bg-emerald-400' : 'bg-amber-400'}`} title={online ? 'Online' : 'Offline'} />
               </div>
@@ -93,7 +93,7 @@ export function EdgeWorkspace() {
         <DialogContent className="border-white/10 bg-[#0b151f] text-slate-100">
           <DialogHeader>
             <div className="mb-2 grid size-11 place-items-center rounded-xl bg-cyan-300/10"><Share className="size-5 text-cyan-300" /></div>
-            <DialogTitle>Install C3 Edge Lab</DialogTitle>
+            <DialogTitle>Install YOLO-V-PEFT</DialogTitle>
             <DialogDescription className="leading-6 text-slate-400">On iPhone, open this page in Safari, tap the Share button, then choose <strong className="text-slate-200">Add to Home Screen</strong>. On desktop, use the install icon in the address bar.</DialogDescription>
           </DialogHeader>
         </DialogContent>

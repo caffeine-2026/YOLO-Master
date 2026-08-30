@@ -1,6 +1,6 @@
 {
-  "name": "C3 Edge Lab",
-  "short_name": "C3 Edge",
+  "name": "YOLO-V-PEFT",
+  "short_name": "YOLO-V-PEFT",
   "description": "On-device runtime and dataset-scope inference for the C3 V-PEFT research benchmark.",
   "start_url": "/",
   "scope": "/",

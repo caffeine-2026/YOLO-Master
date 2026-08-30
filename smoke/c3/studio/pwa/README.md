@@ -1,4 +1,4 @@
-# C3 Edge Lab PWA
+# YOLO-V-PEFT PWA
 
 Installable, account-independent mobile edge inference for the validated C3 V-PEFT models. The PWA reuses the canonical static ONNX exports without retraining or editing P0/P1/P2.
 
