@@ -15,7 +15,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select';
-import { Slider } from '@/components/ui/slider';
 import type { EdgeRuntime } from '@/hooks/use-edge-runtime';
 import { drawDetections } from '@/lib/image';
 import type { InferenceTimings } from '@/lib/inference-engine';
@@ -37,7 +36,6 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
   const [running, setRunning] = useState(false);
   const [cameraReady, setCameraReady] = useState(false);
   const [facingMode, setFacingMode] = useState<'environment' | 'user'>('environment');
-  const [confidence, setConfidence] = useState(() => Math.round(MODEL_CATALOG[0].recommendedConfidence * 100));
   const [iou] = useState(45);
   const [fps, setFps] = useState(0);
   const [detectionCount, setDetectionCount] = useState(0);
@@ -89,7 +87,7 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
             video,
             video.videoWidth,
             video.videoHeight,
-            confidence / 100,
+            runtime.model.recommendedConfidence,
             iou / 100,
           );
           if (cancelled) return;
@@ -115,7 +113,7 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
       cancelled = true;
       if (animationRef.current !== null) cancelAnimationFrame(animationRef.current);
     };
-  }, [confidence, iou, running, runtime.engine, runtime.phase]);
+  }, [iou, running, runtime.engine, runtime.model.recommendedConfidence, runtime.phase]);
 
   async function toggleRun() {
     if (running) {
@@ -147,8 +145,6 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
   async function changeModel(id: string) {
     const resume = running;
     setRunning(false);
-    const nextModel = MODEL_CATALOG.find((model) => model.id === id) ?? MODEL_CATALOG[0];
-    setConfidence(Math.round(nextModel.recommendedConfidence * 100));
     runtime.selectModel(id);
     if (resume) {
       try {
@@ -235,18 +231,6 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
           )}
 
           <div className="absolute inset-x-0 bottom-0 z-10 p-3 sm:p-5">
-            <div className="glass-panel mb-2 flex items-center gap-3 rounded-xl px-3 py-2 lg:hidden">
-              <span className="shrink-0 text-[11px] text-slate-300">Review threshold</span>
-              <Slider
-                aria-label="Review confidence threshold"
-                value={[confidence]}
-                min={25}
-                max={90}
-                step={1}
-                onValueChange={(value) => setConfidence(Array.isArray(value) ? value[0] : value)}
-              />
-              <span className="w-9 text-right font-mono text-xs text-cyan-300">{confidence}%</span>
-            </div>
             <div className="glass-panel grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-[22px] p-3 sm:gap-5 sm:p-4">
               <div className="grid size-16 place-items-center rounded-full border border-violet-300/20 bg-violet-300/10 sm:size-20">
                 <div className="text-center">
@@ -297,19 +281,6 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
               <div className="flex justify-between gap-3"><dt className="text-muted-foreground">Input</dt><dd className="font-mono">1×3×640×640</dd></div>
               <div className="flex justify-between gap-3"><dt className="text-muted-foreground">Review candidates</dt><dd className="font-mono text-amber-300">{detectionCount}</dd></div>
             </dl>
-          </CardContent>
-        </Card>
-        <Card className="border-white/10 bg-card/70 ring-0">
-          <CardContent className="p-4">
-            <div className="mb-3 flex items-center justify-between text-sm"><span>Review threshold</span><span className="font-mono text-cyan-300">{(confidence / 100).toFixed(2)}</span></div>
-            <Slider
-              value={[confidence]}
-              min={25}
-              max={90}
-              step={1}
-              onValueChange={(value) => setConfidence(Array.isArray(value) ? value[0] : value)}
-            />
-            <p className="mt-3 text-xs leading-5 text-muted-foreground">Candidates are not confirmed defects. NMS IoU {(iou / 100).toFixed(2)} · class-aware.</p>
           </CardContent>
         </Card>
         <Card className="flex-1 border-white/10 bg-card/70 ring-0">
