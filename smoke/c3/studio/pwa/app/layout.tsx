@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://c3-edge-lab.ryeoryeong00.chatgpt.site'),
+  metadataBase: new URL('https://yoloc3vpeft.com'),
   title: 'C3 Edge Lab',
   description: 'Installable on-device industrial defect inference and benchmark lab.',
   applicationName: 'C3 Edge Lab',
