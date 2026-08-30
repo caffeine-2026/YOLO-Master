@@ -178,19 +178,24 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
           <canvas ref={overlayRef} className="pointer-events-none absolute inset-0 h-full w-full" aria-label="Detection overlay" />
           {!cameraReady && <div className="camera-grid absolute inset-0" aria-hidden="true" />}
           <div className="absolute inset-x-0 top-0 z-10 flex items-start justify-between gap-3 p-3 sm:p-5">
-            <div className="glass-panel flex min-w-0 items-center gap-2 rounded-2xl p-2">
-              <NativeSelect
-                aria-label="Detection model"
-                value={runtime.selectedId}
-                onChange={(event) => void changeModel(event.target.value)}
-                className="min-w-0"
-              >
-                {MODEL_CATALOG.map((model) => (
-                  <NativeSelectOption key={model.id} value={model.id}>{model.title}</NativeSelectOption>
-                ))}
-              </NativeSelect>
-              <Badge variant="outline" className="hidden border-white/10 bg-black/20 text-slate-300 sm:flex">
-                <Cpu /> {statusText}
+            <div className="min-w-0 space-y-2">
+              <div className="glass-panel flex min-w-0 items-center gap-2 rounded-2xl p-2">
+                <NativeSelect
+                  aria-label="Detection model"
+                  value={runtime.selectedId}
+                  onChange={(event) => void changeModel(event.target.value)}
+                  className="min-w-0"
+                >
+                  {MODEL_CATALOG.map((model) => (
+                    <NativeSelectOption key={model.id} value={model.id}>{model.title}</NativeSelectOption>
+                  ))}
+                </NativeSelect>
+                <Badge variant="outline" className="hidden border-white/10 bg-black/20 text-slate-300 sm:flex">
+                  <Cpu /> {statusText}
+                </Badge>
+              </div>
+              <Badge variant="outline" className="border-white/10 bg-[#071019]/80 text-[10px] text-slate-300 backdrop-blur">
+                Runtime demo · dataset-scope input only
               </Badge>
             </div>
             <Button
@@ -211,8 +216,8 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
                 <div className="mx-auto mb-5 grid size-20 place-items-center rounded-full border border-cyan-300/20 bg-cyan-300/[0.07] shadow-[0_0_70px_rgb(34_211_238/12%)]">
                   <Aperture className="size-9 text-cyan-300" />
                 </div>
-                <p className="text-lg font-medium tracking-tight">Camera is ready when you are</p>
-                <p className="mt-2 text-sm leading-6 text-slate-400">Frames stay on this device. The model is downloaded once, verified, and cached locally.</p>
+                <p className="text-lg font-medium tracking-tight">On-device runtime demo</p>
+                <p className="mt-2 text-sm leading-6 text-slate-400">Measures camera-pipeline FPS and latency. Detection quality is meaningful only for {runtime.model.verifiedUse.toLowerCase()}.</p>
               </div>
             </div>
           )}
@@ -279,7 +284,7 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
               <div className="flex justify-between gap-3"><dt className="text-muted-foreground">Model</dt><dd>{runtime.model.shortTitle}</dd></div>
               <div className="flex justify-between gap-3"><dt className="text-muted-foreground">Backend</dt><dd>{runtime.backend}</dd></div>
               <div className="flex justify-between gap-3"><dt className="text-muted-foreground">Input</dt><dd className="font-mono">1×3×640×640</dd></div>
-              <div className="flex justify-between gap-3"><dt className="text-muted-foreground">Review candidates</dt><dd className="font-mono text-amber-300">{detectionCount}</dd></div>
+              <div className="flex justify-between gap-3"><dt className="text-muted-foreground">Model candidates</dt><dd className="font-mono text-amber-300">{detectionCount}</dd></div>
             </dl>
           </CardContent>
         </Card>
@@ -288,7 +293,7 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
             <div className="flex items-center gap-2 text-sm font-medium"><Activity className="size-4 text-violet-300" /> Session trace</div>
             <div className="my-auto py-8 text-center">
               <div className="mx-auto mb-3 grid size-11 place-items-center rounded-xl bg-white/[0.04]"><Settings2 className="size-5 text-slate-500" /></div>
-              <p className="text-sm text-slate-400">{running ? `${detectionCount} review candidates · ${timings.totalMs.toFixed(1)} ms/frame` : runtime.model.captureHint}</p>
+              <p className="text-sm text-slate-400">{running ? `${detectionCount} model candidates · ${timings.totalMs.toFixed(1)} ms/frame` : runtime.model.captureHint}</p>
             </div>
           </CardContent>
         </Card>

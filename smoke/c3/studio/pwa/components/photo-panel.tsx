@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { CheckCircle2, ChevronDown, Download, FileImage, ImagePlus, Info, LoaderCircle, ScanSearch, ShieldCheck } from 'lucide-react';
+import { ChevronDown, Download, FileImage, ImagePlus, Info, LoaderCircle, ScanSearch, ShieldCheck } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -29,7 +29,7 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [processing, setProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [status, setStatus] = useState('Choose industrial defect photos to run private on-device inference.');
+  const [status, setStatus] = useState('Choose dataset-scope images for private on-device inference.');
 
   useEffect(() => () => resultUrlsRef.current.forEach((url) => URL.revokeObjectURL(url)), []);
 
@@ -94,8 +94,8 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
       }
       const candidateCount = nextResults.reduce((sum, result) => sum + result.detections.length, 0);
       setStatus(candidateCount
-        ? `Complete · ${candidateCount} defect candidate${candidateCount === 1 ? '' : 's'}`
-        : 'Complete · no defect candidates');
+        ? `Complete · ${candidateCount} model candidate${candidateCount === 1 ? '' : 's'}`
+        : 'Complete · 0 model candidates');
     } catch (error) {
       setStatus(error instanceof Error ? error.message : 'Unable to prepare the model.');
     } finally {
@@ -110,7 +110,8 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
       createdAt: new Date().toISOString(),
       model: runtime.model,
       backend: runtime.backend,
-      interpretation: 'Detections are review candidates, not confirmed defects.',
+      protocol: runtime.model.protocol,
+      interpretation: 'Model candidates are not confirmed defects. Zero candidates is not a quality pass. Interpret only on matching dataset-scope inputs.',
       confidenceThreshold: runtime.model.recommendedConfidence,
       results: results.map(({ url: _url, ...result }) => result),
     };
@@ -138,8 +139,8 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
       <Card className="min-h-[65svh] border-white/10 bg-card/60 ring-0">
         <CardHeader className="border-b border-white/8 pb-4 sm:grid-cols-[1fr_auto]">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan-300">Photo & batch</p>
-            <CardTitle className="mt-1 text-xl">Industrial defect inspection</CardTitle>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan-300">Dataset inference</p>
+            <CardTitle className="mt-1 text-xl">C3 experiment-scope evaluation</CardTitle>
           </div>
           <NativeSelect value={runtime.selectedId} onChange={(event) => changeModel(event.target.value)}>
             {MODEL_CATALOG.map((model) => <NativeSelectOption key={model.id} value={model.id}>{model.title}</NativeSelectOption>)}
@@ -149,10 +150,13 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
           <details className="group rounded-xl border border-white/8 bg-white/[0.025] p-3 text-xs">
             <summary className="flex cursor-pointer list-none items-center gap-2 text-slate-300 marker:hidden">
               <Info className="size-4 shrink-0 text-cyan-300" />
-              <span className="truncate">Model scope: {runtime.model.verifiedUse}</span>
+              <span className="truncate">Supported input: {runtime.model.verifiedUse}</span>
               <ChevronDown className="ml-auto size-4 shrink-0 text-slate-500 transition group-open:rotate-180" />
             </summary>
-            <p className="mt-3 border-t border-white/6 pt-3 leading-5 text-slate-500">{runtime.model.captureHint} Not designed for {runtime.model.outOfScope}.</p>
+            <div className="mt-3 space-y-2 border-t border-white/6 pt-3 leading-5 text-slate-500">
+              <p>{runtime.model.captureHint} Not evaluated for {runtime.model.outOfScope}.</p>
+              <p className="font-mono text-[11px] text-slate-400">{runtime.model.protocol}</p>
+            </div>
           </details>
           <div className="relative grid min-h-[42svh] place-items-center overflow-hidden rounded-[22px] border border-dashed border-white/12 bg-[#050b11]">
             {selected ? (
@@ -165,16 +169,16 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
             ) : (
               <div className="max-w-sm px-6 text-center">
                 <div className="mx-auto mb-4 grid size-16 place-items-center rounded-2xl bg-cyan-300/8"><ImagePlus className="size-7 text-cyan-300" /></div>
-                <p className="font-medium">Drop in up to 9 photos</p>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">Nothing is uploaded. Images and model inference remain in this browser.</p>
+                <p className="font-medium">Select up to 9 matching test images</p>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">Use official test-split or equivalent dataset-style inputs. Nothing is uploaded.</p>
               </div>
             )}
           </div>
 
           {selected && !selected.error && (
-            <div className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 text-sm ${selected.detections.length ? 'border-rose-300/15 bg-rose-300/[0.045] text-rose-100' : 'border-emerald-300/15 bg-emerald-300/[0.045] text-emerald-100'}`}>
-              {selected.detections.length ? <ScanSearch className="size-4 shrink-0 text-rose-300" /> : <CheckCircle2 className="size-4 shrink-0 text-emerald-300" />}
-              <strong>{selected.detections.length ? `${selected.detections.length} defect candidate${selected.detections.length === 1 ? '' : 's'}` : 'No defect candidates'}</strong>
+            <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.035] px-3 py-2.5 text-sm text-slate-200">
+              {selected.detections.length ? <ScanSearch className="size-4 shrink-0 text-cyan-300" /> : <Info className="size-4 shrink-0 text-slate-400" />}
+              <span><strong>{selected.detections.length} model candidate{selected.detections.length === 1 ? '' : 's'}</strong> · {selected.detections.length ? 'manual verification required' : 'not a quality pass/fail result'}</span>
             </div>
           )}
 
@@ -202,7 +206,7 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
         <div className="grid grid-cols-3 gap-2">
           {[
             ['Images', results.length],
-            ['Candidates', totalDetections],
+            ['Model candidates', totalDetections],
             ['End-to-end ms', meanLatency.toFixed(1)],
           ].map(([label, value]) => (
             <Card key={String(label)} className="border-white/10 bg-card/60 ring-0"><CardContent className="p-3 text-center"><strong className="block font-mono text-lg text-cyan-200">{value}</strong><span className="text-[10px] uppercase tracking-wide text-muted-foreground">{label}</span></CardContent></Card>
@@ -220,7 +224,7 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
                 onClick={() => setSelectedIndex(index)}
                 className={`flex w-full items-center justify-between rounded-xl border px-3 py-3 text-left transition ${selectedIndex === index ? 'border-cyan-300/25 bg-cyan-300/8' : 'border-white/6 bg-white/[0.025] hover:bg-white/[0.05]'}`}
               >
-                <span className="min-w-0"><span className="block truncate text-sm">{result.name}</span><span className="text-xs text-muted-foreground">{result.error ? 'Failed' : `${result.detections.length} review candidates`}</span></span>
+                <span className="min-w-0"><span className="block truncate text-sm">{result.name}</span><span className="text-xs text-muted-foreground">{result.error ? 'Failed' : `${result.detections.length} model candidates`}</span></span>
                 <span className="ml-3 font-mono text-xs text-slate-400">{result.timings.totalMs.toFixed(1)} ms</span>
               </button>
             ))}
