@@ -7,7 +7,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select';
-import { Slider } from '@/components/ui/slider';
 import type { EdgeRuntime } from '@/hooks/use-edge-runtime';
 import { drawDetections } from '@/lib/image';
 import type { InferenceResult } from '@/lib/inference-engine';
@@ -30,7 +29,6 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [processing, setProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [confidence, setConfidence] = useState(() => Math.round(MODEL_CATALOG[0].recommendedConfidence * 100));
   const [status, setStatus] = useState('Choose industrial defect photos to run private on-device inference.');
 
   useEffect(() => () => resultUrlsRef.current.forEach((url) => URL.revokeObjectURL(url)), []);
@@ -53,15 +51,8 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
   function changeModel(id: string) {
     const nextModel = MODEL_CATALOG.find((model) => model.id === id) ?? MODEL_CATALOG[0];
     clearResults();
-    setConfidence(Math.round(nextModel.recommendedConfidence * 100));
     setStatus(`Use only ${nextModel.verifiedUse.toLowerCase()}.`);
     runtime.selectModel(id);
-  }
-
-  function changeConfidence(value: number | readonly number[]) {
-    const next = Array.isArray(value) ? value[0] : value;
-    setConfidence(next);
-    if (results.length) setStatus('Threshold changed. Choose the photos again to apply it.');
   }
 
   async function processFiles(files: FileList | null) {
@@ -72,6 +63,7 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
     setStatus('Preparing verified model');
     try {
       await runtime.loadModel();
+      const confidenceThreshold = runtime.model.recommendedConfidence;
       const selectedFiles = Array.from(files).slice(0, 9);
       const nextResults: PhotoResult[] = [];
       for (let index = 0; index < selectedFiles.length; index += 1) {
@@ -81,15 +73,15 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
         resultUrlsRef.current.push(url);
         try {
           const bitmap = await createImageBitmap(file);
-          const inference = await runtime.engine.runSource(bitmap, bitmap.width, bitmap.height, confidence / 100, 0.45);
+          const inference = await runtime.engine.runSource(bitmap, bitmap.width, bitmap.height, confidenceThreshold, 0.45);
           bitmap.close();
-          nextResults.push({ ...inference, id: `${file.name}-${file.lastModified}-${index}`, name: file.name, url, confidenceThreshold: confidence / 100 });
+          nextResults.push({ ...inference, id: `${file.name}-${file.lastModified}-${index}`, name: file.name, url, confidenceThreshold });
         } catch (error) {
           nextResults.push({
             id: `${file.name}-${file.lastModified}-${index}`,
             name: file.name,
             url,
-            confidenceThreshold: confidence / 100,
+            confidenceThreshold,
             width: 1,
             height: 1,
             detections: [],
@@ -102,8 +94,8 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
       }
       const candidateCount = nextResults.reduce((sum, result) => sum + result.detections.length, 0);
       setStatus(candidateCount
-        ? `Complete · ${candidateCount} defect candidate${candidateCount === 1 ? '' : 's'} above ${confidence}%`
-        : `Complete · no defect candidates above ${confidence}%`);
+        ? `Complete · ${candidateCount} defect candidate${candidateCount === 1 ? '' : 's'}`
+        : 'Complete · no defect candidates');
     } catch (error) {
       setStatus(error instanceof Error ? error.message : 'Unable to prepare the model.');
     } finally {
@@ -119,7 +111,7 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
       model: runtime.model,
       backend: runtime.backend,
       interpretation: 'Detections are review candidates, not confirmed defects.',
-      confidenceThreshold: confidence / 100,
+      confidenceThreshold: runtime.model.recommendedConfidence,
       results: results.map(({ url: _url, ...result }) => result),
     };
     const file = new File([JSON.stringify(report, null, 2)], `c3-photo-${Date.now()}.json`, { type: 'application/json' });
@@ -154,20 +146,14 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
           </NativeSelect>
         </CardHeader>
         <CardContent className="flex flex-col gap-4 p-4 sm:p-5">
-          <div className="rounded-2xl border border-white/8 bg-white/[0.025] p-3">
-            <div className="mb-3 flex items-center gap-3 text-xs">
-              <details className="group min-w-0 flex-1">
-                <summary className="flex cursor-pointer list-none items-center gap-2 text-slate-300 marker:hidden">
-                  <Info className="size-4 shrink-0 text-cyan-300" />
-                  <span className="truncate">Model scope: {runtime.model.verifiedUse}</span>
-                  <ChevronDown className="ml-auto size-4 shrink-0 text-slate-500 transition group-open:rotate-180" />
-                </summary>
-                <p className="mt-3 border-t border-white/6 pt-3 leading-5 text-slate-500">{runtime.model.captureHint} Not designed for {runtime.model.outOfScope}.</p>
-              </details>
-              <span className="shrink-0 font-mono text-cyan-300">{confidence}%</span>
-            </div>
-            <Slider aria-label="Photo review confidence threshold" value={[confidence]} min={25} max={90} step={1} onValueChange={changeConfidence} />
-          </div>
+          <details className="group rounded-xl border border-white/8 bg-white/[0.025] p-3 text-xs">
+            <summary className="flex cursor-pointer list-none items-center gap-2 text-slate-300 marker:hidden">
+              <Info className="size-4 shrink-0 text-cyan-300" />
+              <span className="truncate">Model scope: {runtime.model.verifiedUse}</span>
+              <ChevronDown className="ml-auto size-4 shrink-0 text-slate-500 transition group-open:rotate-180" />
+            </summary>
+            <p className="mt-3 border-t border-white/6 pt-3 leading-5 text-slate-500">{runtime.model.captureHint} Not designed for {runtime.model.outOfScope}.</p>
+          </details>
           <div className="relative grid min-h-[42svh] place-items-center overflow-hidden rounded-[22px] border border-dashed border-white/12 bg-[#050b11]">
             {selected ? (
               <>
@@ -188,7 +174,7 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
           {selected && !selected.error && (
             <div className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 text-sm ${selected.detections.length ? 'border-rose-300/15 bg-rose-300/[0.045] text-rose-100' : 'border-emerald-300/15 bg-emerald-300/[0.045] text-emerald-100'}`}>
               {selected.detections.length ? <ScanSearch className="size-4 shrink-0 text-rose-300" /> : <CheckCircle2 className="size-4 shrink-0 text-emerald-300" />}
-              <span><strong>{selected.detections.length ? `${selected.detections.length} defect candidate${selected.detections.length === 1 ? '' : 's'}` : 'No defect candidates'}</strong><span className="text-slate-500"> above {Math.round(selected.confidenceThreshold * 100)}%</span></span>
+              <strong>{selected.detections.length ? `${selected.detections.length} defect candidate${selected.detections.length === 1 ? '' : 's'}` : 'No defect candidates'}</strong>
             </div>
           )}
 

@@ -103,7 +103,7 @@ export class EdgeInferenceEngine {
     source: CanvasImageSource,
     width: number,
     height: number,
-    confidence = 0.5,
+    confidence: number,
     iou = 0.45,
   ): Promise<InferenceResult> {
     if (!this.model || !this.inputCanvas) throw new Error('Load a model before inference.');

@@ -38,7 +38,7 @@ export function decodeOutput(
   shape: readonly number[],
   labels: string[],
   transform: LetterboxTransform,
-  confidenceThreshold = 0.5,
+  confidenceThreshold = 0.25,
   iouThreshold = 0.45,
 ): Detection[] {
   if (shape.length !== 3) throw new Error(`Unexpected model output shape: [${shape.join(', ')}]`);
