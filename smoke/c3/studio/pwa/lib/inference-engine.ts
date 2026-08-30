@@ -109,7 +109,14 @@ export class EdgeInferenceEngine {
     if (!this.model || !this.inputCanvas) throw new Error('Load a model before inference.');
     const totalStarted = performance.now();
     const preprocessStarted = performance.now();
-    const prepared = prepareCanvasSource(source, width, height, this.model.inputSize, this.inputCanvas);
+    const prepared = prepareCanvasSource(
+      source,
+      width,
+      height,
+      this.model.inputSize,
+      this.inputCanvas,
+      this.model.inputColorMode === 'grayscale',
+    );
     const preprocessMs = performance.now() - preprocessStarted;
     const inference = await this.runTensor(prepared.data);
     const postprocessStarted = performance.now();

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { backendCandidatesForRuntime } from '../lib/backend-order.ts';
+import { normalizedLuminance } from '../lib/image.ts';
 import { summarizeLatencies } from '../lib/metrics.ts';
 import { MODEL_CATALOG } from '../lib/models.ts';
 import { decodeOutput, intersectionOverUnion, type Detection } from '../lib/postprocess.ts';
@@ -14,10 +15,18 @@ test('catalog pins two verified static models', () => {
     assert.match(model.sha256, /^[a-f0-9]{64}$/);
     assert.match(model.url, /^\/models\/.+\.onnx$/);
     assert.ok(model.recommendedConfidence >= 0.3 && model.recommendedConfidence < 0.5);
+    assert.ok(model.inputColorMode === 'rgb' || model.inputColorMode === 'grayscale');
     assert.ok(model.verifiedUse.length > 20);
     assert.ok(model.captureHint.length > 40);
     assert.ok(model.outOfScope.length > 30);
   }
+});
+
+test('NEU grayscale preprocessing uses one normalized luminance value for all channels', () => {
+  assert.equal(normalizedLuminance(0, 0, 0), 0);
+  assert.equal(normalizedLuminance(255, 255, 255), 1);
+  assert.ok(Math.abs(normalizedLuminance(255, 0, 0) - 0.299) < 1e-12);
+  assert.equal(MODEL_CATALOG.find((model) => model.dataset === 'NEU-DET')?.inputColorMode, 'grayscale');
 });
 
 test('Apple mobile browsers prefer the compatible WASM backend', () => {
