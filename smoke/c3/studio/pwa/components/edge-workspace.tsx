@@ -1,7 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { Camera, ChartNoAxesColumnIncreasing, Download, Images, Layers3, Share, Sparkles } from 'lucide-react';
+import { Camera, ChartNoAxesColumnIncreasing, Download, Images, Layers3, Share } from 'lucide-react';
 
 import { BenchPanel } from '@/components/bench-panel';
 import { LivePanel } from '@/components/live-panel';
@@ -43,8 +44,8 @@ export function EdgeWorkspace() {
       <div className="mx-auto flex min-h-svh w-full max-w-[1480px] flex-col px-3 pb-[calc(86px+env(safe-area-inset-bottom))] pt-3 sm:px-6 sm:pt-5 lg:pb-6">
         <header className="mb-3 flex items-center justify-between gap-3 sm:mb-5">
           <div className="flex min-w-0 items-center gap-3">
-            <div className="grid size-10 shrink-0 place-items-center rounded-[14px] border border-cyan-300/20 bg-cyan-300/10 shadow-[0_0_30px_rgb(34_211_238/10%)]">
-              <Sparkles className="size-5 text-cyan-300" />
+            <div className="relative size-10 shrink-0 overflow-hidden rounded-[14px] border border-cyan-300/20 bg-cyan-300/10 shadow-[0_0_30px_rgb(34_211_238/10%)]">
+              <Image src="/icon-192.png" alt="C3 Edge Lab penguin inspector" width={40} height={40} className="size-full object-cover" priority />
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-2">
