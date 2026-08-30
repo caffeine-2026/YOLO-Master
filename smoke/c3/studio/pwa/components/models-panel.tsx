@@ -8,17 +8,16 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import type { EdgeRuntime } from '@/hooks/use-edge-runtime';
 import { ensureModelBytes, modelIsCached, removeCachedModel, verifyCachedModel } from '@/lib/model-cache';
+import { backendCandidatesForRuntime } from '@/lib/backend-order';
 import { formatBytes, MODEL_CATALOG, type ModelSpec } from '@/lib/models';
 
 type CacheMap = Record<string, boolean>;
 
 function supportedBackends(): string[] {
   if (typeof window === 'undefined') return [];
-  const result: string[] = [];
   const canvas = document.createElement('canvas');
-  if (canvas.getContext('webgl2') || canvas.getContext('webgl')) result.push('WebGL');
-  result.push('WASM');
-  return result;
+  const hasWebGl = Boolean(canvas.getContext('webgl2') || canvas.getContext('webgl'));
+  return backendCandidatesForRuntime(navigator, hasWebGl).map((backend) => backend.toUpperCase());
 }
 
 export function ModelsPanel({ runtime }: { runtime: EdgeRuntime }) {
@@ -117,7 +116,7 @@ export function ModelsPanel({ runtime }: { runtime: EdgeRuntime }) {
       </Card>
 
       <aside className="flex flex-col gap-3">
-        <Card className="border-white/10 bg-card/60 ring-0"><CardContent className="p-4"><div className="mb-4 flex items-center gap-2 font-medium"><Cpu className="size-4 text-violet-300" /> Browser backends</div><div className="flex flex-wrap gap-2">{backends.map((backend, index) => <Badge key={backend} variant="outline" className={index === 0 ? 'border-cyan-300/20 bg-cyan-300/8 text-cyan-300' : 'border-white/10 text-muted-foreground'}>{backend}</Badge>)}</div><p className="mt-4 text-xs leading-5 text-muted-foreground">The app tries the fastest available provider and falls back automatically. iPhone commonly uses WebGL or WASM.</p></CardContent></Card>
+        <Card className="border-white/10 bg-card/60 ring-0"><CardContent className="p-4"><div className="mb-4 flex items-center gap-2 font-medium"><Cpu className="size-4 text-violet-300" /> Browser backends</div><div className="flex flex-wrap gap-2">{backends.map((backend, index) => <Badge key={backend} variant="outline" className={index === 0 ? 'border-cyan-300/20 bg-cyan-300/8 text-cyan-300' : 'border-white/10 text-muted-foreground'}>{backend}</Badge>)}</div><p className="mt-4 text-xs leading-5 text-muted-foreground">The app tries the fastest compatible provider and falls back automatically. iPhone uses WASM first for reliable model support.</p></CardContent></Card>
         <Card className="border-white/10 bg-card/60 ring-0"><CardContent className="p-4"><div className="mb-4 flex items-center gap-2 font-medium"><Database className="size-4 text-emerald-300" /> Device storage</div><p className="text-sm leading-6 text-muted-foreground">Model bytes are stored in IndexedDB after SHA-256 verification. Photos are never persisted by the app.</p><div className="mt-4 flex items-center gap-2 text-xs text-emerald-300"><ShieldCheck className="size-4" /> Privacy-first local inference</div></CardContent></Card>
         <Card className="border-white/10 bg-card/60 ring-0"><CardContent className="p-4"><div className="mb-3 flex items-center gap-2 font-medium"><HardDrive className="size-4 text-cyan-300" /> Cache state</div><p className="font-mono text-3xl">{Object.values(cache).filter(Boolean).length}<span className="ml-2 text-sm text-muted-foreground">/ {MODEL_CATALOG.length}</span></p><Button type="button" variant="ghost" size="sm" onClick={() => void refresh()} className="mt-3"><RefreshCw /> Refresh</Button></CardContent></Card>
         {message && <div className="rounded-xl border border-white/8 bg-white/[0.035] p-3 text-sm text-slate-300">{message}</div>}

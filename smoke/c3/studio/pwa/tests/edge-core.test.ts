@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
+import { backendCandidatesForRuntime } from '../lib/backend-order.ts';
 import { summarizeLatencies } from '../lib/metrics.ts';
 import { MODEL_CATALOG } from '../lib/models.ts';
 import { decodeOutput, intersectionOverUnion, type Detection } from '../lib/postprocess.ts';
@@ -13,6 +14,21 @@ test('catalog pins two verified static models', () => {
     assert.match(model.sha256, /^[a-f0-9]{64}$/);
     assert.match(model.url, /^\/models\/.+\.onnx$/);
   }
+});
+
+test('Apple mobile browsers prefer the compatible WASM backend', () => {
+  assert.deepEqual(
+    backendCandidatesForRuntime({ userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X)' }, true),
+    ['wasm', 'webgl'],
+  );
+  assert.deepEqual(
+    backendCandidatesForRuntime({ platform: 'MacIntel', maxTouchPoints: 5 }, true),
+    ['wasm', 'webgl'],
+  );
+  assert.deepEqual(
+    backendCandidatesForRuntime({ userAgent: 'Mozilla/5.0 (Linux; Android 15)' }, true),
+    ['webgl', 'wasm'],
+  );
 });
 
 test('channel-first YOLO output decodes with class-aware NMS', () => {
