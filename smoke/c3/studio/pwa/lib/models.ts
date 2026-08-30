@@ -17,6 +17,10 @@ export type ModelSpec = {
   verifiedUse: string;
   captureHint: string;
   outOfScope: string;
+  protocol: string;
+  sourceCheckpoint: string;
+  map5095: number;
+  map50: number;
 };
 
 export const MODEL_CATALOG: ModelSpec[] = [
@@ -34,11 +38,15 @@ export const MODEL_CATALOG: ModelSpec[] = [
     inputName: 'images',
     outputName: 'output0',
     labels: ['crazing', 'inclusion', 'patches', 'pitted_surface', 'rolled-in_scale', 'scratches'],
-    recommendedConfidence: 0.325,
+    recommendedConfidence: 0.25,
     inputColorMode: 'grayscale',
-    verifiedUse: 'Flat rolled-steel surface close-ups',
-    captureHint: 'Fill the frame with one flat steel surface, keep the camera parallel, and use even diffuse light.',
-    outOfScope: 'everyday metal objects, painted or curved parts, people, rooms, and general object recognition',
+    verifiedUse: 'NEU-DET-style 200×200 grayscale crops of one hot-rolled steel surface',
+    captureHint: 'Use the official NEU-DET test split or an equivalent tightly cropped, grayscale, front-facing steel-surface image.',
+    outOfScope: 'finished metal objects, painted or curved parts, rooms, people, and general object recognition',
+    protocol: 'P1 canonical 100-shot · seed 824 · 100 epochs · fixed confidence 0.25',
+    sourceCheckpoint: 'neu_vpeft_seed824_e100/weights/best.pt',
+    map5095: 0.328034,
+    map50: 0.623852,
   },
   {
     id: 'deeppcb-vpeft-640',
@@ -54,11 +62,15 @@ export const MODEL_CATALOG: ModelSpec[] = [
     inputName: 'images',
     outputName: 'output0',
     labels: ['open', 'short', 'mousebite', 'spur', 'copper', 'pin-hole'],
-    recommendedConfidence: 0.441,
-    inputColorMode: 'rgb',
-    verifiedUse: 'DeepPCB-style bare circuit-board inspection images',
-    captureHint: 'Use a sharp, top-down PCB image with traces filling the frame and minimal glare or background.',
-    outOfScope: 'assembled electronics, household photos, people, rooms, and non-PCB surfaces',
+    recommendedConfidence: 0.25,
+    inputColorMode: 'grayscale',
+    verifiedUse: 'DeepPCB 640×640 binarized bare-board test crops',
+    captureHint: 'Use the official DeepPCB tested-image split or an equivalent aligned, binarized bare-board crop.',
+    outOfScope: 'assembled green PCBs, PCB drawings or schematics, phone photos, household scenes, and non-PCB surfaces',
+    protocol: 'P1 canonical 100-shot · seed 824 · 100 epochs · fixed confidence 0.25',
+    sourceCheckpoint: 'deeppcb_vpeft_seed824_e100/weights/best.pt',
+    map5095: 0.511534,
+    map50: 0.779435,
   },
 ];
 

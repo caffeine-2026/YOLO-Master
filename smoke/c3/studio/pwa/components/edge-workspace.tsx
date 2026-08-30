@@ -52,7 +52,7 @@ export function EdgeWorkspace() {
                 <Badge className="border border-emerald-300/20 bg-emerald-300/10 text-emerald-300">PWA</Badge>
                 <span className={`hidden size-2 rounded-full sm:block ${online ? 'bg-emerald-400' : 'bg-amber-400'}`} title={online ? 'Online' : 'Offline'} />
               </div>
-              <p className="truncate text-xs text-muted-foreground">Industrial V-PEFT · private on-device workspace</p>
+              <p className="truncate text-xs text-muted-foreground">C3 V-PEFT research benchmark · on-device</p>
             </div>
           </div>
           {!installer.isStandalone && (

@@ -1,7 +1,7 @@
 {
   "name": "C3 Edge Lab",
   "short_name": "C3 Edge",
-  "description": "Private on-device industrial defect inference and benchmark lab.",
+  "description": "On-device runtime and dataset-scope inference for the C3 V-PEFT research benchmark.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

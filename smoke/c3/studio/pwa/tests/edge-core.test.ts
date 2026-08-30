@@ -14,11 +14,14 @@ test('catalog pins two verified static models', () => {
     assert.equal(model.inputSize, 640);
     assert.match(model.sha256, /^[a-f0-9]{64}$/);
     assert.match(model.url, /^\/models\/.+\.onnx$/);
-    assert.ok(model.recommendedConfidence >= 0.3 && model.recommendedConfidence < 0.5);
+    assert.equal(model.recommendedConfidence, 0.25);
     assert.ok(model.inputColorMode === 'rgb' || model.inputColorMode === 'grayscale');
     assert.ok(model.verifiedUse.length > 20);
     assert.ok(model.captureHint.length > 40);
     assert.ok(model.outOfScope.length > 30);
+    assert.match(model.protocol, /100-shot.+seed 824.+100 epochs.+0\.25/);
+    assert.ok(model.map5095 > 0 && model.map5095 < 1);
+    assert.ok(model.map50 > model.map5095 && model.map50 < 1);
   }
 });
 
