@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Activity,
   Aperture,
+  CircleAlert,
   Cpu,
   FlipHorizontal2,
   Pause,
@@ -37,7 +38,7 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
   const [running, setRunning] = useState(false);
   const [cameraReady, setCameraReady] = useState(false);
   const [facingMode, setFacingMode] = useState<'environment' | 'user'>('environment');
-  const [confidence, setConfidence] = useState(25);
+  const [confidence, setConfidence] = useState(() => Math.round(MODEL_CATALOG[0].recommendedConfidence * 100));
   const [iou] = useState(45);
   const [fps, setFps] = useState(0);
   const [detectionCount, setDetectionCount] = useState(0);
@@ -147,6 +148,8 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
   async function changeModel(id: string) {
     const resume = running;
     setRunning(false);
+    const nextModel = MODEL_CATALOG.find((model) => model.id === id) ?? MODEL_CATALOG[0];
+    setConfidence(Math.round(nextModel.recommendedConfidence * 100));
     runtime.selectModel(id);
     if (resume) {
       try {
@@ -232,7 +235,26 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
             </div>
           )}
 
+          {!cameraError && !runtime.error && runtime.phase !== 'downloading' && runtime.phase !== 'compiling' && (
+            <div className="absolute inset-x-3 top-24 z-10 flex items-start gap-2 rounded-xl border border-amber-300/20 bg-amber-950/70 p-3 text-xs leading-5 text-amber-100 backdrop-blur sm:inset-x-5">
+              <CircleAlert className="mt-0.5 size-4 shrink-0 text-amber-300" />
+              <span><strong>Verified input:</strong> {runtime.model.verifiedUse}. Not for {runtime.model.outOfScope}.</span>
+            </div>
+          )}
+
           <div className="absolute inset-x-0 bottom-0 z-10 p-3 sm:p-5">
+            <div className="glass-panel mb-2 flex items-center gap-3 rounded-xl px-3 py-2 lg:hidden">
+              <span className="shrink-0 text-[11px] text-slate-300">Review threshold</span>
+              <Slider
+                aria-label="Review confidence threshold"
+                value={[confidence]}
+                min={25}
+                max={90}
+                step={1}
+                onValueChange={(value) => setConfidence(Array.isArray(value) ? value[0] : value)}
+              />
+              <span className="w-9 text-right font-mono text-xs text-cyan-300">{confidence}%</span>
+            </div>
             <div className="glass-panel grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-[22px] p-3 sm:gap-5 sm:p-4">
               <div className="grid size-16 place-items-center rounded-full border border-violet-300/20 bg-violet-300/10 sm:size-20">
                 <div className="text-center">
@@ -281,21 +303,21 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
               <div className="flex justify-between gap-3"><dt className="text-muted-foreground">Model</dt><dd>{runtime.model.shortTitle}</dd></div>
               <div className="flex justify-between gap-3"><dt className="text-muted-foreground">Backend</dt><dd>{runtime.backend}</dd></div>
               <div className="flex justify-between gap-3"><dt className="text-muted-foreground">Input</dt><dd className="font-mono">1×3×640×640</dd></div>
-              <div className="flex justify-between gap-3"><dt className="text-muted-foreground">Detections</dt><dd className="font-mono text-emerald-300">{detectionCount}</dd></div>
+              <div className="flex justify-between gap-3"><dt className="text-muted-foreground">Review candidates</dt><dd className="font-mono text-amber-300">{detectionCount}</dd></div>
             </dl>
           </CardContent>
         </Card>
         <Card className="border-white/10 bg-card/70 ring-0">
           <CardContent className="p-4">
-            <div className="mb-3 flex items-center justify-between text-sm"><span>Confidence</span><span className="font-mono text-cyan-300">{(confidence / 100).toFixed(2)}</span></div>
+            <div className="mb-3 flex items-center justify-between text-sm"><span>Review threshold</span><span className="font-mono text-cyan-300">{(confidence / 100).toFixed(2)}</span></div>
             <Slider
               value={[confidence]}
-              min={5}
+              min={25}
               max={90}
               step={1}
               onValueChange={(value) => setConfidence(Array.isArray(value) ? value[0] : value)}
             />
-            <p className="mt-3 text-xs leading-5 text-muted-foreground">NMS IoU {(iou / 100).toFixed(2)} · class-aware · maximum 100 detections</p>
+            <p className="mt-3 text-xs leading-5 text-muted-foreground">Candidates are not confirmed defects. NMS IoU {(iou / 100).toFixed(2)} · class-aware.</p>
           </CardContent>
         </Card>
         <Card className="flex-1 border-white/10 bg-card/70 ring-0">
@@ -303,7 +325,7 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
             <div className="flex items-center gap-2 text-sm font-medium"><Activity className="size-4 text-violet-300" /> Session trace</div>
             <div className="my-auto py-8 text-center">
               <div className="mx-auto mb-3 grid size-11 place-items-center rounded-xl bg-white/[0.04]"><Settings2 className="size-5 text-slate-500" /></div>
-              <p className="text-sm text-slate-400">{running ? `${detectionCount} detections · ${timings.totalMs.toFixed(1)} ms/frame` : 'Start inference to begin a measured session.'}</p>
+              <p className="text-sm text-slate-400">{running ? `${detectionCount} review candidates · ${timings.totalMs.toFixed(1)} ms/frame` : runtime.model.captureHint}</p>
             </div>
           </CardContent>
         </Card>
