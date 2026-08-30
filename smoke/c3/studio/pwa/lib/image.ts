@@ -7,12 +7,17 @@ export type PreparedInput = {
   transform: LetterboxTransform;
 };
 
+export function normalizedLuminance(red: number, green: number, blue: number): number {
+  return (0.299 * red + 0.587 * green + 0.114 * blue) / 255;
+}
+
 export function prepareCanvasSource(
   source: CanvasImageSource,
   sourceWidth: number,
   sourceHeight: number,
   inputSize: number,
   canvas: HTMLCanvasElement,
+  grayscale = false,
 ): PreparedInput {
   if (!sourceWidth || !sourceHeight) throw new Error('The source image has no dimensions.');
   canvas.width = inputSize;
@@ -33,9 +38,16 @@ export function prepareCanvasSource(
   const plane = inputSize * inputSize;
   const tensor = new Float32Array(plane * 3);
   for (let pixel = 0, rgbaOffset = 0; pixel < plane; pixel += 1, rgbaOffset += 4) {
-    tensor[pixel] = rgba[rgbaOffset] / 255;
-    tensor[plane + pixel] = rgba[rgbaOffset + 1] / 255;
-    tensor[plane * 2 + pixel] = rgba[rgbaOffset + 2] / 255;
+    if (grayscale) {
+      const value = normalizedLuminance(rgba[rgbaOffset], rgba[rgbaOffset + 1], rgba[rgbaOffset + 2]);
+      tensor[pixel] = value;
+      tensor[plane + pixel] = value;
+      tensor[plane * 2 + pixel] = value;
+    } else {
+      tensor[pixel] = rgba[rgbaOffset] / 255;
+      tensor[plane + pixel] = rgba[rgbaOffset + 1] / 255;
+      tensor[plane * 2 + pixel] = rgba[rgbaOffset + 2] / 255;
+    }
   }
   return {
     data: tensor,

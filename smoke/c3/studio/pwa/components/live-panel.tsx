@@ -173,7 +173,7 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
             ref={videoRef}
             muted
             playsInline
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${cameraReady ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${runtime.model.inputColorMode === 'grayscale' ? 'grayscale' : ''} ${cameraReady ? 'opacity-100' : 'opacity-0'}`}
           />
           <canvas ref={overlayRef} className="pointer-events-none absolute inset-0 h-full w-full" aria-label="Detection overlay" />
           {!cameraReady && <div className="camera-grid absolute inset-0" aria-hidden="true" />}

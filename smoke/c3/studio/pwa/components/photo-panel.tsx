@@ -158,7 +158,7 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
             {selected ? (
               <>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img ref={imageRef} src={selected.url} alt={selected.name} onLoad={drawSelected} className="absolute inset-0 h-full w-full object-contain" />
+                <img ref={imageRef} src={selected.url} alt={selected.name} onLoad={drawSelected} className={`absolute inset-0 h-full w-full object-contain ${runtime.model.inputColorMode === 'grayscale' ? 'grayscale' : ''}`} />
                 <canvas ref={overlayRef} className="pointer-events-none absolute inset-0 h-full w-full" />
                 {selected.error && <div className="absolute inset-x-4 bottom-4 rounded-xl bg-rose-950/85 p-3 text-sm text-rose-200">{selected.error}</div>}
               </>
