@@ -4,7 +4,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Activity,
   Aperture,
-  CircleAlert,
   Cpu,
   FlipHorizontal2,
   Pause,
@@ -232,13 +231,6 @@ export function LivePanel({ runtime }: { runtime: EdgeRuntime }) {
             <div className="absolute inset-x-3 top-24 z-20 rounded-xl border border-cyan-300/15 bg-[#071019]/90 p-3 backdrop-blur sm:inset-x-5">
               <div className="mb-2 flex justify-between text-xs"><span>{statusText}</span><span>{runtime.progress}%</span></div>
               <div className="h-1.5 overflow-hidden rounded-full bg-white/10"><div className="h-full bg-cyan-300 transition-all" style={{ width: `${runtime.progress}%` }} /></div>
-            </div>
-          )}
-
-          {!cameraError && !runtime.error && runtime.phase !== 'downloading' && runtime.phase !== 'compiling' && (
-            <div className="absolute inset-x-3 top-24 z-10 flex items-start gap-2 rounded-xl border border-amber-300/20 bg-amber-950/70 p-3 text-xs leading-5 text-amber-100 backdrop-blur sm:inset-x-5">
-              <CircleAlert className="mt-0.5 size-4 shrink-0 text-amber-300" />
-              <span><strong>Verified input:</strong> {runtime.model.verifiedUse}. Not for {runtime.model.outOfScope}.</span>
             </div>
           )}
 
