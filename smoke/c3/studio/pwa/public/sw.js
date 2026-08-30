@@ -1,5 +1,5 @@
-const CACHE_NAME = 'c3-edge-shell-v2';
-const APP_SHELL = ['/', '/manifest.webmanifest', '/icon.svg', '/icon-192.png', '/icon-512.png'];
+const CACHE_NAME = 'c3-edge-shell-v3';
+const APP_SHELL = ['/', '/manifest.webmanifest', '/icon-64.png', '/icon-180.png', '/icon-192.png', '/icon-512.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));

@@ -27,8 +27,11 @@ export const metadata: Metadata = {
     telephone: false,
   },
   icons: {
-    icon: '/icon.svg',
-    apple: '/icon-192.png',
+    icon: [
+      { url: '/icon-64.png', sizes: '64x64', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: [{ url: '/icon-180.png', sizes: '180x180', type: 'image/png' }],
   },
   openGraph: {
     type: 'website',
