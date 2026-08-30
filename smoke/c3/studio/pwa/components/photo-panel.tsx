@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { CircleAlert, Download, FileImage, ImagePlus, LoaderCircle, ScanSearch, ShieldCheck } from 'lucide-react';
+import { CheckCircle2, ChevronDown, Download, FileImage, ImagePlus, Info, LoaderCircle, ScanSearch, ShieldCheck } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -102,8 +102,8 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
       }
       const candidateCount = nextResults.reduce((sum, result) => sum + result.detections.length, 0);
       setStatus(candidateCount
-        ? `${candidateCount} review candidate${candidateCount === 1 ? '' : 's'} found. Manually verify only in the model's validated domain.`
-        : `No candidates above ${(confidence / 100).toFixed(2)}. This is not a defect-free certificate.`);
+        ? `Complete · ${candidateCount} defect candidate${candidateCount === 1 ? '' : 's'} above ${confidence}%`
+        : `Complete · no defect candidates above ${confidence}%`);
     } catch (error) {
       setStatus(error instanceof Error ? error.message : 'Unable to prepare the model.');
     } finally {
@@ -154,15 +154,19 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
           </NativeSelect>
         </CardHeader>
         <CardContent className="flex flex-col gap-4 p-4 sm:p-5">
-          <div className="grid gap-3 rounded-2xl border border-amber-300/18 bg-amber-300/[0.055] p-3 sm:grid-cols-[1fr_minmax(190px,280px)] sm:items-center">
-            <div className="flex items-start gap-2 text-xs leading-5 text-amber-100">
-              <CircleAlert className="mt-0.5 size-4 shrink-0 text-amber-300" />
-              <div><strong className="block text-amber-200">Verified input: {runtime.model.verifiedUse}</strong><span>{runtime.model.captureHint} Not for {runtime.model.outOfScope}.</span></div>
+          <div className="rounded-2xl border border-white/8 bg-white/[0.025] p-3">
+            <div className="mb-3 flex items-center gap-3 text-xs">
+              <details className="group min-w-0 flex-1">
+                <summary className="flex cursor-pointer list-none items-center gap-2 text-slate-300 marker:hidden">
+                  <Info className="size-4 shrink-0 text-cyan-300" />
+                  <span className="truncate">Model scope: {runtime.model.verifiedUse}</span>
+                  <ChevronDown className="ml-auto size-4 shrink-0 text-slate-500 transition group-open:rotate-180" />
+                </summary>
+                <p className="mt-3 border-t border-white/6 pt-3 leading-5 text-slate-500">{runtime.model.captureHint} Not designed for {runtime.model.outOfScope}.</p>
+              </details>
+              <span className="shrink-0 font-mono text-cyan-300">{confidence}%</span>
             </div>
-            <div>
-              <div className="mb-2 flex items-center justify-between text-xs"><span className="text-slate-300">Review threshold</span><span className="font-mono text-cyan-300">{confidence}%</span></div>
-              <Slider aria-label="Photo review confidence threshold" value={[confidence]} min={25} max={90} step={1} onValueChange={changeConfidence} />
-            </div>
+            <Slider aria-label="Photo review confidence threshold" value={[confidence]} min={25} max={90} step={1} onValueChange={changeConfidence} />
           </div>
           <div className="relative grid min-h-[42svh] place-items-center overflow-hidden rounded-[22px] border border-dashed border-white/12 bg-[#050b11]">
             {selected ? (
@@ -182,9 +186,9 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
           </div>
 
           {selected && !selected.error && (
-            <div className={`rounded-xl border p-3 text-sm ${selected.detections.length ? 'border-amber-300/18 bg-amber-300/[0.055] text-amber-100' : 'border-emerald-300/18 bg-emerald-300/[0.05] text-emerald-100'}`}>
-              <strong>{selected.detections.length ? `${selected.detections.length} review candidate${selected.detections.length === 1 ? '' : 's'}` : 'No review candidates'}</strong>
-              <span className="ml-1 text-slate-400">at threshold {selected.confidenceThreshold.toFixed(2)}. This is a model suggestion, not a confirmed quality decision.</span>
+            <div className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 text-sm ${selected.detections.length ? 'border-rose-300/15 bg-rose-300/[0.045] text-rose-100' : 'border-emerald-300/15 bg-emerald-300/[0.045] text-emerald-100'}`}>
+              {selected.detections.length ? <ScanSearch className="size-4 shrink-0 text-rose-300" /> : <CheckCircle2 className="size-4 shrink-0 text-emerald-300" />}
+              <span><strong>{selected.detections.length ? `${selected.detections.length} defect candidate${selected.detections.length === 1 ? '' : 's'}` : 'No defect candidates'}</strong><span className="text-slate-500"> above {Math.round(selected.confidenceThreshold * 100)}%</span></span>
             </div>
           )}
 
