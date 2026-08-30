@@ -12,6 +12,10 @@ export type ModelSpec = {
   inputName: string;
   outputName: string;
   labels: string[];
+  recommendedConfidence: number;
+  verifiedUse: string;
+  captureHint: string;
+  outOfScope: string;
 };
 
 export const MODEL_CATALOG: ModelSpec[] = [
@@ -29,6 +33,10 @@ export const MODEL_CATALOG: ModelSpec[] = [
     inputName: 'images',
     outputName: 'output0',
     labels: ['crazing', 'inclusion', 'patches', 'pitted_surface', 'rolled-in_scale', 'scratches'],
+    recommendedConfidence: 0.5,
+    verifiedUse: 'Flat rolled-steel surface close-ups',
+    captureHint: 'Fill the frame with one flat steel surface, keep the camera parallel, and use even diffuse light.',
+    outOfScope: 'everyday metal objects, painted or curved parts, people, rooms, and general object recognition',
   },
   {
     id: 'deeppcb-vpeft-640',
@@ -44,6 +52,10 @@ export const MODEL_CATALOG: ModelSpec[] = [
     inputName: 'images',
     outputName: 'output0',
     labels: ['open', 'short', 'mousebite', 'spur', 'copper', 'pin-hole'],
+    recommendedConfidence: 0.5,
+    verifiedUse: 'DeepPCB-style bare circuit-board inspection images',
+    captureHint: 'Use a sharp, top-down PCB image with traces filling the frame and minimal glare or background.',
+    outOfScope: 'assembled electronics, household photos, people, rooms, and non-PCB surfaces',
   },
 ];
 

@@ -1,12 +1,13 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Download, FileImage, ImagePlus, LoaderCircle, ScanSearch, ShieldCheck } from 'lucide-react';
+import { CircleAlert, Download, FileImage, ImagePlus, LoaderCircle, ScanSearch, ShieldCheck } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select';
+import { Slider } from '@/components/ui/slider';
 import type { EdgeRuntime } from '@/hooks/use-edge-runtime';
 import { drawDetections } from '@/lib/image';
 import type { InferenceResult } from '@/lib/inference-engine';
@@ -16,6 +17,7 @@ type PhotoResult = InferenceResult & {
   id: string;
   name: string;
   url: string;
+  confidenceThreshold: number;
   error?: string;
 };
 
@@ -28,6 +30,7 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [processing, setProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [confidence, setConfidence] = useState(() => Math.round(MODEL_CATALOG[0].recommendedConfidence * 100));
   const [status, setStatus] = useState('Choose industrial defect photos to run private on-device inference.');
 
   useEffect(() => () => resultUrlsRef.current.forEach((url) => URL.revokeObjectURL(url)), []);
@@ -39,12 +42,31 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
     drawDetections(overlayRef.current, selected.detections, selected.width, selected.height, 'contain');
   }
 
-  async function processFiles(files: FileList | null) {
-    if (!files?.length) return;
+  function clearResults() {
     resultUrlsRef.current.forEach((url) => URL.revokeObjectURL(url));
     resultUrlsRef.current = [];
     setResults([]);
     setSelectedIndex(0);
+    setProgress(0);
+  }
+
+  function changeModel(id: string) {
+    const nextModel = MODEL_CATALOG.find((model) => model.id === id) ?? MODEL_CATALOG[0];
+    clearResults();
+    setConfidence(Math.round(nextModel.recommendedConfidence * 100));
+    setStatus(`Use only ${nextModel.verifiedUse.toLowerCase()}.`);
+    runtime.selectModel(id);
+  }
+
+  function changeConfidence(value: number | readonly number[]) {
+    const next = Array.isArray(value) ? value[0] : value;
+    setConfidence(next);
+    if (results.length) setStatus('Threshold changed. Choose the photos again to apply it.');
+  }
+
+  async function processFiles(files: FileList | null) {
+    if (!files?.length) return;
+    clearResults();
     setProcessing(true);
     setProgress(0);
     setStatus('Preparing verified model');
@@ -59,14 +81,15 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
         resultUrlsRef.current.push(url);
         try {
           const bitmap = await createImageBitmap(file);
-          const inference = await runtime.engine.runSource(bitmap, bitmap.width, bitmap.height, 0.25, 0.45);
+          const inference = await runtime.engine.runSource(bitmap, bitmap.width, bitmap.height, confidence / 100, 0.45);
           bitmap.close();
-          nextResults.push({ ...inference, id: `${file.name}-${file.lastModified}-${index}`, name: file.name, url });
+          nextResults.push({ ...inference, id: `${file.name}-${file.lastModified}-${index}`, name: file.name, url, confidenceThreshold: confidence / 100 });
         } catch (error) {
           nextResults.push({
             id: `${file.name}-${file.lastModified}-${index}`,
             name: file.name,
             url,
+            confidenceThreshold: confidence / 100,
             width: 1,
             height: 1,
             detections: [],
@@ -77,7 +100,10 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
         setResults([...nextResults]);
         setProgress(Math.round(((index + 1) / selectedFiles.length) * 100));
       }
-      setStatus('Batch complete');
+      const candidateCount = nextResults.reduce((sum, result) => sum + result.detections.length, 0);
+      setStatus(candidateCount
+        ? `${candidateCount} review candidate${candidateCount === 1 ? '' : 's'} found. Manually verify only in the model's validated domain.`
+        : `No candidates above ${(confidence / 100).toFixed(2)}. This is not a defect-free certificate.`);
     } catch (error) {
       setStatus(error instanceof Error ? error.message : 'Unable to prepare the model.');
     } finally {
@@ -92,6 +118,8 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
       createdAt: new Date().toISOString(),
       model: runtime.model,
       backend: runtime.backend,
+      interpretation: 'Detections are review candidates, not confirmed defects.',
+      confidenceThreshold: confidence / 100,
       results: results.map(({ url: _url, ...result }) => result),
     };
     const file = new File([JSON.stringify(report, null, 2)], `c3-photo-${Date.now()}.json`, { type: 'application/json' });
@@ -121,11 +149,21 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan-300">Photo & batch</p>
             <CardTitle className="mt-1 text-xl">Industrial defect inspection</CardTitle>
           </div>
-          <NativeSelect value={runtime.selectedId} onChange={(event) => runtime.selectModel(event.target.value)}>
+          <NativeSelect value={runtime.selectedId} onChange={(event) => changeModel(event.target.value)}>
             {MODEL_CATALOG.map((model) => <NativeSelectOption key={model.id} value={model.id}>{model.title}</NativeSelectOption>)}
           </NativeSelect>
         </CardHeader>
         <CardContent className="flex flex-col gap-4 p-4 sm:p-5">
+          <div className="grid gap-3 rounded-2xl border border-amber-300/18 bg-amber-300/[0.055] p-3 sm:grid-cols-[1fr_minmax(190px,280px)] sm:items-center">
+            <div className="flex items-start gap-2 text-xs leading-5 text-amber-100">
+              <CircleAlert className="mt-0.5 size-4 shrink-0 text-amber-300" />
+              <div><strong className="block text-amber-200">Verified input: {runtime.model.verifiedUse}</strong><span>{runtime.model.captureHint} Not for {runtime.model.outOfScope}.</span></div>
+            </div>
+            <div>
+              <div className="mb-2 flex items-center justify-between text-xs"><span className="text-slate-300">Review threshold</span><span className="font-mono text-cyan-300">{confidence}%</span></div>
+              <Slider aria-label="Photo review confidence threshold" value={[confidence]} min={25} max={90} step={1} onValueChange={changeConfidence} />
+            </div>
+          </div>
           <div className="relative grid min-h-[42svh] place-items-center overflow-hidden rounded-[22px] border border-dashed border-white/12 bg-[#050b11]">
             {selected ? (
               <>
@@ -142,6 +180,13 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
               </div>
             )}
           </div>
+
+          {selected && !selected.error && (
+            <div className={`rounded-xl border p-3 text-sm ${selected.detections.length ? 'border-amber-300/18 bg-amber-300/[0.055] text-amber-100' : 'border-emerald-300/18 bg-emerald-300/[0.05] text-emerald-100'}`}>
+              <strong>{selected.detections.length ? `${selected.detections.length} review candidate${selected.detections.length === 1 ? '' : 's'}` : 'No review candidates'}</strong>
+              <span className="ml-1 text-slate-400">at threshold {selected.confidenceThreshold.toFixed(2)}. This is a model suggestion, not a confirmed quality decision.</span>
+            </div>
+          )}
 
           <input ref={inputRef} className="hidden" type="file" accept="image/*" multiple onChange={(event) => void processFiles(event.target.files)} />
           <div className="flex flex-wrap gap-2">
@@ -167,8 +212,8 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
         <div className="grid grid-cols-3 gap-2">
           {[
             ['Images', results.length],
-            ['Detections', totalDetections],
-            ['Mean ms', meanLatency.toFixed(1)],
+            ['Candidates', totalDetections],
+            ['End-to-end ms', meanLatency.toFixed(1)],
           ].map(([label, value]) => (
             <Card key={String(label)} className="border-white/10 bg-card/60 ring-0"><CardContent className="p-3 text-center"><strong className="block font-mono text-lg text-cyan-200">{value}</strong><span className="text-[10px] uppercase tracking-wide text-muted-foreground">{label}</span></CardContent></Card>
           ))}
@@ -185,7 +230,7 @@ export function PhotoPanel({ runtime }: { runtime: EdgeRuntime }) {
                 onClick={() => setSelectedIndex(index)}
                 className={`flex w-full items-center justify-between rounded-xl border px-3 py-3 text-left transition ${selectedIndex === index ? 'border-cyan-300/25 bg-cyan-300/8' : 'border-white/6 bg-white/[0.025] hover:bg-white/[0.05]'}`}
               >
-                <span className="min-w-0"><span className="block truncate text-sm">{result.name}</span><span className="text-xs text-muted-foreground">{result.error ? 'Failed' : `${result.detections.length} detections`}</span></span>
+                <span className="min-w-0"><span className="block truncate text-sm">{result.name}</span><span className="text-xs text-muted-foreground">{result.error ? 'Failed' : `${result.detections.length} review candidates`}</span></span>
                 <span className="ml-3 font-mono text-xs text-slate-400">{result.timings.totalMs.toFixed(1)} ms</span>
               </button>
             ))}

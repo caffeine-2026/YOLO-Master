@@ -13,6 +13,10 @@ test('catalog pins two verified static models', () => {
     assert.equal(model.inputSize, 640);
     assert.match(model.sha256, /^[a-f0-9]{64}$/);
     assert.match(model.url, /^\/models\/.+\.onnx$/);
+    assert.ok(model.recommendedConfidence >= 0.5 && model.recommendedConfidence <= 0.7);
+    assert.ok(model.verifiedUse.length > 20);
+    assert.ok(model.captureHint.length > 40);
+    assert.ok(model.outOfScope.length > 30);
   }
 });
 
