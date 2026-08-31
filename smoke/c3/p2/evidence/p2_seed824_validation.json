@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "seed824_scaling_gate",
   "checks": {
-    "protocol_seed824_only": true,
+    "protocol_records_seed824_stage": true,
     "p1_history_unchanged": true,
     "split_manifests_pass": true,
     "p1_reuse_6_of_6": true,
@@ -14,7 +14,7 @@
     "analysis_present": true,
     "report_present": true,
     "informative_curves": true,
-    "seed825_826_not_run": true,
+    "seed825_826_not_run_at_archived_gate": true,
     "multiseed_ready": true,
     "p2_pass_withheld": true
   },

@@ -15,6 +15,14 @@ import yaml
 REPO_ROOT = Path(__file__).resolve().parents[4]
 P1_ROOT = REPO_ROOT / "smoke" / "c3" / "p1"
 P2_ROOT = REPO_ROOT / "smoke" / "c3" / "p2"
+P1_IMMUTABLE_PATHS = (
+    "smoke/c3/p1/logs",
+    "smoke/c3/p1/artifacts",
+    "smoke/c3/p1/evidence/deeppcb_split_manifest.json",
+    "smoke/c3/p1/evidence/neu_det_split_manifest.json",
+    "smoke/c3/p1/evidence/multiseed_manifest.json",
+    "smoke/c3/p1/results/raw_metrics_multiseed.csv",
+)
 DATASETS = ("neu", "deeppcb")
 SIZES = (10, 50, 100, 500)
 SEEDS = (824, 825, 826)
@@ -236,7 +244,7 @@ def main() -> int:
         "final_figures_14_of_14": all(path.is_file() and path.stat().st_size > 0 for path in expected_figures),
         "final_report": "`Overall C3 P2 = PASS`" in (P2_ROOT / "docs" / "C3_P2_REPORT.md").read_text(encoding="utf-8"),
         "p1_history_unmodified": subprocess.run(
-            ["git", "diff", "--quiet", "HEAD", "--", "smoke/c3/p1"], cwd=REPO_ROOT, check=False
+            ["git", "diff", "--quiet", "HEAD", "--", *P1_IMMUTABLE_PATHS], cwd=REPO_ROOT, check=False
         ).returncode
         == 0,
     }

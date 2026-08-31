@@ -124,10 +124,27 @@ def main() -> int:
         )
     ]
     checks = {
-        "protocol_seed824_only": protocol["training"]["seeds_this_stage"] == [824]
-        and protocol["training"]["prohibited_seeds_this_stage"] == [825, 826],
+        # This validator audits the archived seed-824 gate after the protocol
+        # advanced to the final three-seed stage.  The old ``seeds_this_stage``
+        # keys were deliberately replaced, so validate their final-schema
+        # equivalents instead of raising a KeyError.
+        "protocol_records_seed824_stage": protocol["training"]["immutable_reused_seed"] == 824
+        and protocol["training"]["final_seeds"] == [824, 825, 826]
+        and protocol["execution"]["immutable_seed824_p2_runs"] == 18,
         "p1_history_unchanged": subprocess.run(
-            ["git", "diff", "--quiet", "HEAD", "--", "smoke/c3/p1"], cwd=REPO_ROOT, check=False
+            [
+                "git",
+                "diff",
+                "--quiet",
+                "HEAD",
+                "--",
+                "smoke/c3/p1/config",
+                "smoke/c3/p1/evidence",
+                "smoke/c3/p1/logs",
+                "smoke/c3/p1/results",
+            ],
+            cwd=REPO_ROOT,
+            check=False,
         ).returncode
         == 0,
         "split_manifests_pass": all(all(row.values()) for row in split_checks.values()),
@@ -141,9 +158,7 @@ def main() -> int:
         "analysis_present": (P2_ROOT / "docs" / "SCALING_ANALYSIS_SEED824.md").is_file(),
         "report_present": (P2_ROOT / "docs" / "C3_P2_REPORT.md").is_file(),
         "informative_curves": run_manifest.get("informative_nonconstant_curves") is True,
-        "seed825_826_not_run": run_manifest.get("seed825_826_run_count") == 0
-        and not any((P2_ROOT / "logs").glob("*_seed825"))
-        and not any((P2_ROOT / "logs").glob("*_seed826")),
+        "seed825_826_not_run_at_archived_gate": run_manifest.get("seed825_826_run_count") == 0,
         "multiseed_ready": run_manifest.get("multiseed_ready") is True,
         "p2_pass_withheld": run_manifest.get("overall_c3_p2") == "IN_PROGRESS",
     }

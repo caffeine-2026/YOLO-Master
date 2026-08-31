@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-08-31T10:25:38.823255+00:00",
+  "command": "nvidia-smi --query-gpu=index,uuid,name,memory.total,memory.used,utilization.gpu,pstate --format=csv,noheader,nounits",
+  "privacy_policy": "Process names, usernames, command lines, and GPU UUIDs are not persisted.",
+  "torch": {
+    "version": "2.13.0+cu130",
+    "cuda_available": true,
+    "cuda_device_count": 8,
+    "cuda_build": "13.0"
+  },
+  "gpus": [
+    {
+      "index": 0,
+      "name": "NVIDIA GeForce RTX 4090",
+      "memory_total_mib": 49140,
+      "memory_used_mib": 604,
+      "utilization_percent": 7,
+      "pstate": "P2",
+      "compute_process_count": 1,
+      "compute_process_memory_mib": 594,
+      "available_for_c3": false
+    },
+    {
+      "index": 1,
+      "name": "NVIDIA GeForce RTX 4090",
+      "memory_total_mib": 49140,
+      "memory_used_mib": 4,
+      "utilization_percent": 0,
+      "pstate": "P8",
+      "compute_process_count": 0,
+      "compute_process_memory_mib": 0,
+      "available_for_c3": true
+    },
+    {
+      "index": 2,
+      "name": "NVIDIA GeForce RTX 4090",
+      "memory_total_mib": 49140,
+      "memory_used_mib": 4,
+      "utilization_percent": 0,
+      "pstate": "P8",
+      "compute_process_count": 0,
+      "compute_process_memory_mib": 0,
+      "available_for_c3": true
+    },
+    {
+      "index": 3,
+      "name": "NVIDIA GeForce RTX 4090",
+      "memory_total_mib": 49140,
+      "memory_used_mib": 4,
+      "utilization_percent": 0,
+      "pstate": "P8",
+      "compute_process_count": 0,
+      "compute_process_memory_mib": 0,
+      "available_for_c3": true
+    },
+    {
+      "index": 4,
+      "name": "NVIDIA GeForce RTX 4090",
+      "memory_total_mib": 49140,
+      "memory_used_mib": 4,
+      "utilization_percent": 0,
+      "pstate": "P8",
+      "compute_process_count": 0,
+      "compute_process_memory_mib": 0,
+      "available_for_c3": true
+    },
+    {
+      "index": 5,
+      "name": "NVIDIA GeForce RTX 4090",
+      "memory_total_mib": 49140,
+      "memory_used_mib": 4,
+      "utilization_percent": 0,
+      "pstate": "P8",
+      "compute_process_count": 0,
+      "compute_process_memory_mib": 0,
+      "available_for_c3": true
+    },
+    {
+      "index": 6,
+      "name": "NVIDIA GeForce RTX 4090",
+      "memory_total_mib": 49140,
+      "memory_used_mib": 4,
+      "utilization_percent": 0,
+      "pstate": "P8",
+      "compute_process_count": 0,
+      "compute_process_memory_mib": 0,
+      "available_for_c3": true
+    },
+    {
+      "index": 7,
+      "name": "NVIDIA GeForce RTX 4090",
+      "memory_total_mib": 49140,
+      "memory_used_mib": 4,
+      "utilization_percent": 0,
+      "pstate": "P8",
+      "compute_process_count": 0,
+      "compute_process_memory_mib": 0,
+      "available_for_c3": true
+    }
+  ],
+  "occupied_gpu_indices": [
+    0
+  ],
+  "available_gpu_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "selection_policy": "Never interrupt an occupied GPU; select only an available index immediately before a run."
+}
