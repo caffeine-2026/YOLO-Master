@@ -519,6 +519,11 @@ class TestPlannerDecisionEvidence:
         assert decision.evidence["uses_learned_evidence"] is True
         assert decision.evidence["decision_basis"] == "learned_prediction"
 
+        advisory = planner.predict_advisory(self._model(), self._config())
+        assert 0.0 < advisory["confidence_score"] < 1.0
+        assert advisory["evidence_source"] == "learned_regression"
+        assert advisory["uses_learned_evidence"] is True
+
     def test_guardrail_refusal_identifies_rule_and_persists_in_audit(self, tmp_path):
         class _RTDETR(nn.Module):
             def __init__(self):

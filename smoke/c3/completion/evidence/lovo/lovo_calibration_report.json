@@ -1,0 +1,650 @@
+{
+  "advisory": {
+    "architecture_fingerprint": {
+      "phi_attn": 0.0,
+      "phi_conv": 1.0,
+      "phi_depth": 0.8,
+      "phi_dw": 0.07954545454545454,
+      "phi_group": 0.0,
+      "phi_head": 0.1666693683158305,
+      "phi_linear": 0.0,
+      "phi_moe": 0.0,
+      "phi_norm": 0.0,
+      "phi_residual": 0.07523510971786834,
+      "phi_text": 0.0,
+      "phi_width": 0.7675475947501547
+    },
+    "calibration_condition_number": 1.0,
+    "calibration_effective_dof": 0.9999000099990001,
+    "calibration_effective_rank": 1,
+    "calibration_fitted": true,
+    "calibration_n_features": 12,
+    "calibration_n_samples": 6,
+    "calibration_noise_variance": 0.013743439290780961,
+    "calibration_posterior_available": true,
+    "calibration_rank_deficient": true,
+    "calibration_regularization": 600.0,
+    "confidence_score": 0.016666666666666666,
+    "confidence_score_semantics": "sample sufficiency (n/30, capped at 1) multiplied by identifiable feature-rank fraction",
+    "evidence_confidence": "low",
+    "evidence_confidence_reasons": [
+      "limited_sample_size",
+      "rank_deficient_fit"
+    ],
+    "evidence_confidence_score": 0.016666666666666666,
+    "evidence_confidence_score_semantics": "sample sufficiency (n/30, capped at 1) multiplied by identifiable feature-rank fraction",
+    "evidence_minimum_fit_observations": 5,
+    "evidence_observation_count": 6,
+    "evidence_source": "learned_regression",
+    "evidence_state": "limited_evidence",
+    "implementation_regression_features": [
+      "intercept",
+      "phi_attn",
+      "phi_text",
+      "phi_dw",
+      "variant_xi",
+      "phi_depth",
+      "phi_width",
+      "phi_head",
+      "phi_residual",
+      "phi_norm",
+      "log2_rank",
+      "phi_attn_squared"
+    ],
+    "low_confidence": true,
+    "paper_coefficients": [
+      -0.15904933725893014,
+      0.0026,
+      0.0,
+      -0.012469833645643297,
+      1.0
+    ],
+    "paper_predicted_delta": -0.16004125584437903,
+    "paper_regression_features": [
+      "intercept",
+      "phi_attn",
+      "phi_text",
+      "phi_dw",
+      "variant_xi"
+    ],
+    "predicted_delta": -0.1600223948059739,
+    "prediction_lower_95": -0.40820656550202716,
+    "prediction_std_error": 0.12662457688574144,
+    "prediction_upper_95": 0.08816177589007931,
+    "rank": 8,
+    "uses_learned_evidence": true,
+    "variant": "lora"
+  },
+  "calibration_cross_validation": {
+    "catastrophe_detection": {
+      "accuracy": 1.0,
+      "f1": 1.0,
+      "false_negatives": 0,
+      "false_positives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "threshold": -0.05,
+      "true_negatives": 0,
+      "true_positives": 6
+    },
+    "decision_boundary": {
+      "accept_accuracy": 0.0,
+      "accuracy": 1.0,
+      "correct_accept": 0,
+      "correct_refuse": 6,
+      "refuse_accuracy": 1.0,
+      "total": 6
+    },
+    "lovo": {
+      "coefficients": [
+        -0.16045194026051937,
+        0.0026,
+        0.0,
+        0.0054,
+        1.0,
+        -2.5096806883846227e-23,
+        -2.5096806883846227e-23,
+        -6.274201720961557e-24,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "decision_threshold": -0.05,
+      "lovo_mae": 0.11389389980613868,
+      "lovo_mse": 0.01649242718355753,
+      "lovo_r2": -0.4399974645185294,
+      "lovo_rmse": 0.12842284525565353,
+      "metadata": {},
+      "n_samples": 6,
+      "n_variants": 1
+    },
+    "paper_regression": {
+      "coefficients": [
+        -0.15904933725893014,
+        0.0026,
+        0.0,
+        -0.012469833645643297,
+        1.0
+      ],
+      "feature_order": [
+        "intercept",
+        "phi_attn",
+        "phi_text",
+        "phi_dw",
+        "variant_xi"
+      ],
+      "mae": 0.11389362274793302,
+      "mse": 0.016492346986827774,
+      "predictions": [
+        [
+          -0.05202333333333334,
+          -0.18164441100016565,
+          "lora"
+        ],
+        [
+          -0.08893,
+          -0.17426322436235223,
+          "lora"
+        ],
+        [
+          -0.05444666666666669,
+          -0.1811597539656922,
+          "lora"
+        ],
+        [
+          -0.1748033333333333,
+          -0.1570888990224543,
+          "lora"
+        ],
+        [
+          -0.34075000000000005,
+          -0.12390022528899104,
+          "lora"
+        ],
+        [
+          -0.24931666666666663,
+          -0.14218652852916652,
+          "lora"
+        ]
+      ],
+      "r2": -0.4399904623298141,
+      "rmse": 0.1284225330182666
+    },
+    "summary": {
+      "catastrophe_f1": 1.0,
+      "catastrophe_precision": 1.0,
+      "catastrophe_recall": 1.0,
+      "decision_accuracy": 1.0,
+      "lovo_mae": 0.11389389980613868,
+      "lovo_r2": -0.4399974645185294,
+      "lovo_rmse": 0.12842284525565353,
+      "n_samples": 6,
+      "n_variants": 1
+    }
+  },
+  "calibration_observation_ids": [
+    "deeppcb-100shot-selected-vpeft-vs-full-validation-last-epoch",
+    "deeppcb-10shot-selected-vpeft-vs-full-validation-last-epoch",
+    "deeppcb-50shot-selected-vpeft-vs-full-validation-last-epoch",
+    "neu-100shot-selected-vpeft-vs-full-validation-last-epoch",
+    "neu-10shot-selected-vpeft-vs-full-validation-last-epoch",
+    "neu-50shot-selected-vpeft-vs-full-validation-last-epoch"
+  ],
+  "calibration_observations": [
+    {
+      "aggregation_unit": "dataset_x_sample_size",
+      "dataset": "neu",
+      "delta_definition": "selected_vpeft_minus_full_sft",
+      "mean_delta_map50_95": -0.05202333333333334,
+      "metric_split": "validation_last_epoch",
+      "observation_id": "neu-10shot-selected-vpeft-vs-full-validation-last-epoch",
+      "paired_seed_runs": [
+        {
+          "delta_map50_95": -0.06434000000000001,
+          "full_curve_path": "smoke/c3/p2/logs/neu_10_full_seed824/learning_curve.csv",
+          "full_curve_sha256": "cdb2dd7b4f6f09a53c19c03f41eb1e4dad505cf2072b0f84e561fafa425d8ed2",
+          "full_last_validation_map50_95": 0.11561,
+          "full_run_id": "neu_10_full_seed824",
+          "seed": 824,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_neu_10_vpeft_b250k_predictors_seed824_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "366be45ea4c534c8e4560623eb0d2f761a7c5234c187a5a8a14ad082bd9f4e3b",
+          "vpeft_last_validation_map50_95": 0.05127,
+          "vpeft_run_id": "final_neu_10_vpeft_b250k_predictors_seed824_e100"
+        },
+        {
+          "delta_map50_95": -0.03856999999999999,
+          "full_curve_path": "smoke/c3/p2/logs/neu_10_full_seed825_e100/learning_curve.csv",
+          "full_curve_sha256": "80531a6d906f6ce83f160c6c7116fec0b4b7de4a42f0e70b2c63cd0d2143daea",
+          "full_last_validation_map50_95": 0.11212,
+          "full_run_id": "neu_10_full_seed825_e100",
+          "seed": 825,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_neu_10_vpeft_b250k_predictors_seed825_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "1a84e4b0300b3264c934c2a87be2f9d01611645b82665d9c908be5d2a0f620eb",
+          "vpeft_last_validation_map50_95": 0.07355,
+          "vpeft_run_id": "final_neu_10_vpeft_b250k_predictors_seed825_e100"
+        },
+        {
+          "delta_map50_95": -0.05316000000000001,
+          "full_curve_path": "smoke/c3/p2/logs/neu_10_full_seed826_e100/learning_curve.csv",
+          "full_curve_sha256": "3f0cbc608d6c8602b20e77b35cd2299e25a7e38f32d535579d58598932e58689",
+          "full_last_validation_map50_95": 0.13941,
+          "full_run_id": "neu_10_full_seed826_e100",
+          "seed": 826,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_neu_10_vpeft_b250k_predictors_seed826_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "cb47dd3ad2957ee8e79afa31fa662367b6758503830216cb46d48503ce3a388e",
+          "vpeft_last_validation_map50_95": 0.08625,
+          "vpeft_run_id": "final_neu_10_vpeft_b250k_predictors_seed826_e100"
+        }
+      ],
+      "sample_size": 10,
+      "sample_std_delta_map50_95": 0.012922547478470858,
+      "seeds_are_replicates_not_observations": true
+    },
+    {
+      "aggregation_unit": "dataset_x_sample_size",
+      "dataset": "neu",
+      "delta_definition": "selected_vpeft_minus_full_sft",
+      "mean_delta_map50_95": -0.08893,
+      "metric_split": "validation_last_epoch",
+      "observation_id": "neu-50shot-selected-vpeft-vs-full-validation-last-epoch",
+      "paired_seed_runs": [
+        {
+          "delta_map50_95": -0.10662999999999997,
+          "full_curve_path": "smoke/c3/p2/logs/neu_50_full_seed824/learning_curve.csv",
+          "full_curve_sha256": "b57a720400d69c6a1524fd083808d6c094daca95ffb5d586f8e10a5aed765d1e",
+          "full_last_validation_map50_95": 0.2678,
+          "full_run_id": "neu_50_full_seed824",
+          "seed": 824,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_neu_50_vpeft_b250k_predictors_seed824_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "c8e493eba0891c75c1cd3979df480d92d0ab35ab2b2f1eb99bbc2405d85345a7",
+          "vpeft_last_validation_map50_95": 0.16117,
+          "vpeft_run_id": "final_neu_50_vpeft_b250k_predictors_seed824_e100"
+        },
+        {
+          "delta_map50_95": -0.09312000000000001,
+          "full_curve_path": "smoke/c3/p2/logs/neu_50_full_seed825_e100/learning_curve.csv",
+          "full_curve_sha256": "ac9b3254b43d35ed8a372a145302c79ec5cce9ef234e8b8b681cef40332a0465",
+          "full_last_validation_map50_95": 0.24654,
+          "full_run_id": "neu_50_full_seed825_e100",
+          "seed": 825,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_neu_50_vpeft_b250k_predictors_seed825_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "9b5f9818caca72c4ec29ec82324f6706ec95f3e630ac429bb10d786d23ace784",
+          "vpeft_last_validation_map50_95": 0.15342,
+          "vpeft_run_id": "final_neu_50_vpeft_b250k_predictors_seed825_e100"
+        },
+        {
+          "delta_map50_95": -0.06704000000000002,
+          "full_curve_path": "smoke/c3/p2/logs/neu_50_full_seed826_e100/learning_curve.csv",
+          "full_curve_sha256": "cfc72642834e6f2b19457a5d5b6e51d774796932a54bbbdcba6729c1084060c6",
+          "full_last_validation_map50_95": 0.25002,
+          "full_run_id": "neu_50_full_seed826_e100",
+          "seed": 826,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_neu_50_vpeft_b250k_predictors_seed826_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "e07ea3b3792d9b18197c28c9021046ee1423ca80ece0d885a2d71f21fb7f33a0",
+          "vpeft_last_validation_map50_95": 0.18298,
+          "vpeft_run_id": "final_neu_50_vpeft_b250k_predictors_seed826_e100"
+        }
+      ],
+      "sample_size": 50,
+      "sample_std_delta_map50_95": 0.020124837887545807,
+      "seeds_are_replicates_not_observations": true
+    },
+    {
+      "aggregation_unit": "dataset_x_sample_size",
+      "dataset": "neu",
+      "delta_definition": "selected_vpeft_minus_full_sft",
+      "mean_delta_map50_95": -0.05444666666666669,
+      "metric_split": "validation_last_epoch",
+      "observation_id": "neu-100shot-selected-vpeft-vs-full-validation-last-epoch",
+      "paired_seed_runs": [
+        {
+          "delta_map50_95": -0.08275000000000002,
+          "full_curve_path": "smoke/c3/p1/logs/neu_full_seed824_e100/learning_curve.csv",
+          "full_curve_sha256": "37cc6319a2dc231ceee62e55779d0f17ee729423b7a290e367d4fc9e52881558",
+          "full_last_validation_map50_95": 0.31617,
+          "full_run_id": "neu_full_seed824_e100",
+          "seed": 824,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_neu_100_vpeft_b250k_predictors_seed824_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "66027bc2301595e45df2bff9c4442c0f25c49218cc40f431a5678e63e132bc64",
+          "vpeft_last_validation_map50_95": 0.23342,
+          "vpeft_run_id": "final_neu_100_vpeft_b250k_predictors_seed824_e100"
+        },
+        {
+          "delta_map50_95": -0.05810000000000004,
+          "full_curve_path": "smoke/c3/p1/logs/neu_full_seed825_e100/learning_curve.csv",
+          "full_curve_sha256": "1100056679be55cd023ee53f57744ba2e720a87f35f0c7ed6fdacdaecee77d35",
+          "full_last_validation_map50_95": 0.32467,
+          "full_run_id": "neu_full_seed825_e100",
+          "seed": 825,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_neu_100_vpeft_b250k_predictors_seed825_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "2f89e0f21ef1a7ff2cccde965cee6542a3702697daca09a1168642536f9fb9a0",
+          "vpeft_last_validation_map50_95": 0.26657,
+          "vpeft_run_id": "final_neu_100_vpeft_b250k_predictors_seed825_e100"
+        },
+        {
+          "delta_map50_95": -0.02249000000000001,
+          "full_curve_path": "smoke/c3/p1/logs/neu_full_seed826_e100/learning_curve.csv",
+          "full_curve_sha256": "30e43b3ed203b2ad14582f5b04884d6cce228465cfd1b82119f82ca202d92090",
+          "full_last_validation_map50_95": 0.31598,
+          "full_run_id": "neu_full_seed826_e100",
+          "seed": 826,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_neu_100_vpeft_b250k_predictors_seed826_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "0b321c260c74c633b5320fe57e93cfa4e86418acafbd3b741fe804ea0bc3510b",
+          "vpeft_last_validation_map50_95": 0.29349,
+          "vpeft_run_id": "final_neu_100_vpeft_b250k_predictors_seed826_e100"
+        }
+      ],
+      "sample_size": 100,
+      "sample_std_delta_map50_95": 0.030295660305286857,
+      "seeds_are_replicates_not_observations": true
+    },
+    {
+      "aggregation_unit": "dataset_x_sample_size",
+      "dataset": "deeppcb",
+      "delta_definition": "selected_vpeft_minus_full_sft",
+      "mean_delta_map50_95": -0.1748033333333333,
+      "metric_split": "validation_last_epoch",
+      "observation_id": "deeppcb-10shot-selected-vpeft-vs-full-validation-last-epoch",
+      "paired_seed_runs": [
+        {
+          "delta_map50_95": -0.15813,
+          "full_curve_path": "smoke/c3/p2/logs/deeppcb_10_full_seed824/learning_curve.csv",
+          "full_curve_sha256": "1d2e91febc7420cb5f7a47dcbb93bee1cc937a315ee9ce2dd97c35013740c654",
+          "full_last_validation_map50_95": 0.25067,
+          "full_run_id": "deeppcb_10_full_seed824",
+          "seed": 824,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_deeppcb_10_vpeft_b250k_predictors_seed824_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "1317147c8e534ce04f333896ec08fb95ac41dcb4e64005a35bf6d1bbbd89de7f",
+          "vpeft_last_validation_map50_95": 0.09254,
+          "vpeft_run_id": "final_deeppcb_10_vpeft_b250k_predictors_seed824_e100"
+        },
+        {
+          "delta_map50_95": -0.19368,
+          "full_curve_path": "smoke/c3/p2/logs/deeppcb_10_full_seed825_e100/learning_curve.csv",
+          "full_curve_sha256": "b38bf3ec7715d8737474e96b0fa7b25532377ceebe739a297ef0d0823f5522e7",
+          "full_last_validation_map50_95": 0.28712,
+          "full_run_id": "deeppcb_10_full_seed825_e100",
+          "seed": 825,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_deeppcb_10_vpeft_b250k_predictors_seed825_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "4e17d7c7f1f7332a784977e76f686f2de7fbff4fcbcc74eccbca30c79f894f4f",
+          "vpeft_last_validation_map50_95": 0.09344,
+          "vpeft_run_id": "final_deeppcb_10_vpeft_b250k_predictors_seed825_e100"
+        },
+        {
+          "delta_map50_95": -0.17259999999999998,
+          "full_curve_path": "smoke/c3/p2/logs/deeppcb_10_full_seed826_e100/learning_curve.csv",
+          "full_curve_sha256": "49e7cb2ca4e204ec29942a33097b4acf6ccf8c232e7457ebdf93cd3e645e7838",
+          "full_last_validation_map50_95": 0.24785,
+          "full_run_id": "deeppcb_10_full_seed826_e100",
+          "seed": 826,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_deeppcb_10_vpeft_b250k_predictors_seed826_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "78b7edbb504c428adcda8e6fb0a06836f57c4ae78d443ca11bd6e2eaecad6be8",
+          "vpeft_last_validation_map50_95": 0.07525,
+          "vpeft_run_id": "final_deeppcb_10_vpeft_b250k_predictors_seed826_e100"
+        }
+      ],
+      "sample_size": 10,
+      "sample_std_delta_map50_95": 0.017877125980798294,
+      "seeds_are_replicates_not_observations": true
+    },
+    {
+      "aggregation_unit": "dataset_x_sample_size",
+      "dataset": "deeppcb",
+      "delta_definition": "selected_vpeft_minus_full_sft",
+      "mean_delta_map50_95": -0.34075000000000005,
+      "metric_split": "validation_last_epoch",
+      "observation_id": "deeppcb-50shot-selected-vpeft-vs-full-validation-last-epoch",
+      "paired_seed_runs": [
+        {
+          "delta_map50_95": -0.31816999999999995,
+          "full_curve_path": "smoke/c3/p2/logs/deeppcb_50_full_seed824/learning_curve.csv",
+          "full_curve_sha256": "a7ad1aea540fbe371d96a070f15a94e9707d9e75a7362aeebd6564dd0ec739f3",
+          "full_last_validation_map50_95": 0.48632,
+          "full_run_id": "deeppcb_50_full_seed824",
+          "seed": 824,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_deeppcb_50_vpeft_b250k_predictors_seed824_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "d2dec22bee7c9f44e120abc507162cbc2d5bca9a6a7320b9ada773819498fa89",
+          "vpeft_last_validation_map50_95": 0.16815,
+          "vpeft_run_id": "final_deeppcb_50_vpeft_b250k_predictors_seed824_e100"
+        },
+        {
+          "delta_map50_95": -0.3446600000000001,
+          "full_curve_path": "smoke/c3/p2/logs/deeppcb_50_full_seed825_e100/learning_curve.csv",
+          "full_curve_sha256": "1ce137a3cac7823262933aa260f2785507e4b8f94acdcf09f0b356e9855cdf88",
+          "full_last_validation_map50_95": 0.53656,
+          "full_run_id": "deeppcb_50_full_seed825_e100",
+          "seed": 825,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_deeppcb_50_vpeft_b250k_predictors_seed825_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "11d581b377059d4db419959700f43e089cd49acd16174b9ee6a3a91c852233e3",
+          "vpeft_last_validation_map50_95": 0.1919,
+          "vpeft_run_id": "final_deeppcb_50_vpeft_b250k_predictors_seed825_e100"
+        },
+        {
+          "delta_map50_95": -0.35942,
+          "full_curve_path": "smoke/c3/p2/logs/deeppcb_50_full_seed826_e100/learning_curve.csv",
+          "full_curve_sha256": "6718050682c491c42c77bee752d1aa823aa4f20937e527d2727b6cc5042d5e32",
+          "full_last_validation_map50_95": 0.51551,
+          "full_run_id": "deeppcb_50_full_seed826_e100",
+          "seed": 826,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_deeppcb_50_vpeft_b250k_predictors_seed826_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "4b333062212d2736c595ce9b36a4b03ce0de44e90607bafce17944641c6daece",
+          "vpeft_last_validation_map50_95": 0.15609,
+          "vpeft_run_id": "final_deeppcb_50_vpeft_b250k_predictors_seed826_e100"
+        }
+      ],
+      "sample_size": 50,
+      "sample_std_delta_map50_95": 0.020901117195020982,
+      "seeds_are_replicates_not_observations": true
+    },
+    {
+      "aggregation_unit": "dataset_x_sample_size",
+      "dataset": "deeppcb",
+      "delta_definition": "selected_vpeft_minus_full_sft",
+      "mean_delta_map50_95": -0.24931666666666663,
+      "metric_split": "validation_last_epoch",
+      "observation_id": "deeppcb-100shot-selected-vpeft-vs-full-validation-last-epoch",
+      "paired_seed_runs": [
+        {
+          "delta_map50_95": -0.25499999999999995,
+          "full_curve_path": "smoke/c3/p1/logs/deeppcb_full_seed824_e100/learning_curve.csv",
+          "full_curve_sha256": "58c2fb8d8c9f7386f905cd0bfe4cc27fa827e683c412f6f3125a59d17fe77fe2",
+          "full_last_validation_map50_95": 0.54763,
+          "full_run_id": "deeppcb_full_seed824_e100",
+          "seed": 824,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_deeppcb_100_vpeft_b250k_predictors_seed824_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "36631a6fd4b86af330a9163cdf36769e8b6e15c0d34459b34f97034f88b3d44f",
+          "vpeft_last_validation_map50_95": 0.29263,
+          "vpeft_run_id": "final_deeppcb_100_vpeft_b250k_predictors_seed824_e100"
+        },
+        {
+          "delta_map50_95": -0.24588999999999994,
+          "full_curve_path": "smoke/c3/p1/logs/deeppcb_full_seed825_e100/learning_curve.csv",
+          "full_curve_sha256": "d0f946c44751e8d3dff1b9794a5b94c16044b5203aee566c2d1f46208c395398",
+          "full_last_validation_map50_95": 0.56607,
+          "full_run_id": "deeppcb_full_seed825_e100",
+          "seed": 825,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_deeppcb_100_vpeft_b250k_predictors_seed825_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "7173484bc61c88f9f0d867a8af04af3f3df28e20b66b90d17332d73f14cc3c13",
+          "vpeft_last_validation_map50_95": 0.32018,
+          "vpeft_run_id": "final_deeppcb_100_vpeft_b250k_predictors_seed825_e100"
+        },
+        {
+          "delta_map50_95": -0.24706,
+          "full_curve_path": "smoke/c3/p1/logs/deeppcb_full_seed826_e100/learning_curve.csv",
+          "full_curve_sha256": "5ef0afc8ccfe33d3acb9870cf2edacbe7e72a74f28aae4bdf5e9f4ad99c56511",
+          "full_last_validation_map50_95": 0.56484,
+          "full_run_id": "deeppcb_full_seed826_e100",
+          "seed": 826,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_deeppcb_100_vpeft_b250k_predictors_seed826_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "9940dfdedfee4ccf9a1512aaa539d7a3ded573f6aa4a7e14fec94d0a9264070b",
+          "vpeft_last_validation_map50_95": 0.31778,
+          "vpeft_run_id": "final_deeppcb_100_vpeft_b250k_predictors_seed826_e100"
+        }
+      ],
+      "sample_size": 100,
+      "sample_std_delta_map50_95": 0.004956554582906682,
+      "seeds_are_replicates_not_observations": true
+    }
+  ],
+  "calibration_source_run_count": 36,
+  "candidate": "b250k_predictors",
+  "cold_start_comparison": {
+    "learned_predicted_delta": -0.1600223948059739,
+    "prior_confidence": 0,
+    "prior_is_measurement": false,
+    "prior_predicted_delta": 0.066,
+    "prior_source": "default_prior"
+  },
+  "command": "../YOLO-Master/.venv/bin/python smoke/c3/completion/tools/calibrate_lovo.py",
+  "generated_at": "2026-08-31T13:29:14.188294+00:00",
+  "heldout_metrics": {
+    "coverage_95": 1.0,
+    "mae": 0.09887572813930723,
+    "mean_error": -0.09887572813930723,
+    "n": 2,
+    "rmse": 0.10019783510397137
+  },
+  "heldout_observation_ids": [
+    "deeppcb-500shot-selected-vpeft-vs-full-validation-last-epoch",
+    "neu-500shot-selected-vpeft-vs-full-validation-last-epoch"
+  ],
+  "heldout_results": [
+    {
+      "absolute_error": 0.11509906147264057,
+      "actual_delta_map50_95": -0.04492333333333335,
+      "aggregation_unit": "dataset_x_sample_size",
+      "covered_by_interval_95": true,
+      "dataset": "neu",
+      "delta_definition": "selected_vpeft_minus_full_sft",
+      "error": -0.11509906147264057,
+      "mean_delta_map50_95": -0.04492333333333335,
+      "metric_split": "validation_last_epoch",
+      "observation_id": "neu-500shot-selected-vpeft-vs-full-validation-last-epoch",
+      "paired_seed_runs": [
+        {
+          "delta_map50_95": -0.03665999999999997,
+          "full_curve_path": "smoke/c3/p2/logs/neu_500_full_seed824/learning_curve.csv",
+          "full_curve_sha256": "84527d46afe8ffb0d22ed1f615d50e5ffc3d1ebdd3829743c223251bfa26d4e7",
+          "full_last_validation_map50_95": 0.39607,
+          "full_run_id": "neu_500_full_seed824",
+          "seed": 824,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_neu_500_vpeft_b250k_predictors_seed824_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "93816b1c45e5b229b7b3296babbb056586422d7a0e561ff973761adab89c2c51",
+          "vpeft_last_validation_map50_95": 0.35941,
+          "vpeft_run_id": "final_neu_500_vpeft_b250k_predictors_seed824_e100"
+        },
+        {
+          "delta_map50_95": -0.04639000000000004,
+          "full_curve_path": "smoke/c3/p2/logs/neu_500_full_seed825_e100/learning_curve.csv",
+          "full_curve_sha256": "cfd34a12f0d27555505e45d83483d8a2ffaf89eeab5531ea9c656ffe85fb7c43",
+          "full_last_validation_map50_95": 0.41349,
+          "full_run_id": "neu_500_full_seed825_e100",
+          "seed": 825,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_neu_500_vpeft_b250k_predictors_seed825_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "6d2c7fc72fb1f571c00cef6b487721f317d8add8d04a61745c5d8e80f81db708",
+          "vpeft_last_validation_map50_95": 0.3671,
+          "vpeft_run_id": "final_neu_500_vpeft_b250k_predictors_seed825_e100"
+        },
+        {
+          "delta_map50_95": -0.051720000000000044,
+          "full_curve_path": "smoke/c3/p2/logs/neu_500_full_seed826_e100/learning_curve.csv",
+          "full_curve_sha256": "a08f1e8103ddeeeec72061e4355cf99bdd6718e4c9f5ee9f501cb32a31c7d58c",
+          "full_last_validation_map50_95": 0.41266,
+          "full_run_id": "neu_500_full_seed826_e100",
+          "seed": 826,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_neu_500_vpeft_b250k_predictors_seed826_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "59bdb9be5f0885458982e11030569419c01d22181310bd6aee02be6f56d579d4",
+          "vpeft_last_validation_map50_95": 0.36094,
+          "vpeft_run_id": "final_neu_500_vpeft_b250k_predictors_seed826_e100"
+        }
+      ],
+      "predicted_delta_map50_95": -0.1600223948059739,
+      "prediction_interval_95": [
+        -0.40820656550202716,
+        0.08816177589007931
+      ],
+      "prediction_std_error": 0.12662457688574144,
+      "sample_size": 500,
+      "sample_std_delta_map50_95": 0.0076363756673787295,
+      "seeds_are_replicates_not_observations": true
+    },
+    {
+      "absolute_error": 0.0826523948059739,
+      "actual_delta_map50_95": -0.07737000000000001,
+      "aggregation_unit": "dataset_x_sample_size",
+      "covered_by_interval_95": true,
+      "dataset": "deeppcb",
+      "delta_definition": "selected_vpeft_minus_full_sft",
+      "error": -0.0826523948059739,
+      "mean_delta_map50_95": -0.07737000000000001,
+      "metric_split": "validation_last_epoch",
+      "observation_id": "deeppcb-500shot-selected-vpeft-vs-full-validation-last-epoch",
+      "paired_seed_runs": [
+        {
+          "delta_map50_95": -0.09766999999999992,
+          "full_curve_path": "smoke/c3/p2/logs/deeppcb_500_full_seed824/learning_curve.csv",
+          "full_curve_sha256": "02d7c0331d7aab11c12a4b1a187a056d1a112aefcfc4d4ff09da117e97e286b4",
+          "full_last_validation_map50_95": 0.70044,
+          "full_run_id": "deeppcb_500_full_seed824",
+          "seed": 824,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_deeppcb_500_vpeft_b250k_predictors_seed824_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "bf200845a450dd04ad1f20e08fdf54e3a6a07b56d10e51d35b710bc731d1f6d7",
+          "vpeft_last_validation_map50_95": 0.60277,
+          "vpeft_run_id": "final_deeppcb_500_vpeft_b250k_predictors_seed824_e100"
+        },
+        {
+          "delta_map50_95": -0.07542000000000004,
+          "full_curve_path": "smoke/c3/p2/logs/deeppcb_500_full_seed825_e100/learning_curve.csv",
+          "full_curve_sha256": "eebda5b0af952290173601365b1e394eab6918ae47d2add7a6dd4b65cf2d9310",
+          "full_last_validation_map50_95": 0.70123,
+          "full_run_id": "deeppcb_500_full_seed825_e100",
+          "seed": 825,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_deeppcb_500_vpeft_b250k_predictors_seed825_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "2408b92835394607dcee8ac4bc4b84691ffe330a5a75850071c75903125260bb",
+          "vpeft_last_validation_map50_95": 0.62581,
+          "vpeft_run_id": "final_deeppcb_500_vpeft_b250k_predictors_seed825_e100"
+        },
+        {
+          "delta_map50_95": -0.05902000000000007,
+          "full_curve_path": "smoke/c3/p2/logs/deeppcb_500_full_seed826_e100/learning_curve.csv",
+          "full_curve_sha256": "9e8eeaf67811ae4d40c9695edd5ee0810e702b0d1990a0f4c246947bd24427cf",
+          "full_last_validation_map50_95": 0.69171,
+          "full_run_id": "deeppcb_500_full_seed826_e100",
+          "seed": 826,
+          "vpeft_curve_path": "smoke/c3/completion/logs/final/final_deeppcb_500_vpeft_b250k_predictors_seed826_e100/learning_curve.csv",
+          "vpeft_curve_sha256": "c963e781a088b2f84894678cf320bd7bcc677100936922335fea2f384674648a",
+          "vpeft_last_validation_map50_95": 0.63269,
+          "vpeft_run_id": "final_deeppcb_500_vpeft_b250k_predictors_seed826_e100"
+        }
+      ],
+      "predicted_delta_map50_95": -0.1600223948059739,
+      "prediction_interval_95": [
+        -0.40820656550202716,
+        0.08816177589007931
+      ],
+      "prediction_std_error": 0.12662457688574144,
+      "sample_size": 500,
+      "sample_std_delta_map50_95": 0.01939864686002601,
+      "seeds_are_replicates_not_observations": true
+    }
+  ],
+  "heldout_source_run_count": 12,
+  "limitations": [
+    "All observations use one YOLO11n architecture and one LoRA variant, so the learned design matrix is rank deficient.",
+    "Shot subsets are nested and each dataset reuses its fixed validation images; dataset-shot configurations are unique experimental units but not disjoint image cohorts.",
+    "The sample count is small, therefore the computed confidence remains low and must not be presented as strong evidence."
+  ],
+  "metric_policy": {
+    "delta": "selected V-PEFT minus Full-SFT under paired seed/protocol",
+    "epoch": "last epoch (100), avoiding best-epoch selection leakage",
+    "locked_test_read": false,
+    "observation_unit": "unique dataset x sample-size configuration",
+    "seed_replicates_aggregated": true,
+    "split": "validation"
+  },
+  "schema_version": 1,
+  "sets_disjoint": true,
+  "source_run_sets_disjoint": true,
+  "status": "LEARNED_CALIBRATION_WITH_HELDOUT_VALIDATION"
+}

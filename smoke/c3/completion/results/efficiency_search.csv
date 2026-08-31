@@ -1,0 +1,5 @@
+candidate,eligible,mean_best_validation_map50_95,mean_trainable_parameters,mean_peak_gpu_memory_mib,mean_training_seconds
+b100k_predictors,True,0.28085,104530.0,2570.24,406.865
+b150k_predictors,True,0.277695,153426.0,2585.6,414.237
+b250k_predictors,True,0.31013999999999997,195410.0,2595.84,413.087
+b150k_frozen,True,0.258185,139776.0,2585.6,400.55150000000003

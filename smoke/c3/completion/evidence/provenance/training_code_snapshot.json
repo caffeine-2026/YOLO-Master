@@ -1,0 +1,81 @@
+{
+  "captured_at": "2026-08-31T13:06:57.291616+00:00",
+  "command": "../YOLO-Master/.venv/bin/python smoke/c3/completion/tools/capture_training_provenance.py",
+  "dirty_training_diff_path": "smoke/c3/completion/evidence/provenance/training_code.patch",
+  "dirty_training_diff_sha256": "d906aca53f64a75af198cf6c07a7bab48bce047b1a780940b3699ec00df86144",
+  "git_branch_at_launch": "codex/c3-lovo-mipr-planner-efficiency-20260831",
+  "git_head_at_launch": "765c55955552f56a3e3df1ca7676a268d74dc28c",
+  "initial_weight": {
+    "path": "yolo11n.pt",
+    "sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+    "size_bytes": 5613764
+  },
+  "note": "The experiments ran before the feature commit existed. This source-hash snapshot and patch identify the executed dirty-worktree state; the final commit must contain the same tracked-input hashes.",
+  "schema_version": 1,
+  "tracked_inputs": {
+    "pyproject.toml": {
+      "sha256": "fb92b3689c9d6946ee21b7dd658dbebd81f3dffd1573f0b6f1a660d26d7765c7",
+      "size_bytes": 11902
+    },
+    "requirements.txt": {
+      "sha256": "1e1fb52de36dca508f29aef4a5e46d6d3bc212abfe1997b453cbfb0bf1c568dd",
+      "size_bytes": 471
+    },
+    "smoke/c3/completion/config/efficiency_search_protocol.yaml": {
+      "sha256": "962365fb380e4a9093485a55382997a4a846fff1a6a8cd0af1de4701660d57e7",
+      "size_bytes": 1390
+    },
+    "smoke/c3/completion/tools/run_efficiency.py": {
+      "sha256": "bd11e8c168eaffbe41126535fdececc3ffbc2f64f08681ea017c262767e7dd61",
+      "size_bytes": 16577
+    },
+    "smoke/c3/p1/scripts/run_p1.py": {
+      "sha256": "ef857fcd76d33429df3fe8ba07f8b4b66bd3128eff12ab14972b233f6d0a1b7f",
+      "size_bytes": 26497
+    },
+    "smoke/c3/p2/config/runs/deeppcb/vpeft.yaml": {
+      "sha256": "fd89a36dee80ddc9f438f00126bf2fd612dd7de8689d1cc5ce8e5a91567b3b02",
+      "size_bytes": 982
+    },
+    "smoke/c3/p2/config/runs/neu/vpeft.yaml": {
+      "sha256": "2a1fc74aad1cb4603a30b94025d30ac5aa644bf0d54a841431af35c0f66b4e95",
+      "size_bytes": 978
+    },
+    "ultralytics/cfg/__init__.py": {
+      "sha256": "064b28eee89b7984444c8d5fde2c2a6154fffbaa802242b258fd809cdd83d5ce",
+      "size_bytes": 70136
+    },
+    "ultralytics/cfg/default.yaml": {
+      "sha256": "3a31ef3f995b8bdd57bb27d2a3c9c3bac21017bd157be7d14901a5ff5fac1cc8",
+      "size_bytes": 29084
+    },
+    "ultralytics/cfg/models/11/yolo11.yaml": {
+      "sha256": "43d8a7c86acc77282ddf4966d6526e091e5b064c140ed4a6e4c0b68ecbc3784c",
+      "size_bytes": 2012
+    },
+    "ultralytics/utils/lora/api.py": {
+      "sha256": "d125df6c037f00a1f316e70092c4ea2d2b8367677b9dc307566314a8ecc8209c",
+      "size_bytes": 69429
+    },
+    "ultralytics/utils/lora/config.py": {
+      "sha256": "6da25674fe8810b599309548b385f0c00c580cb381b52fc9febdb5d367693ee1",
+      "size_bytes": 54257
+    },
+    "ultralytics/utils/lora/fallback.py": {
+      "sha256": "e452afbf5aa37282af3a2d0bd1c35f943c10708be3617e468e6744954c927829",
+      "size_bytes": 46661
+    },
+    "ultralytics/utils/lora/io.py": {
+      "sha256": "09b4c9382df57b3dbd9d71686474ff3ebba347b11c2c8d28d6ef51c69f3c36f1",
+      "size_bytes": 11728
+    },
+    "ultralytics/utils/lora/planner.py": {
+      "sha256": "612fb0beab4565057bbb1383fa02fbd15bcfa3554f137f33e644e63094a46837",
+      "size_bytes": 127681
+    },
+    "ultralytics/vpeft/solver.py": {
+      "sha256": "71f759c50dda9b0a072c17cadad36c323f31b7f8579b9f1fa75dd64545c30e03",
+      "size_bytes": 41145
+    }
+  }
+}

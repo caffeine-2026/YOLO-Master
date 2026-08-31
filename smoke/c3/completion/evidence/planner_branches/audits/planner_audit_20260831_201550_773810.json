@@ -1,0 +1,131 @@
+{
+  "timestamp": "2026-08-31T20:15:50.773717",
+  "model_name": "unknown",
+  "fingerprint": {
+    "phi_attn": 0.0,
+    "phi_text": 0.0,
+    "phi_dw": 0.07954545454545454,
+    "phi_group": 0.0,
+    "phi_linear": 0.0,
+    "phi_depth": 0.8,
+    "phi_width": 0.7675475947501547,
+    "phi_head": 0.1666693683158305,
+    "phi_residual": 0.07523510971786834,
+    "phi_norm": 0.0,
+    "phi_moe": 0.0,
+    "phi_conv": 1.0
+  },
+  "variant": "lora",
+  "requested_rank": 8,
+  "decision_status": "REFUSE",
+  "recommended_variant": null,
+  "recommended_rank": null,
+  "predicted_delta": 0.06602954545454547,
+  "refusal_reason": "No feasible placement under adapter budget 1 for lora.",
+  "safety_overrides": {
+    "planner_refused": true,
+    "budget_infeasible": true
+  },
+  "metadata": {
+    "calibration_fitted": false,
+    "calibration_n_samples": 0,
+    "calibration_effective_rank": 0,
+    "calibration_n_features": 12,
+    "calibration_regularization": 0.0,
+    "calibration_condition_number": 0.0,
+    "calibration_noise_variance": 0.0,
+    "calibration_effective_dof": 0.0,
+    "calibration_rank_deficient": false,
+    "calibration_posterior_available": false,
+    "evidence_state": "cold_start",
+    "evidence_source": "default_prior",
+    "evidence_observation_count": 0,
+    "evidence_minimum_fit_observations": 5,
+    "evidence_confidence": "low",
+    "evidence_confidence_score": 0.0,
+    "evidence_confidence_score_semantics": "sample sufficiency (n/30, capped at 1) multiplied by identifiable feature-rank fraction",
+    "evidence_confidence_reasons": [
+      "no_observations",
+      "default_coefficients"
+    ],
+    "uses_learned_evidence": false,
+    "low_confidence": true,
+    "paper_regression_features": [
+      "intercept",
+      "phi_attn",
+      "phi_text",
+      "phi_dw",
+      "variant_xi"
+    ],
+    "paper_coefficients": [
+      0.0656,
+      0.0026,
+      0.0,
+      0.0054,
+      1.0
+    ],
+    "implementation_regression_features": [
+      "intercept",
+      "phi_attn",
+      "phi_text",
+      "phi_dw",
+      "variant_xi",
+      "phi_depth",
+      "phi_width",
+      "phi_head",
+      "phi_residual",
+      "phi_norm",
+      "log2_rank",
+      "phi_attn_squared"
+    ],
+    "paper_predicted_delta": 0.06602954545454547,
+    "requested_budget_solver": "ao",
+    "effective_budget_solver": "ao",
+    "budget_solver_fallback": false,
+    "budget_solver_fallback_reason": null,
+    "budget_solver": "ao",
+    "budget": 1,
+    "budget_used": 0,
+    "budget_remaining": 1,
+    "budget_utility": 0.0,
+    "budget_rank": 8,
+    "budget_candidate_module_count": 60,
+    "budget_selected_module_count": 0,
+    "budget_rank_pattern": {},
+    "budget_status": "REFUSE",
+    "budget_solver_diagnostics": {
+      "solver": "AlternatingOptimizationSolver",
+      "n_nodes": 169,
+      "n_variant_candidates": 2,
+      "variant_candidates": [
+        "ia3",
+        "lora"
+      ],
+      "optimize_variant": true,
+      "max_iter": 15,
+      "elapsed_seconds": 0.0241410369053483,
+      "final_utility": 0.0,
+      "budget_used": 0,
+      "budget_remaining": 1,
+      "target_module_count": 0,
+      "status": "REFUSE"
+    }
+  },
+  "evidence": {
+    "state": "cold_start",
+    "source": "default_prior",
+    "observation_count": 0,
+    "minimum_fit_observations": 5,
+    "confidence": "low",
+    "confidence_reasons": [
+      "no_observations",
+      "default_coefficients"
+    ],
+    "uses_learned_evidence": false,
+    "decision_basis": "constraint_guardrail",
+    "guardrails": [
+      "adapter_budget"
+    ]
+  },
+  "target_modules_count": 60
+}

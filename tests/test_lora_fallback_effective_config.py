@@ -6,6 +6,7 @@ import torch
 import torch.nn as nn
 
 from ultralytics.utils.lora import LoRAConfig
+from ultralytics.utils.lora.api import _unfreeze_detection_head
 from ultralytics.utils.lora.fallback import (
     FewShotLoRAConv,
     ManualLoRAConv,
@@ -98,3 +99,29 @@ def test_legacy_fallback_adapter_without_scaling_mode_keeps_lora_scaling(tmp_pat
 
     assert restored[0].use_rslora is False
     assert restored[0].scaling == pytest.approx(16 / 8)
+
+
+def test_predictor_only_head_policy_stays_below_ten_percent():
+    from ultralytics.nn.tasks import DetectionModel
+
+    model = DetectionModel("ultralytics/cfg/models/11/yolo11n.yaml", nc=6, verbose=False)
+    for parameter in model.parameters():
+        parameter.requires_grad = False
+
+    unfrozen = _unfreeze_detection_head(model, "predictors")
+    trainable = sum(parameter.numel() for parameter in model.parameters() if parameter.requires_grad)
+    total = sum(parameter.numel() for parameter in model.parameters())
+
+    assert unfrozen == trainable == 13_650
+    assert trainable <= total * 0.10
+    assert any(
+        name.endswith("cv3.0.2.weight") and parameter.requires_grad for name, parameter in model.named_parameters()
+    )
+    assert not any(
+        name.endswith("cv3.0.1.conv.weight") and parameter.requires_grad for name, parameter in model.named_parameters()
+    )
+
+
+def test_head_train_policy_rejects_unknown_value():
+    with pytest.raises(ValueError, match="lora_head_train_policy"):
+        LoRAConfig(r=4, head_train_policy="invented")

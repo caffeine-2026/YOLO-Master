@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "split": "test",
+  "device": "6",
+  "batch": 8,
+  "imgsz": 640,
+  "precision": 0.36172688109969936,
+  "recall": 0.4681068361927981,
+  "map50": 0.37101991614862645,
+  "map50_95": 0.17531899414539925,
+  "fitness": 0.17531899414539925,
+  "speed_ms_per_image": {
+    "preprocess": 0.1779025135975745,
+    "inference": 3.3261903665131993,
+    "loss": 0.0010650398002730475,
+    "postprocess": 0.8113468298688531
+  },
+  "save_dir": "smoke/c3/completion/artifacts/final/final_neu_50_vpeft_b250k_predictors_seed824_e100/test_eval"
+}

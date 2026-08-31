@@ -903,6 +903,7 @@ class MIPRelaxationSolver(ConstraintSolver):
         variant: str,
         constraints: ConstraintRegistry,
     ) -> PlacementDecision:
+        started = time.perf_counter()
         try:
             from ortools.linear_solver import pywraplp
         except ImportError as exc:
@@ -914,7 +915,17 @@ class MIPRelaxationSolver(ConstraintSolver):
 
         solver = pywraplp.Solver.CreateSolver("SCIP")
         if not solver:
-            return self._iterative_rounding_fallback(graph, budget, variant, constraints)
+            decision = self._iterative_rounding_fallback(graph, budget, variant, constraints)
+            decision.metadata.update(
+                {
+                    "backend": "SCIP",
+                    "native_mip_attempted": True,
+                    "native_mip_status": "BACKEND_UNAVAILABLE",
+                    "fallback": True,
+                    "runtime_seconds": time.perf_counter() - started,
+                }
+            )
+            return decision
 
         n = graph.n_nodes
         utilities = graph.get_node_importances().tolist()
@@ -958,8 +969,29 @@ class MIPRelaxationSolver(ConstraintSolver):
         solver.set_time_limit(self.time_limit_ms)
         status = solver.Solve()
 
+        status_names = {
+            pywraplp.Solver.OPTIMAL: "OPTIMAL",
+            pywraplp.Solver.FEASIBLE: "FEASIBLE",
+            pywraplp.Solver.INFEASIBLE: "INFEASIBLE",
+            pywraplp.Solver.UNBOUNDED: "UNBOUNDED",
+            pywraplp.Solver.ABNORMAL: "ABNORMAL",
+            pywraplp.Solver.NOT_SOLVED: "NOT_SOLVED",
+        }
+        status_name = status_names.get(status, f"UNKNOWN_{status}")
+
         if status not in (pywraplp.Solver.OPTIMAL, pywraplp.Solver.FEASIBLE):
-            return self._iterative_rounding_fallback(graph, budget, variant, constraints)
+            decision = self._iterative_rounding_fallback(graph, budget, variant, constraints)
+            decision.metadata.update(
+                {
+                    "backend": "SCIP",
+                    "native_mip_attempted": True,
+                    "native_mip_status": status_name,
+                    "fallback": True,
+                    "runtime_seconds": time.perf_counter() - started,
+                    "wall_time_ms": int(solver.wall_time()),
+                }
+            )
+            return decision
 
         pi_vals = torch.tensor([pi_vars[i].solution_value() for i in range(n)])
         ranks = torch.zeros(n, dtype=torch.long)
@@ -1003,4 +1035,17 @@ class MIPRelaxationSolver(ConstraintSolver):
             reason=reason,
             utility=utility,
             variants=variants,
+            metadata={
+                "backend": "SCIP",
+                "native_mip_attempted": True,
+                "native_mip_status": status_name,
+                "fallback": False,
+                "runtime_seconds": time.perf_counter() - started,
+                "wall_time_ms": int(solver.wall_time()),
+                "objective_value": float(solver.Objective().Value()),
+                "best_objective_bound": float(solver.Objective().BestBound()),
+                "time_limit_ms": self.time_limit_ms,
+                "candidate_module_count": n,
+                "selected_module_count": len(target_modules),
+            },
         )

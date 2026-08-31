@@ -1,0 +1,606 @@
+{
+  "backend": "peft",
+  "runtime_metadata": {
+    "requested_backend": "auto",
+    "effective_backend": "peft",
+    "requested_variant": "lora",
+    "effective_variant": "lora",
+    "peft_type": "lora",
+    "requested_init_lora_weights": true,
+    "effective_init_lora_weights": true,
+    "include_head": false,
+    "head_train_policy": "predictors",
+    "freeze_bn": false,
+    "target_modules": [
+      "10.cv1.conv",
+      "10.cv2.conv",
+      "10.m.0.ffn.1.conv",
+      "13.cv1.conv",
+      "13.cv2.conv",
+      "13.m.0.cv1.conv",
+      "13.m.0.cv2.conv",
+      "16.cv1.conv",
+      "16.cv2.conv",
+      "16.m.0.cv1.conv",
+      "16.m.0.cv2.conv",
+      "17.conv",
+      "19.cv1.conv",
+      "19.cv2.conv",
+      "19.m.0.cv1.conv",
+      "19.m.0.cv2.conv",
+      "22.cv1.conv",
+      "22.cv2.conv",
+      "22.m.0.cv1.conv",
+      "22.m.0.cv2.conv",
+      "22.m.0.cv3.conv",
+      "22.m.0.m.0.cv1.conv",
+      "22.m.0.m.0.cv2.conv",
+      "22.m.0.m.1.cv1.conv",
+      "22.m.0.m.1.cv2.conv",
+      "3.conv",
+      "4.cv1.conv",
+      "4.cv2.conv",
+      "4.m.0.cv1.conv",
+      "4.m.0.cv2.conv",
+      "5.conv",
+      "6.cv1.conv",
+      "6.cv2.conv",
+      "6.m.0.cv1.conv",
+      "6.m.0.cv2.conv",
+      "6.m.0.cv3.conv",
+      "6.m.0.m.0.cv1.conv",
+      "6.m.0.m.0.cv2.conv",
+      "6.m.0.m.1.cv1.conv",
+      "6.m.0.m.1.cv2.conv",
+      "7.conv",
+      "8.cv1.conv",
+      "8.cv2.conv",
+      "8.m.0.cv1.conv",
+      "8.m.0.cv2.conv",
+      "8.m.0.cv3.conv",
+      "8.m.0.m.0.cv1.conv",
+      "8.m.0.m.0.cv2.conv",
+      "8.m.0.m.1.cv1.conv",
+      "8.m.0.m.1.cv2.conv",
+      "9.cv1.conv",
+      "9.cv2.conv"
+    ],
+    "target_audit": {
+      "peft_type": "lora",
+      "rank": 8,
+      "valid_count": 54,
+      "selected_count": 52,
+      "requested_targets": [
+        "1.conv",
+        "2.cv1.conv",
+        "2.cv2.conv",
+        "2.m.0.cv1.conv",
+        "2.m.0.cv2.conv",
+        "3.conv",
+        "4.cv1.conv",
+        "4.cv2.conv",
+        "4.m.0.cv1.conv",
+        "4.m.0.cv2.conv",
+        "5.conv",
+        "6.cv1.conv",
+        "6.cv2.conv",
+        "6.m.0.cv1.conv",
+        "6.m.0.cv2.conv",
+        "6.m.0.cv3.conv",
+        "6.m.0.m.0.cv1.conv",
+        "6.m.0.m.0.cv2.conv",
+        "6.m.0.m.1.cv1.conv",
+        "6.m.0.m.1.cv2.conv",
+        "7.conv",
+        "8.cv1.conv",
+        "8.cv2.conv",
+        "8.m.0.cv1.conv",
+        "8.m.0.cv2.conv",
+        "8.m.0.cv3.conv",
+        "8.m.0.m.0.cv1.conv",
+        "8.m.0.m.0.cv2.conv",
+        "8.m.0.m.1.cv1.conv",
+        "8.m.0.m.1.cv2.conv",
+        "9.cv1.conv",
+        "9.cv2.conv",
+        "10.cv1.conv",
+        "10.cv2.conv",
+        "10.m.0.attn.qkv.conv",
+        "10.m.0.attn.proj.conv",
+        "10.m.0.ffn.1.conv",
+        "13.cv1.conv",
+        "13.cv2.conv",
+        "13.m.0.cv1.conv",
+        "13.m.0.cv2.conv",
+        "16.cv1.conv",
+        "16.cv2.conv",
+        "16.m.0.cv1.conv",
+        "16.m.0.cv2.conv",
+        "17.conv",
+        "19.cv1.conv",
+        "19.cv2.conv",
+        "19.m.0.cv1.conv",
+        "19.m.0.cv2.conv",
+        "22.cv1.conv",
+        "22.cv2.conv",
+        "22.m.0.cv1.conv",
+        "22.m.0.cv2.conv",
+        "22.m.0.cv3.conv",
+        "22.m.0.m.0.cv1.conv",
+        "22.m.0.m.0.cv2.conv",
+        "22.m.0.m.1.cv1.conv",
+        "22.m.0.m.1.cv2.conv"
+      ],
+      "exclude_count": 22,
+      "incompatible_grouped_conv_count": 7,
+      "filtered_by_user_count": 2,
+      "selected_sample": [
+        "10.cv1.conv",
+        "10.cv2.conv",
+        "10.m.0.ffn.1.conv",
+        "13.cv1.conv",
+        "13.cv2.conv",
+        "13.m.0.cv1.conv",
+        "13.m.0.cv2.conv",
+        "16.cv1.conv",
+        "16.cv2.conv",
+        "16.m.0.cv1.conv",
+        "16.m.0.cv2.conv",
+        "17.conv",
+        "19.cv1.conv",
+        "19.cv2.conv",
+        "19.m.0.cv1.conv",
+        "19.m.0.cv2.conv",
+        "22.cv1.conv",
+        "22.cv2.conv",
+        "22.m.0.cv1.conv",
+        "22.m.0.cv2.conv"
+      ],
+      "incompatible_grouped_conv_sample": [
+        "10.m.0.attn.pe.conv",
+        "23.cv3.0.0.0.conv",
+        "23.cv3.0.1.0.conv",
+        "23.cv3.1.0.0.conv",
+        "23.cv3.1.1.0.conv",
+        "23.cv3.2.0.0.conv",
+        "23.cv3.2.1.0.conv"
+      ],
+      "filtered_by_user_sample": [
+        "10.m.0.ffn.0.conv",
+        "20.conv"
+      ]
+    },
+    "safety_profile": null,
+    "safety_overrides": null,
+    "planner_decision": null,
+    "placement_plan": {
+      "schema_version": 1,
+      "model_fingerprint": "1d2fb66b8525ba1c2e2654cc60c33e086d7b247acff64e8b6743ac3934248115",
+      "planner_backend": "vpeft",
+      "solver": "ao",
+      "budget": {
+        "max_adapter_params": 150000,
+        "used_adapter_params": 149632
+      },
+      "targets": [
+        {
+          "name": "1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "2.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "2.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "2.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "2.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "3.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "4.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "4.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "4.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "4.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "5.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.m.0.cv3.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.m.0.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.m.0.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.m.0.m.1.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "6.m.0.m.1.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "7.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.m.0.cv3.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.m.0.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.m.0.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.m.0.m.1.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "8.m.0.m.1.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "9.cv1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "9.cv2.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "10.cv1.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "10.cv2.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "10.m.0.attn.qkv.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "10.m.0.attn.proj.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "10.m.0.ffn.1.conv",
+          "variant": "lora",
+          "rank": 8
+        },
+        {
+          "name": "13.cv1.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "13.cv2.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "13.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "13.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "16.cv1.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "16.cv2.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "16.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "16.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "17.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "19.cv1.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "19.cv2.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "19.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "19.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "22.cv1.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "22.cv2.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "22.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "22.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "22.m.0.cv3.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "22.m.0.m.0.cv1.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "22.m.0.m.0.cv2.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "22.m.0.m.1.cv1.conv",
+          "variant": "lora",
+          "rank": 4
+        },
+        {
+          "name": "22.m.0.m.1.cv2.conv",
+          "variant": "lora",
+          "rank": 4
+        }
+      ],
+      "constraints": {
+        "hard": [
+          "C_op",
+          "C_sem",
+          "C_budget",
+          "C_deploy",
+          "C_compat",
+          "C_moe",
+          "C_div"
+        ],
+        "soft": [
+          "C_budget",
+          "C_deploy"
+        ]
+      },
+      "predicted_delta": 0.06602954545454547,
+      "confidence": 0.0,
+      "status": "ACCEPT",
+      "refusal_reason": null,
+      "metadata": {
+        "utility": 25.49999999999997,
+        "reason": "",
+        "graph_nodes": 169,
+        "requested_solver": "ao",
+        "effective_solver": "ao",
+        "solver_fallback": null,
+        "fallback": false,
+        "solver_diagnostics": {
+          "solver": "AlternatingOptimizationSolver",
+          "n_nodes": 169,
+          "n_variant_candidates": 2,
+          "variant_candidates": [
+            "ia3",
+            "lora"
+          ],
+          "optimize_variant": true,
+          "max_iter": 15,
+          "elapsed_seconds": 2.617812808137387,
+          "final_utility": 25.49999999999997,
+          "budget_used": 149632,
+          "budget_remaining": 368,
+          "target_module_count": 59,
+          "status": "ACCEPT"
+        },
+        "prediction_evidence": {
+          "predicted_delta": 0.06602954545454547,
+          "prediction_std_error": 0.05,
+          "prediction_lower_95": -0.03197045454545454,
+          "prediction_upper_95": 0.16402954545454546,
+          "paper_predicted_delta": 0.06602954545454547,
+          "confidence_score": 0.0,
+          "confidence_score_semantics": "sample sufficiency (n/30, capped at 1) multiplied by identifiable feature-rank fraction",
+          "variant": "lora",
+          "rank": 8,
+          "architecture_fingerprint": {
+            "phi_attn": 0.0,
+            "phi_text": 0.0,
+            "phi_moe": 0.0,
+            "phi_dw": 0.07954545454545454,
+            "phi_conv": 1.0,
+            "phi_group": 0.0,
+            "phi_linear": 0.0,
+            "phi_depth": 0.8,
+            "phi_width": 0.7675475947501547,
+            "phi_head": 0.1666693683158305,
+            "phi_residual": 0.07523510971786834,
+            "phi_norm": 0.0
+          },
+          "calibration_fitted": false,
+          "calibration_n_samples": 0,
+          "calibration_effective_rank": 0,
+          "calibration_n_features": 12,
+          "calibration_regularization": 0.0,
+          "calibration_condition_number": 0.0,
+          "calibration_noise_variance": 0.0,
+          "calibration_effective_dof": 0.0,
+          "calibration_rank_deficient": false,
+          "calibration_posterior_available": false,
+          "evidence_state": "cold_start",
+          "evidence_source": "default_prior",
+          "evidence_observation_count": 0,
+          "evidence_minimum_fit_observations": 5,
+          "evidence_confidence": "low",
+          "evidence_confidence_score": 0.0,
+          "evidence_confidence_score_semantics": "sample sufficiency (n/30, capped at 1) multiplied by identifiable feature-rank fraction",
+          "evidence_confidence_reasons": [
+            "no_observations",
+            "default_coefficients"
+          ],
+          "uses_learned_evidence": false,
+          "low_confidence": true,
+          "paper_regression_features": [
+            "intercept",
+            "phi_attn",
+            "phi_text",
+            "phi_dw",
+            "variant_xi"
+          ],
+          "paper_coefficients": [
+            0.0656,
+            0.0026,
+            0.0,
+            0.0054,
+            1.0
+          ],
+          "implementation_regression_features": [
+            "intercept",
+            "phi_attn",
+            "phi_text",
+            "phi_dw",
+            "variant_xi",
+            "phi_depth",
+            "phi_width",
+            "phi_head",
+            "phi_residual",
+            "phi_norm",
+            "log2_rank",
+            "phi_attn_squared"
+          ]
+        }
+      },
+      "plan_fingerprint": "d8d6eebbb37e7a89c43b75c01998d940745655c3bfbfb34e459be5c038224abd"
+    }
+  }
+}

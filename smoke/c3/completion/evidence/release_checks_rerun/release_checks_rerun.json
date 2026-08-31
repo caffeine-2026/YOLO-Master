@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "reason": "The original related suite was sandboxed and could not create the localhost socket required by CPU Gloo.",
+  "original_failure": "smoke/c3/completion/evidence/release_checks/release_checks.json",
+  "command": "../YOLO-Master/.venv/bin/python -m pytest -q tests/test_p0_system_gates.py::test_cpu_gloo_two_rank_routed_continuous_training",
+  "execution_scope": "actual host (sandbox escalation approved)",
+  "returncode": 0,
+  "result": "1 passed in 6.09s",
+  "stdout": "smoke/c3/completion/evidence/release_checks_rerun/cpu_gloo.stdout.txt",
+  "stderr": "smoke/c3/completion/evidence/release_checks_rerun/cpu_gloo.stderr.txt"
+}

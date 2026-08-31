@@ -1,0 +1,138 @@
+{
+  "best_primary_value": 0.31013999999999997,
+  "candidate_results": [
+    {
+      "candidate": "b100k_predictors",
+      "dataset_results": {
+        "deeppcb": {
+          "best_validation_map50_95": 0.30677,
+          "full_sft_best_validation_map50_95": 0.63496,
+          "metrics_path": "smoke/c3/completion/logs/search/search_deeppcb_100_b100k_predictors_seed824/metrics.json",
+          "metrics_sha256": "8e48f4072fe5155be584edf80002ce5b9f2e5f22fc634ca1a192720ca17d9d66",
+          "validation_delta": -0.32819,
+          "validation_retention": 0.48313279576666246
+        },
+        "neu": {
+          "best_validation_map50_95": 0.25493,
+          "full_sft_best_validation_map50_95": 0.32866,
+          "metrics_path": "smoke/c3/completion/logs/search/search_neu_100_b100k_predictors_seed824/metrics.json",
+          "metrics_sha256": "e61e9cc85e804d764d1c97e82d6b7d7331b26dde5fdf6956b3025a9427f9ee25",
+          "validation_delta": -0.07373000000000002,
+          "validation_retention": 0.7756648207874398
+        }
+      },
+      "eligible": true,
+      "mean_best_validation_map50_95": 0.28085,
+      "mean_peak_gpu_memory_mib": 2570.24,
+      "mean_trainable_parameters": 104530.0,
+      "mean_training_seconds": 406.865
+    },
+    {
+      "candidate": "b150k_predictors",
+      "dataset_results": {
+        "deeppcb": {
+          "best_validation_map50_95": 0.31649,
+          "full_sft_best_validation_map50_95": 0.63496,
+          "metrics_path": "smoke/c3/completion/logs/search/search_deeppcb_100_b150k_predictors_seed824/metrics.json",
+          "metrics_sha256": "2755ec1908ff77cfd0925d81d3ca82d87d1e5f3471d4d15a840d14a19c7327c9",
+          "validation_delta": -0.31847,
+          "validation_retention": 0.49844084666750665
+        },
+        "neu": {
+          "best_validation_map50_95": 0.2389,
+          "full_sft_best_validation_map50_95": 0.32866,
+          "metrics_path": "smoke/c3/completion/logs/search/search_neu_100_b150k_predictors_seed824/metrics.json",
+          "metrics_sha256": "f046077af92ac11c5671c429ee457036fe716c1fccba414e9552e706d1e3591d",
+          "validation_delta": -0.08976,
+          "validation_retention": 0.7268910119880728
+        }
+      },
+      "eligible": true,
+      "mean_best_validation_map50_95": 0.277695,
+      "mean_peak_gpu_memory_mib": 2585.6,
+      "mean_trainable_parameters": 153426.0,
+      "mean_training_seconds": 414.237
+    },
+    {
+      "candidate": "b250k_predictors",
+      "dataset_results": {
+        "deeppcb": {
+          "best_validation_map50_95": 0.35596,
+          "full_sft_best_validation_map50_95": 0.63496,
+          "metrics_path": "smoke/c3/completion/logs/search/search_deeppcb_100_b250k_predictors_seed824/metrics.json",
+          "metrics_sha256": "3ad5d9d82746307f133ae66af79d2259d92b85835a85e850fc124b4ec97f4dd6",
+          "validation_delta": -0.27899999999999997,
+          "validation_retention": 0.560602242660955
+        },
+        "neu": {
+          "best_validation_map50_95": 0.26432,
+          "full_sft_best_validation_map50_95": 0.32866,
+          "metrics_path": "smoke/c3/completion/logs/search/search_neu_100_b250k_predictors_seed824/metrics.json",
+          "metrics_sha256": "db1869ef4b7d794ef15193aad570205cc46637a2f441431aa278956b077868b8",
+          "validation_delta": -0.06434000000000001,
+          "validation_retention": 0.8042353800279924
+        }
+      },
+      "eligible": true,
+      "mean_best_validation_map50_95": 0.31013999999999997,
+      "mean_peak_gpu_memory_mib": 2595.84,
+      "mean_trainable_parameters": 195410.0,
+      "mean_training_seconds": 413.087
+    },
+    {
+      "candidate": "b150k_frozen",
+      "dataset_results": {
+        "deeppcb": {
+          "best_validation_map50_95": 0.29624,
+          "full_sft_best_validation_map50_95": 0.63496,
+          "metrics_path": "smoke/c3/completion/logs/search/search_deeppcb_100_b150k_frozen_seed824/metrics.json",
+          "metrics_sha256": "3fe221f3f597749ee0e330ecbe068cc656cd005bd8feddcf95ffd3e6398be98c",
+          "validation_delta": -0.33871999999999997,
+          "validation_retention": 0.4665490739574147
+        },
+        "neu": {
+          "best_validation_map50_95": 0.22013,
+          "full_sft_best_validation_map50_95": 0.32866,
+          "metrics_path": "smoke/c3/completion/logs/search/search_neu_100_b150k_frozen_seed824/metrics.json",
+          "metrics_sha256": "ccac66d28bd820c266d703be37c5d3aee6401f0772bc7efe93b07c6532ac2785",
+          "validation_delta": -0.10853000000000002,
+          "validation_retention": 0.6697803200876286
+        }
+      },
+      "eligible": true,
+      "mean_best_validation_map50_95": 0.258185,
+      "mean_peak_gpu_memory_mib": 2585.6,
+      "mean_trainable_parameters": 139776.0,
+      "mean_training_seconds": 400.55150000000003
+    }
+  ],
+  "command": "../YOLO-Master/.venv/bin/python smoke/c3/completion/tools/select_efficiency.py",
+  "full_sft_validation_baselines": {
+    "deeppcb": {
+      "best_map50_95": 0.63496,
+      "path": "smoke/c3/p1/logs/deeppcb_full_seed824_e100/learning_curve.csv",
+      "sha256": "58c2fb8d8c9f7386f905cd0bfe4cc27fa827e683c412f6f3125a59d17fe77fe2"
+    },
+    "neu": {
+      "best_map50_95": 0.32866,
+      "path": "smoke/c3/p1/logs/neu_full_seed824_e100/learning_curve.csv",
+      "sha256": "37cc6319a2dc231ceee62e55779d0f17ee729423b7a290e367d4fc9e52881558"
+    }
+  },
+  "metric_split": "validation",
+  "protocol": "smoke/c3/completion/config/efficiency_search_protocol.yaml",
+  "schema_version": 1,
+  "selected_at": "2026-08-31T12:23:48.041110+00:00",
+  "selected_candidate": "b250k_predictors",
+  "selected_configuration": {
+    "adapter_budget": 250000,
+    "head_train_policy": "predictors"
+  },
+  "status": "SELECTED",
+  "test_access_before_selection": false,
+  "tie_contenders": [
+    "b250k_predictors"
+  ],
+  "tie_threshold_map50_95": 0.001,
+  "trainable_limit": 259099
+}

@@ -1,0 +1,14 @@
+2026-08-31 20:15:46,214 INFO Overriding model.yaml nc=80 with nc=6
+2026-08-31 20:15:46,358 INFO [Planner] Architecture fingerprint: φ_attn=0.000, φ_text=0.000, φ_dw=0.080, φ_group=0.000, φ_linear=0.000, φ_depth=0.800, φ_width=0.768, φ_head=0.167, φ_residual=0.075, φ_norm=0.000
+2026-08-31 20:15:46,358 INFO [Planner] Regression: requested lora Δ=0.0660, best hra Δ=0.0812
+2026-08-31 20:15:48,443 INFO [Planner] No attention detected (φ_attn=0.000), attention already disabled
+2026-08-31 20:15:48,444 INFO [Planner] Audit saved to smoke/c3/completion/evidence/planner_branches/audits/planner_audit_20260831_201548_443811.json
+2026-08-31 20:15:48,446 INFO Overriding model.yaml nc=80 with nc=6
+2026-08-31 20:15:48,554 INFO [Planner] Architecture fingerprint: φ_attn=0.000, φ_text=0.000, φ_dw=0.080, φ_group=0.000, φ_linear=0.000, φ_depth=0.800, φ_width=0.768, φ_head=0.167, φ_residual=0.075, φ_norm=0.000
+2026-08-31 20:15:48,554 INFO [Planner] Regression: requested lora Δ=0.0660, best hra Δ=0.0812
+2026-08-31 20:15:50,636 INFO [Planner] No attention detected (φ_attn=0.000), disabling attention targets
+2026-08-31 20:15:50,637 INFO [Planner] Audit saved to smoke/c3/completion/evidence/planner_branches/audits/planner_audit_20260831_201550_637128.json
+2026-08-31 20:15:50,639 INFO Overriding model.yaml nc=80 with nc=6
+2026-08-31 20:15:50,746 INFO [Planner] Architecture fingerprint: φ_attn=0.000, φ_text=0.000, φ_dw=0.080, φ_group=0.000, φ_linear=0.000, φ_depth=0.800, φ_width=0.768, φ_head=0.167, φ_residual=0.075, φ_norm=0.000
+2026-08-31 20:15:50,747 INFO [Planner] Regression: requested lora Δ=0.0660, best hra Δ=0.0812
+2026-08-31 20:15:50,774 INFO [Planner] Audit saved to smoke/c3/completion/evidence/planner_branches/audits/planner_audit_20260831_201550_773810.json

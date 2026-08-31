@@ -1,0 +1,31 @@
+Command (first attempt):
+../YOLO-Master/.venv/bin/python smoke/c3/completion/tools/compare_solvers.py
+
+Exit code: 1
+
+Captured stderr:
+Traceback (most recent call last):
+  File "<repo>/smoke/c3/completion/tools/compare_solvers.py", line 131, in <module>
+    raise SystemExit(main())
+  File "<repo>/smoke/c3/completion/tools/compare_solvers.py", line 80, in main
+    records = [run_solver(dataset, solver, args.budget) for dataset in DATASETS for solver in SOLVERS]
+  File "<repo>/smoke/c3/completion/tools/compare_solvers.py", line 45, in run_solver
+    "fallback": bool(plan.metadata["fallback"]),
+KeyError: 'fallback'
+
+Root cause:
+When a repository script was launched by path, sys.path started at the script
+directory and the shared virtual environment's editable installation resolved
+the primary worktree instead of this feature worktree. That older module did
+not yet expose the new fallback metadata field.
+
+Fix:
+Both evidence scripts now prepend their own resolved repository root before
+importing ultralytics. The common C3 subprocess runner also prepends this
+worktree to PYTHONPATH for yolo and checkpoint-evaluation subprocesses.
+
+Rerun:
+../YOLO-Master/.venv/bin/python smoke/c3/completion/tools/compare_solvers.py
+
+Rerun exit code: 0
+Rerun evidence: smoke/c3/completion/evidence/solvers/solver_comparison.json

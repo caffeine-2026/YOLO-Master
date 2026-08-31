@@ -1,0 +1,182 @@
+{
+  "figure_series_derived_from_final_summary": {
+    "DeepPCB": {
+      "Frozen Backbone": [
+        {
+          "ci95_lower": 0.1783294154224699,
+          "ci95_upper": 0.26289088106747505,
+          "mean": 0.22061014824497246,
+          "sample_size": 10
+        },
+        {
+          "ci95_lower": 0.36934500739143894,
+          "ci95_upper": 0.4102596799378191,
+          "mean": 0.389802343664629,
+          "sample_size": 50
+        },
+        {
+          "ci95_lower": 0.4473182009313036,
+          "ci95_upper": 0.5213911512978866,
+          "mean": 0.4843546761145951,
+          "sample_size": 100
+        },
+        {
+          "ci95_lower": 0.576602998740343,
+          "ci95_upper": 0.619128389258048,
+          "mean": 0.5978656939991955,
+          "sample_size": 500
+        }
+      ],
+      "Full-SFT": [
+        {
+          "ci95_lower": 0.1962781672456087,
+          "ci95_upper": 0.38439714215257154,
+          "mean": 0.2903376546990901,
+          "sample_size": 10
+        },
+        {
+          "ci95_lower": 0.5388734990471419,
+          "ci95_upper": 0.5949203403840614,
+          "mean": 0.5668969197156016,
+          "sample_size": 50
+        },
+        {
+          "ci95_lower": 0.6164363511691507,
+          "ci95_upper": 0.6807625088103989,
+          "mean": 0.6485994299897748,
+          "sample_size": 100
+        },
+        {
+          "ci95_lower": 0.6796095658135942,
+          "ci95_upper": 0.7216827419956334,
+          "mean": 0.7006461539046138,
+          "sample_size": 500
+        }
+      ],
+      "V-PEFT <=10%": [
+        {
+          "ci95_lower": 0.07820045859114952,
+          "ci95_upper": 0.1426225040997176,
+          "mean": 0.11041148134543356,
+          "sample_size": 10
+        },
+        {
+          "ci95_lower": 0.1695595497891274,
+          "ci95_upper": 0.2406531111040927,
+          "mean": 0.20510633044661006,
+          "sample_size": 50
+        },
+        {
+          "ci95_lower": 0.2956567888677534,
+          "ci95_upper": 0.4476356751731291,
+          "mean": 0.3716462320204412,
+          "sample_size": 100
+        },
+        {
+          "ci95_lower": 0.5454736640116421,
+          "ci95_upper": 0.6696933933800219,
+          "mean": 0.607583528695832,
+          "sample_size": 500
+        }
+      ]
+    },
+    "NEU-DET": {
+      "Frozen Backbone": [
+        {
+          "ci95_lower": 0.107455058352742,
+          "ci95_upper": 0.15762748652520564,
+          "mean": 0.13254127243897382,
+          "sample_size": 10
+        },
+        {
+          "ci95_lower": 0.2094742882236468,
+          "ci95_upper": 0.229505449932652,
+          "mean": 0.2194898690781494,
+          "sample_size": 50
+        },
+        {
+          "ci95_lower": 0.2763743194652888,
+          "ci95_upper": 0.31062268583008856,
+          "mean": 0.2934985026476887,
+          "sample_size": 100
+        },
+        {
+          "ci95_lower": 0.35612969941451766,
+          "ci95_upper": 0.3977127392200426,
+          "mean": 0.3769212193172801,
+          "sample_size": 500
+        }
+      ],
+      "Full-SFT": [
+        {
+          "ci95_lower": 0.0910551022295545,
+          "ci95_upper": 0.151437392680895,
+          "mean": 0.12124624745522476,
+          "sample_size": 10
+        },
+        {
+          "ci95_lower": 0.24338463542685207,
+          "ci95_upper": 0.2939231374206651,
+          "mean": 0.2686538864237586,
+          "sample_size": 50
+        },
+        {
+          "ci95_lower": 0.3233444332552237,
+          "ci95_upper": 0.3425252107170634,
+          "mean": 0.33293482198614355,
+          "sample_size": 100
+        },
+        {
+          "ci95_lower": 0.3855992513849354,
+          "ci95_upper": 0.4134239895798683,
+          "mean": 0.39951162048240185,
+          "sample_size": 500
+        }
+      ],
+      "V-PEFT <=10%": [
+        {
+          "ci95_lower": 0.025513788298931736,
+          "ci95_upper": 0.1273140870250808,
+          "mean": 0.07641393766200627,
+          "sample_size": 10
+        },
+        {
+          "ci95_lower": 0.13708918912125242,
+          "ci95_upper": 0.22415832354448226,
+          "mean": 0.18062375633286734,
+          "sample_size": 50
+        },
+        {
+          "ci95_lower": 0.2485353003842144,
+          "ci95_upper": 0.3486262660374007,
+          "mean": 0.29858078321080755,
+          "sample_size": 100
+        },
+        {
+          "ci95_lower": 0.362004658590254,
+          "ci95_upper": 0.3772160496152638,
+          "mean": 0.3696103541027589,
+          "sample_size": 500
+        }
+      ]
+    }
+  },
+  "matrix_rows": 72,
+  "new_vpeft_runs": 24,
+  "outputs": {
+    "all_runs": "smoke/c3/completion/results/final_all_runs.csv",
+    "figures": [
+      "smoke/c3/completion/visualizations/neu_det_scaling_map50_95.png",
+      "smoke/c3/completion/visualizations/deeppcb_scaling_map50_95.png"
+    ],
+    "old_new_vpeft": "smoke/c3/completion/results/old_new_vpeft.csv",
+    "paired_deltas": "smoke/c3/completion/results/paired_deltas.csv",
+    "summary": "smoke/c3/completion/results/final_summary.csv"
+  },
+  "reused_verified_full_frozen_runs": 48,
+  "reused_verified_old_vpeft_runs_for_tradeoff_only": 24,
+  "schema_version": 1,
+  "selected_candidate": "b250k_predictors",
+  "source_old_matrix": "smoke/c3/p2/results/p2_all_runs.csv",
+  "source_old_matrix_sha256": "e4f1d57c9c84d9bd088a78fc46a560ca8ad9942c62e473bb31f65b28b332a60f"
+}

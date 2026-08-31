@@ -771,6 +771,11 @@ class LOVODataPoint:
             variants use 1 so the regression's log-rank feature stays neutral.
         timestamp: ISO-8601 timestamp.
         notes: Free-form notes.
+        observation_id: Stable experimental-unit identifier. Repeated seeds
+            should be aggregated under one identifier instead of counted as
+            independent calibration observations.
+        metric_split: Split on which ``delta_mAP`` was measured.
+        source_run_ids: Raw run identifiers contributing to the observation.
     """
 
     fingerprint: ArchitectureFingerprint
@@ -782,6 +787,9 @@ class LOVODataPoint:
     rank: int = 8
     timestamp: str = field(default_factory=lambda: datetime.now().isoformat())
     notes: str = ""
+    observation_id: str = ""
+    metric_split: str = "validation"
+    source_run_ids: List[str] = field(default_factory=list)
 
     def to_tuple(self) -> Tuple[ArchitectureFingerprint, str, float]:
         return (self.fingerprint, self.variant, self.delta_mAP)
@@ -811,6 +819,9 @@ class LOVODataPoint:
             "rank": self.rank,
             "timestamp": self.timestamp,
             "notes": self.notes,
+            "observation_id": self.observation_id,
+            "metric_split": self.metric_split,
+            "source_run_ids": list(self.source_run_ids),
         }
 
     @classmethod
@@ -840,6 +851,9 @@ class LOVODataPoint:
             rank=max(int(data.get("rank", 8) or 8), 1),
             timestamp=data.get("timestamp", ""),
             notes=data.get("notes", ""),
+            observation_id=data.get("observation_id", ""),
+            metric_split=data.get("metric_split", "validation"),
+            source_run_ids=list(data.get("source_run_ids") or []),
         )
 
 
@@ -852,7 +866,9 @@ class LOVODataCollector:
     """
 
     def __init__(self, data_points: Optional[List[LOVODataPoint]] = None):
-        self.data_points: List[LOVODataPoint] = list(data_points) if data_points else []
+        self.data_points: List[LOVODataPoint] = []
+        for point in data_points or []:
+            self.add(point)
 
     def add(
         self,
@@ -868,6 +884,10 @@ class LOVODataCollector:
         if isinstance(point, tuple):
             fp, variant, delta_mAP = point
             point = LOVODataPoint(fingerprint=fp, variant=variant, delta_mAP=delta_mAP, **metadata)
+        if point.observation_id and any(
+            existing.observation_id == point.observation_id for existing in self.data_points
+        ):
+            raise ValueError(f"Duplicate LOVO observation_id: {point.observation_id}")
         self.data_points.append(point)
 
     def extend(self, points: List[Union[LOVODataPoint, Tuple]]) -> None:
@@ -1019,22 +1039,26 @@ class LOVOValidator:
         seen: set = set()
         for p in data_points:
             key = (
-                round(p.fingerprint.phi_attn, 6),
-                round(p.fingerprint.phi_text, 6),
-                round(p.fingerprint.phi_dw, 6),
-                round(p.fingerprint.phi_group, 6),
-                round(p.fingerprint.phi_linear, 6),
-                # Extended dimensions
-                round(p.fingerprint.phi_depth, 6),
-                round(p.fingerprint.phi_width, 6),
-                round(p.fingerprint.phi_head, 6),
-                round(p.fingerprint.phi_residual, 6),
-                round(p.fingerprint.phi_norm, 6),
-                round(p.fingerprint.phi_moe, 6),
-                round(p.fingerprint.phi_conv, 6),
-                p.variant.lower(),
-                max(int(p.rank), 1),
-                round(p.delta_mAP, 6),
+                ("observation_id", p.observation_id)
+                if p.observation_id
+                else (
+                    round(p.fingerprint.phi_attn, 6),
+                    round(p.fingerprint.phi_text, 6),
+                    round(p.fingerprint.phi_dw, 6),
+                    round(p.fingerprint.phi_group, 6),
+                    round(p.fingerprint.phi_linear, 6),
+                    # Extended dimensions
+                    round(p.fingerprint.phi_depth, 6),
+                    round(p.fingerprint.phi_width, 6),
+                    round(p.fingerprint.phi_head, 6),
+                    round(p.fingerprint.phi_residual, 6),
+                    round(p.fingerprint.phi_norm, 6),
+                    round(p.fingerprint.phi_moe, 6),
+                    round(p.fingerprint.phi_conv, 6),
+                    p.variant.lower(),
+                    max(int(p.rank), 1),
+                    round(p.delta_mAP, 6),
+                )
             )
             if key not in seen:
                 seen.add(key)
@@ -1488,6 +1512,9 @@ class PEFTPlanner:
         dataset: str = "",
         epochs: int = 0,
         notes: str = "",
+        observation_id: str = "",
+        metric_split: str = "validation",
+        source_run_ids: Optional[List[str]] = None,
     ) -> None:
         """Record a training result into the LOVO collector (online learning).
 
@@ -1507,6 +1534,9 @@ class PEFTPlanner:
             dataset: Optional dataset name.
             epochs: Training epochs.
             notes: Free-form notes.
+            observation_id: Stable identifier for the independent experimental unit.
+            metric_split: Metric split used for the measured delta.
+            source_run_ids: Raw runs aggregated into this observation.
         """
         if self.lovo_collector is None:
             self.lovo_collector = LOVODataCollector()
@@ -1522,6 +1552,9 @@ class PEFTPlanner:
                 epochs=epochs,
                 rank=max(int(rank), 1),
                 notes=notes or f"rank={rank}",
+                observation_id=observation_id,
+                metric_split=metric_split,
+                source_run_ids=list(source_run_ids or []),
             )
         )
         self._needs_refit = True
@@ -1885,7 +1918,7 @@ class PEFTPlanner:
         self._maybe_fit_from_lovo()
         predicted_delta, std_error = self.predict_with_uncertainty(fingerprint, variant, rank)
         metadata = self._calibration_metadata()
-        confidence_score = 0.0 if metadata["low_confidence"] else 1.0
+        confidence_score = float(metadata["evidence_confidence_score"])
         return {
             "predicted_delta": float(predicted_delta),
             "prediction_std_error": float(std_error),
@@ -1893,9 +1926,7 @@ class PEFTPlanner:
             "prediction_upper_95": float(predicted_delta + 1.96 * std_error),
             "paper_predicted_delta": float(self.predict_paper(fingerprint, variant)),
             "confidence_score": confidence_score,
-            "confidence_score_semantics": (
-                "1.0=calibrated high-confidence evidence; 0.0=prior or limited-evidence prediction"
-            ),
+            "confidence_score_semantics": metadata["evidence_confidence_score_semantics"],
             "variant": variant,
             "rank": rank,
             "architecture_fingerprint": {
@@ -1932,6 +1963,11 @@ class PEFTPlanner:
                 confidence_reasons.append("rank_deficient_fit")
         confidence = "low" if confidence_reasons else "high"
         evidence_state = "cold_start" if not fitted else ("limited_evidence" if confidence_reasons else "calibrated")
+        confidence_score = (
+            min(1.0, n_samples / 30.0) * min(1.0, self._fit_effective_rank / max(self._fit_n_features, 1))
+            if fitted
+            else 0.0
+        )
         return {
             "calibration_fitted": fitted,
             "calibration_n_samples": n_samples,
@@ -1948,6 +1984,10 @@ class PEFTPlanner:
             "evidence_observation_count": n_samples,
             "evidence_minimum_fit_observations": 5,
             "evidence_confidence": confidence,
+            "evidence_confidence_score": confidence_score,
+            "evidence_confidence_score_semantics": (
+                "sample sufficiency (n/30, capped at 1) multiplied by identifiable feature-rank fraction"
+            ),
             "evidence_confidence_reasons": confidence_reasons,
             "uses_learned_evidence": fitted,
             "low_confidence": confidence == "low",
@@ -2535,7 +2575,8 @@ class PEFTPlanner:
                 "platform": "pytorch",
             }
         )
-        solver_name = solver_name.lower()
+        requested_solver = solver_name.lower()
+        solver_name = requested_solver
         if solver_name == "dco":
             solver = DifferentiableOptimizationSolver(rank_min=4, rank_max=64, rank_step=4, max_iter=40)
         elif solver_name == "mip":
@@ -2544,21 +2585,38 @@ class PEFTPlanner:
             solver = AlternatingOptimizationSolver(rank_min=4, rank_max=64, rank_step=4, max_iter=15)
         try:
             result = solver.solve(graph, int(budget), variant, constraints)
-        except ImportError:
+        except ImportError as exc:
             # OR-Tools is optional; retain deterministic AO behavior when MIP is
             # requested but its dependency is unavailable.
             result = AlternatingOptimizationSolver(rank_min=4, rank_max=64, rank_step=4).solve(
                 graph, int(budget), variant, constraints
             )
             solver_name = "ao_fallback"
+            fallback_reason = f"{type(exc).__name__}: {exc}"
+        else:
+            fallback_reason = None
+        module_names = graph.get_module_names()
+        rank_pattern = {
+            module_names[index]: int(result.ranks[index].item())
+            for index in range(graph.n_nodes)
+            if result.placement[index] > 0.5 and int(result.ranks[index].item()) > 0
+        }
         metadata = {
+            "requested_budget_solver": requested_solver,
+            "effective_budget_solver": solver_name,
+            "budget_solver_fallback": solver_name != requested_solver,
+            "budget_solver_fallback_reason": fallback_reason,
             "budget_solver": solver_name,
             "budget": int(budget),
             "budget_used": int(result.budget_used),
             "budget_remaining": int(result.budget_remaining),
             "budget_utility": float(result.utility),
             "budget_rank": int(rank),
+            "budget_candidate_module_count": len(candidates),
+            "budget_selected_module_count": len(result.target_modules),
+            "budget_rank_pattern": rank_pattern,
             "budget_status": result.status,
+            "budget_solver_diagnostics": dict(result.metadata or {}),
         }
         if result.status == "REFUSE" or not result.target_modules:
             return None, metadata

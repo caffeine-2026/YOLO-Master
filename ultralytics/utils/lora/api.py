@@ -101,8 +101,8 @@ def _compute_param_stats(model: nn.Module) -> ParamStats:
     return stats
 
 
-def _unfreeze_detection_head(model: nn.Module) -> int:
-    """Unfreeze only real detection-head parameters for adapter fine-tuning.
+def _unfreeze_detection_head(model: nn.Module, policy: str = "full") -> int:
+    """Unfreeze the requested detection-head subset for adapter fine-tuning.
 
     RT-DETR uses RTDETRDecoder with parameter names like decoder.layers, dec_score_head,
     dec_bbox_head, enc_score_head, enc_bbox_head, input_proj, query_pos_head,
@@ -110,8 +110,17 @@ def _unfreeze_detection_head(model: nn.Module) -> int:
     If the head stays frozen during LoRA training, mAP will be zero because the model
     cannot learn class/box predictions for the new dataset.
 
-    Returns count of unfrozen params.
+    ``predictors`` trains only the terminal box/class prediction convolutions,
+    which preserves class adaptation without making the complete head trainable.
+    ``frozen`` leaves every non-adapter head parameter frozen. Returns the count
+    of newly unfrozen parameters.
     """
+    policy = str(policy or "full").lower()
+    if policy not in {"full", "predictors", "frozen"}:
+        raise ValueError(f"Unsupported LoRA head train policy: {policy!r}")
+    if policy == "frozen":
+        LOGGER.info("[LoRA] Detection head remains frozen (head_train_policy=frozen).")
+        return 0
     try:
         from ultralytics.nn.modules.head import Detect, RTDETRDecoder
 
@@ -119,25 +128,46 @@ def _unfreeze_detection_head(model: nn.Module) -> int:
     except Exception:
         head_types = ()
 
-    head_prefixes = []
+    head_modules = []
     if head_types:
-        for module_name, module in model.named_modules():
+        for _, module in model.named_modules():
             if isinstance(module, head_types):
-                head_prefixes.append(module_name)
+                head_modules.append(module)
 
-    if not head_prefixes:
+    if not head_modules:
         LOGGER.debug("[LoRA] Detection head unfreeze skipped: no known head module found.")
         return 0
 
+    selected_parameters = None
+    if policy == "predictors":
+        predictor_modules = []
+        for head in head_modules:
+            for attribute in ("cv2", "cv3", "one2one_cv2", "one2one_cv3"):
+                branches = getattr(head, attribute, None)
+                if not isinstance(branches, (nn.ModuleList, nn.Sequential)):
+                    continue
+                for branch in branches:
+                    terminal = branch[-1] if isinstance(branch, nn.Sequential) and len(branch) else branch
+                    predictor_modules.append(terminal)
+            for attribute in ("dec_score_head", "dec_bbox_head", "enc_score_head", "enc_bbox_head"):
+                predictor = getattr(head, attribute, None)
+                if isinstance(predictor, nn.Module):
+                    predictor_modules.append(predictor)
+        selected_parameters = {id(parameter) for module in predictor_modules for parameter in module.parameters()}
+        if not selected_parameters:
+            raise ValueError("head_train_policy=predictors found no known terminal prediction modules")
+
     head_unfrozen = 0
-    for name, param in model.named_parameters():
-        if any(name == prefix or name.startswith(f"{prefix}.") for prefix in head_prefixes):
+    head_parameter_ids = {id(parameter) for head in head_modules for parameter in head.parameters()}
+    for param in model.parameters():
+        if id(param) in head_parameter_ids and (selected_parameters is None or id(param) in selected_parameters):
             if not param.requires_grad:
                 param.requires_grad = True
                 head_unfrozen += param.numel()
     if head_unfrozen > 0:
         LOGGER.info(
-            f"[LoRA] Unfrozen {head_unfrozen:,} detection head parameters due to class-mismatch re-initialization."
+            f"[LoRA] Unfrozen {head_unfrozen:,} detection head parameters "
+            f"(head_train_policy={policy}) for class adaptation."
         )
     return head_unfrozen
 
@@ -316,6 +346,7 @@ def _attach_planner_decision(
             requested_init_lora_weights=config.init_lora_weights,
             effective_init_lora_weights=None,
             include_head=config.include_head,
+            head_train_policy=config.head_train_policy,
             freeze_bn=bool(getattr(config, "freeze_bn", False)),
             target_modules=[],
             target_audit={},
@@ -477,6 +508,7 @@ def _build_vpeft_placement_plan(model: nn.Module, config: "LoRAConfig") -> Any:
             "requested_solver": requested_solver,
             "effective_solver": solver_name,
             "solver_fallback": solver_fallback,
+            "fallback": bool(solver_fallback) or bool((decision.metadata or {}).get("fallback", False)),
             "solver_diagnostics": dict(decision.metadata or {}),
             "prediction_evidence": prediction_evidence,
         },
@@ -1278,6 +1310,7 @@ def apply_lora(model: "DetectionModel", args=None, **kwargs) -> "DetectionModel"
         model.lora_backend = "peft"
         model.lora_variant = variant
         model.lora_include_head = config.include_head
+        model.lora_head_train_policy = config.head_train_policy
         model.lora_freeze_bn = bool(getattr(config, "freeze_bn", False))
         model.lora_target_modules = sorted(final_targets)
         model.lora_target_audit = target_audit
@@ -1290,6 +1323,7 @@ def apply_lora(model: "DetectionModel", args=None, **kwargs) -> "DetectionModel"
             requested_init_lora_weights=config.init_lora_weights,
             effective_init_lora_weights=config.init_lora_weights,
             include_head=config.include_head,
+            head_train_policy=config.head_train_policy,
             freeze_bn=bool(getattr(config, "freeze_bn", False)),
             target_modules=model.lora_target_modules,
             target_audit=target_audit,
@@ -1338,7 +1372,7 @@ def apply_lora(model: "DetectionModel", args=None, **kwargs) -> "DetectionModel"
         raise e
 
     # Unfreeze detection head (may be frozen by PEFT or random init)
-    _unfreeze_detection_head(model)
+    _unfreeze_detection_head(model, config.head_train_policy)
 
     # FIX: Honor `freeze_bn` on the PEFT path as well. Previously the field
     # was only consumed by `apply_manual_lora` so passing `lora_freeze_bn=True`

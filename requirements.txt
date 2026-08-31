@@ -19,3 +19,5 @@ seaborn>=0.11.0
 
 # LoRA dependencies
 peft>=0.18.0,<0.20.0
+# Native V-PEFT MIPR solver (SCIP backend); pinned for reproducible C3 runs.
+ortools==9.15.6755; python_version >= "3.9"

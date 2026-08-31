@@ -75,6 +75,30 @@ def test_mip_dependency_failure_falls_back_to_ao_with_audit(monkeypatch):
     assert plan.metadata["solver_fallback"]["exception_type"] == "ImportError"
 
 
+def test_native_mip_records_solver_diagnostics_without_fallback():
+    pytest.importorskip("ortools")
+    plan = _build_vpeft_placement_plan(
+        _model(),
+        LoRAConfig(
+            r=4,
+            alpha=8,
+            planner_backend="vpeft",
+            planner_solver="mip",
+            adapter_budget=100_000,
+        ),
+    )
+
+    diagnostics = plan.metadata["solver_diagnostics"]
+    assert plan.metadata["requested_solver"] == "mip"
+    assert plan.metadata["effective_solver"] == "mip"
+    assert plan.metadata["fallback"] is False
+    assert diagnostics["backend"] == "SCIP"
+    assert diagnostics["native_mip_status"] in {"OPTIMAL", "FEASIBLE"}
+    assert diagnostics["fallback"] is False
+    assert diagnostics["runtime_seconds"] >= 0
+    assert diagnostics["objective_value"] >= 0
+
+
 def test_lora_config_from_args_preserves_rank_pattern():
     rank_pattern = {"model.0": 2, "model.1": 4}
 

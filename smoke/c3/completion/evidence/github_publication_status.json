@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-08-31T13:43:05Z",
+  "command": "gh auth status",
+  "repository": "caffeine-2026/YOLO-Master",
+  "target_issue": "https://github.com/caffeine-2026/YOLO-Master/issues/2",
+  "authenticated": false,
+  "posted": false,
+  "reason": "The configured GitHub CLI credential is no longer valid.",
+  "copy_ready_report": "smoke/c3/completion/docs/GITHUB_ISSUE_2_FOLLOWUP_ZH.md",
+  "token_value_recorded": false
+}

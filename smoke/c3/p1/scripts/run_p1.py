@@ -133,7 +133,9 @@ def sample_resources(process: subprocess.Popen[str], path: Path, stop: threading
             if tracked:
                 try:
                     children = tracked.children(recursive=True)
-                    cpu = tracked.cpu_percent(interval=None) + sum(child.cpu_percent(interval=None) for child in children)
+                    cpu = tracked.cpu_percent(interval=None) + sum(
+                        child.cpu_percent(interval=None) for child in children
+                    )
                     rss = (tracked.memory_info().rss + sum(child.memory_info().rss for child in children)) / 1024**2
                 except psutil.Error:
                     pass
@@ -151,7 +153,9 @@ def sample_resources(process: subprocess.Popen[str], path: Path, stop: threading
                     check=False,
                 )
                 if gpu_query.returncode == 0 and gpu_query.stdout.strip():
-                    gpu_index, device_memory = [value.strip() for value in gpu_query.stdout.splitlines()[0].split(",", 1)]
+                    gpu_index, device_memory = [
+                        value.strip() for value in gpu_query.stdout.splitlines()[0].split(",", 1)
+                    ]
                 app_query = subprocess.run(
                     [
                         "nvidia-smi",
@@ -211,9 +215,13 @@ def tee_stream(source: IO[str], destination: Path, terminal: IO[str]) -> None:
     source.close()
 
 
-def run_captured(command: list[str], stdout_path: Path, stderr_path: Path, device: str, resource_path: Path) -> tuple[int, float]:
+def run_captured(
+    command: list[str], stdout_path: Path, stderr_path: Path, device: str, resource_path: Path
+) -> tuple[int, float]:
     environment = os.environ.copy()
     environment["PYTHONUNBUFFERED"] = "1"
+    existing_pythonpath = environment.get("PYTHONPATH")
+    environment["PYTHONPATH"] = str(REPO_ROOT) + (os.pathsep + existing_pythonpath if existing_pythonpath else "")
     started = time.monotonic()
     process = subprocess.Popen(
         command,
@@ -241,7 +249,10 @@ def run_captured(command: list[str], stdout_path: Path, stderr_path: Path, devic
 
 
 def append_evaluation_logs(stdout_path: Path, stderr_path: Path, command: list[str]) -> int:
-    completed = subprocess.run(command, cwd=REPO_ROOT, capture_output=True, text=True, check=False)
+    environment = os.environ.copy()
+    existing_pythonpath = environment.get("PYTHONPATH")
+    environment["PYTHONPATH"] = str(REPO_ROOT) + (os.pathsep + existing_pythonpath if existing_pythonpath else "")
+    completed = subprocess.run(command, cwd=REPO_ROOT, env=environment, capture_output=True, text=True, check=False)
     with stdout_path.open("a", encoding="utf-8") as stream:
         stream.write("\n===== LOCKED TEST EVALUATION =====\n")
         stream.write(clean_text(completed.stdout))
@@ -354,8 +365,7 @@ def artifact_rows(paths: list[Path]) -> list[dict[str, object]]:
         elif path.is_dir():
             files.update(item for item in path.rglob("*") if item.is_file())
     return [
-        {"path": relative(path), "size_bytes": path.stat().st_size, "sha256": sha256(path)}
-        for path in sorted(files)
+        {"path": relative(path), "size_bytes": path.stat().st_size, "sha256": sha256(path)} for path in sorted(files)
     ]
 
 
@@ -424,7 +434,11 @@ def main() -> int:
     ]
     public_eval_command = ["python", *evaluation_command[1:]]
     (log_dir / "command.txt").write_text(
-        "# training\n" + " ".join(public_train_command) + "\n\n# locked test evaluation\n" + " ".join(public_eval_command) + "\n",
+        "# training\n"
+        + " ".join(public_train_command)
+        + "\n\n# locked test evaluation\n"
+        + " ".join(public_eval_command)
+        + "\n",
         encoding="utf-8",
     )
     json_write(log_dir / "environment.json", environment_evidence(args.device))
@@ -451,9 +465,9 @@ def main() -> int:
         samples = summarize_samples(log_dir / "resource_samples.csv")
         stdout_text = (log_dir / "stdout.log").read_text(encoding="utf-8")
         samples["epoch_reported_peak_gpu_memory_mib"] = epoch_gpu_peak_mib(stdout_text)
-        samples["peak_gpu_memory_mib"] = samples["epoch_reported_peak_gpu_memory_mib"] or samples[
-            "peak_process_tree_gpu_memory_mib"
-        ]
+        samples["peak_gpu_memory_mib"] = (
+            samples["epoch_reported_peak_gpu_memory_mib"] or samples["peak_process_tree_gpu_memory_mib"]
+        )
         samples["measurement_note"] = (
             "Primary peak is the maximum GPU_mem reported by the trainer; device and process-tree nvidia-smi samples "
             "are retained separately at one-second resolution."
@@ -511,7 +525,9 @@ def main() -> int:
             stdout_text + "\n" + stderr_text,
             flags=re.IGNORECASE,
         )
-        adapter_size = sum(path.stat().st_size for path in adapter_dir.rglob("*") if path.is_file()) if adapter_dir.exists() else 0
+        adapter_size = (
+            sum(path.stat().st_size for path in adapter_dir.rglob("*") if path.is_file()) if adapter_dir.exists() else 0
+        )
         resolved = yaml.safe_load((log_dir / "resolved_config.yaml").read_text(encoding="utf-8"))
         checks = {
             "exit_code_zero": exit_code == 0,
@@ -617,7 +633,13 @@ def main() -> int:
         if not failure_path.exists():
             json_write(
                 failure_path,
-                {"schema_version": 1, "run_id": run_id, "status": "FAIL", "exit_code": 1, "reason": "runner error; see stderr.log"},
+                {
+                    "schema_version": 1,
+                    "run_id": run_id,
+                    "status": "FAIL",
+                    "exit_code": 1,
+                    "reason": "runner error; see stderr.log",
+                },
             )
         traceback.print_exc()
         return 1

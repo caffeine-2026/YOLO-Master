@@ -1,0 +1,58 @@
+{
+  "checks": {
+    "final_matrix": {
+      "candidate": "b250k_predictors",
+      "loaded_checkpoints": 72,
+      "runs": 24
+    },
+    "hygiene": {
+      "findings": [],
+      "text_files_scanned": 514
+    },
+    "lovo": {
+      "confidence": 0.016666666666666666,
+      "heldout_n": 2,
+      "observations": 6,
+      "source": "learned_regression"
+    },
+    "markdown_links": {
+      "links_checked": 59,
+      "missing": []
+    },
+    "parsing": {
+      "json_files": 306,
+      "yaml_files": 65
+    },
+    "planner": {
+      "audit_files": 9,
+      "statuses": [
+        "ACCEPT",
+        "ADAPT",
+        "REFUSE"
+      ]
+    },
+    "provenance": {
+      "git_head_at_launch": "765c55955552f56a3e3df1ca7676a268d74dc28c",
+      "initial_weight_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+      "tracked_inputs": 16
+    },
+    "results": {
+      "figures": 2,
+      "raw_rows": 72,
+      "summary_rows": 24
+    },
+    "selection": {
+      "candidates": 4,
+      "selected_candidate": "b250k_predictors",
+      "test_access": false
+    },
+    "solvers": {
+      "native_mip_runs": 2,
+      "ortools": "9.15.6755",
+      "runs": 6
+    }
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "validated_at": "2026-08-31T14:02:12.020047+00:00"
+}

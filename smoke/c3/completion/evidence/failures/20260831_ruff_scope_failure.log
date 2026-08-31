@@ -1,0 +1,19 @@
+Command (first attempt):
+../YOLO-Master/.venv/bin/ruff check ultralytics/utils/lora/planner.py smoke/c3/completion/tools tests/test_c3_completion_evidence.py
+
+Exit code: 1
+
+Observed causes:
+- New scripts had a shebang before their executable bits were set (EXE001).
+- The whole-file check surfaced 130 existing planner.py findings, dominated by
+  pre-existing annotation modernization and broad-exception warnings outside
+  the changed lines.
+
+Fix:
+- Set executable bits on the new command-line tools.
+- Formatted and linted all newly added completion tools.
+- Kept the whole-project Ruff result as a final validation gate; no rule or
+  threshold was weakened to make the new code pass.
+
+Focused rerun result:
+All checks passed for smoke/c3/completion/tools and the new regression test.

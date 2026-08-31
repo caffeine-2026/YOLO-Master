@@ -1,0 +1,45 @@
+schema_version: 1
+status: preregistered_before_execution
+purpose: Find a V-PEFT configuration at or below 10% of Full-SFT trainable parameters.
+full_sft_trainable_parameter_limit: 259099
+locked_scope:
+  datasets: [neu, deeppcb]
+  sample_size: 100
+  seed: 824
+  metric_split: validation
+  test_access_during_search: prohibited
+  epochs: 100
+  batch: 8
+  imgsz: 640
+  optimizer: AdamW
+  lr0: 0.001
+  weight_decay: 0.0005
+  amp: false
+  deterministic: true
+  augmentation_source: smoke/c3/p2/config/runs/{dataset}/vpeft.yaml
+candidates:
+  b100k_predictors:
+    adapter_budget: 100000
+    head_train_policy: predictors
+  b150k_predictors:
+    adapter_budget: 150000
+    head_train_policy: predictors
+  b250k_predictors:
+    adapter_budget: 250000
+    head_train_policy: predictors
+  b150k_frozen:
+    adapter_budget: 150000
+    head_train_policy: frozen
+selection_rule:
+  eligible: all runs pass and actual trainable parameters are at most 259099
+  primary: highest mean best validation mAP50-95 across the two datasets
+  tie_threshold_map50_95: 0.001
+  tie_breakers: [lower_trainable_parameters, lower_peak_gpu_memory_mib, lower_training_seconds, candidate_id]
+  selection_is_locked_before_test: true
+final_matrix:
+  datasets: [neu, deeppcb]
+  sample_sizes: [10, 50, 100, 500]
+  seeds: [824, 825, 826]
+  run_count: 24
+  selected_configuration_only: true
+  do_not_mix_with_previous_vpeft: true

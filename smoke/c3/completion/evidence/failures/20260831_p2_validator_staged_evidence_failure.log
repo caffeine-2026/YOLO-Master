@@ -1,0 +1,10 @@
+command: python smoke/c3/completion/tools/run_validators.py --output-dir smoke/c3/completion/evidence/validation_final
+suite_status: FAIL
+failed_validator: p2_seed824
+failed_check: p1_history_unchanged
+other_validators: 5 PASS
+cause: The new smoke/c3/p1/evidence/completion_revalidation_20260831.json had already been staged. The archived P2 gate compares smoke/c3/p1/evidence to HEAD with git diff, so the newly staged validator output made the history guard false. No P1 training input, historical metric, or checkpoint changed.
+repair: Unstage only that new output from the Git index, retain it in the worktree, rerun the unchanged six-validator suite, then stage the output again.
+rerun: smoke/c3/completion/evidence/validation_release/validation_suite.json
+rerun_status: PASS (6/6)
+note: The failed validation_final directory is retained intact.

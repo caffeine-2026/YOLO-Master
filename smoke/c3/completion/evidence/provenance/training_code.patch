@@ -1,0 +1,709 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index 7e9917e..a5da3c4 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -80,6 +80,9 @@ dependencies = [
+
+ # Optional dependencies ------------------------------------------------------------------------------------------------
+ [project.optional-dependencies]
++vpeft-mip = [
++    "ortools==9.15.6755; python_version >= '3.9'",
++]
+ dev = [
+     "ipython",
+     "pytest",
+diff --git a/requirements.txt b/requirements.txt
+index 884fbec..e962d92 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -19,3 +19,5 @@ seaborn>=0.11.0
+
+ # LoRA dependencies
+ peft>=0.18.0,<0.20.0
++# Native V-PEFT MIPR solver (SCIP backend); pinned for reproducible C3 runs.
++ortools==9.15.6755; python_version >= "3.9"
+diff --git a/smoke/c3/p1/scripts/run_p1.py b/smoke/c3/p1/scripts/run_p1.py
+index b27b163..86ac32c 100755
+--- a/smoke/c3/p1/scripts/run_p1.py
++++ b/smoke/c3/p1/scripts/run_p1.py
+@@ -133,7 +133,9 @@ def sample_resources(process: subprocess.Popen[str], path: Path, stop: threading
+             if tracked:
+                 try:
+                     children = tracked.children(recursive=True)
+-                    cpu = tracked.cpu_percent(interval=None) + sum(child.cpu_percent(interval=None) for child in children)
++                    cpu = tracked.cpu_percent(interval=None) + sum(
++                        child.cpu_percent(interval=None) for child in children
++                    )
+                     rss = (tracked.memory_info().rss + sum(child.memory_info().rss for child in children)) / 1024**2
+                 except psutil.Error:
+                     pass
+@@ -151,7 +153,9 @@ def sample_resources(process: subprocess.Popen[str], path: Path, stop: threading
+                     check=False,
+                 )
+                 if gpu_query.returncode == 0 and gpu_query.stdout.strip():
+-                    gpu_index, device_memory = [value.strip() for value in gpu_query.stdout.splitlines()[0].split(",", 1)]
++                    gpu_index, device_memory = [
++                        value.strip() for value in gpu_query.stdout.splitlines()[0].split(",", 1)
++                    ]
+                 app_query = subprocess.run(
+                     [
+                         "nvidia-smi",
+@@ -211,9 +215,13 @@ def tee_stream(source: IO[str], destination: Path, terminal: IO[str]) -> None:
+     source.close()
+
+
+-def run_captured(command: list[str], stdout_path: Path, stderr_path: Path, device: str, resource_path: Path) -> tuple[int, float]:
++def run_captured(
++    command: list[str], stdout_path: Path, stderr_path: Path, device: str, resource_path: Path
++) -> tuple[int, float]:
+     environment = os.environ.copy()
+     environment["PYTHONUNBUFFERED"] = "1"
++    existing_pythonpath = environment.get("PYTHONPATH")
++    environment["PYTHONPATH"] = str(REPO_ROOT) + (os.pathsep + existing_pythonpath if existing_pythonpath else "")
+     started = time.monotonic()
+     process = subprocess.Popen(
+         command,
+@@ -241,7 +249,10 @@ def run_captured(command: list[str], stdout_path: Path, stderr_path: Path, devic
+
+
+ def append_evaluation_logs(stdout_path: Path, stderr_path: Path, command: list[str]) -> int:
+-    completed = subprocess.run(command, cwd=REPO_ROOT, capture_output=True, text=True, check=False)
++    environment = os.environ.copy()
++    existing_pythonpath = environment.get("PYTHONPATH")
++    environment["PYTHONPATH"] = str(REPO_ROOT) + (os.pathsep + existing_pythonpath if existing_pythonpath else "")
++    completed = subprocess.run(command, cwd=REPO_ROOT, env=environment, capture_output=True, text=True, check=False)
+     with stdout_path.open("a", encoding="utf-8") as stream:
+         stream.write("\n===== LOCKED TEST EVALUATION =====\n")
+         stream.write(clean_text(completed.stdout))
+@@ -354,8 +365,7 @@ def artifact_rows(paths: list[Path]) -> list[dict[str, object]]:
+         elif path.is_dir():
+             files.update(item for item in path.rglob("*") if item.is_file())
+     return [
+-        {"path": relative(path), "size_bytes": path.stat().st_size, "sha256": sha256(path)}
+-        for path in sorted(files)
++        {"path": relative(path), "size_bytes": path.stat().st_size, "sha256": sha256(path)} for path in sorted(files)
+     ]
+
+
+@@ -424,7 +434,11 @@ def main() -> int:
+     ]
+     public_eval_command = ["python", *evaluation_command[1:]]
+     (log_dir / "command.txt").write_text(
+-        "# training\n" + " ".join(public_train_command) + "\n\n# locked test evaluation\n" + " ".join(public_eval_command) + "\n",
++        "# training\n"
++        + " ".join(public_train_command)
++        + "\n\n# locked test evaluation\n"
++        + " ".join(public_eval_command)
++        + "\n",
+         encoding="utf-8",
+     )
+     json_write(log_dir / "environment.json", environment_evidence(args.device))
+@@ -451,9 +465,9 @@ def main() -> int:
+         samples = summarize_samples(log_dir / "resource_samples.csv")
+         stdout_text = (log_dir / "stdout.log").read_text(encoding="utf-8")
+         samples["epoch_reported_peak_gpu_memory_mib"] = epoch_gpu_peak_mib(stdout_text)
+-        samples["peak_gpu_memory_mib"] = samples["epoch_reported_peak_gpu_memory_mib"] or samples[
+-            "peak_process_tree_gpu_memory_mib"
+-        ]
++        samples["peak_gpu_memory_mib"] = (
++            samples["epoch_reported_peak_gpu_memory_mib"] or samples["peak_process_tree_gpu_memory_mib"]
++        )
+         samples["measurement_note"] = (
+             "Primary peak is the maximum GPU_mem reported by the trainer; device and process-tree nvidia-smi samples "
+             "are retained separately at one-second resolution."
+@@ -511,7 +525,9 @@ def main() -> int:
+             stdout_text + "\n" + stderr_text,
+             flags=re.IGNORECASE,
+         )
+-        adapter_size = sum(path.stat().st_size for path in adapter_dir.rglob("*") if path.is_file()) if adapter_dir.exists() else 0
++        adapter_size = (
++            sum(path.stat().st_size for path in adapter_dir.rglob("*") if path.is_file()) if adapter_dir.exists() else 0
++        )
+         resolved = yaml.safe_load((log_dir / "resolved_config.yaml").read_text(encoding="utf-8"))
+         checks = {
+             "exit_code_zero": exit_code == 0,
+@@ -617,7 +633,13 @@ def main() -> int:
+         if not failure_path.exists():
+             json_write(
+                 failure_path,
+-                {"schema_version": 1, "run_id": run_id, "status": "FAIL", "exit_code": 1, "reason": "runner error; see stderr.log"},
++                {
++                    "schema_version": 1,
++                    "run_id": run_id,
++                    "status": "FAIL",
++                    "exit_code": 1,
++                    "reason": "runner error; see stderr.log",
++                },
+             )
+         traceback.print_exc()
+         return 1
+diff --git a/ultralytics/cfg/__init__.py b/ultralytics/cfg/__init__.py
+index 2da99f8..85a7c39 100644
+--- a/ultralytics/cfg/__init__.py
++++ b/ultralytics/cfg/__init__.py
+@@ -484,6 +484,7 @@ MIXTURE_STR_KEYS = frozenset(
+         "lora_bias",
+         "lora_few_shot_distill_schedule",
+         "lora_few_shot_dropconnect_schedule",
++        "lora_head_train_policy",
+         "lora_quantization",
+         "lora_type",
+         "lora_variant",
+diff --git a/ultralytics/cfg/default.yaml b/ultralytics/cfg/default.yaml
+index d5692e4..b2194c6 100644
+--- a/ultralytics/cfg/default.yaml
++++ b/ultralytics/cfg/default.yaml
+@@ -214,6 +214,7 @@ lora_planner_solver: "ao" # (str) Planner budget solver: ao, dco, mip
+ lora_planner_backend: "legacy" # (str) Planner backend: legacy or vpeft (opt-in)
+ lora_vpeft_strict: False # (bool) Raise unexpected internal V-PEFT errors instead of compatibility fallback
+ lora_include_head: False # (bool) Include YOLO detection head layers in LoRA targeting
++lora_head_train_policy: "full" # (str) Non-adapter head training: full, predictors, frozen
+ lora_freeze_bn: False # (bool) Freeze BatchNorm layers during LoRA training
+ lora_target_modules: # (list[str], optional) LoRA target modules
+ lora_rank_pattern: # (dict[str, int], optional) Per-target LoRA ranks produced by placement planning
+diff --git a/ultralytics/utils/lora/api.py b/ultralytics/utils/lora/api.py
+index d081a24..65abed0 100644
+--- a/ultralytics/utils/lora/api.py
++++ b/ultralytics/utils/lora/api.py
+@@ -101,8 +101,8 @@ def _compute_param_stats(model: nn.Module) -> ParamStats:
+     return stats
+
+
+-def _unfreeze_detection_head(model: nn.Module) -> int:
+-    """Unfreeze only real detection-head parameters for adapter fine-tuning.
++def _unfreeze_detection_head(model: nn.Module, policy: str = "full") -> int:
++    """Unfreeze the requested detection-head subset for adapter fine-tuning.
+
+     RT-DETR uses RTDETRDecoder with parameter names like decoder.layers, dec_score_head,
+     dec_bbox_head, enc_score_head, enc_bbox_head, input_proj, query_pos_head,
+@@ -110,8 +110,17 @@ def _unfreeze_detection_head(model: nn.Module) -> int:
+     If the head stays frozen during LoRA training, mAP will be zero because the model
+     cannot learn class/box predictions for the new dataset.
+
+-    Returns count of unfrozen params.
++    ``predictors`` trains only the terminal box/class prediction convolutions,
++    which preserves class adaptation without making the complete head trainable.
++    ``frozen`` leaves every non-adapter head parameter frozen. Returns the count
++    of newly unfrozen parameters.
+     """
++    policy = str(policy or "full").lower()
++    if policy not in {"full", "predictors", "frozen"}:
++        raise ValueError(f"Unsupported LoRA head train policy: {policy!r}")
++    if policy == "frozen":
++        LOGGER.info("[LoRA] Detection head remains frozen (head_train_policy=frozen).")
++        return 0
+     try:
+         from ultralytics.nn.modules.head import Detect, RTDETRDecoder
+
+@@ -119,25 +128,46 @@ def _unfreeze_detection_head(model: nn.Module) -> int:
+     except Exception:
+         head_types = ()
+
+-    head_prefixes = []
++    head_modules = []
+     if head_types:
+-        for module_name, module in model.named_modules():
++        for _, module in model.named_modules():
+             if isinstance(module, head_types):
+-                head_prefixes.append(module_name)
++                head_modules.append(module)
+
+-    if not head_prefixes:
++    if not head_modules:
+         LOGGER.debug("[LoRA] Detection head unfreeze skipped: no known head module found.")
+         return 0
+
++    selected_parameters = None
++    if policy == "predictors":
++        predictor_modules = []
++        for head in head_modules:
++            for attribute in ("cv2", "cv3", "one2one_cv2", "one2one_cv3"):
++                branches = getattr(head, attribute, None)
++                if not isinstance(branches, (nn.ModuleList, nn.Sequential)):
++                    continue
++                for branch in branches:
++                    terminal = branch[-1] if isinstance(branch, nn.Sequential) and len(branch) else branch
++                    predictor_modules.append(terminal)
++            for attribute in ("dec_score_head", "dec_bbox_head", "enc_score_head", "enc_bbox_head"):
++                predictor = getattr(head, attribute, None)
++                if isinstance(predictor, nn.Module):
++                    predictor_modules.append(predictor)
++        selected_parameters = {id(parameter) for module in predictor_modules for parameter in module.parameters()}
++        if not selected_parameters:
++            raise ValueError("head_train_policy=predictors found no known terminal prediction modules")
++
+     head_unfrozen = 0
+-    for name, param in model.named_parameters():
+-        if any(name == prefix or name.startswith(f"{prefix}.") for prefix in head_prefixes):
++    head_parameter_ids = {id(parameter) for head in head_modules for parameter in head.parameters()}
++    for param in model.parameters():
++        if id(param) in head_parameter_ids and (selected_parameters is None or id(param) in selected_parameters):
+             if not param.requires_grad:
+                 param.requires_grad = True
+                 head_unfrozen += param.numel()
+     if head_unfrozen > 0:
+         LOGGER.info(
+-            f"[LoRA] Unfrozen {head_unfrozen:,} detection head parameters due to class-mismatch re-initialization."
++            f"[LoRA] Unfrozen {head_unfrozen:,} detection head parameters "
++            f"(head_train_policy={policy}) for class adaptation."
+         )
+     return head_unfrozen
+
+@@ -316,6 +346,7 @@ def _attach_planner_decision(
+             requested_init_lora_weights=config.init_lora_weights,
+             effective_init_lora_weights=None,
+             include_head=config.include_head,
++            head_train_policy=config.head_train_policy,
+             freeze_bn=bool(getattr(config, "freeze_bn", False)),
+             target_modules=[],
+             target_audit={},
+@@ -477,6 +508,7 @@ def _build_vpeft_placement_plan(model: nn.Module, config: "LoRAConfig") -> Any:
+             "requested_solver": requested_solver,
+             "effective_solver": solver_name,
+             "solver_fallback": solver_fallback,
++            "fallback": bool(solver_fallback) or bool((decision.metadata or {}).get("fallback", False)),
+             "solver_diagnostics": dict(decision.metadata or {}),
+             "prediction_evidence": prediction_evidence,
+         },
+@@ -1278,6 +1310,7 @@ def apply_lora(model: "DetectionModel", args=None, **kwargs) -> "DetectionModel"
+         model.lora_backend = "peft"
+         model.lora_variant = variant
+         model.lora_include_head = config.include_head
++        model.lora_head_train_policy = config.head_train_policy
+         model.lora_freeze_bn = bool(getattr(config, "freeze_bn", False))
+         model.lora_target_modules = sorted(final_targets)
+         model.lora_target_audit = target_audit
+@@ -1290,6 +1323,7 @@ def apply_lora(model: "DetectionModel", args=None, **kwargs) -> "DetectionModel"
+             requested_init_lora_weights=config.init_lora_weights,
+             effective_init_lora_weights=config.init_lora_weights,
+             include_head=config.include_head,
++            head_train_policy=config.head_train_policy,
+             freeze_bn=bool(getattr(config, "freeze_bn", False)),
+             target_modules=model.lora_target_modules,
+             target_audit=target_audit,
+@@ -1338,7 +1372,7 @@ def apply_lora(model: "DetectionModel", args=None, **kwargs) -> "DetectionModel"
+         raise e
+
+     # Unfreeze detection head (may be frozen by PEFT or random init)
+-    _unfreeze_detection_head(model)
++    _unfreeze_detection_head(model, config.head_train_policy)
+
+     # FIX: Honor `freeze_bn` on the PEFT path as well. Previously the field
+     # was only consumed by `apply_manual_lora` so passing `lora_freeze_bn=True`
+diff --git a/ultralytics/utils/lora/config.py b/ultralytics/utils/lora/config.py
+index ddaf5eb..396509c 100644
+--- a/ultralytics/utils/lora/config.py
++++ b/ultralytics/utils/lora/config.py
+@@ -42,6 +42,7 @@ class LoRAConfig:
+     backend: str = "auto"  # Execution backend: "auto", "peft", "fallback"
+     variant: str = "lora"  # Adapter variant: "lora", "loha", "dora"
+     include_head: bool = False  # Include detection head layers in target selection
++    head_train_policy: str = "full"  # full, predictors, frozen; controls non-adapter head parameters
+     freeze_bn: bool = False  # Freeze BatchNorm layers during LoRA training
+
+     # Strategy Control
+@@ -179,6 +180,9 @@ class LoRAConfig:
+         self.quantization = str(self.quantization or "none").lower()
+         if self.quantization not in {"none", "4bit", "8bit"}:
+             raise ValueError("quantization must be one of 'none', '4bit', or '8bit'")
++        self.head_train_policy = str(self.head_train_policy or "full").lower()
++        if self.head_train_policy not in {"full", "predictors", "frozen"}:
++            raise ValueError("lora_head_train_policy must be one of 'full', 'predictors', or 'frozen'")
+
+         # Few-shot config validation
+         if self.few_shot_mode:
+@@ -224,6 +228,7 @@ class LoRAConfig:
+             "backend": "lora_backend",
+             "variant": "lora_variant",
+             "include_head": "lora_include_head",
++            "head_train_policy": "lora_head_train_policy",
+             "freeze_bn": "lora_freeze_bn",
+             "lr_mult": "lora_lr_mult",
+             "include_moe": "lora_include_moe",
+diff --git a/ultralytics/utils/lora/fallback.py b/ultralytics/utils/lora/fallback.py
+index 4fc1683..49ed180 100644
+--- a/ultralytics/utils/lora/fallback.py
++++ b/ultralytics/utils/lora/fallback.py
+@@ -656,6 +656,7 @@ def apply_manual_lora(model: nn.Module, config: "LoRAConfig", include_head: bool
+     model.lora_backend = "fallback"
+     model.lora_variant = "lora"
+     model.lora_include_head = include_head
++    model.lora_head_train_policy = config.head_train_policy
+     model.lora_freeze_bn = bool(getattr(config, "freeze_bn", False))
+     model.lora_target_modules = sorted(_collect_fallback_adapter_state(model)["modules"])
+     model.lora_target_audit = build_lora_target_audit(
+@@ -676,6 +677,7 @@ def apply_manual_lora(model: nn.Module, config: "LoRAConfig", include_head: bool
+         requested_use_rslora=bool(getattr(config, "use_rslora", False)),
+         effective_use_rslora=bool(getattr(config, "use_rslora", False)),
+         include_head=include_head,
++        head_train_policy=config.head_train_policy,
+         freeze_bn=bool(getattr(config, "freeze_bn", False)),
+         target_modules=model.lora_target_modules,
+         target_audit=model.lora_target_audit,
+@@ -683,7 +685,7 @@ def apply_manual_lora(model: nn.Module, config: "LoRAConfig", include_head: bool
+         placement_plan=getattr(model, "lora_placement_plan", None),
+     )
+
+-    _unfreeze_detection_head(model)
++    _unfreeze_detection_head(model, config.head_train_policy)
+
+     return model
+
+@@ -802,6 +804,7 @@ def _load_fallback_adapter_state(model: nn.Module, path: Path, payload: Dict[str
+     model.lora_backend = "fallback"
+     model.lora_variant = payload.get("variant", "lora")
+     model.lora_include_head = payload.get("include_head", False)
++    model.lora_head_train_policy = payload.get("head_train_policy", "full")
+     model.lora_freeze_bn = payload.get("freeze_bn", False)
+     model.lora_target_modules = payload.get("target_modules", sorted(module_configs))
+     model.lora_target_audit = payload.get(
+@@ -863,6 +866,7 @@ def _clear_lora_runtime_state(model: "DetectionModel") -> None:
+         "lora_backend",
+         "lora_variant",
+         "lora_include_head",
++        "lora_head_train_policy",
+         "lora_freeze_bn",
+         "lora_target_modules",
+         "lora_target_audit",
+diff --git a/ultralytics/utils/lora/io.py b/ultralytics/utils/lora/io.py
+index 562d558..c1af7d0 100644
+--- a/ultralytics/utils/lora/io.py
++++ b/ultralytics/utils/lora/io.py
+@@ -56,6 +56,7 @@ def save_lora_adapters(model: "DetectionModel", path: Union[str, Path]) -> bool:
+                 "weight_file": weight_file,
+                 "freeze_bn": bool(getattr(model, "lora_freeze_bn", False)),
+                 "include_head": bool(getattr(model, "lora_include_head", False)),
++                "head_train_policy": str(getattr(model, "lora_head_train_policy", "full")),
+                 "target_modules": list(getattr(model, "lora_target_modules", sorted(fallback_state["modules"]))),
+                 "target_audit": getattr(model, "lora_target_audit", {}),
+                 "runtime_metadata": getattr(model, "lora_runtime_metadata", {}),
+@@ -82,6 +83,7 @@ def save_lora_adapters(model: "DetectionModel", path: Union[str, Path]) -> bool:
+             "variant": variant,
+             "freeze_bn": bool(getattr(model, "lora_freeze_bn", False)),
+             "include_head": bool(getattr(model, "lora_include_head", False)),
++            "head_train_policy": str(getattr(model, "lora_head_train_policy", "full")),
+             "target_modules": list(getattr(model, "lora_target_modules", [])),
+             "target_audit": getattr(model, "lora_target_audit", {}),
+             "runtime_metadata": getattr(model, "lora_runtime_metadata", {}),
+@@ -183,6 +185,7 @@ def load_lora_adapters(
+         model.lora_backend = runtime_payload.get("backend", "peft")
+         model.lora_variant = runtime_payload.get("variant", "lora")
+         model.lora_include_head = runtime_payload.get("include_head", False)
++        model.lora_head_train_policy = runtime_payload.get("head_train_policy", "full")
+         model.lora_freeze_bn = runtime_payload.get("freeze_bn", False)
+         model.lora_target_modules = runtime_payload.get("target_modules", [])
+         model.lora_target_audit = runtime_payload.get("target_audit", {})
+diff --git a/ultralytics/utils/lora/planner.py b/ultralytics/utils/lora/planner.py
+index 8fd3ac0..8a3137d 100644
+--- a/ultralytics/utils/lora/planner.py
++++ b/ultralytics/utils/lora/planner.py
+@@ -771,6 +771,11 @@ class LOVODataPoint:
+             variants use 1 so the regression's log-rank feature stays neutral.
+         timestamp: ISO-8601 timestamp.
+         notes: Free-form notes.
++        observation_id: Stable experimental-unit identifier. Repeated seeds
++            should be aggregated under one identifier instead of counted as
++            independent calibration observations.
++        metric_split: Split on which ``delta_mAP`` was measured.
++        source_run_ids: Raw run identifiers contributing to the observation.
+     """
+
+     fingerprint: ArchitectureFingerprint
+@@ -782,6 +787,9 @@ class LOVODataPoint:
+     rank: int = 8
+     timestamp: str = field(default_factory=lambda: datetime.now().isoformat())
+     notes: str = ""
++    observation_id: str = ""
++    metric_split: str = "validation"
++    source_run_ids: List[str] = field(default_factory=list)
+
+     def to_tuple(self) -> Tuple[ArchitectureFingerprint, str, float]:
+         return (self.fingerprint, self.variant, self.delta_mAP)
+@@ -811,6 +819,9 @@ class LOVODataPoint:
+             "rank": self.rank,
+             "timestamp": self.timestamp,
+             "notes": self.notes,
++            "observation_id": self.observation_id,
++            "metric_split": self.metric_split,
++            "source_run_ids": list(self.source_run_ids),
+         }
+
+     @classmethod
+@@ -840,6 +851,9 @@ class LOVODataPoint:
+             rank=max(int(data.get("rank", 8) or 8), 1),
+             timestamp=data.get("timestamp", ""),
+             notes=data.get("notes", ""),
++            observation_id=data.get("observation_id", ""),
++            metric_split=data.get("metric_split", "validation"),
++            source_run_ids=list(data.get("source_run_ids") or []),
+         )
+
+
+@@ -852,7 +866,9 @@ class LOVODataCollector:
+     """
+
+     def __init__(self, data_points: Optional[List[LOVODataPoint]] = None):
+-        self.data_points: List[LOVODataPoint] = list(data_points) if data_points else []
++        self.data_points: List[LOVODataPoint] = []
++        for point in data_points or []:
++            self.add(point)
+
+     def add(
+         self,
+@@ -868,6 +884,10 @@ class LOVODataCollector:
+         if isinstance(point, tuple):
+             fp, variant, delta_mAP = point
+             point = LOVODataPoint(fingerprint=fp, variant=variant, delta_mAP=delta_mAP, **metadata)
++        if point.observation_id and any(
++            existing.observation_id == point.observation_id for existing in self.data_points
++        ):
++            raise ValueError(f"Duplicate LOVO observation_id: {point.observation_id}")
+         self.data_points.append(point)
+
+     def extend(self, points: List[Union[LOVODataPoint, Tuple]]) -> None:
+@@ -1019,22 +1039,26 @@ class LOVOValidator:
+         seen: set = set()
+         for p in data_points:
+             key = (
+-                round(p.fingerprint.phi_attn, 6),
+-                round(p.fingerprint.phi_text, 6),
+-                round(p.fingerprint.phi_dw, 6),
+-                round(p.fingerprint.phi_group, 6),
+-                round(p.fingerprint.phi_linear, 6),
+-                # Extended dimensions
+-                round(p.fingerprint.phi_depth, 6),
+-                round(p.fingerprint.phi_width, 6),
+-                round(p.fingerprint.phi_head, 6),
+-                round(p.fingerprint.phi_residual, 6),
+-                round(p.fingerprint.phi_norm, 6),
+-                round(p.fingerprint.phi_moe, 6),
+-                round(p.fingerprint.phi_conv, 6),
+-                p.variant.lower(),
+-                max(int(p.rank), 1),
+-                round(p.delta_mAP, 6),
++                ("observation_id", p.observation_id)
++                if p.observation_id
++                else (
++                    round(p.fingerprint.phi_attn, 6),
++                    round(p.fingerprint.phi_text, 6),
++                    round(p.fingerprint.phi_dw, 6),
++                    round(p.fingerprint.phi_group, 6),
++                    round(p.fingerprint.phi_linear, 6),
++                    # Extended dimensions
++                    round(p.fingerprint.phi_depth, 6),
++                    round(p.fingerprint.phi_width, 6),
++                    round(p.fingerprint.phi_head, 6),
++                    round(p.fingerprint.phi_residual, 6),
++                    round(p.fingerprint.phi_norm, 6),
++                    round(p.fingerprint.phi_moe, 6),
++                    round(p.fingerprint.phi_conv, 6),
++                    p.variant.lower(),
++                    max(int(p.rank), 1),
++                    round(p.delta_mAP, 6),
++                )
+             )
+             if key not in seen:
+                 seen.add(key)
+@@ -1488,6 +1512,9 @@ class PEFTPlanner:
+         dataset: str = "",
+         epochs: int = 0,
+         notes: str = "",
++        observation_id: str = "",
++        metric_split: str = "validation",
++        source_run_ids: Optional[List[str]] = None,
+     ) -> None:
+         """Record a training result into the LOVO collector (online learning).
+
+@@ -1507,6 +1534,9 @@ class PEFTPlanner:
+             dataset: Optional dataset name.
+             epochs: Training epochs.
+             notes: Free-form notes.
++            observation_id: Stable identifier for the independent experimental unit.
++            metric_split: Metric split used for the measured delta.
++            source_run_ids: Raw runs aggregated into this observation.
+         """
+         if self.lovo_collector is None:
+             self.lovo_collector = LOVODataCollector()
+@@ -1522,6 +1552,9 @@ class PEFTPlanner:
+                 epochs=epochs,
+                 rank=max(int(rank), 1),
+                 notes=notes or f"rank={rank}",
++                observation_id=observation_id,
++                metric_split=metric_split,
++                source_run_ids=list(source_run_ids or []),
+             )
+         )
+         self._needs_refit = True
+@@ -1885,7 +1918,7 @@ class PEFTPlanner:
+         self._maybe_fit_from_lovo()
+         predicted_delta, std_error = self.predict_with_uncertainty(fingerprint, variant, rank)
+         metadata = self._calibration_metadata()
+-        confidence_score = 0.0 if metadata["low_confidence"] else 1.0
++        confidence_score = float(metadata["evidence_confidence_score"])
+         return {
+             "predicted_delta": float(predicted_delta),
+             "prediction_std_error": float(std_error),
+@@ -1893,9 +1926,7 @@ class PEFTPlanner:
+             "prediction_upper_95": float(predicted_delta + 1.96 * std_error),
+             "paper_predicted_delta": float(self.predict_paper(fingerprint, variant)),
+             "confidence_score": confidence_score,
+-            "confidence_score_semantics": (
+-                "1.0=calibrated high-confidence evidence; 0.0=prior or limited-evidence prediction"
+-            ),
++            "confidence_score_semantics": metadata["evidence_confidence_score_semantics"],
+             "variant": variant,
+             "rank": rank,
+             "architecture_fingerprint": {
+@@ -1932,6 +1963,11 @@ class PEFTPlanner:
+                 confidence_reasons.append("rank_deficient_fit")
+         confidence = "low" if confidence_reasons else "high"
+         evidence_state = "cold_start" if not fitted else ("limited_evidence" if confidence_reasons else "calibrated")
++        confidence_score = (
++            min(1.0, n_samples / 30.0) * min(1.0, self._fit_effective_rank / max(self._fit_n_features, 1))
++            if fitted
++            else 0.0
++        )
+         return {
+             "calibration_fitted": fitted,
+             "calibration_n_samples": n_samples,
+@@ -1948,6 +1984,10 @@ class PEFTPlanner:
+             "evidence_observation_count": n_samples,
+             "evidence_minimum_fit_observations": 5,
+             "evidence_confidence": confidence,
++            "evidence_confidence_score": confidence_score,
++            "evidence_confidence_score_semantics": (
++                "sample sufficiency (n/30, capped at 1) multiplied by identifiable feature-rank fraction"
++            ),
+             "evidence_confidence_reasons": confidence_reasons,
+             "uses_learned_evidence": fitted,
+             "low_confidence": confidence == "low",
+@@ -2535,7 +2575,8 @@ class PEFTPlanner:
+                 "platform": "pytorch",
+             }
+         )
+-        solver_name = solver_name.lower()
++        requested_solver = solver_name.lower()
++        solver_name = requested_solver
+         if solver_name == "dco":
+             solver = DifferentiableOptimizationSolver(rank_min=4, rank_max=64, rank_step=4, max_iter=40)
+         elif solver_name == "mip":
+@@ -2544,21 +2585,38 @@ class PEFTPlanner:
+             solver = AlternatingOptimizationSolver(rank_min=4, rank_max=64, rank_step=4, max_iter=15)
+         try:
+             result = solver.solve(graph, int(budget), variant, constraints)
+-        except ImportError:
++        except ImportError as exc:
+             # OR-Tools is optional; retain deterministic AO behavior when MIP is
+             # requested but its dependency is unavailable.
+             result = AlternatingOptimizationSolver(rank_min=4, rank_max=64, rank_step=4).solve(
+                 graph, int(budget), variant, constraints
+             )
+             solver_name = "ao_fallback"
++            fallback_reason = f"{type(exc).__name__}: {exc}"
++        else:
++            fallback_reason = None
++        module_names = graph.get_module_names()
++        rank_pattern = {
++            module_names[index]: int(result.ranks[index].item())
++            for index in range(graph.n_nodes)
++            if result.placement[index] > 0.5 and int(result.ranks[index].item()) > 0
++        }
+         metadata = {
++            "requested_budget_solver": requested_solver,
++            "effective_budget_solver": solver_name,
++            "budget_solver_fallback": solver_name != requested_solver,
++            "budget_solver_fallback_reason": fallback_reason,
+             "budget_solver": solver_name,
+             "budget": int(budget),
+             "budget_used": int(result.budget_used),
+             "budget_remaining": int(result.budget_remaining),
+             "budget_utility": float(result.utility),
+             "budget_rank": int(rank),
++            "budget_candidate_module_count": len(candidates),
++            "budget_selected_module_count": len(result.target_modules),
++            "budget_rank_pattern": rank_pattern,
+             "budget_status": result.status,
++            "budget_solver_diagnostics": dict(result.metadata or {}),
+         }
+         if result.status == "REFUSE" or not result.target_modules:
+             return None, metadata
+diff --git a/ultralytics/vpeft/solver.py b/ultralytics/vpeft/solver.py
+index 32e399f..5462d06 100644
+--- a/ultralytics/vpeft/solver.py
++++ b/ultralytics/vpeft/solver.py
+@@ -903,6 +903,7 @@ class MIPRelaxationSolver(ConstraintSolver):
+         variant: str,
+         constraints: ConstraintRegistry,
+     ) -> PlacementDecision:
++        started = time.perf_counter()
+         try:
+             from ortools.linear_solver import pywraplp
+         except ImportError as exc:
+@@ -914,7 +915,17 @@ class MIPRelaxationSolver(ConstraintSolver):
+
+         solver = pywraplp.Solver.CreateSolver("SCIP")
+         if not solver:
+-            return self._iterative_rounding_fallback(graph, budget, variant, constraints)
++            decision = self._iterative_rounding_fallback(graph, budget, variant, constraints)
++            decision.metadata.update(
++                {
++                    "backend": "SCIP",
++                    "native_mip_attempted": True,
++                    "native_mip_status": "BACKEND_UNAVAILABLE",
++                    "fallback": True,
++                    "runtime_seconds": time.perf_counter() - started,
++                }
++            )
++            return decision
+
+         n = graph.n_nodes
+         utilities = graph.get_node_importances().tolist()
+@@ -958,8 +969,29 @@ class MIPRelaxationSolver(ConstraintSolver):
+         solver.set_time_limit(self.time_limit_ms)
+         status = solver.Solve()
+
++        status_names = {
++            pywraplp.Solver.OPTIMAL: "OPTIMAL",
++            pywraplp.Solver.FEASIBLE: "FEASIBLE",
++            pywraplp.Solver.INFEASIBLE: "INFEASIBLE",
++            pywraplp.Solver.UNBOUNDED: "UNBOUNDED",
++            pywraplp.Solver.ABNORMAL: "ABNORMAL",
++            pywraplp.Solver.NOT_SOLVED: "NOT_SOLVED",
++        }
++        status_name = status_names.get(status, f"UNKNOWN_{status}")
++
+         if status not in (pywraplp.Solver.OPTIMAL, pywraplp.Solver.FEASIBLE):
+-            return self._iterative_rounding_fallback(graph, budget, variant, constraints)
++            decision = self._iterative_rounding_fallback(graph, budget, variant, constraints)
++            decision.metadata.update(
++                {
++                    "backend": "SCIP",
++                    "native_mip_attempted": True,
++                    "native_mip_status": status_name,
++                    "fallback": True,
++                    "runtime_seconds": time.perf_counter() - started,
++                    "wall_time_ms": int(solver.wall_time()),
++                }
++            )
++            return decision
+
+         pi_vals = torch.tensor([pi_vars[i].solution_value() for i in range(n)])
+         ranks = torch.zeros(n, dtype=torch.long)
+@@ -1003,4 +1035,17 @@ class MIPRelaxationSolver(ConstraintSolver):
+             reason=reason,
+             utility=utility,
+             variants=variants,
++            metadata={
++                "backend": "SCIP",
++                "native_mip_attempted": True,
++                "native_mip_status": status_name,
++                "fallback": False,
++                "runtime_seconds": time.perf_counter() - started,
++                "wall_time_ms": int(solver.wall_time()),
++                "objective_value": float(solver.Objective().Value()),
++                "best_objective_bound": float(solver.Objective().BestBound()),
++                "time_limit_ms": self.time_limit_ms,
++                "candidate_module_count": n,
++                "selected_module_count": len(target_modules),
++            },
+         )

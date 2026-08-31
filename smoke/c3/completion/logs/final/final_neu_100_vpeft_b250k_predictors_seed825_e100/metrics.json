@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "stage": "c3_efficiency_final",
+  "run_id": "final_neu_100_vpeft_b250k_predictors_seed825_e100",
+  "dataset": "neu",
+  "sample_size": 100,
+  "seed": 825,
+  "candidate": {
+    "id": "b250k_predictors",
+    "adapter_budget": 250000,
+    "head_train_policy": "predictors"
+  },
+  "status": "PASS",
+  "exit_code": 0,
+  "validation": {
+    "best_epoch": 85,
+    "best_map50": 0.60178,
+    "best_map50_95": 0.29804,
+    "last_map50": 0.5596,
+    "last_map50_95": 0.26657
+  },
+  "test": {
+    "schema_version": 1,
+    "split": "test",
+    "device": "0",
+    "batch": 8,
+    "imgsz": 640,
+    "precision": 0.5666092118179535,
+    "recall": 0.5488906024953025,
+    "map50": 0.589588156763479,
+    "map50_95": 0.3035252632021195,
+    "fitness": 0.3035252632021195,
+    "speed_ms_per_image": {
+      "preprocess": 0.21811675590773424,
+      "inference": 3.443488928799828,
+      "loss": 0.0009861955833103922,
+      "postprocess": 0.8130075021957358
+    },
+    "save_dir": "smoke/c3/completion/artifacts/final/final_neu_100_vpeft_b250k_predictors_seed825_e100/test_eval"
+  },
+  "parameters": {
+    "total_parameters": 2772770,
+    "trainable_parameters": 195410,
+    "trainable_parameter_ratio": 0.07047465170208853,
+    "adapter_parameters": 181760,
+    "frozen_modules": [],
+    "trainable_modules": [],
+    "top_level_modules": []
+  },
+  "resources": {
+    "peak_cpu_percent": 163.4,
+    "peak_rss_mib": 2738.66,
+    "peak_device_memory_mib": 3230.0,
+    "peak_process_tree_gpu_memory_mib": 3220.0,
+    "epoch_reported_peak_gpu_memory_mib": 2580.48,
+    "peak_gpu_memory_mib": 2580.48
+  },
+  "timing": {
+    "schema_version": 1,
+    "started_utc": "2026-08-31T13:11:29.690723+00:00",
+    "finished_utc": "2026-08-31T13:18:08.527815+00:00",
+    "training_seconds": 398.837,
+    "gpu_hours": 0.11078797,
+    "training_exit_code": 0
+  },
+  "checkpoint": {
+    "best": {
+      "path": "smoke/c3/completion/artifacts/final/final_neu_100_vpeft_b250k_predictors_seed825_e100/weights/best.pt",
+      "size_bytes": 6039762,
+      "sha256": "f277f366eac31696e80607c5ce150d8dd27a62ff7d84269b579d84733196f67a"
+    },
+    "last": {
+      "path": "smoke/c3/completion/artifacts/final/final_neu_100_vpeft_b250k_predictors_seed825_e100/weights/last.pt",
+      "size_bytes": 6039762,
+      "sha256": "8a6ad64c8b8c1d970250607638cac4e7d6c959f27e71b46dcd00620b67248a51"
+    },
+    "last_healthy": {
+      "path": "smoke/c3/completion/artifacts/final/final_neu_100_vpeft_b250k_predictors_seed825_e100/weights/last_healthy.pt",
+      "size_bytes": 13318333,
+      "sha256": "e26e6c91f7092d5dc0b3f63bbb23304fb10f8249c1c694688be85b08ba3c30a2"
+    }
+  },
+  "best_checkpoint_load": {
+    "succeeded": true,
+    "total_parameters": 2772770,
+    "adapter_parameters": 181760,
+    "requires_grad_note": "EMA best checkpoint intentionally stores requires_grad=false"
+  },
+  "adapter": {
+    "path": "smoke/c3/completion/artifacts/final/final_neu_100_vpeft_b250k_predictors_seed825_e100/lora_adapter",
+    "size_bytes": 766668,
+    "enabled": true,
+    "planner_status": "ACCEPT",
+    "planner_backend": "vpeft",
+    "actual_backend": "peft",
+    "planned_targets": 59,
+    "applied_targets": 52
+  },
+  "split": {
+    "train_list": "smoke/c3/p2/config/splits/neu_100_seed824.txt",
+    "train_list_sha256": "866509a9beb7bf50a2e81c3ce29043454b400284e065558313827d1854977259"
+  },
+  "numerical_recovery": {
+    "detected": false,
+    "markers": []
+  },
+  "checks": {
+    "exit_code_zero": true,
+    "requested_cuda_gpu_used": true,
+    "complete_finite_learning_curve": true,
+    "no_numerical_recovery": true,
+    "checkpoint_load_succeeded": true,
+    "checkpoint_files_present": true,
+    "protocol_locked": true,
+    "strict_vpeft": true,
+    "trainable_at_most_ten_percent_full": true,
+    "test_not_accessed_during_search": true,
+    "test_metrics_present_for_final": true
+  }
+}

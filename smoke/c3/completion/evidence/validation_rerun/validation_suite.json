@@ -1,0 +1,67 @@
+{
+  "command": "../YOLO-Master/.venv/bin/python smoke/c3/completion/tools/run_validators.py",
+  "schema_version": 1,
+  "status": "PASS",
+  "validators": [
+    {
+      "command": "python smoke/c3/p0/tools/validate_delivery.py --output smoke/c3/p0/evidence/completion_revalidation_20260831.json",
+      "finished_utc": "2026-08-31T13:46:08.339019+00:00",
+      "name": "p0",
+      "returncode": 0,
+      "started_utc": "2026-08-31T13:46:07.866640+00:00",
+      "status": "PASS",
+      "stderr": "smoke/c3/completion/evidence/validation_rerun/p0.stderr.txt",
+      "stdout": "smoke/c3/completion/evidence/validation_rerun/p0.stdout.txt"
+    },
+    {
+      "command": "python smoke/c3/p1/scripts/validate_p1.py --epochs 100 --output smoke/c3/p1/evidence/completion_revalidation_20260831.json",
+      "finished_utc": "2026-08-31T13:46:08.801188+00:00",
+      "name": "p1",
+      "returncode": 0,
+      "started_utc": "2026-08-31T13:46:08.339051+00:00",
+      "status": "PASS",
+      "stderr": "smoke/c3/completion/evidence/validation_rerun/p1.stderr.txt",
+      "stdout": "smoke/c3/completion/evidence/validation_rerun/p1.stdout.txt"
+    },
+    {
+      "command": "python smoke/c3/p2/tools/validate_p2.py",
+      "finished_utc": "2026-08-31T13:46:09.685933+00:00",
+      "name": "p2_seed824",
+      "returncode": 0,
+      "started_utc": "2026-08-31T13:46:08.801236+00:00",
+      "status": "PASS",
+      "stderr": "smoke/c3/completion/evidence/validation_rerun/p2_seed824.stderr.txt",
+      "stdout": "smoke/c3/completion/evidence/validation_rerun/p2_seed824.stdout.txt"
+    },
+    {
+      "command": "python smoke/c3/p2/tools/validate_p2_final.py",
+      "finished_utc": "2026-08-31T13:46:14.128712+00:00",
+      "name": "p2_final",
+      "returncode": 0,
+      "started_utc": "2026-08-31T13:46:09.685972+00:00",
+      "status": "PASS",
+      "stderr": "smoke/c3/completion/evidence/validation_rerun/p2_final.stderr.txt",
+      "stdout": "smoke/c3/completion/evidence/validation_rerun/p2_final.stdout.txt"
+    },
+    {
+      "command": "python smoke/c3/final/tools/validate_research_delivery.py --output smoke/c3/final/evidence/completion_revalidation_20260831.json",
+      "finished_utc": "2026-08-31T13:46:45.606819+00:00",
+      "name": "existing_integrated",
+      "returncode": 0,
+      "started_utc": "2026-08-31T13:46:14.128750+00:00",
+      "status": "PASS",
+      "stderr": "smoke/c3/completion/evidence/validation_rerun/existing_integrated.stderr.txt",
+      "stdout": "smoke/c3/completion/evidence/validation_rerun/existing_integrated.stdout.txt"
+    },
+    {
+      "command": "python smoke/c3/completion/tools/validate_completion.py",
+      "finished_utc": "2026-08-31T13:46:59.162112+00:00",
+      "name": "new_completion",
+      "returncode": 0,
+      "started_utc": "2026-08-31T13:46:45.606935+00:00",
+      "status": "PASS",
+      "stderr": "smoke/c3/completion/evidence/validation_rerun/new_completion.stderr.txt",
+      "stdout": "smoke/c3/completion/evidence/validation_rerun/new_completion.stdout.txt"
+    }
+  ]
+}

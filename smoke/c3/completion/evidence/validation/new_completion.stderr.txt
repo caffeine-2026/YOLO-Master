@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "<repo>/smoke/c3/completion/tools/validate_completion.py", line 308, in <module>
+    raise SystemExit(main())
+  File "<repo>/smoke/c3/completion/tools/validate_completion.py", line 291, in main
+    "hygiene": hygiene_contract(),
+  File "<repo>/smoke/c3/completion/tools/validate_completion.py", line 260, in hygiene_contract
+    check(not findings, f"hygiene findings: {findings[:10]}")
+  File "<repo>/smoke/c3/completion/tools/validate_completion.py", line 38, in check
+    raise AssertionError(message)
+AssertionError: hygiene findings: [{'path': 'smoke/c3/completion/evidence/release_checks/related_pytest.stdout.txt', 'kind': 'absolute_user_path'}]

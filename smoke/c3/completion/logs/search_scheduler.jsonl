@@ -1,0 +1,18 @@
+{"event": "suite_start", "gpu_preflight": [{"device": "1", "idle": true, "processes": [], "query": "nvidia-smi compute applications"}, {"device": "5", "idle": true, "processes": [], "query": "nvidia-smi compute applications"}, {"device": "7", "idle": true, "processes": [], "query": "nvidia-smi compute applications"}], "protocol": "smoke/c3/completion/config/efficiency_search_protocol.yaml", "queues": {"1": ["search_neu_100_b100k_predictors_seed824", "search_neu_100_b150k_frozen_seed824", "search_deeppcb_100_b250k_predictors_seed824"], "5": ["search_neu_100_b150k_predictors_seed824", "search_deeppcb_100_b100k_predictors_seed824", "search_deeppcb_100_b150k_frozen_seed824"], "7": ["search_neu_100_b250k_predictors_seed824", "search_deeppcb_100_b150k_predictors_seed824"]}, "test_access": false, "time_utc": "2026-08-31T12:02:34.230203+00:00"}
+{"device": "1", "event": "run_start", "run_id": "search_neu_100_b100k_predictors_seed824", "time_utc": "2026-08-31T12:02:34.232566+00:00"}
+{"device": "5", "event": "run_start", "run_id": "search_neu_100_b150k_predictors_seed824", "time_utc": "2026-08-31T12:02:34.233001+00:00"}
+{"device": "7", "event": "run_start", "run_id": "search_neu_100_b250k_predictors_seed824", "time_utc": "2026-08-31T12:02:34.234612+00:00"}
+{"device": "1", "event": "run_finish", "returncode": 0, "run_id": "search_neu_100_b100k_predictors_seed824", "time_utc": "2026-08-31T12:09:17.962469+00:00"}
+{"device": "1", "event": "run_start", "run_id": "search_neu_100_b150k_frozen_seed824", "time_utc": "2026-08-31T12:09:17.962644+00:00"}
+{"device": "5", "event": "run_finish", "returncode": 0, "run_id": "search_neu_100_b150k_predictors_seed824", "time_utc": "2026-08-31T12:09:24.807303+00:00"}
+{"device": "5", "event": "run_start", "run_id": "search_deeppcb_100_b100k_predictors_seed824", "time_utc": "2026-08-31T12:09:24.807468+00:00"}
+{"device": "7", "event": "run_finish", "returncode": 0, "run_id": "search_neu_100_b250k_predictors_seed824", "time_utc": "2026-08-31T12:09:27.214352+00:00"}
+{"device": "7", "event": "run_start", "run_id": "search_deeppcb_100_b150k_predictors_seed824", "time_utc": "2026-08-31T12:09:27.214653+00:00"}
+{"device": "1", "event": "run_finish", "returncode": 0, "run_id": "search_neu_100_b150k_frozen_seed824", "time_utc": "2026-08-31T12:15:51.665638+00:00"}
+{"device": "1", "event": "run_start", "run_id": "search_deeppcb_100_b250k_predictors_seed824", "time_utc": "2026-08-31T12:15:51.665800+00:00"}
+{"device": "5", "event": "run_finish", "returncode": 0, "run_id": "search_deeppcb_100_b100k_predictors_seed824", "time_utc": "2026-08-31T12:16:24.981979+00:00"}
+{"device": "5", "event": "run_start", "run_id": "search_deeppcb_100_b150k_frozen_seed824", "time_utc": "2026-08-31T12:16:24.982237+00:00"}
+{"device": "7", "event": "run_finish", "returncode": 0, "run_id": "search_deeppcb_100_b150k_predictors_seed824", "time_utc": "2026-08-31T12:16:35.848125+00:00"}
+{"device": "1", "event": "run_finish", "returncode": 0, "run_id": "search_deeppcb_100_b250k_predictors_seed824", "time_utc": "2026-08-31T12:22:55.581713+00:00"}
+{"device": "5", "event": "run_finish", "returncode": 0, "run_id": "search_deeppcb_100_b150k_frozen_seed824", "time_utc": "2026-08-31T12:23:22.096639+00:00"}
+{"completed": 8, "event": "suite_finish", "failures": [], "time_utc": "2026-08-31T12:23:22.097023+00:00"}

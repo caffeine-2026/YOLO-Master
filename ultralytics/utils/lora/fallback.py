@@ -656,6 +656,7 @@ def apply_manual_lora(model: nn.Module, config: "LoRAConfig", include_head: bool
     model.lora_backend = "fallback"
     model.lora_variant = "lora"
     model.lora_include_head = include_head
+    model.lora_head_train_policy = config.head_train_policy
     model.lora_freeze_bn = bool(getattr(config, "freeze_bn", False))
     model.lora_target_modules = sorted(_collect_fallback_adapter_state(model)["modules"])
     model.lora_target_audit = build_lora_target_audit(
@@ -676,6 +677,7 @@ def apply_manual_lora(model: nn.Module, config: "LoRAConfig", include_head: bool
         requested_use_rslora=bool(getattr(config, "use_rslora", False)),
         effective_use_rslora=bool(getattr(config, "use_rslora", False)),
         include_head=include_head,
+        head_train_policy=config.head_train_policy,
         freeze_bn=bool(getattr(config, "freeze_bn", False)),
         target_modules=model.lora_target_modules,
         target_audit=model.lora_target_audit,
@@ -683,7 +685,7 @@ def apply_manual_lora(model: nn.Module, config: "LoRAConfig", include_head: bool
         placement_plan=getattr(model, "lora_placement_plan", None),
     )
 
-    _unfreeze_detection_head(model)
+    _unfreeze_detection_head(model, config.head_train_policy)
 
     return model
 
@@ -802,6 +804,7 @@ def _load_fallback_adapter_state(model: nn.Module, path: Path, payload: Dict[str
     model.lora_backend = "fallback"
     model.lora_variant = payload.get("variant", "lora")
     model.lora_include_head = payload.get("include_head", False)
+    model.lora_head_train_policy = payload.get("head_train_policy", "full")
     model.lora_freeze_bn = payload.get("freeze_bn", False)
     model.lora_target_modules = payload.get("target_modules", sorted(module_configs))
     model.lora_target_audit = payload.get(
@@ -863,6 +866,7 @@ def _clear_lora_runtime_state(model: "DetectionModel") -> None:
         "lora_backend",
         "lora_variant",
         "lora_include_head",
+        "lora_head_train_policy",
         "lora_freeze_bn",
         "lora_target_modules",
         "lora_target_audit",

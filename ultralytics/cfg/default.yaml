@@ -214,6 +214,7 @@ lora_planner_solver: "ao" # (str) Planner budget solver: ao, dco, mip
 lora_planner_backend: "legacy" # (str) Planner backend: legacy or vpeft (opt-in)
 lora_vpeft_strict: False # (bool) Raise unexpected internal V-PEFT errors instead of compatibility fallback
 lora_include_head: False # (bool) Include YOLO detection head layers in LoRA targeting
+lora_head_train_policy: "full" # (str) Non-adapter head training: full, predictors, frozen
 lora_freeze_bn: False # (bool) Freeze BatchNorm layers during LoRA training
 lora_target_modules: # (list[str], optional) LoRA target modules
 lora_rank_pattern: # (dict[str, int], optional) Per-target LoRA ranks produced by placement planning

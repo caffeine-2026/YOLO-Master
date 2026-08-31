@@ -1,0 +1,105 @@
+{
+  "timestamp": "2026-08-31T19:51:56.935484",
+  "model_name": "unknown",
+  "fingerprint": {
+    "phi_attn": 0.0,
+    "phi_text": 0.0,
+    "phi_dw": 0.07954545454545454,
+    "phi_group": 0.0,
+    "phi_linear": 0.0,
+    "phi_depth": 0.8,
+    "phi_width": 0.7675475947501547,
+    "phi_head": 0.1666693683158305,
+    "phi_residual": 0.07523510971786834,
+    "phi_norm": 0.0,
+    "phi_moe": 0.0,
+    "phi_conv": 1.0
+  },
+  "variant": "lora",
+  "requested_rank": 8,
+  "decision_status": "ADAPT",
+  "recommended_variant": null,
+  "recommended_rank": null,
+  "predicted_delta": 0.06602954545454547,
+  "refusal_reason": null,
+  "safety_overrides": {
+    "adapter_budget": 2100000,
+    "include_attention": false
+  },
+  "metadata": {
+    "calibration_fitted": false,
+    "calibration_n_samples": 0,
+    "calibration_effective_rank": 0,
+    "calibration_n_features": 12,
+    "calibration_regularization": 0.0,
+    "calibration_condition_number": 0.0,
+    "calibration_noise_variance": 0.0,
+    "calibration_effective_dof": 0.0,
+    "calibration_rank_deficient": false,
+    "calibration_posterior_available": false,
+    "evidence_state": "cold_start",
+    "evidence_source": "default_prior",
+    "evidence_observation_count": 0,
+    "evidence_minimum_fit_observations": 5,
+    "evidence_confidence": "low",
+    "evidence_confidence_reasons": [
+      "no_observations",
+      "default_coefficients"
+    ],
+    "uses_learned_evidence": false,
+    "low_confidence": true,
+    "paper_regression_features": [
+      "intercept",
+      "phi_attn",
+      "phi_text",
+      "phi_dw",
+      "variant_xi"
+    ],
+    "paper_coefficients": [
+      0.0656,
+      0.0026,
+      0.0,
+      0.0054,
+      1.0
+    ],
+    "implementation_regression_features": [
+      "intercept",
+      "phi_attn",
+      "phi_text",
+      "phi_dw",
+      "variant_xi",
+      "phi_depth",
+      "phi_width",
+      "phi_head",
+      "phi_residual",
+      "phi_norm",
+      "log2_rank",
+      "phi_attn_squared"
+    ],
+    "paper_predicted_delta": 0.06602954545454547,
+    "budget_solver": "ao",
+    "budget": 2100000,
+    "budget_used": 199808,
+    "budget_remaining": 1900192,
+    "budget_utility": 29.5,
+    "budget_rank": 8,
+    "budget_status": "ACCEPT"
+  },
+  "evidence": {
+    "state": "cold_start",
+    "source": "default_prior",
+    "observation_count": 0,
+    "minimum_fit_observations": 5,
+    "confidence": "low",
+    "confidence_reasons": [
+      "no_observations",
+      "default_coefficients"
+    ],
+    "uses_learned_evidence": false,
+    "decision_basis": "guardrail_fallback",
+    "guardrails": [
+      "attention_target_policy"
+    ]
+  },
+  "target_modules_count": 59
+}

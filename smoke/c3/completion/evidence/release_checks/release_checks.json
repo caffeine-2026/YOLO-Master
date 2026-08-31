@@ -1,0 +1,59 @@
+{
+  "checks": [
+    {
+      "command": "python -m pytest -q tests/test_adapter_backend_contract.py tests/test_c3_completion_evidence.py tests/test_default_config_integrity.py tests/test_lora_fallback_effective_config.py tests/test_lora_moe_ddp_control_paths.py tests/test_lora_selective_ema_lifecycle.py tests/test_lora_training_strategy.py tests/test_moe_aware_peft.py tests/test_molora.py tests/test_molora_backend_roundtrip.py tests/test_molora_dtype.py tests/test_molora_merge_publishability.py tests/test_molora_merge_semantics.py tests/test_molora_routing_aware_merge.py tests/test_molora_sparse_dispatch.py tests/test_molora_supplementary.py tests/test_molora_vpeft_integration.py tests/test_p0_system_gates.py tests/test_peft_adapters.py tests/test_peft_optimizer_policy.py tests/test_placement_plan_schema.py tests/test_planner.py tests/test_planner_enhancement.py tests/test_planner_integration.py tests/test_vpeft.py tests/test_vpeft_lora_e2e.py tests/test_vpeft_rl_rank_allocator.py tests/test_yolo_peft_paper_anchor.py",
+      "finished_utc": "2026-08-31T13:32:59.770179+00:00",
+      "name": "related_pytest",
+      "returncode": 1,
+      "started_utc": "2026-08-31T13:32:45.548251+00:00",
+      "status": "FAIL",
+      "stderr": "smoke/c3/completion/evidence/release_checks/related_pytest.stderr.txt",
+      "stdout": "smoke/c3/completion/evidence/release_checks/related_pytest.stdout.txt"
+    },
+    {
+      "command": "python -m ruff check smoke/c3/completion/tools/calibrate_lovo.py smoke/c3/completion/tools/capture_training_provenance.py smoke/c3/completion/tools/compare_solvers.py smoke/c3/completion/tools/generate_planner_branch_evidence.py smoke/c3/completion/tools/run_efficiency.py smoke/c3/completion/tools/run_final_matrix.py smoke/c3/completion/tools/run_release_checks.py smoke/c3/completion/tools/run_search_suite.py smoke/c3/completion/tools/run_validators.py smoke/c3/completion/tools/select_efficiency.py smoke/c3/completion/tools/summarize_completion.py smoke/c3/completion/tools/validate_completion.py tests/test_c3_completion_evidence.py",
+      "finished_utc": "2026-08-31T13:32:59.828674+00:00",
+      "name": "ruff_new_code",
+      "returncode": 0,
+      "started_utc": "2026-08-31T13:32:59.770285+00:00",
+      "status": "PASS",
+      "stderr": "smoke/c3/completion/evidence/release_checks/ruff_new_code.stderr.txt",
+      "stdout": "smoke/c3/completion/evidence/release_checks/ruff_new_code.stdout.txt"
+    },
+    {
+      "command": "python -m ruff format --check smoke/c3/completion/tools/calibrate_lovo.py smoke/c3/completion/tools/capture_training_provenance.py smoke/c3/completion/tools/compare_solvers.py smoke/c3/completion/tools/generate_planner_branch_evidence.py smoke/c3/completion/tools/run_efficiency.py smoke/c3/completion/tools/run_final_matrix.py smoke/c3/completion/tools/run_release_checks.py smoke/c3/completion/tools/run_search_suite.py smoke/c3/completion/tools/run_validators.py smoke/c3/completion/tools/select_efficiency.py smoke/c3/completion/tools/summarize_completion.py smoke/c3/completion/tools/validate_completion.py tests/test_c3_completion_evidence.py",
+      "finished_utc": "2026-08-31T13:32:59.877611+00:00",
+      "name": "ruff_format",
+      "returncode": 0,
+      "started_utc": "2026-08-31T13:32:59.828781+00:00",
+      "status": "PASS",
+      "stderr": "smoke/c3/completion/evidence/release_checks/ruff_format.stderr.txt",
+      "stdout": "smoke/c3/completion/evidence/release_checks/ruff_format.stdout.txt"
+    },
+    {
+      "command": "python -m ruff check --select E9,F63,F7,F82 smoke/c3/p1/scripts/run_p1.py ultralytics/cfg/__init__.py ultralytics/utils/lora/api.py ultralytics/utils/lora/config.py ultralytics/utils/lora/fallback.py ultralytics/utils/lora/io.py ultralytics/utils/lora/planner.py ultralytics/vpeft/solver.py",
+      "finished_utc": "2026-08-31T13:32:59.924790+00:00",
+      "name": "ruff_legacy_critical",
+      "returncode": 0,
+      "started_utc": "2026-08-31T13:32:59.877639+00:00",
+      "status": "PASS",
+      "stderr": "smoke/c3/completion/evidence/release_checks/ruff_legacy_critical.stderr.txt",
+      "stdout": "smoke/c3/completion/evidence/release_checks/ruff_legacy_critical.stdout.txt"
+    },
+    {
+      "command": "git diff --check",
+      "finished_utc": "2026-08-31T13:32:59.938322+00:00",
+      "name": "git_diff_check",
+      "returncode": 0,
+      "started_utc": "2026-08-31T13:32:59.924837+00:00",
+      "status": "PASS",
+      "stderr": "smoke/c3/completion/evidence/release_checks/git_diff_check.stderr.txt",
+      "stdout": "smoke/c3/completion/evidence/release_checks/git_diff_check.stdout.txt"
+    }
+  ],
+  "command": "../YOLO-Master/.venv/bin/python smoke/c3/completion/tools/run_release_checks.py",
+  "related_test_files": 28,
+  "ruff_scope_note": "New completion code uses the complete repository Ruff rules. Touched legacy files use Ruff's critical syntax/name rules; the unfiltered legacy-file failure is preserved separately and was not made to pass by changing configuration.",
+  "schema_version": 1,
+  "status": "FAIL"
+}

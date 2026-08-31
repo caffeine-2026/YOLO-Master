@@ -80,6 +80,9 @@ dependencies = [
 
 # Optional dependencies ------------------------------------------------------------------------------------------------
 [project.optional-dependencies]
+vpeft-mip = [
+    "ortools==9.15.6755; python_version >= '3.9'",
+]
 dev = [
     "ipython",
     "pytest",

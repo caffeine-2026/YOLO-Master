@@ -484,6 +484,7 @@ MIXTURE_STR_KEYS = frozenset(
         "lora_bias",
         "lora_few_shot_distill_schedule",
         "lora_few_shot_dropconnect_schedule",
+        "lora_head_train_policy",
         "lora_quantization",
         "lora_type",
         "lora_variant",

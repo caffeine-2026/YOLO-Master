@@ -1,0 +1,5 @@
+.                                                                        [100%]
+============================= slowest 30 durations =============================
+4.56s call     tests/test_p0_system_gates.py::test_cpu_gloo_two_rank_routed_continuous_training
+
+1 passed in 6.09s

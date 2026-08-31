@@ -1,0 +1,17 @@
+command: git diff --cached --check
+exit_code: 2
+stage: final evidence staging
+cause:
+  - Python csv.writer outputs used CRLF line endings, which Git reported as trailing whitespace.
+  - The captured dirty-worktree patch contained whitespace-only added lines.
+  - Three lines in the preserved initial pytest stdout ended in spaces.
+affected_groups:
+  - smoke/c3/completion/**/*.csv
+  - smoke/c3/completion/evidence/provenance/training_code.patch
+  - smoke/c3/completion/evidence/release_checks/related_pytest.stdout.txt
+repair:
+  - Normalize CSV CRLF to LF without changing any field or value.
+  - Remove line-end whitespace only from the patch and pytest evidence.
+  - Recompute dirty_training_diff_sha256 in training_code_snapshot.json.
+  - Rerun integration validation and git diff --cached --check.
+note: This failure was discovered only after ignored raw logs and figures were explicitly staged. It is retained as failure evidence.

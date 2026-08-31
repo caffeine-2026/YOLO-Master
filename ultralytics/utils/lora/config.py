@@ -42,6 +42,7 @@ class LoRAConfig:
     backend: str = "auto"  # Execution backend: "auto", "peft", "fallback"
     variant: str = "lora"  # Adapter variant: "lora", "loha", "dora"
     include_head: bool = False  # Include detection head layers in target selection
+    head_train_policy: str = "full"  # full, predictors, frozen; controls non-adapter head parameters
     freeze_bn: bool = False  # Freeze BatchNorm layers during LoRA training
 
     # Strategy Control
@@ -179,6 +180,9 @@ class LoRAConfig:
         self.quantization = str(self.quantization or "none").lower()
         if self.quantization not in {"none", "4bit", "8bit"}:
             raise ValueError("quantization must be one of 'none', '4bit', or '8bit'")
+        self.head_train_policy = str(self.head_train_policy or "full").lower()
+        if self.head_train_policy not in {"full", "predictors", "frozen"}:
+            raise ValueError("lora_head_train_policy must be one of 'full', 'predictors', or 'frozen'")
 
         # Few-shot config validation
         if self.few_shot_mode:
@@ -224,6 +228,7 @@ class LoRAConfig:
             "backend": "lora_backend",
             "variant": "lora_variant",
             "include_head": "lora_include_head",
+            "head_train_policy": "lora_head_train_policy",
             "freeze_bn": "lora_freeze_bn",
             "lr_mult": "lora_lr_mult",
             "include_moe": "lora_include_moe",

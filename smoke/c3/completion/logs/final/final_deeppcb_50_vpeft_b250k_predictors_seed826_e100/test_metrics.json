@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "split": "test",
+  "device": "3",
+  "batch": 8,
+  "imgsz": 640,
+  "precision": 0.2627282449895439,
+  "recall": 0.47639184552609143,
+  "map50": 0.32734160476798035,
+  "map50_95": 0.1993074109421481,
+  "fitness": 0.1993074109421481,
+  "speed_ms_per_image": {
+    "preprocess": 0.18443032912909985,
+    "inference": 2.51686536334455,
+    "loss": 0.0008540665730834007,
+    "postprocess": 0.9984683915972711
+  },
+  "save_dir": "smoke/c3/completion/artifacts/final/final_deeppcb_50_vpeft_b250k_predictors_seed826_e100/test_eval"
+}

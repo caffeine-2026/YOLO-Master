@@ -56,6 +56,7 @@ def save_lora_adapters(model: "DetectionModel", path: Union[str, Path]) -> bool:
                 "weight_file": weight_file,
                 "freeze_bn": bool(getattr(model, "lora_freeze_bn", False)),
                 "include_head": bool(getattr(model, "lora_include_head", False)),
+                "head_train_policy": str(getattr(model, "lora_head_train_policy", "full")),
                 "target_modules": list(getattr(model, "lora_target_modules", sorted(fallback_state["modules"]))),
                 "target_audit": getattr(model, "lora_target_audit", {}),
                 "runtime_metadata": getattr(model, "lora_runtime_metadata", {}),
@@ -82,6 +83,7 @@ def save_lora_adapters(model: "DetectionModel", path: Union[str, Path]) -> bool:
             "variant": variant,
             "freeze_bn": bool(getattr(model, "lora_freeze_bn", False)),
             "include_head": bool(getattr(model, "lora_include_head", False)),
+            "head_train_policy": str(getattr(model, "lora_head_train_policy", "full")),
             "target_modules": list(getattr(model, "lora_target_modules", [])),
             "target_audit": getattr(model, "lora_target_audit", {}),
             "runtime_metadata": getattr(model, "lora_runtime_metadata", {}),
@@ -183,6 +185,7 @@ def load_lora_adapters(
         model.lora_backend = runtime_payload.get("backend", "peft")
         model.lora_variant = runtime_payload.get("variant", "lora")
         model.lora_include_head = runtime_payload.get("include_head", False)
+        model.lora_head_train_policy = runtime_payload.get("head_train_policy", "full")
         model.lora_freeze_bn = runtime_payload.get("freeze_bn", False)
         model.lora_target_modules = runtime_payload.get("target_modules", [])
         model.lora_target_audit = runtime_payload.get("target_audit", {})

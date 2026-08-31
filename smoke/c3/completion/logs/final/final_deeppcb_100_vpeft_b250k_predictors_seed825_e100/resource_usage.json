@@ -1,0 +1,8 @@
+{
+  "peak_cpu_percent": 170.6,
+  "peak_rss_mib": 2653.19,
+  "peak_device_memory_mib": 3228.0,
+  "peak_process_tree_gpu_memory_mib": 3218.0,
+  "epoch_reported_peak_gpu_memory_mib": 2580.48,
+  "peak_gpu_memory_mib": 2580.48
+}

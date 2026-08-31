@@ -1,0 +1,70 @@
+[
+  {
+    "dataset": "neu-500shot",
+    "delta_mAP": -0.04492333333333335,
+    "epochs": 100,
+    "fingerprint": {
+      "phi_attn": 0.0,
+      "phi_conv": 1.0,
+      "phi_depth": 0.8,
+      "phi_dw": 0.07954545454545454,
+      "phi_group": 0.0,
+      "phi_head": 0.1666693683158305,
+      "phi_linear": 0.0,
+      "phi_moe": 0.0,
+      "phi_norm": 0.0,
+      "phi_residual": 0.07523510971786834,
+      "phi_text": 0.0,
+      "phi_width": 0.7675475947501547
+    },
+    "metric_split": "validation_last_epoch",
+    "model_name": "yolo11n-nc6",
+    "notes": "Mean paired delta across seeds 824/825/826; one dataset-shot configuration is one observation.",
+    "observation_id": "neu-500shot-selected-vpeft-vs-full-validation-last-epoch",
+    "rank": 8,
+    "source_run_ids": [
+      "neu_500_full_seed824",
+      "final_neu_500_vpeft_b250k_predictors_seed824_e100",
+      "neu_500_full_seed825_e100",
+      "final_neu_500_vpeft_b250k_predictors_seed825_e100",
+      "neu_500_full_seed826_e100",
+      "final_neu_500_vpeft_b250k_predictors_seed826_e100"
+    ],
+    "timestamp": "2026-08-31T21:29:14.151501",
+    "variant": "lora"
+  },
+  {
+    "dataset": "deeppcb-500shot",
+    "delta_mAP": -0.07737000000000001,
+    "epochs": 100,
+    "fingerprint": {
+      "phi_attn": 0.0,
+      "phi_conv": 1.0,
+      "phi_depth": 0.8,
+      "phi_dw": 0.07954545454545454,
+      "phi_group": 0.0,
+      "phi_head": 0.1666693683158305,
+      "phi_linear": 0.0,
+      "phi_moe": 0.0,
+      "phi_norm": 0.0,
+      "phi_residual": 0.07523510971786834,
+      "phi_text": 0.0,
+      "phi_width": 0.7675475947501547
+    },
+    "metric_split": "validation_last_epoch",
+    "model_name": "yolo11n-nc6",
+    "notes": "Mean paired delta across seeds 824/825/826; one dataset-shot configuration is one observation.",
+    "observation_id": "deeppcb-500shot-selected-vpeft-vs-full-validation-last-epoch",
+    "rank": 8,
+    "source_run_ids": [
+      "deeppcb_500_full_seed824",
+      "final_deeppcb_500_vpeft_b250k_predictors_seed824_e100",
+      "deeppcb_500_full_seed825_e100",
+      "final_deeppcb_500_vpeft_b250k_predictors_seed825_e100",
+      "deeppcb_500_full_seed826_e100",
+      "final_deeppcb_500_vpeft_b250k_predictors_seed826_e100"
+    ],
+    "timestamp": "2026-08-31T21:29:14.153595",
+    "variant": "lora"
+  }
+]

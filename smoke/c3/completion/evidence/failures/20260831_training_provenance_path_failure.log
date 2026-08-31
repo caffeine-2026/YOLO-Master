@@ -1,0 +1,17 @@
+Command (first attempt):
+../YOLO-Master/.venv/bin/python smoke/c3/completion/tools/capture_training_provenance.py
+
+Exit code: 1
+
+Observed error:
+FileNotFoundError: Missing training inputs: ['ultralytics/cfg/models/11/yolo11n.yaml']
+
+Cause:
+The runtime accepts the scaled yolo11n model name and resolves it to the canonical
+ultralytics/cfg/models/11/yolo11.yaml family definition. The provenance collector
+incorrectly treated the resolved alias as a physical YAML file.
+
+Fix:
+Hash the canonical yolo11.yaml input while retaining yolo11n.pt as the separately
+hashed initialized weight. No experiment was stopped or restarted by this helper
+failure.

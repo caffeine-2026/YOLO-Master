@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "status": "PASS_AFTER_HOST_RERUN",
+  "related_pytest": {
+    "total_passed": 418,
+    "skipped": 17,
+    "warnings": 2,
+    "initial_sandbox_run": "smoke/c3/completion/evidence/release_checks/release_checks.json",
+    "initial_result": "417 passed, 17 skipped, 1 sandbox-permission failure",
+    "host_rerun": "smoke/c3/completion/evidence/release_checks_rerun/release_checks_rerun.json",
+    "host_rerun_result": "1 passed",
+    "code_failures_remaining": 0
+  },
+  "ruff_new_code": "PASS",
+  "ruff_format": "PASS",
+  "ruff_legacy_critical": "PASS",
+  "git_diff_check": "PASS",
+  "broad_legacy_ruff": {
+    "status": "KNOWN_PRE_EXISTING_FAILURE",
+    "evidence": "smoke/c3/completion/evidence/failures/20260831_ruff_scope_failure.log",
+    "note": "The project-wide legacy Ruff debt was not hidden by changing Ruff configuration or validator thresholds."
+  }
+}

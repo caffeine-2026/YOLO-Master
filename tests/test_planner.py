@@ -883,6 +883,26 @@ class TestLOVOEngine:
         collector.add(LOVODataPoint(ArchitectureFingerprint(0.0, 0.0, 0.0), "lora", 0.0710))
         assert len(collector) == 1
 
+    def test_collector_rejects_duplicate_experimental_unit(self):
+        point = LOVODataPoint(
+            ArchitectureFingerprint(0.0, 0.0, 0.0),
+            "lora",
+            0.0710,
+            observation_id="neu/100/rank8",
+        )
+        collector = LOVODataCollector([point])
+        with pytest.raises(ValueError, match="Duplicate LOVO observation_id"):
+            collector.add(
+                LOVODataPoint(
+                    ArchitectureFingerprint(0.0, 0.0, 0.0),
+                    "lora",
+                    0.0700,
+                    observation_id="neu/100/rank8",
+                )
+            )
+        with pytest.raises(ValueError, match="Duplicate LOVO observation_id"):
+            LOVODataCollector([point, point])
+
     def test_collector_to_history(self):
         collector = LOVODataCollector()
         collector.extend(self._PAPER_HISTORY)

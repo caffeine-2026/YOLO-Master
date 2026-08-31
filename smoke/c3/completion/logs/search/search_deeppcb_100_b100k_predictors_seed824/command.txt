@@ -1,0 +1,4 @@
+# training (validation is enabled by the locked config)
+yolo train cfg=smoke/c3/p2/config/runs/deeppcb/vpeft.yaml data=smoke/c3/p2/config/splits/deeppcb_100.yaml device=5 seed=824 name=search_deeppcb_100_b100k_predictors_seed824 save_dir=smoke/c3/completion/artifacts/search/search_deeppcb_100_b100k_predictors_seed824 lora_adapter_budget=100000 lora_head_train_policy=predictors exist_ok=False
+
+# test evaluation intentionally prohibited during search
