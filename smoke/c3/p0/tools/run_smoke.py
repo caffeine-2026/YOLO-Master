@@ -19,20 +19,21 @@ from pathlib import Path
 
 import yaml
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-SMOKE_ROOT = REPO_ROOT / "smoke" / "c3"
+REPO_ROOT = Path(__file__).resolve().parents[4]
+SMOKE_ROOT = REPO_ROOT / "smoke" / "c3" / "p0"
 ANSI_RE = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]")
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--config", default="smoke/c3/config/vpeft_smoke.yaml")
-    parser.add_argument("--data", default="smoke/c3/config/datasets/neu_det_fewshot.yaml")
+    parser.add_argument("--config", default="smoke/c3/p0/config/vpeft_smoke.yaml")
+    parser.add_argument("--data", default="smoke/c3/p0/config/datasets/neu_det_fewshot.yaml")
     parser.add_argument("--device", default="0")
     parser.add_argument("--name", required=True, help="同时作为训练目录名和证据运行 ID。")
     parser.add_argument("--amp", choices=("true", "false"), default=None)
     parser.add_argument("--imgsz", type=int, default=None)
     parser.add_argument("--epochs", type=int, default=None)
+    parser.add_argument("--solver", choices=("ao", "dco", "mip"), default=None)
     parser.add_argument("--refresh-existing", action="store_true", help="重新索引已完成的同名运行，不再次训练。")
     return parser.parse_args()
 
@@ -77,7 +78,7 @@ def sample_resources(process: subprocess.Popen[str], output: Path, stop: threadi
         psutil = None
 
     with output.open("w", encoding="utf-8", newline="") as stream:
-        writer = csv.writer(stream)
+        writer = csv.writer(stream, lineterminator="\n")
         writer.writerow(("timestamp_utc", "cpu_percent", "rss_mib", "gpu_index", "gpu_memory_used_mib"))
         tracked = psutil.Process(process.pid) if psutil else None
         if tracked:
@@ -147,7 +148,8 @@ def summarize_resources(path: Path) -> dict[str, float | None]:
 def analyze_numerical_recovery(log_dir: Path) -> dict[str, object]:
     """从完整日志识别训练器是否因非有限值重试了 epoch。"""
     train_log = (log_dir / "train.log").read_text(encoding="utf-8")
-    settings = yaml.safe_load((log_dir / "resolved_config.yaml").read_text(encoding="utf-8"))
+    resolved_config = log_dir / "resolved_config.yaml"
+    settings = (yaml.safe_load(resolved_config.read_text(encoding="utf-8")) or {}) if resolved_config.is_file() else {}
     requested_epochs = int(settings.get("epochs", 0) or 0)
     epoch_attempts = len(re.findall(r"^\s*Epoch\s+GPU_mem\b", train_log, flags=re.MULTILINE))
     recovery_attempts = max(0, epoch_attempts - requested_epochs)
@@ -210,8 +212,15 @@ def export_adapters_if_requested(config: Path, log_dir: Path, run_dir: Path) -> 
     )
 
 
-def write_artifact_evidence(config: Path, log_dir: Path, run_dir: Path) -> list[dict[str, str | int]]:
-    export_adapters_if_requested(config, log_dir, run_dir)
+def write_artifact_evidence(
+    config: Path,
+    log_dir: Path,
+    run_dir: Path,
+    *,
+    export_adapters: bool = True,
+) -> list[dict[str, str | int]]:
+    if export_adapters:
+        export_adapters_if_requested(config, log_dir, run_dir)
     adapter_dir = run_dir / "lora_adapter"
     for source_name, target_name in (
         ("adapter_config.json", "adapter_config.json"),
@@ -248,7 +257,12 @@ def main() -> int:
             raise FileNotFoundError("刷新要求同名日志目录和训练目录均已存在")
         result_path = log_dir / "result.json"
         result = json.loads(result_path.read_text(encoding="utf-8"))
-        artifacts = write_artifact_evidence(config, log_dir, run_dir)
+        artifacts = write_artifact_evidence(
+            config,
+            log_dir,
+            run_dir,
+            export_adapters=result.get("status") == "completed",
+        )
         result.update(
             {
                 "schema_version": 2,
@@ -262,7 +276,7 @@ def main() -> int:
         print(json.dumps({"status": "refreshed", "artifact_count": len(artifacts)}, ensure_ascii=False))
         return 0
     if log_dir.exists():
-        raise FileExistsError(f"证据目录已存在：smoke/c3/logs/{args.name}")
+        raise FileExistsError(f"证据目录已存在：smoke/c3/p0/logs/{args.name}")
     log_dir.mkdir(parents=True)
 
     if run_dir.exists():
@@ -287,6 +301,8 @@ def main() -> int:
         command.append(f"imgsz={args.imgsz}")
     if args.epochs is not None:
         command.append(f"epochs={args.epochs}")
+    if args.solver is not None:
+        command.append(f"lora_planner_solver={args.solver}")
     publishable_command = ["yolo", *command[1:]]
     (log_dir / "command.txt").write_text(" ".join(publishable_command) + "\n", encoding="utf-8")
 
@@ -314,6 +330,8 @@ def main() -> int:
         assert process.stdout is not None
         for line in process.stdout:
             normalized = clean_text(line)
+            line_ending = "\n" if normalized.endswith(("\n", "\r")) else ""
+            normalized = normalized.rstrip(" \t\r\n") + line_ending
             log.write(normalized)
             log.flush()
             print(normalized, end="", flush=True)
@@ -323,7 +341,7 @@ def main() -> int:
     wall_seconds = time.monotonic() - started
     finished_utc = datetime.now(timezone.utc).isoformat()
 
-    artifacts = write_artifact_evidence(config, log_dir, run_dir)
+    artifacts = write_artifact_evidence(config, log_dir, run_dir, export_adapters=exit_code == 0)
 
     resource_summary = summarize_resources(log_dir / "resources.csv")
     result = {

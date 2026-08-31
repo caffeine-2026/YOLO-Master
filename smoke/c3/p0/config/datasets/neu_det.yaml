@@ -1,4 +1,4 @@
-# 使用 smoke/c3/tools/prepare_neu_det.py 将官方 NEU-DET Pascal VOC XML 转换为 YOLO 格式。
+# 使用 smoke/c3/p0/tools/prepare_neu_det.py 将官方 NEU-DET Pascal VOC XML 转换为 YOLO 格式。
 path: datasets/neu_det_yolo
 train: images/train
 val: images/val

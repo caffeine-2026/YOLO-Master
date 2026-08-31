@@ -15,7 +15,7 @@ from pathlib import Path
 
 from PIL import Image
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
+REPO_ROOT = Path(__file__).resolve().parents[4]
 CLASSES = ("open", "short", "mousebite", "spur", "copper", "pin-hole")
 SOURCE_REPOSITORY = "https://github.com/tangsanli5201/DeepPCB"
 
@@ -84,7 +84,7 @@ def derived_dataset_path(path: Path) -> Path:
 def evidence_path(path: Path) -> Path:
     """Limit published manifest writes to the C3 evidence directory."""
     resolved = path.resolve()
-    evidence_root = (REPO_ROOT / "smoke" / "c3" / "evidence").resolve()
+    evidence_root = (REPO_ROOT / "smoke" / "c3" / "p0" / "evidence").resolve()
     try:
         resolved.relative_to(evidence_root)
     except ValueError as exc:

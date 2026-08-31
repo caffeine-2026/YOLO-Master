@@ -26,7 +26,7 @@
 | NEU-DET | 613,602 | 181,760 | 712 MiB | 18.315 s | 0 |
 | DeepPCB | 613,602 | 181,760 | 712 MiB | 17.075 s | 0 |
 
-日志目录分别为 `smoke/c3/logs/neu_det_vpeft_gpu_fp32_seed824/` 与 `smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824/`。每个目录包含完整日志、resolved config、Planner/PEFT 元数据、metrics、显存采样、耗时、退出码和 checkpoint/adapter SHA-256。
+日志目录分别为 `smoke/c3/p0/logs/neu_det_vpeft_gpu_fp32_seed824/` 与 `smoke/c3/p0/logs/deeppcb_vpeft_gpu_fp32_seed824/`。每个目录包含完整日志、resolved config、Planner/PEFT 元数据、metrics、显存采样、耗时、退出码和 checkpoint/adapter SHA-256。
 
 ## Extra Smoke Evidence
 
@@ -38,7 +38,7 @@ NEU-DET 的 V-PEFT、Full-SFT 与 Frozen Backbone 三方 GPU FP32 运行保留�
 - `START_REF`: `bad9294f4217773dcf0ba0666c64de121a324fda`
 - `FINAL_REF`: 提交完成后由 `git rev-parse HEAD` 固化在交付回复
 - 差异：`git diff acce839c7e895d6b179de7f7093fa879e237cc7b..HEAD -- smoke/c3`
-- 结构化汇总：`smoke/c3/evidence/c3_p0_summary.json`
-- 静态验收：`smoke/c3/evidence/static_validation.json`
+- 结构化汇总：`smoke/c3/p0/evidence/c3_p0_summary.json`
+- 静态验收：`smoke/c3/p0/evidence/static_validation.json`
 
 结论：NEU-DET `PASS`，DeepPCB `PASS`，Overall C3 P0 `PASS`。MVTec AD 仅为未来可选扩展。

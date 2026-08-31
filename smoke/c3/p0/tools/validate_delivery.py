@@ -15,14 +15,16 @@ from pathlib import Path
 
 import yaml
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-SMOKE_ROOT = REPO_ROOT / "smoke" / "c3"
+REPO_ROOT = Path(__file__).resolve().parents[4]
+SMOKE_ROOT = REPO_ROOT / "smoke" / "c3" / "p0"
 CLASSES = ("crazing", "inclusion", "patches", "pitted_surface", "rolled-in_scale", "scratches")
 DEEPPCB_CLASSES = ("open", "short", "mousebite", "spur", "copper", "pin-hole")
 REQUIRED_DELIVERY_FILES = (
     "README.md",
     "docs/ADMISSION_20260825.md",
     "docs/C3_P0_FINAL_REPORT.md",
+    "docs/SMOKE_TEST_20260825_26.md",
+    "docs/PLANNER_FLOW_AND_SOLVER_AUDIT_20260831.md",
     "PEFT_RUN_GUIDE.md",
     "config/vpeft_smoke.yaml",
     "config/datasets/deeppcb.yaml",
@@ -38,6 +40,7 @@ REQUIRED_DELIVERY_FILES = (
     "evidence/c3_p0_summary.json",
     "evidence/environment.json",
     "evidence/environment_cpu_fallback.json",
+    "evidence/solver_audit_20260831.json",
 )
 RUN_EXPECTATIONS = {
     "neu_det_vpeft_cpu_seed824": ("cpu", False, False),
@@ -52,6 +55,7 @@ RUN_EXPECTATIONS = {
     "deeppcb_vpeft_gpu_fp32_seed824": ("0", False, False),
 }
 OFFICIAL_P0_RUNS = {
+    # These named runs are immutable pre-reorganization evidence, so their recorded command paths stay historical.
     "neu_det_vpeft_gpu_fp32_seed824": "smoke/c3/config/datasets/neu_det_fewshot.yaml",
     "deeppcb_vpeft_gpu_fp32_seed824": "smoke/c3/config/datasets/deeppcb_fewshot.yaml",
 }
@@ -291,9 +295,11 @@ def validate_delivery_artifacts() -> dict[str, object]:
         raise FileNotFoundError(f"缺少交付文件：{missing}")
     admission_path = SMOKE_ROOT / "docs" / "ADMISSION_20260825.md"
     final_report_path = SMOKE_ROOT / "docs" / "C3_P0_FINAL_REPORT.md"
+    smoke_test_path = SMOKE_ROOT / "docs" / "SMOKE_TEST_20260825_26.md"
+    planner_audit_path = SMOKE_ROOT / "docs" / "PLANNER_FLOW_AND_SOLVER_AUDIT_20260831.md"
     docs_markdown = sorted((SMOKE_ROOT / "docs").glob("*.md"))
-    if docs_markdown != sorted((admission_path, final_report_path)):
-        raise ValueError(f"docs 中只允许历史验收文档和 C3 P0 最终报告：{docs_markdown}")
+    if docs_markdown != sorted((admission_path, final_report_path, smoke_test_path, planner_audit_path)):
+        raise ValueError(f"docs 中只允许历史验收文档、C3 P0 报告、smoke 记录和 planner 审计：{docs_markdown}")
     admission = admission_path.read_text(encoding="utf-8")
     required_admission_sections = (
         "环境安装",
@@ -452,7 +458,7 @@ def main() -> int:
         try:
             output.relative_to(SMOKE_ROOT)
         except ValueError as exc:
-            raise ValueError("验证报告必须写入 smoke/c3 目录") from exc
+            raise ValueError("验证报告必须写入 smoke/c3/p0 目录") from exc
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(rendered, encoding="utf-8")
     sys.stdout.write(rendered)

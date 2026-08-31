@@ -422,15 +422,33 @@ def _build_vpeft_placement_plan(model: nn.Module, config: "LoRAConfig") -> Any:
             "exclude_modules": config.exclude_modules,
         }
     )
-    solver_name = str(getattr(config, "planner_solver", "ao") or "ao").lower()
+    requested_solver = str(getattr(config, "planner_solver", "ao") or "ao").lower()
     solver_cls = {
         "ao": AlternatingOptimizationSolver,
         "dco": DifferentiableOptimizationSolver,
         "mip": MIPRelaxationSolver,
-    }.get(solver_name)
+    }.get(requested_solver)
     if solver_cls is None:
-        raise ValueError(f"unsupported lora_planner_solver={solver_name!r}")
-    decision = solver_cls().solve(graph, budget, variant, constraints)
+        raise ValueError(f"unsupported lora_planner_solver={requested_solver!r}")
+    solver_name = requested_solver
+    solver_fallback = None
+    try:
+        decision = solver_cls().solve(graph, budget, variant, constraints)
+    except ImportError as exc:
+        if requested_solver != "mip":
+            raise
+        solver_name = "ao"
+        solver_fallback = {
+            "requested_solver": requested_solver,
+            "effective_solver": solver_name,
+            "exception_type": type(exc).__name__,
+            "reason": str(exc),
+        }
+        decision = AlternatingOptimizationSolver().solve(graph, budget, variant, constraints)
+
+    from .planner import PEFTPlanner
+
+    prediction_evidence = PEFTPlanner().predict_advisory(model, config)
     targets = tuple(
         PlacementTarget(name, variant, int(decision.ranks[index].item()))
         for index, name in enumerate(graph.get_module_names())
@@ -448,15 +466,19 @@ def _build_vpeft_placement_plan(model: nn.Module, config: "LoRAConfig") -> Any:
             "hard": [constraint.name for constraint in constraints._hard_constraints],
             "soft": [constraint.name for constraint in constraints._soft_constraints],
         },
-        predicted_delta=None,
-        confidence=None,
+        predicted_delta=prediction_evidence["predicted_delta"],
+        confidence=prediction_evidence["confidence_score"],
         status=status,
         refusal_reason=reason,
         metadata={
             "utility": float(decision.utility),
             "reason": decision.reason,
             "graph_nodes": graph.n_nodes,
+            "requested_solver": requested_solver,
+            "effective_solver": solver_name,
+            "solver_fallback": solver_fallback,
             "solver_diagnostics": dict(decision.metadata or {}),
+            "prediction_evidence": prediction_evidence,
         },
     )
 

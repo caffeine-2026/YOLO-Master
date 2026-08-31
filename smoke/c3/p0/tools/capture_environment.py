@@ -22,8 +22,8 @@ import yaml
 
 import ultralytics
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-SMOKE_ROOT = REPO_ROOT / "smoke" / "c3"
+REPO_ROOT = Path(__file__).resolve().parents[4]
+SMOKE_ROOT = REPO_ROOT / "smoke" / "c3" / "p0"
 
 
 def clean_text(value: str) -> str:

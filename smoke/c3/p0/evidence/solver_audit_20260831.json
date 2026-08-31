@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-31T17:29:40+08:00",
+  "purpose": "C3 P0 solver cross-check, MIPR downgrade verification, and LOVO prediction audit",
+  "fixed_protocol": {
+    "model": "yolo11n.pt",
+    "seed": 824,
+    "epochs": 1,
+    "batch": 1,
+    "imgsz": 320,
+    "amp": false,
+    "adapter_budget": 2100000,
+    "note": "Smoke-only protocol; metrics do not establish converged accuracy superiority."
+  },
+  "solver_runs": [
+    {
+      "dataset": "NEU-DET",
+      "requested_solver": "ao",
+      "effective_solver": "ao",
+      "run": "neu_det_vpeft_gpu_fp32_seed824",
+      "status": "completed",
+      "exit_code": 0,
+      "wall_seconds": 18.315,
+      "solver_seconds": 2.21472248993814,
+      "peak_gpu_memory_mib": 712.0,
+      "planned_targets": 59,
+      "used_adapter_params": 191616,
+      "utility": 29.5,
+      "predicted_delta": null,
+      "prediction_note": "Historical run predates the prediction-evidence fix."
+    },
+    {
+      "dataset": "DeepPCB",
+      "requested_solver": "ao",
+      "effective_solver": "ao",
+      "run": "deeppcb_vpeft_gpu_fp32_seed824",
+      "status": "completed",
+      "exit_code": 0,
+      "wall_seconds": 17.075,
+      "solver_seconds": 2.236334219807759,
+      "peak_gpu_memory_mib": 712.0,
+      "planned_targets": 59,
+      "used_adapter_params": 191616,
+      "utility": 29.5,
+      "predicted_delta": null,
+      "prediction_note": "Historical run predates the prediction-evidence fix."
+    },
+    {
+      "dataset": "NEU-DET",
+      "requested_solver": "dco",
+      "effective_solver": "dco",
+      "run": "neu_det_vpeft_dco_fixed_gpu_fp32_seed824",
+      "status": "completed",
+      "exit_code": 0,
+      "wall_seconds": 49.121,
+      "solver_seconds": 31.945164660923183,
+      "peak_gpu_memory_mib": 738.0,
+      "planned_targets": 59,
+      "used_adapter_params": 1352576,
+      "utility": 54.430827083453536,
+      "predicted_delta": 0.06602954545454547,
+      "prediction_confidence": 0.0
+    },
+    {
+      "dataset": "DeepPCB",
+      "requested_solver": "dco",
+      "effective_solver": "dco",
+      "run": "deeppcb_vpeft_dco_fixed_gpu_fp32_seed824",
+      "status": "completed",
+      "exit_code": 0,
+      "wall_seconds": 47.247,
+      "solver_seconds": 31.167203653603792,
+      "peak_gpu_memory_mib": 738.0,
+      "planned_targets": 59,
+      "used_adapter_params": 1352576,
+      "utility": 54.430827083453536,
+      "predicted_delta": 0.06602954545454547,
+      "prediction_confidence": 0.0
+    },
+    {
+      "dataset": "NEU-DET",
+      "requested_solver": "mip",
+      "effective_solver": "ao",
+      "run": "neu_det_vpeft_mip_fallback_gpu_fp32_seed824",
+      "status": "completed",
+      "exit_code": 0,
+      "wall_seconds": 18.587,
+      "solver_seconds": 2.0921423961408436,
+      "peak_gpu_memory_mib": 712.0,
+      "planned_targets": 59,
+      "used_adapter_params": 191616,
+      "utility": 29.5,
+      "predicted_delta": 0.06602954545454547,
+      "prediction_confidence": 0.0,
+      "fallback": {
+        "exception_type": "ImportError",
+        "reason": "OR-Tools is not installed; the V-PEFT path explicitly downgraded MIPR to AO and recorded both requested and effective solvers."
+      }
+    }
+  ],
+  "reproduced_bug": {
+    "runs": [
+      "neu_det_vpeft_dco_gpu_fp32_seed824",
+      "deeppcb_vpeft_dco_gpu_fp32_seed824"
+    ],
+    "error": "PlacementPlan rank 64 for '1.conv' exceeds layer capacity 16",
+    "root_cause": "The hard-constraint registry did not enforce rank <= min(in_channels, out_channels), so DCO could emit a plan rejected by PlacementPlan.validate_model().",
+    "fix": "VariantModuleCompatibilityConstraint now applies the same layer-capacity invariant before solver projection.",
+    "runner_secondary_error": "The evidence runner attempted adapter export after a failed training process and raised FileNotFoundError for the missing checkpoint.",
+    "runner_fix": "Failed runs now skip adapter export while still writing available config, artifacts, recovery analysis, and result evidence.",
+    "evidence": [
+      "logs/neu_det_vpeft_dco_gpu_fp32_seed824/train.log",
+      "logs/deeppcb_vpeft_dco_gpu_fp32_seed824/train.log"
+    ]
+  },
+  "prediction_evidence": {
+    "predicted_delta": 0.06602954545454547,
+    "prediction_std_error": 0.05,
+    "prediction_lower_95": -0.03197045454545454,
+    "prediction_upper_95": 0.16402954545454546,
+    "confidence_score": 0.0,
+    "state": "cold_start",
+    "source": "default_prior",
+    "observation_count": 0,
+    "uses_learned_evidence": false,
+    "interpretation": "This is an auditable prior prediction, not a measured delta and not a fitted LOVO result. At least five unique observations are required before calibration."
+  },
+  "conclusion": {
+    "default_solver": "ao",
+    "reason": "Under the fixed smoke protocol AO was about 14x faster in solver time and used about 7x fewer planned adapter parameters than DCO. One-epoch detection metrics are excluded from method-quality claims.",
+    "mipr_status": "dependency fallback verified",
+    "lovo_status": "runtime null removed, but learned LOVO calibration remains pending because no observations are available"
+  }
+}

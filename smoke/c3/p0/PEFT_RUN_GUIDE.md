@@ -23,22 +23,22 @@ DeepPCB 使用原作者公开仓库 `https://github.com/tangsanli5201/DeepPCB`�
 ```bash
 git clone https://github.com/tangsanli5201/DeepPCB.git datasets/raw/DeepPCB
 
-python smoke/c3/tools/prepare_deeppcb.py \
+python smoke/c3/p0/tools/prepare_deeppcb.py \
   --source datasets/raw/DeepPCB \
   --output datasets/deeppcb_yolo \
-  --manifest-output smoke/c3/evidence/deeppcb_full_manifest.json \
+  --manifest-output smoke/c3/p0/evidence/deeppcb_full_manifest.json \
   --seed 824 --overwrite
 
-python smoke/c3/tools/prepare_deeppcb.py \
+python smoke/c3/p0/tools/prepare_deeppcb.py \
   --source datasets/raw/DeepPCB \
   --output datasets/deeppcb_fewshot_yolo \
-  --manifest-output smoke/c3/evidence/deeppcb_manifest.json \
+  --manifest-output smoke/c3/p0/evidence/deeppcb_manifest.json \
   --seed 824 --train-shots-per-class 5 --overwrite
 
-python smoke/c3/tools/validate_deeppcb_data.py \
-  --data smoke/c3/config/datasets/deeppcb_fewshot.yaml \
-  --manifest smoke/c3/evidence/deeppcb_manifest.json \
-  --output smoke/c3/evidence/deeppcb_data_validation.json \
+python smoke/c3/p0/tools/validate_deeppcb_data.py \
+  --data smoke/c3/p0/config/datasets/deeppcb_fewshot.yaml \
+  --manifest smoke/c3/p0/evidence/deeppcb_manifest.json \
+  --output smoke/c3/p0/evidence/deeppcb_data_validation.json \
   --imgsz 320 --batch 1
 ```
 
@@ -49,14 +49,14 @@ python smoke/c3/tools/validate_deeppcb_data.py \
 两次正式任务均固定为 GPU 0、`amp=false`、epochs 1、batch 1、imgsz 320、workers 0、seed 824、rank 8、alpha 16、AO solver、planner backend `vpeft`、strict `true`。
 
 ```bash
-python smoke/c3/tools/run_smoke.py \
-  --config smoke/c3/config/vpeft_smoke.yaml \
+python smoke/c3/p0/tools/run_smoke.py \
+  --config smoke/c3/p0/config/vpeft_smoke.yaml \
   --name neu_det_vpeft_gpu_fp32_seed824 \
   --device 0 --amp false
 
-python smoke/c3/tools/run_smoke.py \
-  --config smoke/c3/config/vpeft_smoke.yaml \
-  --data smoke/c3/config/datasets/deeppcb_fewshot.yaml \
+python smoke/c3/p0/tools/run_smoke.py \
+  --config smoke/c3/p0/config/vpeft_smoke.yaml \
+  --data smoke/c3/p0/config/datasets/deeppcb_fewshot.yaml \
   --name deeppcb_vpeft_gpu_fp32_seed824 \
   --device 0 --amp false
 ```
@@ -66,9 +66,9 @@ python smoke/c3/tools/run_smoke.py \
 ## 4. 汇总与验收
 
 ```bash
-python smoke/c3/tools/summarize_runs.py
-python smoke/c3/tools/validate_delivery.py \
-  --output smoke/c3/evidence/static_validation.json
+python smoke/c3/p0/tools/summarize_runs.py
+python smoke/c3/p0/tools/validate_delivery.py \
+  --output smoke/c3/p0/evidence/static_validation.json
 ```
 
 验收器检查数据与类别、真实 GPU、固定配置、strict planner、实际 PEFT 后端、目标数、有限 loss、无数值恢复、完整日志、参数量、显存、耗时、checkpoint/adapter 及产物 SHA-256。

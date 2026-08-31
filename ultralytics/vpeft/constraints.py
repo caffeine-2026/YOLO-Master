@@ -449,6 +449,13 @@ class VariantModuleCompatibilityConstraint(Constraint):
         v = variant.lower()
         op = node_info.operator_type
 
+        # PlacementPlan validates every concrete adapter rank against the
+        # layer's smaller input/output dimension. Enforce the same invariant
+        # during solving so relaxed solvers cannot emit an unappliable plan.
+        capacity = min(int(node_info.in_channels), int(node_info.out_channels))
+        if capacity > 0 and rank > capacity:
+            return False
+
         # HRA: groups == 1
         if v == "hra" and node_info.groups != 1:
             return False
