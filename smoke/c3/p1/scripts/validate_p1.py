@@ -15,7 +15,10 @@ import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
 P1_ROOT = REPO_ROOT / "smoke" / "c3" / "p1"
-P0_FINAL_REF = "73d56d2a33b37c758c1b135997fb4bb66d786a34"
+# P0 was moved from ``smoke/c3`` to ``smoke/c3/p0`` after P1 started.  Use the
+# first commit after that lossless move when checking immutable run evidence;
+# comparing the pre-move paths makes every current checkout look deleted.
+P0_EVIDENCE_REF = "f4b1af0e5aa5669bd14dee2660cb0b8286bb293d"
 DATASETS = ("neu_det", "deeppcb")
 METHODS = ("full_sft", "frozen_backbone", "vpeft")
 REQUIRED_FILES = (
@@ -132,15 +135,13 @@ def finite_curve(path: Path) -> tuple[bool, int]:
 
 def p0_unchanged() -> tuple[bool, str]:
     paths = (
-        "smoke/c3/logs/neu_det_vpeft_gpu_fp32_seed824",
-        "smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824",
-        "smoke/c3/evidence/c3_p0_summary.json",
-        "smoke/c3/evidence/static_validation.json",
-        "smoke/c3/docs/C3_P0_FINAL_REPORT.md",
-        "smoke/c3/visualizations",
+        "smoke/c3/p0/logs/neu_det_vpeft_gpu_fp32_seed824",
+        "smoke/c3/p0/logs/deeppcb_vpeft_gpu_fp32_seed824",
+        "smoke/c3/p0/evidence/deeppcb_manifest.json",
+        "smoke/c3/p0/evidence/neu_det_fewshot_manifest.json",
     )
     completed = subprocess.run(
-        ["git", "diff", "--exit-code", P0_FINAL_REF, "--", *paths],
+        ["git", "diff", "--exit-code", P0_EVIDENCE_REF, "--", *paths],
         cwd=REPO_ROOT,
         capture_output=True,
         text=True,
@@ -158,11 +159,11 @@ def main() -> int:
     output.relative_to(P1_ROOT)
     output.parent.mkdir(parents=True, exist_ok=True)
 
-    p0_summary = json.loads((REPO_ROOT / "smoke/c3/evidence/c3_p0_summary.json").read_text(encoding="utf-8"))
+    p0_summary = json.loads((REPO_ROOT / "smoke/c3/p0/evidence/c3_p0_summary.json").read_text(encoding="utf-8"))
     p0_diff_ok, p0_diff = p0_unchanged()
     p0_checks = {
         "recorded_p0_pass": p0_summary.get("official_p0", {}).get("status") == "PASS",
-        "frozen_paths_unchanged_since_p0_final_ref": p0_diff_ok,
+        "frozen_run_evidence_unchanged_since_p0_evidence_ref": p0_diff_ok,
     }
 
     split_checks: dict[str, object] = {}
@@ -227,17 +228,15 @@ def main() -> int:
                     )
                 )
             elif method == "full_sft":
-                checks["method_boundary"] = int(resolved.get("lora_r", 0) or 0) == 0 and int(
-                    resolved.get("freeze", 0) or 0
-                ) == 0
+                checks["method_boundary"] = (
+                    int(resolved.get("lora_r", 0) or 0) == 0 and int(resolved.get("freeze", 0) or 0) == 0
+                )
             else:
                 module_rows = metrics.get("parameters", {}).get("top_level_modules", [])
                 backbone_rows = [
                     row for row in module_rows if int(str(row.get("module", "model.-1")).split(".")[-1]) < 11
                 ]
-                head_rows = [
-                    row for row in module_rows if int(str(row.get("module", "model.-1")).split(".")[-1]) >= 11
-                ]
+                head_rows = [row for row in module_rows if int(str(row.get("module", "model.-1")).split(".")[-1]) >= 11]
                 checks["method_boundary"] = (
                     int(resolved.get("lora_r", 0) or 0) == 0
                     and int(resolved.get("freeze", 0) or 0) == 11
@@ -266,11 +265,11 @@ def main() -> int:
         fairness_checks["distinct_method_only_settings"] = all(
             all(
                 (
-                int(resolved_by_run[run_id(dataset, "full_sft", args.epochs)].get("lora_r", 0) or 0) == 0,
-                int(resolved_by_run[run_id(dataset, "full_sft", args.epochs)].get("freeze", 0) or 0) == 0,
-                int(resolved_by_run[run_id(dataset, "frozen_backbone", args.epochs)].get("lora_r", 0) or 0) == 0,
-                int(resolved_by_run[run_id(dataset, "frozen_backbone", args.epochs)].get("freeze", 0) or 0) == 11,
-                int(resolved_by_run[run_id(dataset, "vpeft", args.epochs)].get("lora_r", 0) or 0) == 8,
+                    int(resolved_by_run[run_id(dataset, "full_sft", args.epochs)].get("lora_r", 0) or 0) == 0,
+                    int(resolved_by_run[run_id(dataset, "full_sft", args.epochs)].get("freeze", 0) or 0) == 0,
+                    int(resolved_by_run[run_id(dataset, "frozen_backbone", args.epochs)].get("lora_r", 0) or 0) == 0,
+                    int(resolved_by_run[run_id(dataset, "frozen_backbone", args.epochs)].get("freeze", 0) or 0) == 11,
+                    int(resolved_by_run[run_id(dataset, "vpeft", args.epochs)].get("lora_r", 0) or 0) == 8,
                 )
             )
             for dataset in DATASETS
@@ -292,7 +291,7 @@ def main() -> int:
     payload = {
         "schema_version": 1,
         "scope": f"C3 P1 seed824 {args.epochs}-epoch stage: two datasets x three methods",
-        "p0_final_ref": P0_FINAL_REF,
+        "p0_evidence_ref": P0_EVIDENCE_REF,
         "p0_checks": p0_checks,
         "p0_diff": p0_diff,
         "split_checks": split_checks,

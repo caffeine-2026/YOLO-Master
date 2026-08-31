@@ -639,6 +639,12 @@ def _compute_layer_rank(conv: nn.Conv2d, base_r: int, module_name: str, total_la
 def apply_manual_lora(model: nn.Module, config: "LoRAConfig", include_head: bool = False) -> nn.Module:
     """Apply manual LoRA wrappers to the model for fallback execution."""
     target_root = getattr(model, "model", model)
+    # Match PEFT semantics: adapter fine-tuning freezes the complete base model
+    # before adding trainable LoRA tensors.  Freezing only the Conv2d modules
+    # selected for wrapping leaves every non-target base layer trainable and
+    # silently turns a budgeted V-PEFT fallback into partial/full fine-tuning.
+    for parameter in target_root.parameters():
+        parameter.requires_grad = False
     if getattr(config, "freeze_bn", False):
         _freeze_batchnorm_layers(target_root)
     replaced = _replace_conv_with_manual_lora(target_root, config, include_head=include_head)

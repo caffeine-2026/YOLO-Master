@@ -1,0 +1,559 @@
+{
+  "schema_version": 1,
+  "command_file_count": 79,
+  "runs": [
+    {
+      "run_id": "neu_10_full_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/neu_10_full_seed824/command.txt",
+      "command_sha256": "d9d76a9700a9002e30c3a5e980535d4e7714e6e00ef7d47d84d4fdbc3a2de1bd",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/full_sft.yaml data=smoke/c3/p2/config/splits/neu_10.yaml device=0 name=neu_10_full_seed824 save_dir=smoke/c3/p2/artifacts/neu_10_full_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_10_full_seed824/weights/best.pt --data smoke/c3/p2/config/splits/neu_10.yaml --save-dir smoke/c3/p2/artifacts/neu_10_full_seed824/test_eval --output smoke/c3/p2/logs/neu_10_full_seed824/test_metrics.json --device 0 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_10_full_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_10_full_seed825_e100/command.txt",
+      "command_sha256": "2ee200fd39ec8021865c408457d822cfb244d951ec56140658ab35d2051ea774",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/full_sft.yaml data=smoke/c3/p2/config/splits/neu_10.yaml device=4 seed=825 name=neu_10_full_seed825_e100 save_dir=smoke/c3/p2/artifacts/neu_10_full_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_10_full_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_10.yaml --save-dir smoke/c3/p2/artifacts/neu_10_full_seed825_e100/test_eval --output smoke/c3/p2/logs/neu_10_full_seed825_e100/test_metrics.json --device 4 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_10_full_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_10_full_seed826_e100/command.txt",
+      "command_sha256": "06155adf5e15686dc1c8489a68617e8d4e9e5122de5e3206dddfd6cc838ee22d",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/full_sft.yaml data=smoke/c3/p2/config/splits/neu_10.yaml device=4 seed=826 name=neu_10_full_seed826_e100 save_dir=smoke/c3/p2/artifacts/neu_10_full_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_10_full_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_10.yaml --save-dir smoke/c3/p2/artifacts/neu_10_full_seed826_e100/test_eval --output smoke/c3/p2/logs/neu_10_full_seed826_e100/test_metrics.json --device 4 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_10_frozen_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/neu_10_frozen_seed824/command.txt",
+      "command_sha256": "0488d1416c86b9f73ccbd692f1db0282f0214ed63d34a364eb6fa2950043b777",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/frozen_backbone.yaml data=smoke/c3/p2/config/splits/neu_10.yaml device=1 name=neu_10_frozen_seed824 save_dir=smoke/c3/p2/artifacts/neu_10_frozen_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_10_frozen_seed824/weights/best.pt --data smoke/c3/p2/config/splits/neu_10.yaml --save-dir smoke/c3/p2/artifacts/neu_10_frozen_seed824/test_eval --output smoke/c3/p2/logs/neu_10_frozen_seed824/test_metrics.json --device 1 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_10_frozen_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_10_frozen_seed825_e100/command.txt",
+      "command_sha256": "77693e08eded76b2584ec8d339a22ac302b34b6c3e66ea1da05bd0fef1e89111",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/frozen_backbone.yaml data=smoke/c3/p2/config/splits/neu_10.yaml device=5 seed=825 name=neu_10_frozen_seed825_e100 save_dir=smoke/c3/p2/artifacts/neu_10_frozen_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_10_frozen_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_10.yaml --save-dir smoke/c3/p2/artifacts/neu_10_frozen_seed825_e100/test_eval --output smoke/c3/p2/logs/neu_10_frozen_seed825_e100/test_metrics.json --device 5 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_10_frozen_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_10_frozen_seed826_e100/command.txt",
+      "command_sha256": "93b2d187ef3ff1bf690e4273ec97c8b1e39fc09e84da23b5e62ed5b6328569b8",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/frozen_backbone.yaml data=smoke/c3/p2/config/splits/neu_10.yaml device=5 seed=826 name=neu_10_frozen_seed826_e100 save_dir=smoke/c3/p2/artifacts/neu_10_frozen_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_10_frozen_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_10.yaml --save-dir smoke/c3/p2/artifacts/neu_10_frozen_seed826_e100/test_eval --output smoke/c3/p2/logs/neu_10_frozen_seed826_e100/test_metrics.json --device 5 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_10_vpeft_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/neu_10_vpeft_seed824/command.txt",
+      "command_sha256": "328a28e37fde9f3402c244381d175bc3a573e5f806412e846a3c1e9aee68ba29",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/vpeft.yaml data=smoke/c3/p2/config/splits/neu_10.yaml device=2 name=neu_10_vpeft_seed824 save_dir=smoke/c3/p2/artifacts/neu_10_vpeft_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_10_vpeft_seed824/weights/best.pt --data smoke/c3/p2/config/splits/neu_10.yaml --save-dir smoke/c3/p2/artifacts/neu_10_vpeft_seed824/test_eval --output smoke/c3/p2/logs/neu_10_vpeft_seed824/test_metrics.json --device 2 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_10_vpeft_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_10_vpeft_seed825_e100/command.txt",
+      "command_sha256": "eb004b4ea9ef2134ef7f9ad6cc65c279b5db695526f1070161811e288e0a2db3",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/vpeft.yaml data=smoke/c3/p2/config/splits/neu_10.yaml device=6 seed=825 name=neu_10_vpeft_seed825_e100 save_dir=smoke/c3/p2/artifacts/neu_10_vpeft_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_10_vpeft_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_10.yaml --save-dir smoke/c3/p2/artifacts/neu_10_vpeft_seed825_e100/test_eval --output smoke/c3/p2/logs/neu_10_vpeft_seed825_e100/test_metrics.json --device 6 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_10_vpeft_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_10_vpeft_seed826_e100/command.txt",
+      "command_sha256": "f7c6265b2712ee7093393cf734c1cdd8966090a64485a3015f08068da603d61d",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/vpeft.yaml data=smoke/c3/p2/config/splits/neu_10.yaml device=6 seed=826 name=neu_10_vpeft_seed826_e100 save_dir=smoke/c3/p2/artifacts/neu_10_vpeft_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_10_vpeft_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_10.yaml --save-dir smoke/c3/p2/artifacts/neu_10_vpeft_seed826_e100/test_eval --output smoke/c3/p2/logs/neu_10_vpeft_seed826_e100/test_metrics.json --device 6 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_50_full_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/neu_50_full_seed824/command.txt",
+      "command_sha256": "3d363a56e38ddcd8cafde53becf0257c03d1ab0c529b52a3ba8085542ae1a303",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/full_sft.yaml data=smoke/c3/p2/config/splits/neu_50.yaml device=0 name=neu_50_full_seed824 save_dir=smoke/c3/p2/artifacts/neu_50_full_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_50_full_seed824/weights/best.pt --data smoke/c3/p2/config/splits/neu_50.yaml --save-dir smoke/c3/p2/artifacts/neu_50_full_seed824/test_eval --output smoke/c3/p2/logs/neu_50_full_seed824/test_metrics.json --device 0 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_50_full_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_50_full_seed825_e100/command.txt",
+      "command_sha256": "1fed48c764f2e600849ea90e4e69dff43f34325c35e3d78911dadfcfaf8add5e",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/full_sft.yaml data=smoke/c3/p2/config/splits/neu_50.yaml device=7 seed=825 name=neu_50_full_seed825_e100 save_dir=smoke/c3/p2/artifacts/neu_50_full_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_50_full_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_50.yaml --save-dir smoke/c3/p2/artifacts/neu_50_full_seed825_e100/test_eval --output smoke/c3/p2/logs/neu_50_full_seed825_e100/test_metrics.json --device 7 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_50_full_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_50_full_seed826_e100/command.txt",
+      "command_sha256": "fa4a267ef7adb2ee4d8b7a9bc57282e93041fb57d48e8a893f4619077389555e",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/full_sft.yaml data=smoke/c3/p2/config/splits/neu_50.yaml device=7 seed=826 name=neu_50_full_seed826_e100 save_dir=smoke/c3/p2/artifacts/neu_50_full_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_50_full_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_50.yaml --save-dir smoke/c3/p2/artifacts/neu_50_full_seed826_e100/test_eval --output smoke/c3/p2/logs/neu_50_full_seed826_e100/test_metrics.json --device 7 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_50_frozen_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/neu_50_frozen_seed824/command.txt",
+      "command_sha256": "8744f4ca71b6f43aa67acce5233d9b15cef3068c0650720ebe62861dfd24cd5f",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/frozen_backbone.yaml data=smoke/c3/p2/config/splits/neu_50.yaml device=1 name=neu_50_frozen_seed824 save_dir=smoke/c3/p2/artifacts/neu_50_frozen_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_50_frozen_seed824/weights/best.pt --data smoke/c3/p2/config/splits/neu_50.yaml --save-dir smoke/c3/p2/artifacts/neu_50_frozen_seed824/test_eval --output smoke/c3/p2/logs/neu_50_frozen_seed824/test_metrics.json --device 1 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_50_frozen_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_50_frozen_seed825_e100/command.txt",
+      "command_sha256": "1888e3491a42a2acc0f407067aa3203a7f70985bdf165b33c2a0c2052f9247cd",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/frozen_backbone.yaml data=smoke/c3/p2/config/splits/neu_50.yaml device=4 seed=825 name=neu_50_frozen_seed825_e100 save_dir=smoke/c3/p2/artifacts/neu_50_frozen_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_50_frozen_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_50.yaml --save-dir smoke/c3/p2/artifacts/neu_50_frozen_seed825_e100/test_eval --output smoke/c3/p2/logs/neu_50_frozen_seed825_e100/test_metrics.json --device 4 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_50_frozen_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_50_frozen_seed826_e100/command.txt",
+      "command_sha256": "480dcbfec15972e2723b359c21b066542b8d52efe61da6da5f5f1dce6ee44eeb",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/frozen_backbone.yaml data=smoke/c3/p2/config/splits/neu_50.yaml device=4 seed=826 name=neu_50_frozen_seed826_e100 save_dir=smoke/c3/p2/artifacts/neu_50_frozen_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_50_frozen_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_50.yaml --save-dir smoke/c3/p2/artifacts/neu_50_frozen_seed826_e100/test_eval --output smoke/c3/p2/logs/neu_50_frozen_seed826_e100/test_metrics.json --device 4 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_50_vpeft_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/neu_50_vpeft_seed824/command.txt",
+      "command_sha256": "f33e0a499f79cab71c131480e4202d0e770d1570ee21addaaaec25cf33076cc4",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/vpeft.yaml data=smoke/c3/p2/config/splits/neu_50.yaml device=2 name=neu_50_vpeft_seed824 save_dir=smoke/c3/p2/artifacts/neu_50_vpeft_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_50_vpeft_seed824/weights/best.pt --data smoke/c3/p2/config/splits/neu_50.yaml --save-dir smoke/c3/p2/artifacts/neu_50_vpeft_seed824/test_eval --output smoke/c3/p2/logs/neu_50_vpeft_seed824/test_metrics.json --device 2 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_50_vpeft_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_50_vpeft_seed825_e100/command.txt",
+      "command_sha256": "77d84bc047c2fb02c220074ece598928d827312be1dfc7e68a333baaf1cbd14b",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/vpeft.yaml data=smoke/c3/p2/config/splits/neu_50.yaml device=5 seed=825 name=neu_50_vpeft_seed825_e100 save_dir=smoke/c3/p2/artifacts/neu_50_vpeft_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_50_vpeft_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_50.yaml --save-dir smoke/c3/p2/artifacts/neu_50_vpeft_seed825_e100/test_eval --output smoke/c3/p2/logs/neu_50_vpeft_seed825_e100/test_metrics.json --device 5 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_50_vpeft_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_50_vpeft_seed826_e100/command.txt",
+      "command_sha256": "9edab9c3c94dac8a5228450061af78f65455431cfa80093ddb1850c22d9ba180",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/vpeft.yaml data=smoke/c3/p2/config/splits/neu_50.yaml device=5 seed=826 name=neu_50_vpeft_seed826_e100 save_dir=smoke/c3/p2/artifacts/neu_50_vpeft_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_50_vpeft_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_50.yaml --save-dir smoke/c3/p2/artifacts/neu_50_vpeft_seed826_e100/test_eval --output smoke/c3/p2/logs/neu_50_vpeft_seed826_e100/test_metrics.json --device 5 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_full_seed824_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/neu_full_seed824_e100/command.txt",
+      "command_sha256": "e5bc8b0da1d2991e59700f1e91124ec41adcd0d9a390c8e6c573d7614868ae1e",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/neu_det/full_sft.yaml data=smoke/c3/p1/config/neu_det/dataset.yaml device=0 seed=824 name=neu_full_seed824_e100 save_dir=smoke/c3/p1/artifacts/neu_full_seed824_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/neu_full_seed824_e100/weights/best.pt --data smoke/c3/p1/config/neu_det/dataset.yaml --save-dir smoke/c3/p1/artifacts/neu_full_seed824_e100/test_eval --output smoke/c3/p1/logs/neu_full_seed824_e100/test_metrics.json --device 0 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_full_seed825_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/neu_full_seed825_e100/command.txt",
+      "command_sha256": "e853696214446273c612a820eca513ea1e786da27b4e6670fe9a0c81dccf7f12",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/neu_det/full_sft.yaml data=smoke/c3/p1/config/neu_det/dataset.yaml device=0 seed=825 name=neu_full_seed825_e100 save_dir=smoke/c3/p1/artifacts/neu_full_seed825_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/neu_full_seed825_e100/weights/best.pt --data smoke/c3/p1/config/neu_det/dataset.yaml --save-dir smoke/c3/p1/artifacts/neu_full_seed825_e100/test_eval --output smoke/c3/p1/logs/neu_full_seed825_e100/test_metrics.json --device 0 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_full_seed826_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/neu_full_seed826_e100/command.txt",
+      "command_sha256": "e645c594bf522473d1daf48e1b4cc82627a86dfa8c204b2b501c0a4736dd7aa0",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/neu_det/full_sft.yaml data=smoke/c3/p1/config/neu_det/dataset.yaml device=0 seed=826 name=neu_full_seed826_e100 save_dir=smoke/c3/p1/artifacts/neu_full_seed826_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/neu_full_seed826_e100/weights/best.pt --data smoke/c3/p1/config/neu_det/dataset.yaml --save-dir smoke/c3/p1/artifacts/neu_full_seed826_e100/test_eval --output smoke/c3/p1/logs/neu_full_seed826_e100/test_metrics.json --device 0 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_frozen_seed824_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/neu_frozen_seed824_e100/command.txt",
+      "command_sha256": "ac85cd4027f9043e2732998cbe030cbbe88fb08c517d31a69a1fa574e506f599",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/neu_det/frozen_backbone.yaml data=smoke/c3/p1/config/neu_det/dataset.yaml device=0 seed=824 name=neu_frozen_seed824_e100 save_dir=smoke/c3/p1/artifacts/neu_frozen_seed824_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/neu_frozen_seed824_e100/weights/best.pt --data smoke/c3/p1/config/neu_det/dataset.yaml --save-dir smoke/c3/p1/artifacts/neu_frozen_seed824_e100/test_eval --output smoke/c3/p1/logs/neu_frozen_seed824_e100/test_metrics.json --device 0 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_frozen_seed825_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/neu_frozen_seed825_e100/command.txt",
+      "command_sha256": "41bffe88e43e27f9eeb6e0f920eb922bdc1e9f716003c10cd8f35dccdcdda500",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/neu_det/frozen_backbone.yaml data=smoke/c3/p1/config/neu_det/dataset.yaml device=1 seed=825 name=neu_frozen_seed825_e100 save_dir=smoke/c3/p1/artifacts/neu_frozen_seed825_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/neu_frozen_seed825_e100/weights/best.pt --data smoke/c3/p1/config/neu_det/dataset.yaml --save-dir smoke/c3/p1/artifacts/neu_frozen_seed825_e100/test_eval --output smoke/c3/p1/logs/neu_frozen_seed825_e100/test_metrics.json --device 1 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_frozen_seed826_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/neu_frozen_seed826_e100/command.txt",
+      "command_sha256": "53c16441546133f90745ebd1dfd9c167df841ccf69494dc432d47e222fa829a8",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/neu_det/frozen_backbone.yaml data=smoke/c3/p1/config/neu_det/dataset.yaml device=1 seed=826 name=neu_frozen_seed826_e100 save_dir=smoke/c3/p1/artifacts/neu_frozen_seed826_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/neu_frozen_seed826_e100/weights/best.pt --data smoke/c3/p1/config/neu_det/dataset.yaml --save-dir smoke/c3/p1/artifacts/neu_frozen_seed826_e100/test_eval --output smoke/c3/p1/logs/neu_frozen_seed826_e100/test_metrics.json --device 1 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_vpeft_seed824_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/neu_vpeft_seed824_e100/command.txt",
+      "command_sha256": "d9008c7c6381e55934e1bf47c2c5f004cae7e9fff78234ba3da6ffe840c42e73",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/neu_det/vpeft.yaml data=smoke/c3/p1/config/neu_det/dataset.yaml device=0 seed=824 name=neu_vpeft_seed824_e100 save_dir=smoke/c3/p1/artifacts/neu_vpeft_seed824_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/neu_vpeft_seed824_e100/weights/best.pt --data smoke/c3/p1/config/neu_det/dataset.yaml --save-dir smoke/c3/p1/artifacts/neu_vpeft_seed824_e100/test_eval --output smoke/c3/p1/logs/neu_vpeft_seed824_e100/test_metrics.json --device 0 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_vpeft_seed825_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/neu_vpeft_seed825_e100/command.txt",
+      "command_sha256": "cfed1bce357d4948d7ddb31dbec959f9e405bcac0fd70573a3bf0b179c7b1f00",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/neu_det/vpeft.yaml data=smoke/c3/p1/config/neu_det/dataset.yaml device=2 seed=825 name=neu_vpeft_seed825_e100 save_dir=smoke/c3/p1/artifacts/neu_vpeft_seed825_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/neu_vpeft_seed825_e100/weights/best.pt --data smoke/c3/p1/config/neu_det/dataset.yaml --save-dir smoke/c3/p1/artifacts/neu_vpeft_seed825_e100/test_eval --output smoke/c3/p1/logs/neu_vpeft_seed825_e100/test_metrics.json --device 2 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_vpeft_seed826_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/neu_vpeft_seed826_e100/command.txt",
+      "command_sha256": "60bef9471587099a41c9d4fd4414566b2789bd14a796d36e8c7de8e612d1c117",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/neu_det/vpeft.yaml data=smoke/c3/p1/config/neu_det/dataset.yaml device=2 seed=826 name=neu_vpeft_seed826_e100 save_dir=smoke/c3/p1/artifacts/neu_vpeft_seed826_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/neu_vpeft_seed826_e100/weights/best.pt --data smoke/c3/p1/config/neu_det/dataset.yaml --save-dir smoke/c3/p1/artifacts/neu_vpeft_seed826_e100/test_eval --output smoke/c3/p1/logs/neu_vpeft_seed826_e100/test_metrics.json --device 2 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_500_full_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/neu_500_full_seed824/command.txt",
+      "command_sha256": "445ade9051858eba3646a0b5acd578eaf25bec7f08a2c1a758bb60ddb9796b36",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/full_sft.yaml data=smoke/c3/p2/config/splits/neu_500.yaml device=0 name=neu_500_full_seed824 save_dir=smoke/c3/p2/artifacts/neu_500_full_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_500_full_seed824/weights/best.pt --data smoke/c3/p2/config/splits/neu_500.yaml --save-dir smoke/c3/p2/artifacts/neu_500_full_seed824/test_eval --output smoke/c3/p2/logs/neu_500_full_seed824/test_metrics.json --device 0 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_500_full_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_500_full_seed825_e100/command.txt",
+      "command_sha256": "42bdcfbbde2d19cf26194c7f5ba949baaacb7567c3e70a512cbbcf90441f03ac",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/full_sft.yaml data=smoke/c3/p2/config/splits/neu_500.yaml device=0 seed=825 name=neu_500_full_seed825_e100 save_dir=smoke/c3/p2/artifacts/neu_500_full_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_500_full_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_500.yaml --save-dir smoke/c3/p2/artifacts/neu_500_full_seed825_e100/test_eval --output smoke/c3/p2/logs/neu_500_full_seed825_e100/test_metrics.json --device 0 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_500_full_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_500_full_seed826_e100/command.txt",
+      "command_sha256": "e3d09260677f34ef8df8f77f28076b54d436ab9d112f0abe1621b8f5fed2a021",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/full_sft.yaml data=smoke/c3/p2/config/splits/neu_500.yaml device=6 seed=826 name=neu_500_full_seed826_e100 save_dir=smoke/c3/p2/artifacts/neu_500_full_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_500_full_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_500.yaml --save-dir smoke/c3/p2/artifacts/neu_500_full_seed826_e100/test_eval --output smoke/c3/p2/logs/neu_500_full_seed826_e100/test_metrics.json --device 6 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_500_frozen_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/neu_500_frozen_seed824/command.txt",
+      "command_sha256": "84bfda8ace018e0870ced3ac1892a75a0a11eb44c1d7230acef38e5ba6aca5f6",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/frozen_backbone.yaml data=smoke/c3/p2/config/splits/neu_500.yaml device=1 name=neu_500_frozen_seed824 save_dir=smoke/c3/p2/artifacts/neu_500_frozen_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_500_frozen_seed824/weights/best.pt --data smoke/c3/p2/config/splits/neu_500.yaml --save-dir smoke/c3/p2/artifacts/neu_500_frozen_seed824/test_eval --output smoke/c3/p2/logs/neu_500_frozen_seed824/test_metrics.json --device 1 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_500_frozen_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_500_frozen_seed825_e100/command.txt",
+      "command_sha256": "2183206340afe2c2a266e3af854fcfaae5ef02ad82c3eeb909f3aac1da2526ef",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/frozen_backbone.yaml data=smoke/c3/p2/config/splits/neu_500.yaml device=1 seed=825 name=neu_500_frozen_seed825_e100 save_dir=smoke/c3/p2/artifacts/neu_500_frozen_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_500_frozen_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_500.yaml --save-dir smoke/c3/p2/artifacts/neu_500_frozen_seed825_e100/test_eval --output smoke/c3/p2/logs/neu_500_frozen_seed825_e100/test_metrics.json --device 1 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_500_frozen_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_500_frozen_seed826_e100/command.txt",
+      "command_sha256": "650c497abcf41baac7f6e2f3e4e9c5c44039e09e2a709a12f2ffd39299abca6c",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/frozen_backbone.yaml data=smoke/c3/p2/config/splits/neu_500.yaml device=7 seed=826 name=neu_500_frozen_seed826_e100 save_dir=smoke/c3/p2/artifacts/neu_500_frozen_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_500_frozen_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_500.yaml --save-dir smoke/c3/p2/artifacts/neu_500_frozen_seed826_e100/test_eval --output smoke/c3/p2/logs/neu_500_frozen_seed826_e100/test_metrics.json --device 7 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_500_vpeft_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/neu_500_vpeft_seed824/command.txt",
+      "command_sha256": "9d26e795e67288bb15109de3a1d43d63f946f3d07b40318a2d00040b0ed8dfcb",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/vpeft.yaml data=smoke/c3/p2/config/splits/neu_500.yaml device=2 name=neu_500_vpeft_seed824 save_dir=smoke/c3/p2/artifacts/neu_500_vpeft_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_500_vpeft_seed824/weights/best.pt --data smoke/c3/p2/config/splits/neu_500.yaml --save-dir smoke/c3/p2/artifacts/neu_500_vpeft_seed824/test_eval --output smoke/c3/p2/logs/neu_500_vpeft_seed824/test_metrics.json --device 2 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_500_vpeft_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_500_vpeft_seed825_e100/command.txt",
+      "command_sha256": "6aeda90c03f17c846fba51174fd4dff49f2ae5736023d6a06aba77e83753616d",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/vpeft.yaml data=smoke/c3/p2/config/splits/neu_500.yaml device=2 seed=825 name=neu_500_vpeft_seed825_e100 save_dir=smoke/c3/p2/artifacts/neu_500_vpeft_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_500_vpeft_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_500.yaml --save-dir smoke/c3/p2/artifacts/neu_500_vpeft_seed825_e100/test_eval --output smoke/c3/p2/logs/neu_500_vpeft_seed825_e100/test_metrics.json --device 2 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_500_vpeft_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/neu_500_vpeft_seed826_e100/command.txt",
+      "command_sha256": "0fcdbd708b4d1a834b02b387c63a0aa4cb39c762a04faa9ab316f5e9bb02cdd9",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/neu/vpeft.yaml data=smoke/c3/p2/config/splits/neu_500.yaml device=0 seed=826 name=neu_500_vpeft_seed826_e100 save_dir=smoke/c3/p2/artifacts/neu_500_vpeft_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/neu_500_vpeft_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/neu_500.yaml --save-dir smoke/c3/p2/artifacts/neu_500_vpeft_seed826_e100/test_eval --output smoke/c3/p2/logs/neu_500_vpeft_seed826_e100/test_metrics.json --device 0 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_10_full_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/deeppcb_10_full_seed824/command.txt",
+      "command_sha256": "10a38be51f7d626f4819a8f32610c1302c1e70c768cea224b923ae704790062a",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/full_sft.yaml data=smoke/c3/p2/config/splits/deeppcb_10.yaml device=3 name=deeppcb_10_full_seed824 save_dir=smoke/c3/p2/artifacts/deeppcb_10_full_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_10_full_seed824/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_10.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_10_full_seed824/test_eval --output smoke/c3/p2/logs/deeppcb_10_full_seed824/test_metrics.json --device 3 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_10_full_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_10_full_seed825_e100/command.txt",
+      "command_sha256": "af7cb65bc4997fdcbc6163f9d9549d319faae0990747e19741102c88147e22df",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/full_sft.yaml data=smoke/c3/p2/config/splits/deeppcb_10.yaml device=6 seed=825 name=deeppcb_10_full_seed825_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_10_full_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_10_full_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_10.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_10_full_seed825_e100/test_eval --output smoke/c3/p2/logs/deeppcb_10_full_seed825_e100/test_metrics.json --device 6 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_10_full_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_10_full_seed826_e100/command.txt",
+      "command_sha256": "f6a79968a4caad3eb120006dfd03d9fcecff09b8565b4bbe802d279652db4322",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/full_sft.yaml data=smoke/c3/p2/config/splits/deeppcb_10.yaml device=6 seed=826 name=deeppcb_10_full_seed826_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_10_full_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_10_full_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_10.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_10_full_seed826_e100/test_eval --output smoke/c3/p2/logs/deeppcb_10_full_seed826_e100/test_metrics.json --device 6 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_10_frozen_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/deeppcb_10_frozen_seed824/command.txt",
+      "command_sha256": "bf879661376a33ec4f3c94db820487541daa6da38f16185ee5d46342936b5ee2",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/frozen_backbone.yaml data=smoke/c3/p2/config/splits/deeppcb_10.yaml device=4 name=deeppcb_10_frozen_seed824 save_dir=smoke/c3/p2/artifacts/deeppcb_10_frozen_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_10_frozen_seed824/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_10.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_10_frozen_seed824/test_eval --output smoke/c3/p2/logs/deeppcb_10_frozen_seed824/test_metrics.json --device 4 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_10_frozen_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_10_frozen_seed825_e100/command.txt",
+      "command_sha256": "d8fe485393ee633b6e361ce48805978beaf3942c5032c6d5852c90cd2c660d4f",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/frozen_backbone.yaml data=smoke/c3/p2/config/splits/deeppcb_10.yaml device=7 seed=825 name=deeppcb_10_frozen_seed825_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_10_frozen_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_10_frozen_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_10.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_10_frozen_seed825_e100/test_eval --output smoke/c3/p2/logs/deeppcb_10_frozen_seed825_e100/test_metrics.json --device 7 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_10_frozen_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_10_frozen_seed826_e100/command.txt",
+      "command_sha256": "6bb5a37ccd2ac3bc4f808fdf2e09c1d17ecde5b851070ac4125c331f355c79a5",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/frozen_backbone.yaml data=smoke/c3/p2/config/splits/deeppcb_10.yaml device=7 seed=826 name=deeppcb_10_frozen_seed826_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_10_frozen_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_10_frozen_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_10.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_10_frozen_seed826_e100/test_eval --output smoke/c3/p2/logs/deeppcb_10_frozen_seed826_e100/test_metrics.json --device 7 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_10_vpeft_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/deeppcb_10_vpeft_seed824/command.txt",
+      "command_sha256": "622b2b72e491b2c2df9219989b46ab435909cc9b6ad8cf6eecab0fad3bc612e4",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/vpeft.yaml data=smoke/c3/p2/config/splits/deeppcb_10.yaml device=5 name=deeppcb_10_vpeft_seed824 save_dir=smoke/c3/p2/artifacts/deeppcb_10_vpeft_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_10_vpeft_seed824/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_10.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_10_vpeft_seed824/test_eval --output smoke/c3/p2/logs/deeppcb_10_vpeft_seed824/test_metrics.json --device 5 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_10_vpeft_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_10_vpeft_seed825_e100/command.txt",
+      "command_sha256": "f12a02601347d16278f00f39d54946ccee07a2847d56d6f1046f57f9c5e97912",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/vpeft.yaml data=smoke/c3/p2/config/splits/deeppcb_10.yaml device=4 seed=825 name=deeppcb_10_vpeft_seed825_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_10_vpeft_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_10_vpeft_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_10.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_10_vpeft_seed825_e100/test_eval --output smoke/c3/p2/logs/deeppcb_10_vpeft_seed825_e100/test_metrics.json --device 4 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_10_vpeft_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_10_vpeft_seed826_e100/command.txt",
+      "command_sha256": "b72850a60eac6059ce051e362f462fd59531923e3936be287b2cc2b18dd3fe15",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/vpeft.yaml data=smoke/c3/p2/config/splits/deeppcb_10.yaml device=4 seed=826 name=deeppcb_10_vpeft_seed826_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_10_vpeft_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_10_vpeft_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_10.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_10_vpeft_seed826_e100/test_eval --output smoke/c3/p2/logs/deeppcb_10_vpeft_seed826_e100/test_metrics.json --device 4 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_50_full_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/deeppcb_50_full_seed824/command.txt",
+      "command_sha256": "89e3d92235350d5808cfc580918e3e6a1c024514bb01ad37c6e95c31554842da",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/full_sft.yaml data=smoke/c3/p2/config/splits/deeppcb_50.yaml device=3 name=deeppcb_50_full_seed824 save_dir=smoke/c3/p2/artifacts/deeppcb_50_full_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_50_full_seed824/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_50.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_50_full_seed824/test_eval --output smoke/c3/p2/logs/deeppcb_50_full_seed824/test_metrics.json --device 3 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_50_full_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_50_full_seed825_e100/command.txt",
+      "command_sha256": "fa0845d472813f4c00c0d47e2e01e4370f3c0886f3c23a094d85ad82d7ebf651",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/full_sft.yaml data=smoke/c3/p2/config/splits/deeppcb_50.yaml device=5 seed=825 name=deeppcb_50_full_seed825_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_50.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_50_full_seed825_e100/test_eval --output smoke/c3/p2/logs/deeppcb_50_full_seed825_e100/test_metrics.json --device 5 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_50_full_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_50_full_seed826_e100/command.txt",
+      "command_sha256": "d37f50f2b830117ea5a687282ab8d2ece61069b60265619fa9167c89e0c41bae",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/full_sft.yaml data=smoke/c3/p2/config/splits/deeppcb_50.yaml device=5 seed=826 name=deeppcb_50_full_seed826_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_50_full_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_50_full_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_50.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_50_full_seed826_e100/test_eval --output smoke/c3/p2/logs/deeppcb_50_full_seed826_e100/test_metrics.json --device 5 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_50_frozen_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/deeppcb_50_frozen_seed824/command.txt",
+      "command_sha256": "9cb8e877354f9c56bc671412b597bb273e8920535e6bed97dcea1094c6086783",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/frozen_backbone.yaml data=smoke/c3/p2/config/splits/deeppcb_50.yaml device=4 name=deeppcb_50_frozen_seed824 save_dir=smoke/c3/p2/artifacts/deeppcb_50_frozen_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_50_frozen_seed824/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_50.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_50_frozen_seed824/test_eval --output smoke/c3/p2/logs/deeppcb_50_frozen_seed824/test_metrics.json --device 4 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_50_frozen_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_50_frozen_seed825_e100/command.txt",
+      "command_sha256": "e573bd752d0674e5c905676aad3a1057ae5bc97e424884b738bfeac9f3dca1a1",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/frozen_backbone.yaml data=smoke/c3/p2/config/splits/deeppcb_50.yaml device=6 seed=825 name=deeppcb_50_frozen_seed825_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_50_frozen_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_50_frozen_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_50.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_50_frozen_seed825_e100/test_eval --output smoke/c3/p2/logs/deeppcb_50_frozen_seed825_e100/test_metrics.json --device 6 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_50_frozen_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_50_frozen_seed826_e100/command.txt",
+      "command_sha256": "398b2546b2fc5cd730d5e79ef9d9b82bb980d40912bfb64c72f826ad5e55d3bf",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/frozen_backbone.yaml data=smoke/c3/p2/config/splits/deeppcb_50.yaml device=6 seed=826 name=deeppcb_50_frozen_seed826_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_50_frozen_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_50_frozen_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_50.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_50_frozen_seed826_e100/test_eval --output smoke/c3/p2/logs/deeppcb_50_frozen_seed826_e100/test_metrics.json --device 6 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_50_vpeft_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/deeppcb_50_vpeft_seed824/command.txt",
+      "command_sha256": "34fb65dbda39683e757c36abbf0cf90208c312bf7e66a2c875f45d358735b4c5",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/vpeft.yaml data=smoke/c3/p2/config/splits/deeppcb_50.yaml device=5 name=deeppcb_50_vpeft_seed824 save_dir=smoke/c3/p2/artifacts/deeppcb_50_vpeft_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_50_vpeft_seed824/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_50.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_50_vpeft_seed824/test_eval --output smoke/c3/p2/logs/deeppcb_50_vpeft_seed824/test_metrics.json --device 5 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_50_vpeft_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_50_vpeft_seed825_e100/command.txt",
+      "command_sha256": "03f686edc60e4cf3cd6494b7aa504d663c02e4cf3fbaf7403671c630462e259a",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/vpeft.yaml data=smoke/c3/p2/config/splits/deeppcb_50.yaml device=7 seed=825 name=deeppcb_50_vpeft_seed825_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_50_vpeft_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_50_vpeft_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_50.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_50_vpeft_seed825_e100/test_eval --output smoke/c3/p2/logs/deeppcb_50_vpeft_seed825_e100/test_metrics.json --device 7 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_50_vpeft_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_50_vpeft_seed826_e100/command.txt",
+      "command_sha256": "2a906afb6d2f194ba12f02bdf308302a3ce9f74280eb2ff71fee054ef59aa88e",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/vpeft.yaml data=smoke/c3/p2/config/splits/deeppcb_50.yaml device=7 seed=826 name=deeppcb_50_vpeft_seed826_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_50_vpeft_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_50_vpeft_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_50.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_50_vpeft_seed826_e100/test_eval --output smoke/c3/p2/logs/deeppcb_50_vpeft_seed826_e100/test_metrics.json --device 7 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_full_seed824_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/deeppcb_full_seed824_e100/command.txt",
+      "command_sha256": "c50f99c24c09512636ef6a03d6875d38e493145ecb900ceca4d2d8951ade5c19",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/deeppcb/full_sft.yaml data=smoke/c3/p1/config/deeppcb/dataset.yaml device=0 seed=824 name=deeppcb_full_seed824_e100 save_dir=smoke/c3/p1/artifacts/deeppcb_full_seed824_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/deeppcb_full_seed824_e100/weights/best.pt --data smoke/c3/p1/config/deeppcb/dataset.yaml --save-dir smoke/c3/p1/artifacts/deeppcb_full_seed824_e100/test_eval --output smoke/c3/p1/logs/deeppcb_full_seed824_e100/test_metrics.json --device 0 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_full_seed825_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/deeppcb_full_seed825_e100/command.txt",
+      "command_sha256": "027b1a6e18df87a6e3e386469fe9905c64388cf52704e998b5d4d3233258fe83",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/deeppcb/full_sft.yaml data=smoke/c3/p1/config/deeppcb/dataset.yaml device=3 seed=825 name=deeppcb_full_seed825_e100 save_dir=smoke/c3/p1/artifacts/deeppcb_full_seed825_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/deeppcb_full_seed825_e100/weights/best.pt --data smoke/c3/p1/config/deeppcb/dataset.yaml --save-dir smoke/c3/p1/artifacts/deeppcb_full_seed825_e100/test_eval --output smoke/c3/p1/logs/deeppcb_full_seed825_e100/test_metrics.json --device 3 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_full_seed826_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/deeppcb_full_seed826_e100/command.txt",
+      "command_sha256": "1867bf13de90884449352e558c78424166410482cfdbbc15995240c82b573b2f",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/deeppcb/full_sft.yaml data=smoke/c3/p1/config/deeppcb/dataset.yaml device=3 seed=826 name=deeppcb_full_seed826_e100 save_dir=smoke/c3/p1/artifacts/deeppcb_full_seed826_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/deeppcb_full_seed826_e100/weights/best.pt --data smoke/c3/p1/config/deeppcb/dataset.yaml --save-dir smoke/c3/p1/artifacts/deeppcb_full_seed826_e100/test_eval --output smoke/c3/p1/logs/deeppcb_full_seed826_e100/test_metrics.json --device 3 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_frozen_seed824_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/deeppcb_frozen_seed824_e100/command.txt",
+      "command_sha256": "e6f49b19313c92941ed539bf10ec93a3240e22e5bfbf3f67701a9f03ded28c7e",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/deeppcb/frozen_backbone.yaml data=smoke/c3/p1/config/deeppcb/dataset.yaml device=0 seed=824 name=deeppcb_frozen_seed824_e100 save_dir=smoke/c3/p1/artifacts/deeppcb_frozen_seed824_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/deeppcb_frozen_seed824_e100/weights/best.pt --data smoke/c3/p1/config/deeppcb/dataset.yaml --save-dir smoke/c3/p1/artifacts/deeppcb_frozen_seed824_e100/test_eval --output smoke/c3/p1/logs/deeppcb_frozen_seed824_e100/test_metrics.json --device 0 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_frozen_seed825_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/deeppcb_frozen_seed825_e100/command.txt",
+      "command_sha256": "ef44aea3e55c133691ecc9af49c588eb0c3545b2a575974c1ea7c2da12b0face",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/deeppcb/frozen_backbone.yaml data=smoke/c3/p1/config/deeppcb/dataset.yaml device=4 seed=825 name=deeppcb_frozen_seed825_e100 save_dir=smoke/c3/p1/artifacts/deeppcb_frozen_seed825_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/deeppcb_frozen_seed825_e100/weights/best.pt --data smoke/c3/p1/config/deeppcb/dataset.yaml --save-dir smoke/c3/p1/artifacts/deeppcb_frozen_seed825_e100/test_eval --output smoke/c3/p1/logs/deeppcb_frozen_seed825_e100/test_metrics.json --device 4 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_frozen_seed826_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/deeppcb_frozen_seed826_e100/command.txt",
+      "command_sha256": "85ee558907e5e25f9f32234181c79c279d8a5ea39494cedc18b81896cdbbd7d2",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/deeppcb/frozen_backbone.yaml data=smoke/c3/p1/config/deeppcb/dataset.yaml device=4 seed=826 name=deeppcb_frozen_seed826_e100 save_dir=smoke/c3/p1/artifacts/deeppcb_frozen_seed826_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/deeppcb_frozen_seed826_e100/weights/best.pt --data smoke/c3/p1/config/deeppcb/dataset.yaml --save-dir smoke/c3/p1/artifacts/deeppcb_frozen_seed826_e100/test_eval --output smoke/c3/p1/logs/deeppcb_frozen_seed826_e100/test_metrics.json --device 4 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_vpeft_seed824_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/deeppcb_vpeft_seed824_e100/command.txt",
+      "command_sha256": "93d7bb693a17949cfda6947c799adece333b3097052167c52ced6280514a15c9",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/deeppcb/vpeft.yaml data=smoke/c3/p1/config/deeppcb/dataset.yaml device=0 seed=824 name=deeppcb_vpeft_seed824_e100 save_dir=smoke/c3/p1/artifacts/deeppcb_vpeft_seed824_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/deeppcb_vpeft_seed824_e100/weights/best.pt --data smoke/c3/p1/config/deeppcb/dataset.yaml --save-dir smoke/c3/p1/artifacts/deeppcb_vpeft_seed824_e100/test_eval --output smoke/c3/p1/logs/deeppcb_vpeft_seed824_e100/test_metrics.json --device 0 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_vpeft_seed825_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/deeppcb_vpeft_seed825_e100/command.txt",
+      "command_sha256": "ea5228d7803c380d8c676fed806437b4e629037ea68435027e1a46f6da63f047",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/deeppcb/vpeft.yaml data=smoke/c3/p1/config/deeppcb/dataset.yaml device=5 seed=825 name=deeppcb_vpeft_seed825_e100 save_dir=smoke/c3/p1/artifacts/deeppcb_vpeft_seed825_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/deeppcb_vpeft_seed825_e100/weights/best.pt --data smoke/c3/p1/config/deeppcb/dataset.yaml --save-dir smoke/c3/p1/artifacts/deeppcb_vpeft_seed825_e100/test_eval --output smoke/c3/p1/logs/deeppcb_vpeft_seed825_e100/test_metrics.json --device 5 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_vpeft_seed826_e100",
+      "source": "reused_p1_100_multiseed",
+      "command_path": "smoke/c3/p1/logs/deeppcb_vpeft_seed826_e100/command.txt",
+      "command_sha256": "f32e10b15b60eecdcee5f516adff19d498c6e04338f3624ac77b05c99a1d4d13",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p1/config/deeppcb/vpeft.yaml data=smoke/c3/p1/config/deeppcb/dataset.yaml device=5 seed=826 name=deeppcb_vpeft_seed826_e100 save_dir=smoke/c3/p1/artifacts/deeppcb_vpeft_seed826_e100 epochs=100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p1/artifacts/deeppcb_vpeft_seed826_e100/weights/best.pt --data smoke/c3/p1/config/deeppcb/dataset.yaml --save-dir smoke/c3/p1/artifacts/deeppcb_vpeft_seed826_e100/test_eval --output smoke/c3/p1/logs/deeppcb_vpeft_seed826_e100/test_metrics.json --device 5 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_500_full_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/deeppcb_500_full_seed824/command.txt",
+      "command_sha256": "4a00ad953247d935ea7223f7a6ce4e22f112ccd245107cebf930a6dd53fdb886",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/full_sft.yaml data=smoke/c3/p2/config/splits/deeppcb_500.yaml device=3 name=deeppcb_500_full_seed824 save_dir=smoke/c3/p2/artifacts/deeppcb_500_full_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_500_full_seed824/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_500.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_500_full_seed824/test_eval --output smoke/c3/p2/logs/deeppcb_500_full_seed824/test_metrics.json --device 3 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_500_full_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_500_full_seed825_e100/command.txt",
+      "command_sha256": "aa0c0f8cf042e8ac05a72efa1a964ab7659f7bbcfdee2420f3a24e557c0237b3",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/full_sft.yaml data=smoke/c3/p2/config/splits/deeppcb_500.yaml device=3 seed=825 name=deeppcb_500_full_seed825_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_500_full_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_500_full_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_500.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_500_full_seed825_e100/test_eval --output smoke/c3/p2/logs/deeppcb_500_full_seed825_e100/test_metrics.json --device 3 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_500_full_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_500_full_seed826_e100/command.txt",
+      "command_sha256": "f14f2e12d26b28c0551d457bf5338bff30cf600b46ba14c00b378827607f7a97",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/full_sft.yaml data=smoke/c3/p2/config/splits/deeppcb_500.yaml device=1 seed=826 name=deeppcb_500_full_seed826_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_500_full_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_500_full_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_500.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_500_full_seed826_e100/test_eval --output smoke/c3/p2/logs/deeppcb_500_full_seed826_e100/test_metrics.json --device 1 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_500_frozen_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/deeppcb_500_frozen_seed824/command.txt",
+      "command_sha256": "71016bae14e48d6eeeed5d7629677e2053c74837bf5364c7be7015dc82ec6fb6",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/frozen_backbone.yaml data=smoke/c3/p2/config/splits/deeppcb_500.yaml device=4 name=deeppcb_500_frozen_seed824 save_dir=smoke/c3/p2/artifacts/deeppcb_500_frozen_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_500_frozen_seed824/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_500.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_500_frozen_seed824/test_eval --output smoke/c3/p2/logs/deeppcb_500_frozen_seed824/test_metrics.json --device 4 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_500_frozen_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_500_frozen_seed825_e100/command.txt",
+      "command_sha256": "39c99a9e6d240d94d5148b4caca4c0d649b0e85e8e4fbb0195898e5ea1ffa0e4",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/frozen_backbone.yaml data=smoke/c3/p2/config/splits/deeppcb_500.yaml device=4 seed=825 name=deeppcb_500_frozen_seed825_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_500_frozen_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_500_frozen_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_500.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_500_frozen_seed825_e100/test_eval --output smoke/c3/p2/logs/deeppcb_500_frozen_seed825_e100/test_metrics.json --device 4 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_500_frozen_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_500_frozen_seed826_e100/command.txt",
+      "command_sha256": "37f817fb83ba0bf9ecba114bee05526fd9d292d1c3efa4e3dd9beacd61fe8c49",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/frozen_backbone.yaml data=smoke/c3/p2/config/splits/deeppcb_500.yaml device=2 seed=826 name=deeppcb_500_frozen_seed826_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_500_frozen_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_500_frozen_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_500.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_500_frozen_seed826_e100/test_eval --output smoke/c3/p2/logs/deeppcb_500_frozen_seed826_e100/test_metrics.json --device 2 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_500_vpeft_seed824",
+      "source": "immutable_p2_seed824",
+      "command_path": "smoke/c3/p2/logs/deeppcb_500_vpeft_seed824/command.txt",
+      "command_sha256": "b9bbba5a251534bb91606b9fc6cbd3cfd85f03e8159238746debb1e94c27f000",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/vpeft.yaml data=smoke/c3/p2/config/splits/deeppcb_500.yaml device=5 name=deeppcb_500_vpeft_seed824 save_dir=smoke/c3/p2/artifacts/deeppcb_500_vpeft_seed824 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_500_vpeft_seed824/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_500.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_500_vpeft_seed824/test_eval --output smoke/c3/p2/logs/deeppcb_500_vpeft_seed824/test_metrics.json --device 5 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_500_vpeft_seed825_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_500_vpeft_seed825_e100/command.txt",
+      "command_sha256": "bee304ddb288bb17ed9d15f3545a7df43cfe65c50c2488e114bcd36e23304810",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/vpeft.yaml data=smoke/c3/p2/config/splits/deeppcb_500.yaml device=5 seed=825 name=deeppcb_500_vpeft_seed825_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_500_vpeft_seed825_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_500_vpeft_seed825_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_500.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_500_vpeft_seed825_e100/test_eval --output smoke/c3/p2/logs/deeppcb_500_vpeft_seed825_e100/test_metrics.json --device 5 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "deeppcb_500_vpeft_seed826_e100",
+      "source": "new_p2_multiseed",
+      "command_path": "smoke/c3/p2/logs/deeppcb_500_vpeft_seed826_e100/command.txt",
+      "command_sha256": "ad3723c38a5ee9691eb9617735df66544266772de08c2441330991f7433314b4",
+      "command_text": "# training\nyolo train cfg=smoke/c3/p2/config/runs/deeppcb/vpeft.yaml data=smoke/c3/p2/config/splits/deeppcb_500.yaml device=3 seed=826 name=deeppcb_500_vpeft_seed826_e100 save_dir=smoke/c3/p2/artifacts/deeppcb_500_vpeft_seed826_e100 exist_ok=False\n\n# locked test evaluation\npython smoke/c3/p1/scripts/evaluate_p1.py --model smoke/c3/p2/artifacts/deeppcb_500_vpeft_seed826_e100/weights/best.pt --data smoke/c3/p2/config/splits/deeppcb_500.yaml --save-dir smoke/c3/p2/artifacts/deeppcb_500_vpeft_seed826_e100/test_eval --output smoke/c3/p2/logs/deeppcb_500_vpeft_seed826_e100/test_metrics.json --device 3 --batch 8 --imgsz 640"
+    },
+    {
+      "run_id": "neu_det_vpeft_gpu_fp32_seed824",
+      "source": "p0_solver_audit",
+      "command_path": "smoke/c3/p0/logs/neu_det_vpeft_gpu_fp32_seed824/command.txt",
+      "command_sha256": "dbfa7e8f84d8b769c02409bf039a68df9fbf8b868e8861b6c8c9365ce9adc631",
+      "command_text": "yolo train cfg=smoke/c3/config/vpeft_smoke.yaml data=smoke/c3/config/datasets/neu_det_fewshot.yaml device=0 name=neu_det_vpeft_gpu_fp32_seed824 project=runs/vpeft_smoke exist_ok=False amp=false"
+    },
+    {
+      "run_id": "deeppcb_vpeft_gpu_fp32_seed824",
+      "source": "p0_solver_audit",
+      "command_path": "smoke/c3/p0/logs/deeppcb_vpeft_gpu_fp32_seed824/command.txt",
+      "command_sha256": "af332811b86c0404a1f021ced4a928aaccbb95ec66f017141df122c81e43ad7a",
+      "command_text": "yolo train cfg=smoke/c3/config/vpeft_smoke.yaml data=smoke/c3/config/datasets/deeppcb_fewshot.yaml device=0 name=deeppcb_vpeft_gpu_fp32_seed824 project=runs/vpeft_smoke exist_ok=False amp=false"
+    },
+    {
+      "run_id": "neu_det_vpeft_dco_gpu_fp32_seed824",
+      "source": "p0_solver_audit",
+      "command_path": "smoke/c3/p0/logs/neu_det_vpeft_dco_gpu_fp32_seed824/command.txt",
+      "command_sha256": "77ff378887d2072ef4262c28c5c585b8ff671f04519f9b3eb7c5f34353a7b30b",
+      "command_text": "yolo train cfg=smoke/c3/p0/config/vpeft_smoke.yaml data=smoke/c3/p0/config/datasets/neu_det_fewshot.yaml device=2 name=neu_det_vpeft_dco_gpu_fp32_seed824 project=runs/vpeft_smoke exist_ok=False amp=false lora_planner_solver=dco"
+    },
+    {
+      "run_id": "deeppcb_vpeft_dco_gpu_fp32_seed824",
+      "source": "p0_solver_audit",
+      "command_path": "smoke/c3/p0/logs/deeppcb_vpeft_dco_gpu_fp32_seed824/command.txt",
+      "command_sha256": "9a3d2a6bb6a2c1900e391f906c99e92ac38fefb9eb9ef5cf14259edfb618bf59",
+      "command_text": "yolo train cfg=smoke/c3/p0/config/vpeft_smoke.yaml data=smoke/c3/p0/config/datasets/deeppcb_fewshot.yaml device=3 name=deeppcb_vpeft_dco_gpu_fp32_seed824 project=runs/vpeft_smoke exist_ok=False amp=false lora_planner_solver=dco"
+    },
+    {
+      "run_id": "neu_det_vpeft_dco_fixed_gpu_fp32_seed824",
+      "source": "p0_solver_audit",
+      "command_path": "smoke/c3/p0/logs/neu_det_vpeft_dco_fixed_gpu_fp32_seed824/command.txt",
+      "command_sha256": "1aa9fd26f26e19b7eca4c9025ddfc8d7d0bc2d5af41b100edd4cd7104e9455ff",
+      "command_text": "yolo train cfg=smoke/c3/p0/config/vpeft_smoke.yaml data=smoke/c3/p0/config/datasets/neu_det_fewshot.yaml device=2 name=neu_det_vpeft_dco_fixed_gpu_fp32_seed824 project=runs/vpeft_smoke exist_ok=False amp=false lora_planner_solver=dco"
+    },
+    {
+      "run_id": "deeppcb_vpeft_dco_fixed_gpu_fp32_seed824",
+      "source": "p0_solver_audit",
+      "command_path": "smoke/c3/p0/logs/deeppcb_vpeft_dco_fixed_gpu_fp32_seed824/command.txt",
+      "command_sha256": "ac4b04504693a80a7ccaf0700f900759d73cfeb57f550fa236c3c0f3df91ca79",
+      "command_text": "yolo train cfg=smoke/c3/p0/config/vpeft_smoke.yaml data=smoke/c3/p0/config/datasets/deeppcb_fewshot.yaml device=3 name=deeppcb_vpeft_dco_fixed_gpu_fp32_seed824 project=runs/vpeft_smoke exist_ok=False amp=false lora_planner_solver=dco"
+    },
+    {
+      "run_id": "neu_det_vpeft_mip_fallback_gpu_fp32_seed824",
+      "source": "p0_solver_audit",
+      "command_path": "smoke/c3/p0/logs/neu_det_vpeft_mip_fallback_gpu_fp32_seed824/command.txt",
+      "command_sha256": "fb98d4b0dbac8801832c5495b76f2986879c1423972d6eae626cd5978c6d3688",
+      "command_text": "yolo train cfg=smoke/c3/p0/config/vpeft_smoke.yaml data=smoke/c3/p0/config/datasets/neu_det_fewshot.yaml device=4 name=neu_det_vpeft_mip_fallback_gpu_fp32_seed824 project=runs/vpeft_smoke exist_ok=False amp=false lora_planner_solver=mip"
+    }
+  ]
+}
