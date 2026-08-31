@@ -148,6 +148,20 @@ def test_vpeft_solver_assigns_only_feasible_grouped_conv_ranks():
     assert constraints.is_rank_feasible(graph, 0, "lora", int(decision.ranks[0].item()))
 
 
+def test_vpeft_dco_projects_rank_to_layer_capacity():
+    from ultralytics.vpeft import ComputationGraph, ConstraintRegistry, DifferentiableOptimizationSolver, ModuleNode
+
+    graph = ComputationGraph(modules=[ModuleNode("backbone.fc", "Linear", 16, 32)])
+    constraints = ConstraintRegistry.default({"max_params": 100_000})
+    decision = DifferentiableOptimizationSolver(max_iter=1, rank_min=4, rank_max=64, rank_step=4).solve(
+        graph, budget=100_000, variant="lora", constraints=constraints
+    )
+
+    if decision.status != "REFUSE":
+        assert int(decision.ranks[0].item()) <= 16
+        assert constraints.is_rank_feasible(graph, 0, "lora", int(decision.ranks[0].item()))
+
+
 def test_vpeft_ao_budget_dual_penalty_excludes_negative_density_candidates():
     from ultralytics.vpeft import AlternatingOptimizationSolver, ComputationGraph, ModuleNode
 

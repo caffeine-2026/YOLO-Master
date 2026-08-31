@@ -3,7 +3,7 @@
 import pytest
 import torch.nn as nn
 
-from ultralytics.utils.lora.api import _vpeft_model_fingerprint, apply_lora
+from ultralytics.utils.lora.api import _build_vpeft_placement_plan, _vpeft_model_fingerprint, apply_lora
 from ultralytics.utils.lora.config import LoRAConfig, LoRAConfigBuilder
 from ultralytics.utils.lora.fallback import ManualLoRAConv
 from ultralytics.vpeft import PlacementPlan, PlacementTarget
@@ -34,6 +34,45 @@ def test_vpeft_backend_compiles_plan_and_injects_selected_targets():
     assert plan["targets"]
     assert model.lora_target_modules == [item["name"] for item in plan["targets"]]
     assert all(item["rank"] > 0 for item in plan["targets"])
+
+
+def test_vpeft_plan_records_prediction_evidence_without_legacy_placement():
+    plan = _build_vpeft_placement_plan(
+        _model(),
+        LoRAConfig(r=4, alpha=8, planner_backend="vpeft", adapter_budget=100_000),
+    )
+
+    evidence = plan.metadata["prediction_evidence"]
+    assert plan.predicted_delta == evidence["predicted_delta"]
+    assert plan.confidence == 0.0
+    assert evidence["evidence_state"] == "cold_start"
+    assert evidence["evidence_source"] == "default_prior"
+    assert evidence["evidence_observation_count"] == 0
+    assert evidence["low_confidence"] is True
+
+
+def test_mip_dependency_failure_falls_back_to_ao_with_audit(monkeypatch):
+    import ultralytics.vpeft as vpeft
+
+    def unavailable(*args, **kwargs):
+        raise ImportError("OR-Tools unavailable in test")
+
+    monkeypatch.setattr(vpeft.MIPRelaxationSolver, "solve", unavailable)
+    plan = _build_vpeft_placement_plan(
+        _model(),
+        LoRAConfig(
+            r=4,
+            alpha=8,
+            planner_backend="vpeft",
+            planner_solver="mip",
+            adapter_budget=100_000,
+        ),
+    )
+
+    assert plan.solver == "ao"
+    assert plan.metadata["requested_solver"] == "mip"
+    assert plan.metadata["effective_solver"] == "ao"
+    assert plan.metadata["solver_fallback"]["exception_type"] == "ImportError"
 
 
 def test_lora_config_from_args_preserves_rank_pattern():

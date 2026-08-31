@@ -1,0 +1,88 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "exit_code": 0,
+  "started_utc": "2026-08-31T09:27:56.235787+00:00",
+  "finished_utc": "2026-08-31T09:28:14.823084+00:00",
+  "wall_seconds": 18.587,
+  "device": "4",
+  "command": [
+    "yolo",
+    "train",
+    "cfg=smoke/c3/p0/config/vpeft_smoke.yaml",
+    "data=smoke/c3/p0/config/datasets/neu_det_fewshot.yaml",
+    "device=4",
+    "name=neu_det_vpeft_mip_fallback_gpu_fp32_seed824",
+    "project=runs/vpeft_smoke",
+    "exist_ok=False",
+    "amp=false",
+    "lora_planner_solver=mip"
+  ],
+  "config": "smoke/c3/p0/config/vpeft_smoke.yaml",
+  "data": "smoke/c3/p0/config/datasets/neu_det_fewshot.yaml",
+  "run_dir": "runs/detect/runs/vpeft_smoke/neu_det_vpeft_mip_fallback_gpu_fp32_seed824",
+  "resource_summary": {
+    "peak_cpu_percent": 102.7,
+    "peak_rss_mib": 2206.43,
+    "peak_gpu_memory_mib": 712.0
+  },
+  "numerical_recovery": {
+    "detected": false,
+    "requested_epochs": 1,
+    "observed_epoch_attempts": 1,
+    "recovery_attempts": 0,
+    "amp_requested": false,
+    "amp_disabled_by_recovery": false,
+    "explicit_lora_restore_messages": 0,
+    "classification": "未检测到自动数值恢复"
+  },
+  "artifact_count": 9,
+  "artifacts": [
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_vpeft_mip_fallback_gpu_fp32_seed824/args.yaml",
+      "size_bytes": 10227,
+      "sha256": "ad170889f8c2127e5ba1b5cc56551d490208505aa6271e3b1fc883cfb6933eb5"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_vpeft_mip_fallback_gpu_fp32_seed824/lora_adapter/README.md",
+      "size_bytes": 5074,
+      "sha256": "30f14bc991c08c786976f4a02217ff46bd666e7658dd191dc266d67ca23d2f6b"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_vpeft_mip_fallback_gpu_fp32_seed824/lora_adapter/adapter_config.json",
+      "size_bytes": 4138,
+      "sha256": "f5c6ed7178d437de55b340890afdddcf0f553dd3eb06da3b7ab8c3ce013d5727"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_vpeft_mip_fallback_gpu_fp32_seed824/lora_adapter/adapter_model.safetensors",
+      "size_bytes": 738896,
+      "sha256": "53b64befbe57c528710efb1301d2932de2e19e67cf194ebb06bb25ad3fe60e88"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_vpeft_mip_fallback_gpu_fp32_seed824/lora_adapter/runtime_metadata.json",
+      "size_bytes": 18578,
+      "sha256": "3f24291805d7c7ff4813c54034c7f5d9ed082194f09ee02fa2179af88785827b"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_vpeft_mip_fallback_gpu_fp32_seed824/results.csv",
+      "size_bytes": 352,
+      "sha256": "df44460163b9a6840a36dcf5a2c784baf9030d2d6453682f197d7697ebdaf423"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_vpeft_mip_fallback_gpu_fp32_seed824/weights/best.pt",
+      "size_bytes": 5984018,
+      "sha256": "a552440cd0ff074cef48c5248202983f99ae11beffa4208bc36ad82125f66fe5"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_vpeft_mip_fallback_gpu_fp32_seed824/weights/last.pt",
+      "size_bytes": 5984018,
+      "sha256": "8acce93ca618839af4153a690bf66d5fb9c72f4395653bf920e5ad5fab1421e3"
+    },
+    {
+      "path": "runs/detect/runs/vpeft_smoke/neu_det_vpeft_mip_fallback_gpu_fp32_seed824/weights/last_healthy.pt",
+      "size_bytes": 15817627,
+      "sha256": "e871d47a32b3b4fe2a011b08c9915653c4f5a63c6668a331e6084954c6ffaaa9"
+    }
+  ],
+  "log_path_policy": "完整保留日志行，仅将仓库根目录和用户主目录前缀替换为占位符。"
+}

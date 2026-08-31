@@ -43,7 +43,7 @@
         "map50_95": 0.005
       },
       "checkpoint_sha256": "87eac5f49c554f7a76e06c4785653e2dd702b5ce59874bfd43f59222dcf58c72",
-      "evidence_dir": "smoke/c3/logs/neu_det_vpeft_cpu_seed824"
+      "evidence_dir": "smoke/c3/p0/logs/neu_det_vpeft_cpu_seed824"
     },
     {
       "label": "全参数 Full-SFT",
@@ -85,7 +85,7 @@
         "map50_95": 0.00334
       },
       "checkpoint_sha256": "451801a4fee5ad38c131f4005b12e15333d0a77d8f5427fa43a21de850e6ae4b",
-      "evidence_dir": "smoke/c3/logs/neu_det_full_sft_cpu_seed824"
+      "evidence_dir": "smoke/c3/p0/logs/neu_det_full_sft_cpu_seed824"
     },
     {
       "label": "冻结主干",
@@ -127,7 +127,7 @@
         "map50_95": 0.02801
       },
       "checkpoint_sha256": "ffaa08e88e8b0333497cd9abeb5f3de2ebd60069b08def7a1fa756002ce6da6a",
-      "evidence_dir": "smoke/c3/logs/neu_det_frozen_backbone_cpu_seed824"
+      "evidence_dir": "smoke/c3/p0/logs/neu_det_frozen_backbone_cpu_seed824"
     }
   ]
 }

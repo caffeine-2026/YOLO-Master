@@ -1,11 +1,11 @@
 # GPU AMP 候选配置；2026-08-24 实测触发非有限值恢复，稳定 FP32 复跑通过命令行 `amp=false` 覆盖。
-# 用法：yolo train cfg=smoke/c3/config/vpeft_smoke.yaml \
-#   data=smoke/c3/config/datasets/neu_det_fewshot.yaml name=neu_det
+# 用法：yolo train cfg=smoke/c3/p0/config/vpeft_smoke.yaml \
+#   data=smoke/c3/p0/config/datasets/neu_det_fewshot.yaml name=neu_det
 
 task: detect
 mode: train
 model: yolo11n.pt
-data: smoke/c3/config/datasets/neu_det_fewshot.yaml
+data: smoke/c3/p0/config/datasets/neu_det_fewshot.yaml
 device: 0
 
 epochs: 1

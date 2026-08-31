@@ -13,8 +13,8 @@ from pathlib import Path
 import torch
 import yaml
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-SMOKE_ROOT = REPO_ROOT / "smoke" / "c3"
+REPO_ROOT = Path(__file__).resolve().parents[4]
+SMOKE_ROOT = REPO_ROOT / "smoke" / "c3" / "p0"
 RUN_ROOT = REPO_ROOT / "runs" / "detect" / "runs" / "vpeft_smoke"
 CPU_RUNS = (
     ("V-PEFT", "neu_det_vpeft_cpu_seed824"),
@@ -105,7 +105,7 @@ def summarize(
         "checkpoint_sha256": next(
             item["sha256"] for item in result["artifacts"] if str(item["path"]).endswith("weights/last_healthy.pt")
         ),
-        "evidence_dir": f"smoke/c3/logs/{run_id}",
+        "evidence_dir": f"smoke/c3/p0/logs/{run_id}",
     }
 
 

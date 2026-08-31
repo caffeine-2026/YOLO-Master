@@ -46,7 +46,7 @@
           "map50_95": 0.00501
         },
         "checkpoint_sha256": "110588ccad345c4559757ee4a5b73bc06b436fe5091aa3aaf47e5e89a6d5ed4d",
-        "evidence_dir": "smoke/c3/logs/neu_det_vpeft_gpu_fp32_seed824"
+        "evidence_dir": "smoke/c3/p0/logs/neu_det_vpeft_gpu_fp32_seed824"
       },
       {
         "label": "全参数 Full-SFT",
@@ -88,7 +88,7 @@
           "map50_95": 0.00267
         },
         "checkpoint_sha256": "82f08f6038526eb4d2e69a6a4f613f9111241a73aa5dfe5842e7c4ba928bc3a8",
-        "evidence_dir": "smoke/c3/logs/neu_det_full_sft_gpu_fp32_seed824"
+        "evidence_dir": "smoke/c3/p0/logs/neu_det_full_sft_gpu_fp32_seed824"
       },
       {
         "label": "冻结主干",
@@ -130,7 +130,7 @@
           "map50_95": 0.02806
         },
         "checkpoint_sha256": "4cedcb84999eb4348e9f9dbe7825dd674da17a0358d3b8173b6c24c8b2529b53",
-        "evidence_dir": "smoke/c3/logs/neu_det_frozen_backbone_gpu_fp32_seed824"
+        "evidence_dir": "smoke/c3/p0/logs/neu_det_frozen_backbone_gpu_fp32_seed824"
       }
     ]
   },
@@ -179,7 +179,7 @@
           "map50_95": 0.00456
         },
         "checkpoint_sha256": "b32f8f626bf34cce54e5a6c45b7a9fc20fd577763878b2e48a01148c5211ffdd",
-        "evidence_dir": "smoke/c3/logs/neu_det_vpeft_gpu_seed824"
+        "evidence_dir": "smoke/c3/p0/logs/neu_det_vpeft_gpu_seed824"
       },
       {
         "label": "全参数 Full-SFT",
@@ -221,7 +221,7 @@
           "map50_95": 0.00638
         },
         "checkpoint_sha256": "842fce88b1a67e4fef8bb14a206ef1ecdfdcc7259e2a96db90353936d4536c18",
-        "evidence_dir": "smoke/c3/logs/neu_det_full_sft_gpu_seed824"
+        "evidence_dir": "smoke/c3/p0/logs/neu_det_full_sft_gpu_seed824"
       },
       {
         "label": "冻结主干",
@@ -263,7 +263,7 @@
           "map50_95": 0.01024
         },
         "checkpoint_sha256": "cb95defd0f80c60fd0b0dc0534b8b5067cc322de2679bb488901421987315fb0",
-        "evidence_dir": "smoke/c3/logs/neu_det_frozen_backbone_gpu_seed824"
+        "evidence_dir": "smoke/c3/p0/logs/neu_det_frozen_backbone_gpu_seed824"
       }
     ]
   },

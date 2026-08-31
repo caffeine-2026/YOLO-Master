@@ -18,7 +18,7 @@ from ultralytics.cfg import get_cfg
 from ultralytics.data.build import build_dataloader, build_yolo_dataset
 from ultralytics.data.utils import check_det_dataset
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
+REPO_ROOT = Path(__file__).resolve().parents[4]
 CLASSES = ("open", "short", "mousebite", "spur", "copper", "pin-hole")
 
 

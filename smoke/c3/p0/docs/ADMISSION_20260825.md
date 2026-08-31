@@ -11,7 +11,7 @@ Official C3 P0 = **NEU-DET + DeepPCB 各完成一次 V-PEFT**。两次均使用 
 
 ## 2. 环境安装
 
-独立 `.venv` 使用 Python 3.10.12、PyTorch 2.13.0+cu130、PEFT 0.19.1；CUDA 枚举和张量分配已通过，正式运行设备为 NVIDIA GeForce RTX 4090 GPU 0。环境证据见 `smoke/c3/evidence/environment.json`。
+独立 `.venv` 使用 Python 3.10.12、PyTorch 2.13.0+cu130、PEFT 0.19.1；CUDA 枚举和张量分配已通过，正式运行设备为 NVIDIA GeForce RTX 4090 GPU 0。环境证据见 `smoke/c3/p0/evidence/environment.json`。
 
 ## 3. 基线/最小任务
 
@@ -23,35 +23,35 @@ Official C3 P0 = **NEU-DET + DeepPCB 各完成一次 V-PEFT**。两次均使用 
 ## 4. 复现命令
 
 ```bash
-python smoke/c3/tools/run_smoke.py \
-  --config smoke/c3/config/vpeft_smoke.yaml \
-  --data smoke/c3/config/datasets/deeppcb_fewshot.yaml \
+python smoke/c3/p0/tools/run_smoke.py \
+  --config smoke/c3/p0/config/vpeft_smoke.yaml \
+  --data smoke/c3/p0/config/datasets/deeppcb_fewshot.yaml \
   --name deeppcb_vpeft_gpu_fp32_seed824 \
   --device 0 --amp false
 
-python smoke/c3/tools/summarize_runs.py
-python smoke/c3/tools/validate_delivery.py \
-  --output smoke/c3/evidence/static_validation.json
+python smoke/c3/p0/tools/summarize_runs.py
+python smoke/c3/p0/tools/validate_delivery.py \
+  --output smoke/c3/p0/evidence/static_validation.json
 ```
 
 NEU-DET 已 PASS，未在本轮重跑；其原运行命令保存在对应日志目录的 `command.txt`。
 
 ## 5. 配置文件
 
-- 公共训练配置：`smoke/c3/config/vpeft_smoke.yaml`
-- 数据配置：`smoke/c3/config/datasets/neu_det_fewshot.yaml`、`smoke/c3/config/datasets/deeppcb_fewshot.yaml`
+- 公共训练配置：`smoke/c3/p0/config/vpeft_smoke.yaml`
+- 数据配置：`smoke/c3/p0/config/datasets/neu_det_fewshot.yaml`、`smoke/c3/p0/config/datasets/deeppcb_fewshot.yaml`
 - 每次运行的最终参数：对应日志目录的 `resolved_config.yaml`
 
 ## 6. 完整日志
 
-- NEU-DET：`smoke/c3/logs/neu_det_vpeft_gpu_fp32_seed824/`
-- DeepPCB：`smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824/`
+- NEU-DET：`smoke/c3/p0/logs/neu_det_vpeft_gpu_fp32_seed824/`
+- DeepPCB：`smoke/c3/p0/logs/deeppcb_vpeft_gpu_fp32_seed824/`
 
 每个目录均含命令、stdout/stderr 完整日志、resolved config、metrics、资源采样、耗时、退出码、runtime metadata 和产物索引。
 
 ## 7. 结果证据
 
-结构化结论见 `smoke/c3/evidence/c3_p0_summary.json`，最终报告见 `smoke/c3/docs/C3_P0_FINAL_REPORT.md`，静态验收见 `smoke/c3/evidence/static_validation.json`。DeepPCB 原始数据为 1500 张 tested image、1500 份 annotation、6 类；官方 trainval/test = 1000/500，source commit 为 `08e98c4db5922613fb97176eb3d6497d48260cb1`。
+结构化结论见 `smoke/c3/p0/evidence/c3_p0_summary.json`，最终报告见 `smoke/c3/p0/docs/C3_P0_FINAL_REPORT.md`，静态验收见 `smoke/c3/p0/evidence/static_validation.json`。DeepPCB 原始数据为 1500 张 tested image、1500 份 annotation、6 类；官方 trainval/test = 1000/500，source commit 为 `08e98c4db5922613fb97176eb3d6497d48260cb1`。
 
 ## 8. 设计说明
 

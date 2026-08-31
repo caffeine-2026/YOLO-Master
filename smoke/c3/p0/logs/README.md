@@ -3,14 +3,16 @@
 ## 已完成的运行
 
 ```text
-smoke/c3/logs/
+smoke/c3/p0/logs/
 ├── preflight/environment.txt
 ├── *_gpu_fp32_seed824/   # 三个稳定 GPU 运行
 ├── *_gpu_seed824/        # 三个 AMP 降级运行
 └── *_cpu_seed824/        # 三个 CPU 功能运行
 ```
 
-9 次训练均正常退出。GPU FP32 组三次运行没有自动数值恢复；GPU AMP 组三次运行都触发一次非有限值恢复，训练器关闭 AMP 后重试，因此标记为 `DEGRADED`；CPU 组只用于辅助功能核验。统一结果说明见 `smoke/c3/docs/ADMISSION_20260825.md`。
+原始 9 次训练均正常退出。GPU FP32 组三次运行没有自动数值恢复；GPU AMP 组三次运行都触发一次非有限值恢复，训练器关闭 AMP 后重试，因此标记为 `DEGRADED`；CPU 组只用于辅助功能核验。统一结果说明见 `smoke/c3/p0/docs/ADMISSION_20260825.md`。
+
+2026-08-31 新增 AO/DCO/MIPR solver 审计。首次两次 DCO 运行真实复现 rank 超出层容量的 bug，失败日志保留；修复后的 NEU-DET、DeepPCB DCO 运行均 exit 0。服务器没有 OR-Tools，MIPR 请求已显式降级到 AO，并在 runtime metadata 中记录 requested/effective solver 与原因。详见 `smoke/c3/p0/docs/PLANNER_FLOW_AND_SOLVER_AUDIT_20260831.md`。
 
 ## 每个运行目录的文件
 

@@ -1,0 +1,1 @@
+yolo train cfg=smoke/c3/p0/config/vpeft_smoke.yaml data=smoke/c3/p0/config/datasets/neu_det_fewshot.yaml device=2 name=neu_det_vpeft_dco_fixed_gpu_fp32_seed824 project=runs/vpeft_smoke exist_ok=False amp=false lora_planner_solver=dco
