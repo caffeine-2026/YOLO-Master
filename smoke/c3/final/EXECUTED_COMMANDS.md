@@ -26,6 +26,8 @@ PYTHONUNBUFFERED=1 .venv/bin/python smoke/c3/final/tools/validate_research_deliv
 
 결과: P0 PASS, P1 PASS, archived P2 seed-824 gate PASS, final P2 PASS, integrated delivery PASS.
 
+main 기반 clean worktree에는 Git ignored dataset과 P0 runtime artifact가 없었으므로, 원본을 변경하지 않는 hard-link 작업 사본을 만든 뒤 P0 validator를 재실행했다. 첫 missing-dataset 실패와 symbolic-link 보안 거부는 [FAILURE_REPAIR_RERUN.md](FAILURE_REPAIR_RERUN.md)에 보존했다.
+
 ## Checkpoint audit
 
 통합 validator가 72개 `best.pt`에 대해 `torch.load(..., map_location="cpu", weights_only=False)`를 실행하고 model parameter count, seed, epoch metadata를 metrics/resolved config와 대조했다. 72/72 PASS.
@@ -50,4 +52,4 @@ PYTHONUNBUFFERED=1 .venv/bin/python smoke/c3/final/tools/validate_research_deliv
 git diff --check
 ```
 
-결과: 모두 PASS. `fallback.py`의 import ordering, module alias, future annotation, `__all__` ordering 네 lint 범주는 이번 동작 수정 전부터 존재한 파일 수준 부채라 명시적으로 제외했다. 최종 main 기준 worktree에서 JSON/YAML 934개 파싱, Markdown local link 71개, publishable file 1,430개 privacy 검사와 14개 그래프 provenance 검사는 통합 validator에서 PASS했다.
+결과: 모두 PASS. `fallback.py`의 import ordering, module alias, future annotation, `__all__` ordering 네 lint 범주는 이번 동작 수정 전부터 존재한 파일 수준 부채라 명시적으로 제외했다. 최종 main 기준 worktree에서 JSON/YAML 934개 파싱, Markdown local link 72개, publishable file 1,430개 privacy 검사와 14개 그래프 provenance 검사는 통합 validator에서 PASS했다.

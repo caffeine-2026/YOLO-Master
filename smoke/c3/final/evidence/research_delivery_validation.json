@@ -313,7 +313,7 @@
       },
       "json_files_parsed": 703,
       "yaml_files_parsed": 231,
-      "markdown_local_links_checked": 71,
+      "markdown_local_links_checked": 72,
       "privacy_files_scanned": 1430,
       "privacy_scope": "Publishable C3 logs, docs, configs, evidence, results, and source; raw model artifacts are excluded.",
       "parse_errors": [],

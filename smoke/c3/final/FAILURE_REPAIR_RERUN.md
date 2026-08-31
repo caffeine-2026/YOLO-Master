@@ -56,6 +56,13 @@
 - 재실행: lifecycle/fallback 집중 테스트 17/17 PASS; 핵심 V-PEFT/LoRA/P0 suite 65/65 PASS; 관련 LoRA/MoLoRA/PEFT/Planner pytest 전체 295 passed / 7 skipped / 2 warnings.
 - sandbox의 CPU Gloo 실패는 실제 호스트에서 동일 테스트를 재실행해 1/1 PASS했다.
 
+### Clean worktree P0 local-input failures
+
+- main 기반 clean worktree의 첫 P0 재검증은 Git에서 제외된 local dataset이 없어 `FileNotFoundError: datasets/neu_det_fewshot_yolo/split_manifest.json`으로 실패했다.
+- dataset symbolic link를 만든 두 번째 시도는 repository 밖으로 resolve되는 경로를 거부하는 validator의 보안 검사로 `ValueError: 데이터셋 경로는 저장소 내부여야 함`이 발생했다.
+- 수정: 원본을 변경하거나 재다운로드하지 않고 dataset과 P0 `runs/`의 hard-link 작업 사본을 clean worktree 내부에 만들었다. 이 사본은 Git ignored 상태이며 커밋하지 않았다.
+- 재실행: `.venv/bin/python smoke/c3/p0/tools/validate_delivery.py` exit 0, `status=passed`. P1/P2 독립 gate도 같은 최종 worktree에서 PASS했다.
+
 ## 4. Experiment rerun decision
 
 P1/P2 72 cells는 모두 100 epochs, locked test, 원본 CSV, resource/time, artifact hashes, checkpoint load, seed/config 조건을 통과했다. 따라서 새로운 training run은 실행하지 않았다. 이는 유효한 기존 실험을 재사용하고 누락·오류·조건 불일치 때만 재실행한다는 원칙에 따른 결정이다.
