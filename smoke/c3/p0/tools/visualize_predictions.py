@@ -17,8 +17,8 @@ from PIL import Image, ImageDraw, ImageFont
 
 from ultralytics import YOLO
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-SMOKE_ROOT = REPO_ROOT / "smoke" / "c3"
+REPO_ROOT = Path(__file__).resolve().parents[4]
+SMOKE_ROOT = REPO_ROOT / "smoke" / "c3" / "p0"
 RUN_ROOT = REPO_ROOT / "runs" / "detect" / "runs" / "vpeft_smoke"
 PLOT_NAMES = (
     "results.png",
@@ -40,17 +40,17 @@ PALETTE = (
 DATASETS = {
     "neu_det": {
         "display_name": "NEU-DET",
-        "data": "smoke/c3/config/datasets/neu_det_fewshot.yaml",
+        "data": "smoke/c3/p0/config/datasets/neu_det_fewshot.yaml",
         "run_id": "neu_det_vpeft_gpu_fp32_seed824",
-        "prediction_json": "smoke/c3/evidence/neu_det_visual_predictions.json",
-        "overview": "smoke/c3/visualizations/neu_det_overview.jpg",
+        "prediction_json": "smoke/c3/p0/evidence/neu_det_visual_predictions.json",
+        "overview": "smoke/c3/p0/visualizations/neu_det_overview.jpg",
     },
     "deeppcb": {
         "display_name": "DeepPCB",
-        "data": "smoke/c3/config/datasets/deeppcb_fewshot.yaml",
+        "data": "smoke/c3/p0/config/datasets/deeppcb_fewshot.yaml",
         "run_id": "deeppcb_vpeft_gpu_fp32_seed824",
-        "prediction_json": "smoke/c3/evidence/deeppcb_visual_predictions.json",
-        "overview": "smoke/c3/visualizations/deeppcb_overview.jpg",
+        "prediction_json": "smoke/c3/p0/evidence/deeppcb_visual_predictions.json",
+        "overview": "smoke/c3/p0/visualizations/deeppcb_overview.jpg",
     },
 }
 

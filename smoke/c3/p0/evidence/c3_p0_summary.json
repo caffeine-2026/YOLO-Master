@@ -20,7 +20,7 @@
         "exit_code": 0,
         "adapter_exported": true,
         "checkpoint_sha256": "110588ccad345c4559757ee4a5b73bc06b436fe5091aa3aaf47e5e89a6d5ed4d",
-        "evidence_dir": "smoke/c3/logs/neu_det_vpeft_gpu_fp32_seed824",
+        "evidence_dir": "smoke/c3/p0/logs/neu_det_vpeft_gpu_fp32_seed824",
         "checks": {
           "exit_code_zero": true,
           "cuda_gpu0_used": true,
@@ -54,7 +54,7 @@
         "exit_code": 0,
         "adapter_exported": true,
         "checkpoint_sha256": "002ccefdfa0950f21535c4ba5df453022d5a944123a6f79af34102947a76637d",
-        "evidence_dir": "smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824",
+        "evidence_dir": "smoke/c3/p0/logs/deeppcb_vpeft_gpu_fp32_seed824",
         "checks": {
           "exit_code_zero": true,
           "cuda_gpu0_used": true,
@@ -117,7 +117,7 @@
           "map50_95": 0.00501
         },
         "checkpoint_sha256": "110588ccad345c4559757ee4a5b73bc06b436fe5091aa3aaf47e5e89a6d5ed4d",
-        "evidence_dir": "smoke/c3/logs/neu_det_vpeft_gpu_fp32_seed824"
+        "evidence_dir": "smoke/c3/p0/logs/neu_det_vpeft_gpu_fp32_seed824"
       },
       {
         "label": "全参数 Full-SFT",
@@ -159,7 +159,7 @@
           "map50_95": 0.00267
         },
         "checkpoint_sha256": "82f08f6038526eb4d2e69a6a4f613f9111241a73aa5dfe5842e7c4ba928bc3a8",
-        "evidence_dir": "smoke/c3/logs/neu_det_full_sft_gpu_fp32_seed824"
+        "evidence_dir": "smoke/c3/p0/logs/neu_det_full_sft_gpu_fp32_seed824"
       },
       {
         "label": "冻结主干",
@@ -201,7 +201,7 @@
           "map50_95": 0.02806
         },
         "checkpoint_sha256": "4cedcb84999eb4348e9f9dbe7825dd674da17a0358d3b8173b6c24c8b2529b53",
-        "evidence_dir": "smoke/c3/logs/neu_det_frozen_backbone_gpu_fp32_seed824"
+        "evidence_dir": "smoke/c3/p0/logs/neu_det_frozen_backbone_gpu_fp32_seed824"
       }
     ]
   },

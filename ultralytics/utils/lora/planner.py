@@ -1867,6 +1867,54 @@ class PEFTPlanner:
         std_error = float(np.std(boot_preds)) if len(boot_preds) > 1 else 0.02
         return point_pred, std_error
 
+    def predict_advisory(self, model: nn.Module, config: Any) -> Dict[str, Any]:
+        """Return prediction-only evidence without making a placement decision.
+
+        The V-PEFT solver owns target and rank selection. This method exposes
+        the regression/LOVO side as advisory audit evidence, so callers do not
+        need to run the legacy planner (and a second placement solver) merely
+        to record a predicted delta.
+        """
+        from .api import _effective_peft_variant
+
+        inner_model = getattr(model, "model", model)
+        fingerprint = ArchitectureFingerprint.compute(inner_model)
+        variant = _effective_peft_variant(config)
+        rank = max(int(getattr(config, "r", 0) or 0), 1)
+
+        self._maybe_fit_from_lovo()
+        predicted_delta, std_error = self.predict_with_uncertainty(fingerprint, variant, rank)
+        metadata = self._calibration_metadata()
+        confidence_score = 0.0 if metadata["low_confidence"] else 1.0
+        return {
+            "predicted_delta": float(predicted_delta),
+            "prediction_std_error": float(std_error),
+            "prediction_lower_95": float(predicted_delta - 1.96 * std_error),
+            "prediction_upper_95": float(predicted_delta + 1.96 * std_error),
+            "paper_predicted_delta": float(self.predict_paper(fingerprint, variant)),
+            "confidence_score": confidence_score,
+            "confidence_score_semantics": (
+                "1.0=calibrated high-confidence evidence; 0.0=prior or limited-evidence prediction"
+            ),
+            "variant": variant,
+            "rank": rank,
+            "architecture_fingerprint": {
+                "phi_attn": fingerprint.phi_attn,
+                "phi_text": fingerprint.phi_text,
+                "phi_moe": fingerprint.phi_moe,
+                "phi_dw": fingerprint.phi_dw,
+                "phi_conv": fingerprint.phi_conv,
+                "phi_group": fingerprint.phi_group,
+                "phi_linear": fingerprint.phi_linear,
+                "phi_depth": fingerprint.phi_depth,
+                "phi_width": fingerprint.phi_width,
+                "phi_head": fingerprint.phi_head,
+                "phi_residual": fingerprint.phi_residual,
+                "phi_norm": fingerprint.phi_norm,
+            },
+            **metadata,
+        }
+
     def _calibration_metadata(self) -> Dict[str, Any]:
         """Return decision evidence describing the active regression calibration."""
         fitted = len(self._history) >= 5

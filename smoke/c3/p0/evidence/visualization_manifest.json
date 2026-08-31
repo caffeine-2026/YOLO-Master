@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "status": "PASS",
-  "generated_utc": "2026-08-25T04:30:00.281770+00:00",
+  "generated_utc": "2026-08-31T09:39:22.452805+00:00",
   "purpose": "Human-reviewable fixed-sample GT and real V-PEFT inference evidence; no training performed",
   "selection_policy": "Exactly 10 images sampled from each official test split with independent random.Random(824); no result-based replacement",
   "model_loading": "The repository YOLO(best.pt) API loads each checkpoint's active PEFT wrapper and trained detection head; exported adapter directories are recorded but not merged or modified.",
@@ -15,13 +15,13 @@
     {
       "dataset": "NEU-DET",
       "split": "test",
-      "data_config": "smoke/c3/config/datasets/neu_det_fewshot.yaml",
+      "data_config": "smoke/c3/p0/config/datasets/neu_det_fewshot.yaml",
       "seed": 824,
       "checkpoint": "runs/detect/runs/vpeft_smoke/neu_det_vpeft_gpu_fp32_seed824/weights/best.pt",
       "checkpoint_sha256": "90bf0eb0d690edd46943248ef20adbeca20283f40f9fd96bc7251b27d3ab3b41",
       "adapter": "runs/detect/runs/vpeft_smoke/neu_det_vpeft_gpu_fp32_seed824/lora_adapter",
       "adapter_model_sha256": "53b64befbe57c528710efb1301d2932de2e19e67cf194ebb06bb25ad3fe60e88",
-      "resolved_config": "smoke/c3/logs/neu_det_vpeft_gpu_fp32_seed824/resolved_config.yaml",
+      "resolved_config": "smoke/c3/p0/logs/neu_det_vpeft_gpu_fp32_seed824/resolved_config.yaml",
       "model_loading_api": "ultralytics.YOLO(best.pt)",
       "peft_backend": "peft",
       "applied_targets": 52,
@@ -42,10 +42,10 @@
           "gt_object_count": 5,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/neu_det/original/crazing_120.jpg",
-            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/crazing_120.jpg",
-            "prediction": "smoke/c3/visualizations/neu_det/predictions/crazing_120.jpg",
-            "comparison": "smoke/c3/visualizations/neu_det/comparison/crazing_120.jpg"
+            "original": "smoke/c3/p0/visualizations/neu_det/original/crazing_120.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/neu_det/ground_truth/crazing_120.jpg",
+            "prediction": "smoke/c3/p0/visualizations/neu_det/predictions/crazing_120.jpg",
+            "comparison": "smoke/c3/p0/visualizations/neu_det/comparison/crazing_120.jpg"
           },
           "output_sha256": {
             "original": "9e88d467b31b526f0cf3732264d72af070365a87edfcbcccbe0f9a3845a30974",
@@ -62,10 +62,10 @@
           "gt_object_count": 2,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/neu_det/original/crazing_179.jpg",
-            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/crazing_179.jpg",
-            "prediction": "smoke/c3/visualizations/neu_det/predictions/crazing_179.jpg",
-            "comparison": "smoke/c3/visualizations/neu_det/comparison/crazing_179.jpg"
+            "original": "smoke/c3/p0/visualizations/neu_det/original/crazing_179.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/neu_det/ground_truth/crazing_179.jpg",
+            "prediction": "smoke/c3/p0/visualizations/neu_det/predictions/crazing_179.jpg",
+            "comparison": "smoke/c3/p0/visualizations/neu_det/comparison/crazing_179.jpg"
           },
           "output_sha256": {
             "original": "a796d606ae9c573d722bdec9d282c53cd543006e1d49e4a5152072fe61505d08",
@@ -82,10 +82,10 @@
           "gt_object_count": 2,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/neu_det/original/crazing_199.jpg",
-            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/crazing_199.jpg",
-            "prediction": "smoke/c3/visualizations/neu_det/predictions/crazing_199.jpg",
-            "comparison": "smoke/c3/visualizations/neu_det/comparison/crazing_199.jpg"
+            "original": "smoke/c3/p0/visualizations/neu_det/original/crazing_199.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/neu_det/ground_truth/crazing_199.jpg",
+            "prediction": "smoke/c3/p0/visualizations/neu_det/predictions/crazing_199.jpg",
+            "comparison": "smoke/c3/p0/visualizations/neu_det/comparison/crazing_199.jpg"
           },
           "output_sha256": {
             "original": "045dd7295bb1c32e3d180ab5092618fd4015852c747a667a67c5b53048c0fd2a",
@@ -102,10 +102,10 @@
           "gt_object_count": 2,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/neu_det/original/crazing_217.jpg",
-            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/crazing_217.jpg",
-            "prediction": "smoke/c3/visualizations/neu_det/predictions/crazing_217.jpg",
-            "comparison": "smoke/c3/visualizations/neu_det/comparison/crazing_217.jpg"
+            "original": "smoke/c3/p0/visualizations/neu_det/original/crazing_217.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/neu_det/ground_truth/crazing_217.jpg",
+            "prediction": "smoke/c3/p0/visualizations/neu_det/predictions/crazing_217.jpg",
+            "comparison": "smoke/c3/p0/visualizations/neu_det/comparison/crazing_217.jpg"
           },
           "output_sha256": {
             "original": "dd0e2f8a2c6901cc540c53aa7194af40fa2e8ed38a0825608e1b56c846fcf01e",
@@ -122,10 +122,10 @@
           "gt_object_count": 3,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/neu_det/original/inclusion_152.jpg",
-            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/inclusion_152.jpg",
-            "prediction": "smoke/c3/visualizations/neu_det/predictions/inclusion_152.jpg",
-            "comparison": "smoke/c3/visualizations/neu_det/comparison/inclusion_152.jpg"
+            "original": "smoke/c3/p0/visualizations/neu_det/original/inclusion_152.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/neu_det/ground_truth/inclusion_152.jpg",
+            "prediction": "smoke/c3/p0/visualizations/neu_det/predictions/inclusion_152.jpg",
+            "comparison": "smoke/c3/p0/visualizations/neu_det/comparison/inclusion_152.jpg"
           },
           "output_sha256": {
             "original": "b001742d109eaca3abdbcda69c81e660f07eb26b687e98f13cafda10656d5b49",
@@ -142,10 +142,10 @@
           "gt_object_count": 2,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/neu_det/original/inclusion_153.jpg",
-            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/inclusion_153.jpg",
-            "prediction": "smoke/c3/visualizations/neu_det/predictions/inclusion_153.jpg",
-            "comparison": "smoke/c3/visualizations/neu_det/comparison/inclusion_153.jpg"
+            "original": "smoke/c3/p0/visualizations/neu_det/original/inclusion_153.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/neu_det/ground_truth/inclusion_153.jpg",
+            "prediction": "smoke/c3/p0/visualizations/neu_det/predictions/inclusion_153.jpg",
+            "comparison": "smoke/c3/p0/visualizations/neu_det/comparison/inclusion_153.jpg"
           },
           "output_sha256": {
             "original": "45d7514244ee1334c276973371a33bf1d5791ba3ee8548a19ed996ecc4279bf5",
@@ -162,10 +162,10 @@
           "gt_object_count": 2,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/neu_det/original/patches_98.jpg",
-            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/patches_98.jpg",
-            "prediction": "smoke/c3/visualizations/neu_det/predictions/patches_98.jpg",
-            "comparison": "smoke/c3/visualizations/neu_det/comparison/patches_98.jpg"
+            "original": "smoke/c3/p0/visualizations/neu_det/original/patches_98.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/neu_det/ground_truth/patches_98.jpg",
+            "prediction": "smoke/c3/p0/visualizations/neu_det/predictions/patches_98.jpg",
+            "comparison": "smoke/c3/p0/visualizations/neu_det/comparison/patches_98.jpg"
           },
           "output_sha256": {
             "original": "e366ca0d4ab2d15235a71ada431c48963cbac46c44d730364afd6413648c7edf",
@@ -182,10 +182,10 @@
           "gt_object_count": 1,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/neu_det/original/rolled-in_scale_27.jpg",
-            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/rolled-in_scale_27.jpg",
-            "prediction": "smoke/c3/visualizations/neu_det/predictions/rolled-in_scale_27.jpg",
-            "comparison": "smoke/c3/visualizations/neu_det/comparison/rolled-in_scale_27.jpg"
+            "original": "smoke/c3/p0/visualizations/neu_det/original/rolled-in_scale_27.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/neu_det/ground_truth/rolled-in_scale_27.jpg",
+            "prediction": "smoke/c3/p0/visualizations/neu_det/predictions/rolled-in_scale_27.jpg",
+            "comparison": "smoke/c3/p0/visualizations/neu_det/comparison/rolled-in_scale_27.jpg"
           },
           "output_sha256": {
             "original": "708329b86ab6061f1adc9cd0c71b22b2e80fb88a60b15b799023e00b3e1dc24a",
@@ -202,10 +202,10 @@
           "gt_object_count": 3,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/neu_det/original/scratches_242.jpg",
-            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/scratches_242.jpg",
-            "prediction": "smoke/c3/visualizations/neu_det/predictions/scratches_242.jpg",
-            "comparison": "smoke/c3/visualizations/neu_det/comparison/scratches_242.jpg"
+            "original": "smoke/c3/p0/visualizations/neu_det/original/scratches_242.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/neu_det/ground_truth/scratches_242.jpg",
+            "prediction": "smoke/c3/p0/visualizations/neu_det/predictions/scratches_242.jpg",
+            "comparison": "smoke/c3/p0/visualizations/neu_det/comparison/scratches_242.jpg"
           },
           "output_sha256": {
             "original": "18297530aa9ba8fc6cb75c1b4b04d643dd668b1ab6930e8f1fffe33f6db6179e",
@@ -222,10 +222,10 @@
           "gt_object_count": 2,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/neu_det/original/scratches_70.jpg",
-            "ground_truth": "smoke/c3/visualizations/neu_det/ground_truth/scratches_70.jpg",
-            "prediction": "smoke/c3/visualizations/neu_det/predictions/scratches_70.jpg",
-            "comparison": "smoke/c3/visualizations/neu_det/comparison/scratches_70.jpg"
+            "original": "smoke/c3/p0/visualizations/neu_det/original/scratches_70.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/neu_det/ground_truth/scratches_70.jpg",
+            "prediction": "smoke/c3/p0/visualizations/neu_det/predictions/scratches_70.jpg",
+            "comparison": "smoke/c3/p0/visualizations/neu_det/comparison/scratches_70.jpg"
           },
           "output_sha256": {
             "original": "5e36d31d04d2f41d47ade42df79f55cc74d4a8c32e40c9316a1a0f08ffc50768",
@@ -235,8 +235,8 @@
           }
         }
       ],
-      "prediction_json": "smoke/c3/evidence/neu_det_visual_predictions.json",
-      "overview": "smoke/c3/visualizations/neu_det_overview.jpg",
+      "prediction_json": "smoke/c3/p0/evidence/neu_det_visual_predictions.json",
+      "overview": "smoke/c3/p0/visualizations/neu_det_overview.jpg",
       "overview_sample_ids": [
         "crazing_120",
         "crazing_179",
@@ -250,13 +250,13 @@
     {
       "dataset": "DeepPCB",
       "split": "test",
-      "data_config": "smoke/c3/config/datasets/deeppcb_fewshot.yaml",
+      "data_config": "smoke/c3/p0/config/datasets/deeppcb_fewshot.yaml",
       "seed": 824,
       "checkpoint": "runs/detect/runs/vpeft_smoke/deeppcb_vpeft_gpu_fp32_seed824/weights/best.pt",
       "checkpoint_sha256": "ecd34f1e87cf4e53c3e8dc3f5e1ea0bd501658f9d24f474fc63f4298e333b727",
       "adapter": "runs/detect/runs/vpeft_smoke/deeppcb_vpeft_gpu_fp32_seed824/lora_adapter",
       "adapter_model_sha256": "0423611f5ff84b082dc6a94a8ac0e051305e9803bec3ce53f22bcdf7d1ddac1a",
-      "resolved_config": "smoke/c3/logs/deeppcb_vpeft_gpu_fp32_seed824/resolved_config.yaml",
+      "resolved_config": "smoke/c3/p0/logs/deeppcb_vpeft_gpu_fp32_seed824/resolved_config.yaml",
       "model_loading_api": "ultralytics.YOLO(best.pt)",
       "peft_backend": "peft",
       "applied_targets": 52,
@@ -277,10 +277,10 @@
           "gt_object_count": 9,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/deeppcb/original/12000001_test.jpg",
-            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/12000001_test.jpg",
-            "prediction": "smoke/c3/visualizations/deeppcb/predictions/12000001_test.jpg",
-            "comparison": "smoke/c3/visualizations/deeppcb/comparison/12000001_test.jpg"
+            "original": "smoke/c3/p0/visualizations/deeppcb/original/12000001_test.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/deeppcb/ground_truth/12000001_test.jpg",
+            "prediction": "smoke/c3/p0/visualizations/deeppcb/predictions/12000001_test.jpg",
+            "comparison": "smoke/c3/p0/visualizations/deeppcb/comparison/12000001_test.jpg"
           },
           "output_sha256": {
             "original": "0005b3e481bde2cc632ed5733e4280341cc01e50713ba2379a83d72d2f28a236",
@@ -297,10 +297,10 @@
           "gt_object_count": 6,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/deeppcb/original/12100038_test.jpg",
-            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/12100038_test.jpg",
-            "prediction": "smoke/c3/visualizations/deeppcb/predictions/12100038_test.jpg",
-            "comparison": "smoke/c3/visualizations/deeppcb/comparison/12100038_test.jpg"
+            "original": "smoke/c3/p0/visualizations/deeppcb/original/12100038_test.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/deeppcb/ground_truth/12100038_test.jpg",
+            "prediction": "smoke/c3/p0/visualizations/deeppcb/predictions/12100038_test.jpg",
+            "comparison": "smoke/c3/p0/visualizations/deeppcb/comparison/12100038_test.jpg"
           },
           "output_sha256": {
             "original": "696b5777f29535c3e7fcc71a1b4359113557bbc1aebfe6a17fef4cecafc3dc9d",
@@ -317,10 +317,10 @@
           "gt_object_count": 4,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/deeppcb/original/12100040_test.jpg",
-            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/12100040_test.jpg",
-            "prediction": "smoke/c3/visualizations/deeppcb/predictions/12100040_test.jpg",
-            "comparison": "smoke/c3/visualizations/deeppcb/comparison/12100040_test.jpg"
+            "original": "smoke/c3/p0/visualizations/deeppcb/original/12100040_test.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/deeppcb/ground_truth/12100040_test.jpg",
+            "prediction": "smoke/c3/p0/visualizations/deeppcb/predictions/12100040_test.jpg",
+            "comparison": "smoke/c3/p0/visualizations/deeppcb/comparison/12100040_test.jpg"
           },
           "output_sha256": {
             "original": "717fea3a8f9817ce3b984aed37c9fdfd30560c95c215d183857da8a8d517a1de",
@@ -337,10 +337,10 @@
           "gt_object_count": 8,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/deeppcb/original/12100199_test.jpg",
-            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/12100199_test.jpg",
-            "prediction": "smoke/c3/visualizations/deeppcb/predictions/12100199_test.jpg",
-            "comparison": "smoke/c3/visualizations/deeppcb/comparison/12100199_test.jpg"
+            "original": "smoke/c3/p0/visualizations/deeppcb/original/12100199_test.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/deeppcb/ground_truth/12100199_test.jpg",
+            "prediction": "smoke/c3/p0/visualizations/deeppcb/predictions/12100199_test.jpg",
+            "comparison": "smoke/c3/p0/visualizations/deeppcb/comparison/12100199_test.jpg"
           },
           "output_sha256": {
             "original": "625217602141f02df45723e1c50a936fc5930c9471b8bf40633430a3501df3ac",
@@ -357,10 +357,10 @@
           "gt_object_count": 4,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/deeppcb/original/13000198_test.jpg",
-            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/13000198_test.jpg",
-            "prediction": "smoke/c3/visualizations/deeppcb/predictions/13000198_test.jpg",
-            "comparison": "smoke/c3/visualizations/deeppcb/comparison/13000198_test.jpg"
+            "original": "smoke/c3/p0/visualizations/deeppcb/original/13000198_test.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/deeppcb/ground_truth/13000198_test.jpg",
+            "prediction": "smoke/c3/p0/visualizations/deeppcb/predictions/13000198_test.jpg",
+            "comparison": "smoke/c3/p0/visualizations/deeppcb/comparison/13000198_test.jpg"
           },
           "output_sha256": {
             "original": "e6a2f398e3aa129baa206de3aa1b469358a35b74cd5ba349add854939e7548e1",
@@ -377,10 +377,10 @@
           "gt_object_count": 5,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/deeppcb/original/20085324_test.jpg",
-            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/20085324_test.jpg",
-            "prediction": "smoke/c3/visualizations/deeppcb/predictions/20085324_test.jpg",
-            "comparison": "smoke/c3/visualizations/deeppcb/comparison/20085324_test.jpg"
+            "original": "smoke/c3/p0/visualizations/deeppcb/original/20085324_test.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/deeppcb/ground_truth/20085324_test.jpg",
+            "prediction": "smoke/c3/p0/visualizations/deeppcb/predictions/20085324_test.jpg",
+            "comparison": "smoke/c3/p0/visualizations/deeppcb/comparison/20085324_test.jpg"
           },
           "output_sha256": {
             "original": "d6a004d424dbac7efe6a536fb0e237e249b6b0552cb075b19bc13ed0a1373062",
@@ -397,10 +397,10 @@
           "gt_object_count": 4,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/deeppcb/original/50600055_test.jpg",
-            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/50600055_test.jpg",
-            "prediction": "smoke/c3/visualizations/deeppcb/predictions/50600055_test.jpg",
-            "comparison": "smoke/c3/visualizations/deeppcb/comparison/50600055_test.jpg"
+            "original": "smoke/c3/p0/visualizations/deeppcb/original/50600055_test.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/deeppcb/ground_truth/50600055_test.jpg",
+            "prediction": "smoke/c3/p0/visualizations/deeppcb/predictions/50600055_test.jpg",
+            "comparison": "smoke/c3/p0/visualizations/deeppcb/comparison/50600055_test.jpg"
           },
           "output_sha256": {
             "original": "325bc31e1c07e0214eb22a10ec12166d1986575fc58a3f42108e152e7fb1c4a6",
@@ -417,10 +417,10 @@
           "gt_object_count": 5,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/deeppcb/original/50600059_test.jpg",
-            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/50600059_test.jpg",
-            "prediction": "smoke/c3/visualizations/deeppcb/predictions/50600059_test.jpg",
-            "comparison": "smoke/c3/visualizations/deeppcb/comparison/50600059_test.jpg"
+            "original": "smoke/c3/p0/visualizations/deeppcb/original/50600059_test.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/deeppcb/ground_truth/50600059_test.jpg",
+            "prediction": "smoke/c3/p0/visualizations/deeppcb/predictions/50600059_test.jpg",
+            "comparison": "smoke/c3/p0/visualizations/deeppcb/comparison/50600059_test.jpg"
           },
           "output_sha256": {
             "original": "fedec4d31b3bcce375b077e0b9e07d63e4d07721772292ada6c3990c0a911415",
@@ -437,10 +437,10 @@
           "gt_object_count": 6,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/deeppcb/original/90100000_test.jpg",
-            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/90100000_test.jpg",
-            "prediction": "smoke/c3/visualizations/deeppcb/predictions/90100000_test.jpg",
-            "comparison": "smoke/c3/visualizations/deeppcb/comparison/90100000_test.jpg"
+            "original": "smoke/c3/p0/visualizations/deeppcb/original/90100000_test.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/deeppcb/ground_truth/90100000_test.jpg",
+            "prediction": "smoke/c3/p0/visualizations/deeppcb/predictions/90100000_test.jpg",
+            "comparison": "smoke/c3/p0/visualizations/deeppcb/comparison/90100000_test.jpg"
           },
           "output_sha256": {
             "original": "b3e6e4ddd3ccb346160a708cefa4e11c6de41edeb4456817a581281d18e0a422",
@@ -457,10 +457,10 @@
           "gt_object_count": 6,
           "prediction_count": 0,
           "outputs": {
-            "original": "smoke/c3/visualizations/deeppcb/original/90100049_test.jpg",
-            "ground_truth": "smoke/c3/visualizations/deeppcb/ground_truth/90100049_test.jpg",
-            "prediction": "smoke/c3/visualizations/deeppcb/predictions/90100049_test.jpg",
-            "comparison": "smoke/c3/visualizations/deeppcb/comparison/90100049_test.jpg"
+            "original": "smoke/c3/p0/visualizations/deeppcb/original/90100049_test.jpg",
+            "ground_truth": "smoke/c3/p0/visualizations/deeppcb/ground_truth/90100049_test.jpg",
+            "prediction": "smoke/c3/p0/visualizations/deeppcb/predictions/90100049_test.jpg",
+            "comparison": "smoke/c3/p0/visualizations/deeppcb/comparison/90100049_test.jpg"
           },
           "output_sha256": {
             "original": "671c9ddc8d78dadedbf5488d7763a826101f61722ba9086027de30eefdfd1301",
@@ -470,8 +470,8 @@
           }
         }
       ],
-      "prediction_json": "smoke/c3/evidence/deeppcb_visual_predictions.json",
-      "overview": "smoke/c3/visualizations/deeppcb_overview.jpg",
+      "prediction_json": "smoke/c3/p0/evidence/deeppcb_visual_predictions.json",
+      "overview": "smoke/c3/p0/visualizations/deeppcb_overview.jpg",
       "overview_sample_ids": [
         "12000001_test",
         "12100038_test",

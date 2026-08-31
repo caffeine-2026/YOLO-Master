@@ -10,6 +10,8 @@
 ## 交付入口
 
 - [C3 P0 最终报告](docs/C3_P0_FINAL_REPORT.md)
+- [Planner 流程与 solver 审计（2026-08-31）](docs/PLANNER_FLOW_AND_SOLVER_AUDIT_20260831.md)
+- [Solver 结构化审计](evidence/solver_audit_20260831.json)
 - [8.25 统一验收记录](docs/ADMISSION_20260825.md)
 - [完整复现指南](PEFT_RUN_GUIDE.md)
 - [P0 结构化汇总](evidence/c3_p0_summary.json)
@@ -19,6 +21,9 @@
 - [DeepPCB 数据 smoke](evidence/deeppcb_data_validation.json)
 - [NEU-DET V-PEFT 日志](logs/neu_det_vpeft_gpu_fp32_seed824/)
 - [DeepPCB V-PEFT 日志](logs/deeppcb_vpeft_gpu_fp32_seed824/)
+- [NEU-DET DCO 修复后日志](logs/neu_det_vpeft_dco_fixed_gpu_fp32_seed824/)
+- [DeepPCB DCO 修复后日志](logs/deeppcb_vpeft_dco_fixed_gpu_fp32_seed824/)
+- [MIPR→AO 显式降级日志](logs/neu_det_vpeft_mip_fallback_gpu_fp32_seed824/)
 
 ## Visual Evidence
 
@@ -37,4 +42,5 @@
 - Official C3 P0 = NEU-DET + DeepPCB 各一次 V-PEFT；MVTec AD 仅是未来可选扩展。
 - NEU-DET 的 Full-SFT 与冻结主干结果只属于 preliminary smoke evidence，不是 P1 结论。
 - 单 epoch、单 seed 只证明闭环可执行，不评价收敛或方法优劣。
+- 当前 LOVO prediction 为 `cold_start/default_prior`、0 个观测、confidence 0；不是 learned LOVO 结论。
 - 原始数据、派生图像、模型权重和 adapter 权重均由忽略规则排除；仓库只提交工具、配置、完整文本日志、清单和 SHA-256。
