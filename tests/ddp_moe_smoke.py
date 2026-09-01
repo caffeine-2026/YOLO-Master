@@ -10,6 +10,12 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from ultralytics.nn.modules.moe.modules import OptimizedMOE
 
 
+def _training_input(rank: int, step: int) -> torch.Tensor:
+    """Build deterministic non-degenerate features for normalization-heavy experts."""
+    base = torch.linspace(-1.0, 1.0, steps=4 * 8 * 2 * 2).reshape(4, 8, 2, 2)
+    return base + rank * 0.125 + step * 0.25
+
+
 def main():
     rank = int(os.environ["RANK"])
     world = int(os.environ["WORLD_SIZE"])
@@ -23,7 +29,11 @@ def main():
         optimizer = torch.optim.SGD(ddp.parameters(), lr=0.05)
         for step in range(2):
             optimizer.zero_grad(set_to_none=True)
-            inputs = torch.full((4, 8, 2, 2), 1.0 + rank + step * 0.25)
+            # A spatially and channel-varying tensor prevents BatchNorm/GroupNorm
+            # from collapsing the smoke-test signal to an exact zero on some CPU
+            # kernels (observed on Windows). The gate should exercise real routed
+            # gradients, not depend on platform-specific rounding of a constant.
+            inputs = _training_input(rank, step)
             loss = ddp(inputs).square().mean()
             loss.backward()
             grads = [p.grad for p in ddp.module.parameters() if p.requires_grad and p.grad is not None]
