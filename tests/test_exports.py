@@ -691,6 +691,13 @@ def test_export_env_has_smoke(env):
     assert EXPORT_ENVS[env]["smoke"], f"export env '{env}' has no smoke command"
 
 
+def test_tensorflow_export_env_resolves_graphsurgeon_from_pypi():
+    """Keep TensorFlow environment creation independent of the optional NVIDIA package index."""
+    recipe = EXPORT_ENVS["tensorflow"]
+    assert any(requirement.startswith("onnx_graphsurgeon") for requirement in recipe["requirements"])
+    assert recipe["indexes"] == []
+
+
 def test_every_format_env_is_registered():
     """Ensure every export format points at a registered export environment."""
     for fmt, env in zip(export_formats()["Argument"], export_formats()["Env"]):

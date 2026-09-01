@@ -262,9 +262,9 @@ EXPORT_ENVS = {
             "onnxruntime",
             "protobuf>=5",
         ],
-        "indexes": [
-            ("--extra-index-url", "https://pypi.ngc.nvidia.com"),
-        ],
+        # ONNX GraphSurgeon publishes current wheels on PyPI. Keeping the legacy NGC index here makes uv query that
+        # host for every build dependency and turns an unrelated NVIDIA DNS outage into a total environment failure.
+        "indexes": [],
         "env": {},
         "smoke": ["yolo export format=saved_model model=yolo26n.pt imgsz=32"],
     },
