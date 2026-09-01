@@ -169,6 +169,11 @@ nbs: 64 # (int) nominal batch size used for loss normalization
 hsv_h: 0.015 # (float) HSV hue augmentation fraction
 hsv_s: 0.7 # (float) HSV saturation augmentation fraction
 hsv_v: 0.4 # (float) HSV value (brightness) augmentation fraction
+industrial_contrast: 0.0 # (float) grayscale-safe contrast gain (+/-), 0.0 disables
+industrial_blur_prob: 0.0 # (float) Gaussian blur probability for industrial imagery
+industrial_blur_sigma: 0.0 # (float) maximum Gaussian blur sigma, 0.0 disables
+industrial_noise_prob: 0.0 # (float) grayscale-preserving Gaussian noise probability
+industrial_noise_std: 0.0 # (float) maximum Gaussian noise standard deviation in pixel units
 degrees: 0.0 # (float) rotation degrees (+/-)
 translate: 0.1 # (float) translation fraction (+/-)
 scale: 0.5 # (float | tuple) scale gain (+/-) as float, or explicit (min, max) tuple

@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "scope": "C3 P0/P1/P2 raw-evidence cross-check",
+  "feature_branch": "codex/c3-augmentation-ablation-20260831",
+  "raw_command_manifest": {
+    "path": "smoke/c3/final/evidence/raw_command_manifest.json",
+    "command_file_count": 79,
+    "sha256": "9627153355c9b79173a38597fbe3023fdb3d28a63ad1ee07bb9474698c565a15"
+  },
+  "sections": {
+    "p0_planner": {
+      "checks": {
+        "five_solver_runs_verified": true,
+        "ao_and_dco_both_executed": true,
+        "mipr_fallback_audited": true,
+        "dco_failure_logs_preserved": true,
+        "dco_capacity_fix_observed": true,
+        "lovo_is_cold_start_prior": true,
+        "lovo_calibration_pending": true
+      },
+      "solver_runs": [
+        {
+          "run_id": "neu_det_vpeft_gpu_fp32_seed824",
+          "requested_solver": "ao",
+          "effective_solver": "ao",
+          "decision": "ACCEPT",
+          "adapter_budget": 2100000,
+          "planned_module_count": 59,
+          "applied_module_count": 52,
+          "ranks": [
+            8
+          ],
+          "checks": {
+            "completed": true,
+            "fixed_protocol": true,
+            "strict_planner": true,
+            "decision_budget_targets": true,
+            "requested_effective_solver": true,
+            "audit_matches_runtime": true
+          },
+          "status": "PASS"
+        },
+        {
+          "run_id": "deeppcb_vpeft_gpu_fp32_seed824",
+          "requested_solver": "ao",
+          "effective_solver": "ao",
+          "decision": "ACCEPT",
+          "adapter_budget": 2100000,
+          "planned_module_count": 59,
+          "applied_module_count": 52,
+          "ranks": [
+            8
+          ],
+          "checks": {
+            "completed": true,
+            "fixed_protocol": true,
+            "strict_planner": true,
+            "decision_budget_targets": true,
+            "requested_effective_solver": true,
+            "audit_matches_runtime": true
+          },
+          "status": "PASS"
+        },
+        {
+          "run_id": "neu_det_vpeft_dco_fixed_gpu_fp32_seed824",
+          "requested_solver": "dco",
+          "effective_solver": "dco",
+          "decision": "ACCEPT",
+          "adapter_budget": 2100000,
+          "planned_module_count": 59,
+          "applied_module_count": 52,
+          "ranks": [
+            8,
+            16,
+            32,
+            48,
+            64
+          ],
+          "checks": {
+            "completed": true,
+            "fixed_protocol": true,
+            "strict_planner": true,
+            "decision_budget_targets": true,
+            "requested_effective_solver": true,
+            "audit_matches_runtime": true
+          },
+          "status": "PASS"
+        },
+        {
+          "run_id": "deeppcb_vpeft_dco_fixed_gpu_fp32_seed824",
+          "requested_solver": "dco",
+          "effective_solver": "dco",
+          "decision": "ACCEPT",
+          "adapter_budget": 2100000,
+          "planned_module_count": 59,
+          "applied_module_count": 52,
+          "ranks": [
+            8,
+            16,
+            32,
+            48,
+            64
+          ],
+          "checks": {
+            "completed": true,
+            "fixed_protocol": true,
+            "strict_planner": true,
+            "decision_budget_targets": true,
+            "requested_effective_solver": true,
+            "audit_matches_runtime": true
+          },
+          "status": "PASS"
+        },
+        {
+          "run_id": "neu_det_vpeft_mip_fallback_gpu_fp32_seed824",
+          "requested_solver": "mip",
+          "effective_solver": "ao",
+          "decision": "ACCEPT",
+          "adapter_budget": 2100000,
+          "planned_module_count": 59,
+          "applied_module_count": 52,
+          "ranks": [
+            8
+          ],
+          "checks": {
+            "completed": true,
+            "fixed_protocol": true,
+            "strict_planner": true,
+            "decision_budget_targets": true,
+            "requested_effective_solver": true,
+            "audit_matches_runtime": true
+          },
+          "status": "PASS"
+        }
+      ],
+      "failed_log_paths": [
+        "smoke/c3/p0/logs/neu_det_vpeft_dco_gpu_fp32_seed824/train.log",
+        "smoke/c3/p0/logs/deeppcb_vpeft_dco_gpu_fp32_seed824/train.log"
+      ],
+      "regression_test_paths": [
+        "tests/test_vpeft.py",
+        "tests/test_vpeft_lora_e2e.py"
+      ],
+      "lovo": {
+        "predicted_delta": 0.06602954545454547,
+        "prediction_std_error": 0.05,
+        "prediction_lower_95": -0.03197045454545454,
+        "prediction_upper_95": 0.16402954545454546,
+        "confidence_score": 0.0,
+        "state": "cold_start",
+        "source": "default_prior",
+        "observation_count": 0,
+        "uses_learned_evidence": false,
+        "interpretation": "This is an auditable prior prediction, not a measured delta and not a fitted LOVO result. At least five unique observations are required before calibration."
+      },
+      "status": "PASS"
+    },
+    "p1_p2_training_matrix": {
+      "expected_cells": 72,
+      "passed_cells": 72,
+      "failed_run_ids": [],
+      "checkpoint_load_failures": [],
+      "parameter_pairs": {
+        "full": [
+          [
+            2590994,
+            2591010
+          ]
+        ],
+        "frozen": [
+          [
+            1225522,
+            2591010
+          ]
+        ],
+        "vpeft": [
+          [
+            613602,
+            2772770
+          ]
+        ]
+      },
+      "vpeft_expected": 24,
+      "vpeft_planner_applied": 24,
+      "historical_lovo_null_runs": [
+        "neu_10_vpeft_seed824",
+        "neu_10_vpeft_seed825_e100",
+        "neu_10_vpeft_seed826_e100",
+        "neu_50_vpeft_seed824",
+        "neu_50_vpeft_seed825_e100",
+        "neu_50_vpeft_seed826_e100",
+        "neu_vpeft_seed824_e100",
+        "neu_vpeft_seed825_e100",
+        "neu_vpeft_seed826_e100",
+        "neu_500_vpeft_seed824",
+        "neu_500_vpeft_seed825_e100",
+        "neu_500_vpeft_seed826_e100",
+        "deeppcb_10_vpeft_seed824",
+        "deeppcb_10_vpeft_seed825_e100",
+        "deeppcb_10_vpeft_seed826_e100",
+        "deeppcb_50_vpeft_seed824",
+        "deeppcb_50_vpeft_seed825_e100",
+        "deeppcb_50_vpeft_seed826_e100",
+        "deeppcb_vpeft_seed824_e100",
+        "deeppcb_vpeft_seed825_e100",
+        "deeppcb_vpeft_seed826_e100",
+        "deeppcb_500_vpeft_seed824",
+        "deeppcb_500_vpeft_seed825_e100",
+        "deeppcb_500_vpeft_seed826_e100"
+      ],
+      "historical_lovo_interpretation": "These 24 immutable P1/P2 runs predate LOVO evidence fields. Null is preserved as historical raw evidence and is not treated as calibrated LOVO.",
+      "status": "PASS"
+    },
+    "tables_and_figures": {
+      "checks": {
+        "p1_rows_18": true,
+        "p1_rows_match_raw_metrics": true,
+        "p1_means_and_ci_recomputed": true,
+        "p2_rows_72": true,
+        "p2_rows_match_raw_metrics": true,
+        "p2_means_and_ci_recomputed": true,
+        "retention_recomputed": true,
+        "figures_14_present": true
+      },
+      "provenance": {
+        "p1_raw_table": "smoke/c3/p1/results/p1_all_runs.csv",
+        "p1_raw_table_sha256": "c72eb6cc764fdc767ad6db0af5e58229ad0d3d10b184aa6926e11e05495e8868",
+        "p2_raw_table": "smoke/c3/p2/results/p2_all_runs.csv",
+        "p2_raw_table_sha256": "e4f1d57c9c84d9bd088a78fc46a560ca8ad9942c62e473bb31f65b28b332a60f",
+        "p2_summary_sha256": "55214f52be16f3c6c939f1f865e0994102843dfc49b51642604dab42d83c1a20",
+        "plot_generator": "smoke/c3/p2/tools/summarize_multiseed.py",
+        "plot_generator_sha256": "31876ff83a262fe9e22f3db16507f71d31409b306be930fb9e6fffd5e8658ff4",
+        "figures": [
+          {
+            "path": "smoke/c3/p2/visualizations/final/deeppcb_accuracy_vs_params_multiseed.png",
+            "size_bytes": 76298,
+            "sha256": "f3d01779fe640c093301f5c9172a073cd02cc9df2fbadc5003a84e1f6bba94cc"
+          },
+          {
+            "path": "smoke/c3/p2/visualizations/final/deeppcb_gpu_hours_multiseed.png",
+            "size_bytes": 176515,
+            "sha256": "e1abc407670d8902ccb7a1c396ec5bb7a088919eadeb7a526073fa35d8ca2417"
+          },
+          {
+            "path": "smoke/c3/p2/visualizations/final/deeppcb_map5095_multiseed.png",
+            "size_bytes": 197501,
+            "sha256": "9cd5b6c758e0ab53742596bfca6d63e96e754e2a1caf253d12ae4dd894babb7c"
+          },
+          {
+            "path": "smoke/c3/p2/visualizations/final/deeppcb_map50_multiseed.png",
+            "size_bytes": 195376,
+            "sha256": "80389cf99bb913d7db80d9ad5a268feb5644c52ba36249198ac00cb66597aa38"
+          },
+          {
+            "path": "smoke/c3/p2/visualizations/final/deeppcb_memory_multiseed.png",
+            "size_bytes": 89339,
+            "sha256": "98430c94da1d9173ad3986f2473d6722dcb14dd878e627121cd232a4320417df"
+          },
+          {
+            "path": "smoke/c3/p2/visualizations/final/deeppcb_retention_multiseed.png",
+            "size_bytes": 145312,
+            "sha256": "1eb4a64b444bbfc4b0a850006439bdb4be73a809fa48d7dc88920e547cf34727"
+          },
+          {
+            "path": "smoke/c3/p2/visualizations/final/deeppcb_training_time_multiseed.png",
+            "size_bytes": 186410,
+            "sha256": "aed42e764a6fed2777f998db8ebcdea856072c019a9cd1ec02b97eaa60b46a51"
+          },
+          {
+            "path": "smoke/c3/p2/visualizations/final/neu_accuracy_vs_params_multiseed.png",
+            "size_bytes": 78695,
+            "sha256": "d154e4079c10782950fbc32e606985aba6822fddefe75a04512b88d2cc98d50a"
+          },
+          {
+            "path": "smoke/c3/p2/visualizations/final/neu_gpu_hours_multiseed.png",
+            "size_bytes": 177380,
+            "sha256": "fcf7245bce760e7e0b77d20b328ad604a4cde1ad6be03619271c63fcdc35c9fd"
+          },
+          {
+            "path": "smoke/c3/p2/visualizations/final/neu_map5095_multiseed.png",
+            "size_bytes": 201347,
+            "sha256": "2cf64425decc518c2603fdb0d2d1726d810ceb2482d1d5a63af174a687a96786"
+          },
+          {
+            "path": "smoke/c3/p2/visualizations/final/neu_map50_multiseed.png",
+            "size_bytes": 187050,
+            "sha256": "112defffee6146e02c5f0cf3eb90837c4e935ddcab6f5130dc0a355bbab23a8a"
+          },
+          {
+            "path": "smoke/c3/p2/visualizations/final/neu_memory_multiseed.png",
+            "size_bytes": 69711,
+            "sha256": "d0f9d652dba9ded04b6482fa741c0bab3d241c28fb1f8e15514eeb9cdbdd867a"
+          },
+          {
+            "path": "smoke/c3/p2/visualizations/final/neu_retention_multiseed.png",
+            "size_bytes": 112749,
+            "sha256": "0109ed7343b0d1f7fa79dc888ef28c216e8cba7ec8c66b7e74d0d423fa0bdf46"
+          },
+          {
+            "path": "smoke/c3/p2/visualizations/final/neu_training_time_multiseed.png",
+            "size_bytes": 183505,
+            "sha256": "c920167a1001b9424a86aced2d43d928588ccbcda8392c4e7f9f0177e0a6b630"
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    "hygiene": {
+      "checks": {
+        "all_json_yaml_parse": true,
+        "all_markdown_local_links_resolve": true,
+        "no_secret_or_absolute_user_path": true
+      },
+      "json_files_parsed": 1314,
+      "yaml_files_parsed": 307,
+      "markdown_local_links_checked": 129,
+      "privacy_files_scanned": 2577,
+      "privacy_scope": "Publishable C3 logs, docs, configs, evidence, results, and source; raw model artifacts are excluded.",
+      "parse_errors": [],
+      "broken_links": [],
+      "privacy_findings": {},
+      "status": "PASS"
+    }
+  },
+  "status": "PASS"
+}

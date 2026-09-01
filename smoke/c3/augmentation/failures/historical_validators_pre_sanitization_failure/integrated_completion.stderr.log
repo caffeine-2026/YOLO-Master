@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<repo>/smoke/c3/augmentation/tools/redirect_validator_output.py", line 49, in <module>
+    raise SystemExit(main())
+  File "<repo>/smoke/c3/augmentation/tools/redirect_validator_output.py", line 42, in main
+    return int(module.main())
+  File "<repo>/smoke/c3/completion/tools/validate_completion.py", line 287, in main
+    "provenance": provenance_contract(),
+  File "<repo>/smoke/c3/completion/tools/validate_completion.py", line 112, in provenance_contract
+    check(path.stat().st_size == evidence["size_bytes"], f"training input size drift: {relative}")
+  File "<repo>/smoke/c3/completion/tools/validate_completion.py", line 38, in check
+    raise AssertionError(message)
+AssertionError: training input size drift: ultralytics/cfg/__init__.py

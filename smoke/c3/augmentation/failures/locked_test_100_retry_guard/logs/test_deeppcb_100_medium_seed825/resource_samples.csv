@@ -1,0 +1,2 @@
+timestamp_utc,cpu_percent,rss_mib,gpu_index,device_memory_used_mib,process_tree_gpu_memory_mib
+2026-08-31T15:36:37.267675+00:00,99.00,518.50,3,4,

@@ -1,0 +1,10 @@
+path: .
+train: smoke/c3/p2/config/splits/neu_50_seed824.txt
+val: datasets/neu_det_yolo/images/val
+names:
+  0: crazing
+  1: inclusion
+  2: patches
+  3: pitted_surface
+  4: rolled-in_scale
+  5: scratches

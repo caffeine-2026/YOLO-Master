@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "validated_at": "2026-09-01T03:29:05.935286+00:00",
+  "status": "PASS",
+  "checks": {
+    "parse": {
+      "json": 438,
+      "yaml": 77,
+      "status": "PASS"
+    },
+    "immutable_history": {
+      "base_commit": "bf6c7c508635dec0be849aedaa3eac5d88ed220d",
+      "changed_files": [
+        "ultralytics/cfg/__init__.py",
+        "ultralytics/cfg/default.yaml",
+        "ultralytics/data/augment.py"
+      ],
+      "forbidden_changes": [],
+      "status": "PASS"
+    },
+    "training": {
+      "runs": 34,
+      "expected": 34,
+      "manifest_artifacts_verified": 1224,
+      "checkpoints_loaded": 102,
+      "status": "PASS"
+    },
+    "selection_and_locked_test": {
+      "initial": "INITIAL_SELECTION_LOCKED",
+      "frozen": "FROZEN_FROM_VALIDATION",
+      "evaluations": 30,
+      "status": "PASS"
+    },
+    "results_and_figures": {
+      "csv_tables": 13,
+      "figures": 3,
+      "status": "PASS"
+    },
+    "hygiene_and_links": {
+      "text_files_scanned": 809,
+      "privacy_findings": [],
+      "links_checked": 41,
+      "status": "PASS"
+    }
+  }
+}

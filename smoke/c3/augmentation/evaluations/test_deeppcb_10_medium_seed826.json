@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "split": "locked_test",
+  "selection_frozen_before_test": true,
+  "test_metrics_used_for_selection": false,
+  "dataset": "deeppcb",
+  "sample_size": 10,
+  "policy": "medium",
+  "seed": 826,
+  "source_run_id": "scaling_deeppcb_10_medium_seed826_e100",
+  "source_training_metrics": "smoke/c3/augmentation/logs/scaling/scaling_deeppcb_10_medium_seed826_e100/metrics.json",
+  "source_resolved_config": "smoke/c3/augmentation/logs/scaling/scaling_deeppcb_10_medium_seed826_e100/resolved_config.yaml",
+  "source_checkpoint": {
+    "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed826_e100/weights/best.pt",
+    "size_bytes": 6040146,
+    "sha256": "173a57cf002f5379ad502f6cdfe4b98d17812b9ff8cc54db44cd452807442ae3",
+    "hash_verified_before_load": true,
+    "load_succeeded": true,
+    "source_best_epoch": 95,
+    "source_seed": 826
+  },
+  "data": {
+    "path": "smoke/c3/p2/config/splits/deeppcb_10.yaml",
+    "sha256": "f5567902b56bdef6adc08ffc404d3fbc037d11c09a0dd32a111febdbf0f34410",
+    "split": "test"
+  },
+  "overall": {
+    "precision": 0.3851003342751129,
+    "recall": 0.5089296271222353,
+    "map50": 0.40762247643463184,
+    "map50_95": 0.2830433504604723
+  },
+  "per_class": [
+    {
+      "class_id": 0,
+      "class_name": "open",
+      "precision": 0.39830065890854804,
+      "recall": 0.40212443095599393,
+      "ap50": 0.32345790954544273,
+      "ap50_95": 0.1618462357446528
+    },
+    {
+      "class_id": 1,
+      "class_name": "short",
+      "precision": 0.2030971084758753,
+      "recall": 0.23459780784001422,
+      "ap50": 0.12328235648405475,
+      "ap50_95": 0.05952293601188694
+    },
+    {
+      "class_id": 2,
+      "class_name": "mousebite",
+      "precision": 0.2759970444686284,
+      "recall": 0.4197952218430034,
+      "ap50": 0.2502756481713489,
+      "ap50_95": 0.14810291434515296
+    },
+    {
+      "class_id": 3,
+      "class_name": "spur",
+      "precision": 0.30373842494161246,
+      "recall": 0.37888198757763975,
+      "ap50": 0.2767995771142555,
+      "ap50_95": 0.15873034790662016
+    },
+    {
+      "class_id": 4,
+      "class_name": "copper",
+      "precision": 0.5833004279900436,
+      "recall": 0.8628149287436981,
+      "ap50": 0.8407825862785839,
+      "ap50_95": 0.7137962639744535
+    },
+    {
+      "class_id": 5,
+      "class_name": "pin-hole",
+      "precision": 0.5461683408659698,
+      "recall": 0.7553633857730625,
+      "ap50": 0.6311367810141053,
+      "ap50_95": 0.45626140478006755
+    }
+  ],
+  "speed_ms_per_image": {
+    "preprocess": 0.19786363933235407,
+    "inference": 2.467107298783958,
+    "loss": 0.0008914535865187645,
+    "postprocess": 0.9426145385950804
+  },
+  "save_dir": "smoke/c3/augmentation/artifacts/locked_test/test_deeppcb_10_medium_seed826"
+}

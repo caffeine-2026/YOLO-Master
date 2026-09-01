@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "<repo>/smoke/c3/p1/scripts/validate_p1.py", line 309, in <module>
+    raise SystemExit(main())
+  File "<repo>/smoke/c3/p1/scripts/validate_p1.py", line 159, in main
+    output.relative_to(P1_ROOT)
+  File "/usr/lib/python3.10/pathlib.py", line 818, in relative_to
+    raise ValueError("{!r} is not in the subpath of {!r}"
+ValueError: '<repo>/smoke/c3/augmentation/evidence/historical_validators/p1_validation.json' is not in the subpath of '<repo>/smoke/c3/p1' OR one path is relative and the other is absolute.

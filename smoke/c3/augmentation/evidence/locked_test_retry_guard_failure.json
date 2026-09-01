@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "FAILED_AS_DESIGNED",
+  "phase": "locked_test_100_first_retry",
+  "failed_runs": [
+    "test_deeppcb_100_medium_seed824",
+    "test_deeppcb_100_medium_seed825",
+    "test_deeppcb_100_medium_seed826"
+  ],
+  "error": "FileExistsError: Refusing to overwrite locked test evaluation",
+  "root_cause": "Detached children from the initial interrupted suite had produced result JSON after the absence check, so the immutable-output guard rejected the first retry.",
+  "repair": "Moved those detached-child JSON files into the preserved initial-failure bundle and retained all guard-failure logs; rerun into clean immutable destinations.",
+  "validator_or_guard_relaxed": false,
+  "failure_evidence": "smoke/c3/augmentation/failures/locked_test_100_retry_guard"
+}

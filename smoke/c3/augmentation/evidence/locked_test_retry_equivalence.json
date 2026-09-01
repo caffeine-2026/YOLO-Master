@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "physical_locked_test_accesses_per_affected_checkpoint": 2,
+  "reason": "The first evaluation children completed after their orchestration parent was interrupted, but full stdout/timing was incomplete; the delivery rerun was required for complete evidence.",
+  "selection_or_tuning_after_first_test": false,
+  "rows": [
+    {
+      "seed": 824,
+      "first": "smoke/c3/augmentation/failures/locked_test_100_interrupted/evaluations/test_deeppcb_100_medium_seed824.json",
+      "retry": "smoke/c3/augmentation/evaluations/test_deeppcb_100_medium_seed824.json",
+      "checks": {
+        "overall_metrics_identical": true,
+        "per_class_metrics_identical": true,
+        "source_checkpoint_identical": true,
+        "selection_frozen_for_both": true,
+        "test_not_used_for_selection": true
+      }
+    },
+    {
+      "seed": 825,
+      "first": "smoke/c3/augmentation/failures/locked_test_100_interrupted/evaluations/test_deeppcb_100_medium_seed825.json",
+      "retry": "smoke/c3/augmentation/evaluations/test_deeppcb_100_medium_seed825.json",
+      "checks": {
+        "overall_metrics_identical": true,
+        "per_class_metrics_identical": true,
+        "source_checkpoint_identical": true,
+        "selection_frozen_for_both": true,
+        "test_not_used_for_selection": true
+      }
+    },
+    {
+      "seed": 826,
+      "first": "smoke/c3/augmentation/failures/locked_test_100_interrupted/evaluations/test_deeppcb_100_medium_seed826.json",
+      "retry": "smoke/c3/augmentation/evaluations/test_deeppcb_100_medium_seed826.json",
+      "checks": {
+        "overall_metrics_identical": true,
+        "per_class_metrics_identical": true,
+        "source_checkpoint_identical": true,
+        "selection_frozen_for_both": true,
+        "test_not_used_for_selection": true
+      }
+    }
+  ]
+}

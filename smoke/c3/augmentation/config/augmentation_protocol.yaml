@@ -1,0 +1,102 @@
+schema_version: 1
+protocol_id: c3-augmentation-ablation-20260831
+base_commit: bf6c7c508635dec0be849aedaa3eac5d88ed220d
+branch: codex/c3-augmentation-ablation-20260831
+status: preregistered_before_training
+
+objective:
+  name: accuracy_first_vpeft_augmentation
+  wording: empirical upper bound within the tested augmentation range
+  prohibited_wording: theoretical upper bound
+  accuracy_first_baseline:
+    trainable_parameters: 613602
+    total_parameters: 2772770
+    adapter_parameters: 181760
+    head_train_policy: full
+    note: The <=10% configuration is retained only as an efficiency-first negative result.
+
+locked_training:
+  model: yolo11n.pt
+  epochs: 100
+  batch: 8
+  imgsz: 640
+  optimizer: AdamW
+  lr0: 0.001
+  lrf: 0.01
+  weight_decay: 0.0005
+  momentum: 0.9
+  cos_lr: true
+  warmup_epochs: 3.0
+  warmup_bias_lr: 0.0
+  workers: 0
+  amp: false
+  deterministic: true
+  seeds: [824, 825, 826]
+  lora_r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  lora_use_rslora: true
+  lora_planner_enabled: true
+  lora_planner_backend: vpeft
+  lora_planner_solver: ao
+  lora_adapter_budget: 2100000
+  lora_head_train_policy: full
+  lora_vpeft_strict: true
+
+leakage_guard:
+  search_split: validation
+  search_data_files_omit_test_key: true
+  locked_test_access_before_freeze: prohibited
+  test_access_after_freeze: one evaluation per frozen checkpoint
+  test_metrics_must_not_change_selection: true
+  train_membership_seed: 824
+  train_membership_fixed_across_training_seeds: true
+  source_split_hashes:
+    neu_100_train: 866509a9beb7bf50a2e81c3ce29043454b400284e065558313827d1854977259
+    deeppcb_100_train: bc1860750bd504ef7735689008305e14f24faf9dc17d2a45cecd23a0e31e3abe
+
+search:
+  sample_size: 100
+  initial_seed: 824
+  policies: [baseline, mild, medium, strong]
+  primary_metric: best_validation_map50_95
+  secondary_metric: best_validation_map50
+  initial_top_rule: highest primary metric among mild, medium, and strong; then secondary metric; then lower strength
+  confirmation_rule: compare the initial top augmentation with baseline using seeds 824, 825, and 826
+  final_freeze_rule: use the top augmentation only when its three-seed mean validation delta is positive; otherwise baseline
+  scaling_trigger:
+    minimum_mean_delta_map50_95: 0.005
+    paired_95_ci_lower_must_exceed: 0.0
+  scaling_sizes: [10, 50, 100, 500]
+
+common_disabled_augmentations:
+  hsv_h: 0.0
+  hsv_s: 0.0
+  shear: 0.0
+  perspective: 0.0
+  bgr: 0.0
+  mosaic: 0.0
+  mixup: 0.0
+  cutmix: 0.0
+  copy_paste: 0.0
+  close_mosaic: 0
+
+policies:
+  neu:
+    baseline: {strength: 0, hsv_v: 0.0, industrial_contrast: 0.0, industrial_blur_prob: 0.0, industrial_blur_sigma: 0.0, industrial_noise_prob: 0.0, industrial_noise_std: 0.0, degrees: 0.0, translate: 0.0, scale: 0.0, flipud: 0.0, fliplr: 0.0}
+    mild: {strength: 1, hsv_v: 0.10, industrial_contrast: 0.10, industrial_blur_prob: 0.05, industrial_blur_sigma: 0.5, industrial_noise_prob: 0.10, industrial_noise_std: 2.0, degrees: 3.0, translate: 0.03, scale: 0.10, flipud: 0.5, fliplr: 0.5}
+    medium: {strength: 2, hsv_v: 0.20, industrial_contrast: 0.20, industrial_blur_prob: 0.10, industrial_blur_sigma: 0.8, industrial_noise_prob: 0.15, industrial_noise_std: 4.0, degrees: 7.0, translate: 0.07, scale: 0.20, flipud: 0.5, fliplr: 0.5}
+    strong: {strength: 3, hsv_v: 0.35, industrial_contrast: 0.35, industrial_blur_prob: 0.20, industrial_blur_sigma: 1.2, industrial_noise_prob: 0.25, industrial_noise_std: 7.0, degrees: 12.0, translate: 0.12, scale: 0.30, flipud: 0.5, fliplr: 0.5}
+  deeppcb:
+    baseline: {strength: 0, hsv_v: 0.0, industrial_contrast: 0.0, industrial_blur_prob: 0.0, industrial_blur_sigma: 0.0, industrial_noise_prob: 0.0, industrial_noise_std: 0.0, degrees: 0.0, translate: 0.0, scale: 0.0, flipud: 0.0, fliplr: 0.0}
+    mild: {strength: 1, hsv_v: 0.05, industrial_contrast: 0.05, industrial_blur_prob: 0.02, industrial_blur_sigma: 0.35, industrial_noise_prob: 0.05, industrial_noise_std: 1.0, degrees: 1.0, translate: 0.01, scale: 0.03, flipud: 0.0, fliplr: 0.5}
+    medium: {strength: 2, hsv_v: 0.08, industrial_contrast: 0.10, industrial_blur_prob: 0.05, industrial_blur_sigma: 0.5, industrial_noise_prob: 0.10, industrial_noise_std: 2.0, degrees: 2.0, translate: 0.02, scale: 0.06, flipud: 0.0, fliplr: 0.5}
+    strong: {strength: 3, hsv_v: 0.15, industrial_contrast: 0.18, industrial_blur_prob: 0.10, industrial_blur_sigma: 0.8, industrial_noise_prob: 0.15, industrial_noise_std: 4.0, degrees: 5.0, translate: 0.04, scale: 0.12, flipud: 0.5, fliplr: 0.5}
+
+reporting:
+  overall_metrics: [map50_95, map50, precision, recall]
+  per_class_metrics: [ap50_95, ap50, precision, recall]
+  aggregate_statistics: [mean, sample_standard_deviation, paired_t_95_ci]
+  resources: [peak_gpu_memory_mib, training_seconds, gpu_hours]
+  required_figures: [augmentation_strength_accuracy, per_class_ap_comparison]
+  full_sft_reference: smoke/c3/completion/results/final_summary.csv

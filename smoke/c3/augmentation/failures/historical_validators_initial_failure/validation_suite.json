@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "status": "FAIL",
+  "validators": [
+    {
+      "name": "p0",
+      "command": "python smoke/c3/p0/tools/validate_delivery.py --output smoke/c3/augmentation/evidence/historical_validators/p0_validation.json",
+      "started_utc": "2026-09-01T02:48:18.730714+00:00",
+      "finished_utc": "2026-09-01T02:48:19.204308+00:00",
+      "returncode": 1,
+      "status": "FAIL",
+      "stdout": "smoke/c3/augmentation/evidence/historical_validators/p0.stdout.log",
+      "stderr": "smoke/c3/augmentation/evidence/historical_validators/p0.stderr.log"
+    },
+    {
+      "name": "p1",
+      "command": "python smoke/c3/p1/scripts/validate_p1.py --epochs 100 --output smoke/c3/augmentation/evidence/historical_validators/p1_validation.json",
+      "started_utc": "2026-09-01T02:48:19.204347+00:00",
+      "finished_utc": "2026-09-01T02:48:19.257358+00:00",
+      "returncode": 1,
+      "status": "FAIL",
+      "stdout": "smoke/c3/augmentation/evidence/historical_validators/p1.stdout.log",
+      "stderr": "smoke/c3/augmentation/evidence/historical_validators/p1.stderr.log"
+    },
+    {
+      "name": "p2_seed824",
+      "command": "python <repo>/smoke/c3/augmentation/tools/redirect_validator_output.py --module smoke.c3.p2.tools.validate_p2 --source smoke/c3/p2/evidence/p2_seed824_validation.json --destination smoke/c3/augmentation/evidence/historical_validators/p2_seed824_validation.json",
+      "started_utc": "2026-09-01T02:48:19.257428+00:00",
+      "finished_utc": "2026-09-01T02:48:19.291417+00:00",
+      "returncode": 1,
+      "status": "FAIL",
+      "stdout": "smoke/c3/augmentation/evidence/historical_validators/p2_seed824.stdout.log",
+      "stderr": "smoke/c3/augmentation/evidence/historical_validators/p2_seed824.stderr.log"
+    },
+    {
+      "name": "p2_final",
+      "command": "python <repo>/smoke/c3/augmentation/tools/redirect_validator_output.py --module smoke.c3.p2.tools.validate_p2_final --source smoke/c3/p2/evidence/p2_final_validation.json --destination smoke/c3/augmentation/evidence/historical_validators/p2_final_validation.json",
+      "started_utc": "2026-09-01T02:48:19.291483+00:00",
+      "finished_utc": "2026-09-01T02:48:19.326155+00:00",
+      "returncode": 1,
+      "status": "FAIL",
+      "stdout": "smoke/c3/augmentation/evidence/historical_validators/p2_final.stdout.log",
+      "stderr": "smoke/c3/augmentation/evidence/historical_validators/p2_final.stderr.log"
+    },
+    {
+      "name": "integrated_research",
+      "command": "python <repo>/smoke/c3/augmentation/tools/redirect_validator_output.py --module smoke.c3.final.tools.validate_research_delivery --source smoke/c3/final/evidence/raw_command_manifest.json --destination smoke/c3/augmentation/evidence/historical_validators/raw_command_manifest.json -- --output smoke/c3/final/evidence/augmentation_revalidation_20260831.json",
+      "started_utc": "2026-09-01T02:48:19.326249+00:00",
+      "finished_utc": "2026-09-01T02:48:19.358720+00:00",
+      "returncode": 1,
+      "status": "FAIL",
+      "stdout": "smoke/c3/augmentation/evidence/historical_validators/integrated_research.stdout.log",
+      "stderr": "smoke/c3/augmentation/evidence/historical_validators/integrated_research.stderr.log"
+    },
+    {
+      "name": "integrated_completion",
+      "command": "python <repo>/smoke/c3/augmentation/tools/redirect_validator_output.py --module smoke.c3.completion.tools.validate_completion --source smoke/c3/completion/evidence/integration_validation.json --destination smoke/c3/augmentation/evidence/historical_validators/completion_validation.json",
+      "started_utc": "2026-09-01T02:48:19.358753+00:00",
+      "finished_utc": "2026-09-01T02:48:19.386934+00:00",
+      "returncode": 1,
+      "status": "FAIL",
+      "stdout": "smoke/c3/augmentation/evidence/historical_validators/integrated_completion.stdout.log",
+      "stderr": "smoke/c3/augmentation/evidence/historical_validators/integrated_completion.stderr.log"
+    }
+  ],
+  "protected_existing_outputs": {
+    "smoke/c3/p0/evidence/completion_revalidation_20260831.json": {
+      "sha256": "0cb94b1294c22a539fb3570a4ba78ba7701467c8ba2ad0b28997c93d75c6ffca",
+      "unchanged": true
+    },
+    "smoke/c3/p1/evidence/completion_revalidation_20260831.json": {
+      "sha256": "ef15b7125395e9299ab831113d5e6e019d15dc4cd43299311e632ab4eed0fb2d",
+      "unchanged": true
+    },
+    "smoke/c3/p2/evidence/p2_seed824_validation.json": {
+      "sha256": "08b6d6fc90665436faf28fb11a1809185d2faac5642ee399b678d4476cba1bc5",
+      "unchanged": true
+    },
+    "smoke/c3/p2/evidence/p2_final_validation.json": {
+      "sha256": "02c6e3267e7e64667619fd21e127b6e78d4a2177c46bbc88589e6b6a2b6f7511",
+      "unchanged": true
+    },
+    "smoke/c3/final/evidence/raw_command_manifest.json": {
+      "sha256": "9627153355c9b79173a38597fbe3023fdb3d28a63ad1ee07bb9474698c565a15",
+      "unchanged": true
+    },
+    "smoke/c3/final/evidence/completion_revalidation_20260831.json": {
+      "sha256": "0757125e63ac76dd30b26ce9803f8f63ab7cb2b0e2b6c7db30a445415a66824a",
+      "unchanged": true
+    },
+    "smoke/c3/completion/evidence/integration_validation.json": {
+      "sha256": "f1ec8eb8dd489e75bd8553d4af24668660312e0d83001e141b5d81a24e86539f",
+      "unchanged": true
+    }
+  }
+}

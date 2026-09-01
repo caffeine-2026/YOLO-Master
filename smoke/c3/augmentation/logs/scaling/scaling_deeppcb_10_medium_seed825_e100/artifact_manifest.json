@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "run_id": "scaling_deeppcb_10_medium_seed825_e100",
+  "artifacts": [
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/BoxF1_curve.png",
+      "size_bytes": 256880,
+      "sha256": "c348d10441ac6deead848bf414e1fa23e440dcc29967ba4fbf81f9ae5ae67403"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/BoxPR_curve.png",
+      "size_bytes": 236457,
+      "sha256": "c073ad50daa394c1574c8d11084ef0dd3ec28bf5bd80d2a614f56cd7486b5b09"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/BoxP_curve.png",
+      "size_bytes": 324075,
+      "sha256": "99e67273384cda84aa96e469af3d3067e6058c8218b359bdd94c606e932f893a"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/BoxR_curve.png",
+      "size_bytes": 247097,
+      "sha256": "041408436b392dc2e963609a8a7d9bded995a7332ff620aac9df13ffa33f80e3"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/args.yaml",
+      "size_bytes": 10411,
+      "sha256": "f97a7a34716e0a3efef7b736b64a385e4ac6398bcd4d66f126d92c23ef07ac00"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/confusion_matrix.png",
+      "size_bytes": 185135,
+      "sha256": "a6cb9c42fc1ad9356fb643a12d042f0e3a46ae6fd158f04054e1969e7cd2336b"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/confusion_matrix_normalized.png",
+      "size_bytes": 225458,
+      "sha256": "188116393316544bf35768e8d8d3190d20a6780b203f2c3442d91b5981eddc62"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/labels.jpg",
+      "size_bytes": 118057,
+      "sha256": "1baf85b2a95074366f5e4c3681468c0b853db1b51ae11a46f6b341d3a38b7fe8"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/lora_adapter/README.md",
+      "size_bytes": 5074,
+      "sha256": "30f14bc991c08c786976f4a02217ff46bd666e7658dd191dc266d67ca23d2f6b"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/lora_adapter/adapter_config.json",
+      "size_bytes": 4138,
+      "sha256": "89a24ba768ac2aabe572f1f7d3bfec3e06edfc07c9b9c3380da575300e4c9280"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/lora_adapter/adapter_model.safetensors",
+      "size_bytes": 738896,
+      "sha256": "094edc1f6d55ce0db4c48c762813f2947db508ae53871882042810a5eeaafaa1"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/lora_adapter/runtime_metadata.json",
+      "size_bytes": 18551,
+      "sha256": "5a70d2093fb1b3aabad0802c41c156842fb76e88978c5e50afaf66e0ac850970"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/results.csv",
+      "size_bytes": 16237,
+      "sha256": "214ce317e0070dba6eff762e31cfdf5ab6b16364424c37b7de1e7220f03a3bad"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/results.png",
+      "size_bytes": 264467,
+      "sha256": "0f2c23e21e2976b2ed3c828ea9e2897608a9543ecf534260903b2159f812bca5"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/train_batch0.jpg",
+      "size_bytes": 433177,
+      "sha256": "b9b699302ea8ba00eea950ab5719a4837f1618a0f0b41350ba20be57c321decc"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/train_batch1.jpg",
+      "size_bytes": 84247,
+      "sha256": "641d50b761223fa3c3edc89a2e838cae264a3e4804cb4f700a264629f19cbcf0"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/train_batch2.jpg",
+      "size_bytes": 401852,
+      "sha256": "2f73acf8f0be68a81b5f57ff24f661b8ba75c3a263910eabbfc31560983b8f89"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/val_batch0_labels.jpg",
+      "size_bytes": 584630,
+      "sha256": "892383c36fbddb6ff7e19716341b85a6cdacfea3bc2d738eb87eab38549cbafa"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/val_batch0_pred.jpg",
+      "size_bytes": 599090,
+      "sha256": "9f1ccad390a2b9a7e252659fca422c62a9976fc5d08ecd3b63fc8a1e8a0bcb86"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/val_batch1_labels.jpg",
+      "size_bytes": 588175,
+      "sha256": "6ad0389cb18947dfe648624f6d882d93b85f84f86e6949877eaf99f2249fe1d3"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/val_batch1_pred.jpg",
+      "size_bytes": 598796,
+      "sha256": "eb4043c9977bef3b4938590f98797ed553352b517337c6af86bf6a4c855f4a24"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/val_batch2_labels.jpg",
+      "size_bytes": 645713,
+      "sha256": "004f5892bc6685d01566bfa203139e492ac4af5b17b7207b7123524d36073cff"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/val_batch2_pred.jpg",
+      "size_bytes": 624694,
+      "sha256": "66c87f5fca250c3d102a78da5d40ff1e47e4f646b1b71a24ee63b639edabd8cb"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/weights/best.pt",
+      "size_bytes": 6040146,
+      "sha256": "6fba31bb46ae010e22a18f3e7130f5fba96c440c69b527d1c098d7d377d015a0"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/weights/last.pt",
+      "size_bytes": 6040146,
+      "sha256": "0d62f4a65d0607364d227c900f82d4c4944b5385a144616a64c800f5d5c533fb"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_10_medium_seed825_e100/weights/last_healthy.pt",
+      "size_bytes": 15873627,
+      "sha256": "65a7296b20d626f9e6d67b1366c9f294c8f3484adf8ed24da0189ddb8555e2b3"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/scaling/scaling_deeppcb_10_medium_seed825_e100/command.txt",
+      "size_bytes": 764,
+      "sha256": "7e94a3c9a512cb50a24b5caaac559d18eec1202e1944bdb76a08b4fbfe73e98a"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/scaling/scaling_deeppcb_10_medium_seed825_e100/environment.json",
+      "size_bytes": 548,
+      "sha256": "b46b4e4da583aa8993846237b9574faf9920100094aa13ac8ba0b3d9ad3df2d7"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/scaling/scaling_deeppcb_10_medium_seed825_e100/learning_curve.csv",
+      "size_bytes": 16237,
+      "sha256": "214ce317e0070dba6eff762e31cfdf5ab6b16364424c37b7de1e7220f03a3bad"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/scaling/scaling_deeppcb_10_medium_seed825_e100/metrics.json",
+      "size_bytes": 3756,
+      "sha256": "da3f122e773ed693e8e0c151e51a76f61627f799da3c79f7d9270fad6c498ff0"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/scaling/scaling_deeppcb_10_medium_seed825_e100/resolved_config.yaml",
+      "size_bytes": 10379,
+      "sha256": "e7a17c7d00ef4facd4ac545aedc7258e8ab238ec16c55aa6a8d32d3d9ce92298"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/scaling/scaling_deeppcb_10_medium_seed825_e100/resource_usage.json",
+      "size_bytes": 224,
+      "sha256": "f2bc69b4e14330868096ac432c7db453e2538e8c4dd03b78b8b8dbe749b31df8"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/scaling/scaling_deeppcb_10_medium_seed825_e100/stderr.log",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/scaling/scaling_deeppcb_10_medium_seed825_e100/stdout.log",
+      "size_bytes": 186847,
+      "sha256": "56143b7b02f9306a1e92ca60d31b42805c3ec104891769bd84f7c291456ac312"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/scaling/scaling_deeppcb_10_medium_seed825_e100/timing.json",
+      "size_bytes": 218,
+      "sha256": "bc679ac4ae541bfaec3730301a51055992bff0c440b88e75bdd838dd6c7133e9"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/scaling/scaling_deeppcb_10_medium_seed825_e100/vpeft_runtime_metadata.json",
+      "size_bytes": 14875,
+      "sha256": "c60c809918725262b720f1b3ab1f94eafb09bc3cffe8c4105a0ca7530cd37aa8"
+    }
+  ],
+  "artifact_count": 36
+}

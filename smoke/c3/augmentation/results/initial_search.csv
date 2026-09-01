@@ -1,0 +1,9 @@
+dataset,policy,strength,run_id,best_validation_map50_95,best_validation_map50,best_epoch,trainable_parameters,peak_gpu_memory_mib,training_seconds
+neu,baseline,0,search_neu_100_baseline_seed824_e100,0.25082,0.54972,78,613602,2621.44,342.738
+neu,mild,1,search_neu_100_mild_seed824_e100,0.28728,0.61675,100,613602,2621.44,528.778
+neu,medium,2,search_neu_100_medium_seed824_e100,0.26237,0.59236,95,613602,2621.44,537.513
+neu,strong,3,search_neu_100_strong_seed824_e100,0.26723,0.61209,99,613602,2621.44,553.36
+deeppcb,baseline,0,search_deeppcb_100_baseline_seed824_e100,0.53848,0.7424,96,613602,2621.44,358.476
+deeppcb,mild,1,search_deeppcb_100_mild_seed824_e100,0.63361,0.85585,79,613602,2621.44,538.907
+deeppcb,medium,2,search_deeppcb_100_medium_seed824_e100,0.63636,0.86386,82,613602,2621.44,547.782
+deeppcb,strong,3,search_deeppcb_100_strong_seed824_e100,0.622,0.88443,99,613602,2621.44,560.983

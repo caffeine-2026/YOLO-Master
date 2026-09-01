@@ -1,0 +1,4 @@
+# validation-only training; data config has no test key
+yolo train cfg=smoke/c3/p2/config/runs/deeppcb/vpeft.yaml data=smoke/c3/augmentation/config/data/deeppcb_50_validation_only.yaml device=5 seed=826 name=scaling_deeppcb_50_medium_seed826_e100 save_dir=smoke/c3/augmentation/artifacts/scaling/scaling_deeppcb_50_medium_seed826_e100 lora_head_train_policy=full hsv_h=0.0 hsv_s=0.0 hsv_v=0.08 industrial_contrast=0.1 industrial_blur_prob=0.05 industrial_blur_sigma=0.5 industrial_noise_prob=0.1 industrial_noise_std=2.0 degrees=2.0 translate=0.02 scale=0.06 shear=0.0 perspective=0.0 flipud=0.0 fliplr=0.5 bgr=0.0 mosaic=0.0 mixup=0.0 cutmix=0.0 copy_paste=0.0 close_mosaic=0 exist_ok=False
+
+# locked test evaluation prohibited until frozen_selection.json exists

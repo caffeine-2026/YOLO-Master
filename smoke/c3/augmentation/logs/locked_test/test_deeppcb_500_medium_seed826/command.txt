@@ -1,0 +1,1 @@
+python smoke/c3/augmentation/tools/evaluate_locked_test.py --dataset deeppcb --policy medium --sample-size 500 --seed 826 --device 5

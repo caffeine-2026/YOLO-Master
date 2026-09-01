@@ -1,0 +1,13 @@
+dataset,sample_size,method,map50_95_mean,map50_95_ci95_lower,map50_95_ci95_upper,accuracy_retention_vs_full,source
+deeppcb,10,Full-SFT reference,0.2903376546990901,0.1962781672456087,0.38439714215257154,1.0,smoke/c3/completion/results/final_summary.csv
+deeppcb,50,Full-SFT reference,0.5668969197156016,0.5388734990471419,0.5949203403840614,1.0,smoke/c3/completion/results/final_summary.csv
+deeppcb,100,Full-SFT reference,0.6485994299897748,0.6164363511691507,0.6807625088103989,1.0,smoke/c3/completion/results/final_summary.csv
+deeppcb,500,Full-SFT reference,0.7006461539046138,0.6796095658135942,0.7216827419956334,1.0,smoke/c3/completion/results/final_summary.csv
+deeppcb,10,V-PEFT baseline,0.1999971995421501,0.14950812791301094,0.25048627117128924,0.6888434769145941,smoke/c3/augmentation/results/locked_test_summary.csv
+deeppcb,10,V-PEFT medium,0.29081599110563366,0.2662276959477996,0.3154042862634677,1.00164751763611,smoke/c3/augmentation/results/locked_test_summary.csv
+deeppcb,50,V-PEFT baseline,0.45054978325432904,0.4127110360530631,0.488388530455595,0.7947649168394827,smoke/c3/augmentation/results/locked_test_summary.csv
+deeppcb,50,V-PEFT medium,0.5439939253878667,0.5036741085928624,0.584313742182871,0.9595993671314623,smoke/c3/augmentation/results/locked_test_summary.csv
+deeppcb,100,V-PEFT baseline,0.5364404978385946,0.5215786180705875,0.5513023776066017,0.8270751916125668,smoke/c3/augmentation/results/locked_test_summary.csv
+deeppcb,100,V-PEFT medium,0.6262095039679516,0.6047301114340558,0.6476888965018475,0.9654795780160087,smoke/c3/augmentation/results/locked_test_summary.csv
+deeppcb,500,V-PEFT baseline,0.6912402930340598,0.6739146933414706,0.7085658927266489,0.986575447794673,smoke/c3/augmentation/results/locked_test_summary.csv
+deeppcb,500,V-PEFT medium,0.7317061534070621,0.7275362913926532,0.7358760154214711,1.0443305073885796,smoke/c3/augmentation/results/locked_test_summary.csv

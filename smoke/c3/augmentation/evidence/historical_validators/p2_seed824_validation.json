@@ -1,0 +1,363 @@
+{
+  "schema_version": 1,
+  "stage": "seed824_scaling_gate",
+  "checks": {
+    "protocol_records_seed824_stage": true,
+    "p1_history_unchanged": true,
+    "split_manifests_pass": true,
+    "p1_reuse_6_of_6": true,
+    "new_runs_18_of_18": true,
+    "vpeft_strict_6_of_6": true,
+    "scaling_cells_24": true,
+    "tradeoff_cells_24": true,
+    "plots_14_of_14": true,
+    "analysis_present": true,
+    "report_present": true,
+    "informative_curves": true,
+    "seed825_826_not_run_at_archived_gate": true,
+    "multiseed_ready": true,
+    "p2_pass_withheld": true
+  },
+  "split_checks": {
+    "neu": {
+      "manifest_status_pass": true,
+      "strict_nesting": true,
+      "all_sizes_cover_all_classes": true,
+      "p1_100_split_reuse_eligible": true,
+      "fixed_val_test": true
+    },
+    "deeppcb": {
+      "manifest_status_pass": true,
+      "strict_nesting": true,
+      "all_sizes_cover_all_classes": true,
+      "p1_100_split_reuse_eligible": true,
+      "fixed_val_test": true
+    }
+  },
+  "new_runs": [
+    {
+      "run_id": "neu_10_full_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "neu_10_frozen_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "neu_10_vpeft_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "neu_50_full_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "neu_50_frozen_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "neu_50_vpeft_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "neu_500_full_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "neu_500_frozen_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "neu_500_vpeft_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "deeppcb_10_full_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "deeppcb_10_frozen_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "deeppcb_10_vpeft_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "deeppcb_50_full_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "deeppcb_50_frozen_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "deeppcb_50_vpeft_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "deeppcb_500_full_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "deeppcb_500_frozen_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "deeppcb_500_vpeft_seed824",
+      "checks": {
+        "status_pass": true,
+        "runner_checks_pass": true,
+        "epochs_complete": true,
+        "curve_finite": true,
+        "artifact_manifest_verified": true,
+        "sample_size_matches": true,
+        "seed824": true
+      },
+      "status": "PASS"
+    }
+  ],
+  "vpeft_checks": [
+    {
+      "run_id": "neu_10_vpeft_seed824",
+      "checks": {
+        "planner_status": true,
+        "planner_backend": true,
+        "actual_backend": true,
+        "planned_targets": true,
+        "applied_targets": true,
+        "adapter_params": true,
+        "adapter_export": true,
+        "no_silent_fallback": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "neu_50_vpeft_seed824",
+      "checks": {
+        "planner_status": true,
+        "planner_backend": true,
+        "actual_backend": true,
+        "planned_targets": true,
+        "applied_targets": true,
+        "adapter_params": true,
+        "adapter_export": true,
+        "no_silent_fallback": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "neu_500_vpeft_seed824",
+      "checks": {
+        "planner_status": true,
+        "planner_backend": true,
+        "actual_backend": true,
+        "planned_targets": true,
+        "applied_targets": true,
+        "adapter_params": true,
+        "adapter_export": true,
+        "no_silent_fallback": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "deeppcb_10_vpeft_seed824",
+      "checks": {
+        "planner_status": true,
+        "planner_backend": true,
+        "actual_backend": true,
+        "planned_targets": true,
+        "applied_targets": true,
+        "adapter_params": true,
+        "adapter_export": true,
+        "no_silent_fallback": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "deeppcb_50_vpeft_seed824",
+      "checks": {
+        "planner_status": true,
+        "planner_backend": true,
+        "actual_backend": true,
+        "planned_targets": true,
+        "applied_targets": true,
+        "adapter_params": true,
+        "adapter_export": true,
+        "no_silent_fallback": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "deeppcb_500_vpeft_seed824",
+      "checks": {
+        "planner_status": true,
+        "planner_backend": true,
+        "actual_backend": true,
+        "planned_targets": true,
+        "applied_targets": true,
+        "adapter_params": true,
+        "adapter_export": true,
+        "no_silent_fallback": true
+      },
+      "status": "PASS"
+    }
+  ],
+  "verified_artifact_records": 870,
+  "seed824_stage_status": "PASS",
+  "MULTISEED_READY": "YES",
+  "Overall C3 P2": "IN_PROGRESS"
+}

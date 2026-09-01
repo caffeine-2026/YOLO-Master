@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "run_id": "confirm_neu_100_mild_seed825_e100",
+  "artifacts": [
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/BoxF1_curve.png",
+      "size_bytes": 289781,
+      "sha256": "3dfdc1562c23d6640520bf7a6b40ccdff5b54050f45b09bb8a56865b36dfcf0a"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/BoxPR_curve.png",
+      "size_bytes": 200221,
+      "sha256": "f389580bf0af37d7e01f343cd0861b4a1e014623fffadb833c38a3d8fc66e670"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/BoxP_curve.png",
+      "size_bytes": 293893,
+      "sha256": "fcd4f0f42134396d55cbc5397de7507624bfd239d236a76b5945e087f3755e24"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/BoxR_curve.png",
+      "size_bytes": 242734,
+      "sha256": "213372da304256a3f4e2471fe1c5fcaa11798f3d18bcaa90967a0cf8c2f94c34"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/args.yaml",
+      "size_bytes": 10396,
+      "sha256": "5dc9dea0c0cb085969fa1f7126497985dd62d6abe25f34c040c9e165bc22b824"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/confusion_matrix.png",
+      "size_bytes": 181369,
+      "sha256": "2e368a59c7ef58e7edc5014548c9f17dc5cb430237b24a18d6253d32eae14a3c"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/confusion_matrix_normalized.png",
+      "size_bytes": 213903,
+      "sha256": "5229a11b7644be5ad0190148af0c7b91b3b26dee7f448489f51c374fd0c5bda9"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/labels.jpg",
+      "size_bytes": 199972,
+      "sha256": "0f33e78ac2a8bc1604d076fc0fda33cf7668cf8b129c55803e58fb3d7a386b33"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/lora_adapter/README.md",
+      "size_bytes": 5074,
+      "sha256": "30f14bc991c08c786976f4a02217ff46bd666e7658dd191dc266d67ca23d2f6b"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/lora_adapter/adapter_config.json",
+      "size_bytes": 4138,
+      "sha256": "e5e89b91aeec97f7933d8933ee9d40c8753a69e4eed992a596329469781fc877"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/lora_adapter/adapter_model.safetensors",
+      "size_bytes": 738896,
+      "sha256": "cb7fed041129efd00df3c32ac14e457b0474a28471a444dead06479096ac4def"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/lora_adapter/runtime_metadata.json",
+      "size_bytes": 18549,
+      "sha256": "15b38b900620243633bbd61e9989e79f589f9d070231ab751fb4021f224d5ebd"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/results.csv",
+      "size_bytes": 16314,
+      "sha256": "93bddfaf2aa71b9b2e7b8b4df321553c7adfcc98e4eaa3bcc973460686f10de8"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/results.png",
+      "size_bytes": 299945,
+      "sha256": "2c581968d743427a757f7fd8f184b152eef84728e6fa924bf8c59dd917cf3ace"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/train_batch0.jpg",
+      "size_bytes": 322040,
+      "sha256": "343de7bbe345f052698b2374d06de097231c26a89883d20ae40f6256c11c3004"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/train_batch1.jpg",
+      "size_bytes": 364682,
+      "sha256": "8756b441068da95eff3f9d5e314d4004ef69eeb1b8da90b59ca80b8179d506a8"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/train_batch2.jpg",
+      "size_bytes": 351215,
+      "sha256": "96a3e087b3286b6ab66b17493e0cba663bb583f21b2863ef49cb3102df268fae"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/val_batch0_labels.jpg",
+      "size_bytes": 649644,
+      "sha256": "8b1ac1724a098fa02bf50a32d99ada3c796943ab7404237c851e5713387233aa"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/val_batch0_pred.jpg",
+      "size_bytes": 642454,
+      "sha256": "75b153540113368bf25c6130c49c13dde3a73e4f18a531b7e4dd64c49e2b0356"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/val_batch1_labels.jpg",
+      "size_bytes": 604437,
+      "sha256": "dd007409e705951164f9e291f23604a2bdcc1237c25116b9925838c199437b11"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/val_batch1_pred.jpg",
+      "size_bytes": 639396,
+      "sha256": "6511341f1d96b8df216e91312569922bf05a14fe964ced6a71f9a9ff15de51a2"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/val_batch2_labels.jpg",
+      "size_bytes": 353231,
+      "sha256": "8eac322945819a0698a297826a6bc23d5e491a7cb0693f82357049ded7890219"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/val_batch2_pred.jpg",
+      "size_bytes": 370503,
+      "sha256": "73ffeef683563a6b13338405d2436006f85f590d648c38a706c56fab2051257d"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/weights/best.pt",
+      "size_bytes": 6040146,
+      "sha256": "722f2f620d43cbb12d8641ec85d7713a034b27e299a6489f4c7e3705cc95ed50"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/weights/last.pt",
+      "size_bytes": 6040146,
+      "sha256": "2811a9513f8d94b341db64a5696ad415e430f16186eac5b93e6dc6c7b8be9ac0"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed825_e100/weights/last_healthy.pt",
+      "size_bytes": 15873691,
+      "sha256": "750a2ae357d42ab0730db4a64cede8b62303b7b6b795df53598fe8b9b758a1fa"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/confirm/confirm_neu_100_mild_seed825_e100/command.txt",
+      "size_bytes": 745,
+      "sha256": "373f960c3ccda05dbc14a03c0fb09234d9a1dadc955929d9a0374846c131420b"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/confirm/confirm_neu_100_mild_seed825_e100/environment.json",
+      "size_bytes": 548,
+      "sha256": "f211c3278b7c2ab05c7433386f2b2df9f60dc5a6c04b230c6a6e4af39305d52d"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/confirm/confirm_neu_100_mild_seed825_e100/learning_curve.csv",
+      "size_bytes": 16314,
+      "sha256": "93bddfaf2aa71b9b2e7b8b4df321553c7adfcc98e4eaa3bcc973460686f10de8"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/confirm/confirm_neu_100_mild_seed825_e100/metrics.json",
+      "size_bytes": 3717,
+      "sha256": "aefe8b8c2428fb5edd7baff4cbfe806b50d51ecc876258be401c8ecb4acb4348"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/confirm/confirm_neu_100_mild_seed825_e100/resolved_config.yaml",
+      "size_bytes": 10364,
+      "sha256": "7832f851bae0c8bae9c289c1293f4407509efcb93752bab159bf2efb72016d3d"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/confirm/confirm_neu_100_mild_seed825_e100/resource_usage.json",
+      "size_bytes": 224,
+      "sha256": "9854ac55145f1792099948e2375044e5a82f9de802536c79181ba62c4e8b238d"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/confirm/confirm_neu_100_mild_seed825_e100/stderr.log",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/confirm/confirm_neu_100_mild_seed825_e100/stdout.log",
+      "size_bytes": 329222,
+      "sha256": "47c4d89343248c5474cf2b51f39e6d95ab55556a82da7d1c6ad36b0612795c16"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/confirm/confirm_neu_100_mild_seed825_e100/timing.json",
+      "size_bytes": 217,
+      "sha256": "89e65fccb542e0b6ca25541990af2b11bbad3989bcefb0a78e32af4daeea3d44"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/confirm/confirm_neu_100_mild_seed825_e100/vpeft_runtime_metadata.json",
+      "size_bytes": 14873,
+      "sha256": "fe117c815f26fed55a015895e597509bbe9e2372f74d4dfcfecac0b1de59b82f"
+    }
+  ],
+  "artifact_count": 36
+}

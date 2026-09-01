@@ -1,0 +1,7 @@
+command: python -m pytest -q tests/test_c3_augmentation_policy.py tests/test_default_config_integrity.py
+result: 1 failed, 10 passed
+failed_test: test_horizontal_flip_updates_normalized_box_exactly
+cause: The test fixture constructed Instances with segments=None, while the detection dataset contract supplies an empty segment array. Instances.fliplr correctly updates segments and therefore cannot index None.
+repair: Use an empty float32 segment array shaped (1, 0, 2), matching the real detection sample contract.
+metrics_or_experiment_data_changed: false
+rerun_required: true

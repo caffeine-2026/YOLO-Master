@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "split": "locked_test",
+  "selection_frozen_before_test": true,
+  "test_metrics_used_for_selection": false,
+  "dataset": "neu",
+  "sample_size": 100,
+  "policy": "mild",
+  "seed": 826,
+  "source_run_id": "confirm_neu_100_mild_seed826_e100",
+  "source_training_metrics": "smoke/c3/augmentation/logs/confirm/confirm_neu_100_mild_seed826_e100/metrics.json",
+  "source_resolved_config": "smoke/c3/augmentation/logs/confirm/confirm_neu_100_mild_seed826_e100/resolved_config.yaml",
+  "source_checkpoint": {
+    "path": "smoke/c3/augmentation/artifacts/confirm/confirm_neu_100_mild_seed826_e100/weights/best.pt",
+    "size_bytes": 6040146,
+    "sha256": "59ee1efe6bda319200ab9ace782980025b374b12e4895ad5853473d8593a37a6",
+    "hash_verified_before_load": true,
+    "load_succeeded": true,
+    "source_best_epoch": 81,
+    "source_seed": 826
+  },
+  "data": {
+    "path": "smoke/c3/p2/config/splits/neu_100.yaml",
+    "sha256": "3399080e4c733881ef579d467b6cce7eaa2947fdbf96a0d50a4d5caf4a891ffd",
+    "split": "test"
+  },
+  "overall": {
+    "precision": 0.5638562844825313,
+    "recall": 0.6570994472987286,
+    "map50": 0.6178669422593167,
+    "map50_95": 0.32041119671541274
+  },
+  "per_class": [
+    {
+      "class_id": 0,
+      "class_name": "crazing",
+      "precision": 0.24543644610178109,
+      "recall": 0.2835820895522388,
+      "ap50": 0.1811100386374468,
+      "ap50_95": 0.07278284990394146
+    },
+    {
+      "class_id": 1,
+      "class_name": "inclusion",
+      "precision": 0.4991259921826259,
+      "recall": 0.6761904761904762,
+      "ap50": 0.5976576870861792,
+      "ap50_95": 0.2979503367573935
+    },
+    {
+      "class_id": 2,
+      "class_name": "patches",
+      "precision": 0.7196882708718864,
+      "recall": 0.8352240867286953,
+      "ap50": 0.8513197869185097,
+      "ap50_95": 0.515145060297416
+    },
+    {
+      "class_id": 3,
+      "class_name": "pitted_surface",
+      "precision": 0.7903238777252208,
+      "recall": 0.7906976744186046,
+      "ap50": 0.8203250374826292,
+      "ap50_95": 0.5037505140566099
+    },
+    {
+      "class_id": 4,
+      "class_name": "rolled-in_scale",
+      "precision": 0.44482534954161596,
+      "recall": 0.5606060606060606,
+      "ap50": 0.4587917933802457,
+      "ap50_95": 0.17743844250514595
+    },
+    {
+      "class_id": 5,
+      "class_name": "scratches",
+      "precision": 0.6837377704720581,
+      "recall": 0.7962962962962963,
+      "ap50": 0.7979973100508899,
+      "ap50_95": 0.35539997677196966
+    }
+  ],
+  "speed_ms_per_image": {
+    "preprocess": 0.20783428982314137,
+    "inference": 3.269935699386729,
+    "loss": 0.000882231526904636,
+    "postprocess": 0.6841277470812201
+  },
+  "save_dir": "smoke/c3/augmentation/artifacts/locked_test/test_neu_100_mild_seed826"
+}

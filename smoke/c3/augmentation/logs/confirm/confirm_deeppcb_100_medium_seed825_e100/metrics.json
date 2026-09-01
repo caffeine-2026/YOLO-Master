@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "stage": "c3_augmentation_confirm",
+  "run_id": "confirm_deeppcb_100_medium_seed825_e100",
+  "dataset": "deeppcb",
+  "sample_size": 100,
+  "seed": 825,
+  "policy": {
+    "id": "medium",
+    "strength": 2,
+    "hsv_h": 0.0,
+    "hsv_s": 0.0,
+    "shear": 0.0,
+    "perspective": 0.0,
+    "bgr": 0.0,
+    "mosaic": 0.0,
+    "mixup": 0.0,
+    "cutmix": 0.0,
+    "copy_paste": 0.0,
+    "close_mosaic": 0,
+    "hsv_v": 0.08,
+    "industrial_contrast": 0.1,
+    "industrial_blur_prob": 0.05,
+    "industrial_blur_sigma": 0.5,
+    "industrial_noise_prob": 0.1,
+    "industrial_noise_std": 2.0,
+    "degrees": 2.0,
+    "translate": 0.02,
+    "scale": 0.06,
+    "flipud": 0.0,
+    "fliplr": 0.5
+  },
+  "status": "PASS",
+  "exit_code": 0,
+  "validation": {
+    "best_epoch": 99,
+    "best_map50_95": 0.63168,
+    "best_map50": 0.86262,
+    "best_precision": 0.85138,
+    "best_recall": 0.78331,
+    "last_map50_95": 0.63089,
+    "last_map50": 0.86282
+  },
+  "test": null,
+  "parameters": {
+    "total_parameters": 2772770,
+    "trainable_parameters": 613602,
+    "trainable_parameter_ratio": 0.2212956718371881,
+    "adapter_parameters": 181760,
+    "frozen_modules": [],
+    "trainable_modules": [],
+    "top_level_modules": []
+  },
+  "resources": {
+    "peak_cpu_percent": 167.9,
+    "peak_rss_mib": 2632.41,
+    "peak_device_memory_mib": 3266.0,
+    "peak_process_tree_gpu_memory_mib": 3256.0,
+    "epoch_reported_peak_gpu_memory_mib": 2621.44,
+    "peak_gpu_memory_mib": 2621.44
+  },
+  "timing": {
+    "schema_version": 1,
+    "started_utc": "2026-08-31T15:24:06.633949+00:00",
+    "finished_utc": "2026-08-31T15:33:14.377365+00:00",
+    "training_seconds": 547.743,
+    "gpu_hours": 0.15215088,
+    "training_exit_code": 0
+  },
+  "checkpoints": {
+    "best": {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_deeppcb_100_medium_seed825_e100/weights/best.pt",
+      "size_bytes": 6040146,
+      "sha256": "8768986ba600ac3c0d428665009482115d8a8717b3f7bb4c1cc27278624462de"
+    },
+    "last": {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_deeppcb_100_medium_seed825_e100/weights/last.pt",
+      "size_bytes": 6040146,
+      "sha256": "781d9a61f0addb3e4b150188bf7eb37b8f8ab2c5175d04659d46a5f585137a56"
+    },
+    "last_healthy": {
+      "path": "smoke/c3/augmentation/artifacts/confirm/confirm_deeppcb_100_medium_seed825_e100/weights/last_healthy.pt",
+      "size_bytes": 15873691,
+      "sha256": "d8494122df28ab5dbbc7eeb8c6e80f14480b25fe28bd36b037e7841d0967075b"
+    }
+  },
+  "best_checkpoint_load": {
+    "succeeded": true,
+    "total_parameters": 2772770,
+    "adapter_parameters": 181760
+  },
+  "adapter": {
+    "path": "smoke/c3/augmentation/artifacts/confirm/confirm_deeppcb_100_medium_seed825_e100/lora_adapter",
+    "size_bytes": 766659,
+    "enabled": true,
+    "planner_status": "ACCEPT",
+    "planner_backend": "vpeft",
+    "actual_backend": "peft",
+    "planned_targets": 59,
+    "applied_targets": 52
+  },
+  "split": {
+    "data": "smoke/c3/augmentation/config/data/deeppcb_100_validation_only.yaml",
+    "data_sha256": "4b3b4e97a2f57ddcf21d1d0ca9340c72143a759ce2539e2d113c392d36ccddee",
+    "train_list": "smoke/c3/p2/config/splits/deeppcb_100_seed824.txt",
+    "train_list_sha256": "bc1860750bd504ef7735689008305e14f24faf9dc17d2a45cecd23a0e31e3abe",
+    "test_key_present": false
+  },
+  "checks": {
+    "exit_code_zero": true,
+    "requested_cuda_gpu_used": true,
+    "complete_finite_learning_curve": true,
+    "no_numerical_recovery": true,
+    "checkpoint_load_succeeded": true,
+    "checkpoint_files_present": true,
+    "accuracy_first_parameter_count": true,
+    "protocol_locked": true,
+    "strict_vpeft": true,
+    "validation_data_omits_test": true,
+    "test_not_accessed": true
+  }
+}

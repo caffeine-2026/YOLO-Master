@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "<repo>/smoke/c3/augmentation/tools/evaluate_locked_test.py", line 129, in <module>
+    raise SystemExit(main())
+  File "<repo>/smoke/c3/augmentation/tools/evaluate_locked_test.py", line 60, in main
+    raise FileExistsError(f"Refusing to overwrite locked test evaluation: {eval_id}")
+FileExistsError: Refusing to overwrite locked test evaluation: test_deeppcb_100_medium_seed824

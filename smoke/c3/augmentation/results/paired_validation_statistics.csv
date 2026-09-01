@@ -1,0 +1,7 @@
+dataset,seed,baseline_policy,augmentation_policy,baseline_validation_map50_95,augmentation_validation_map50_95,paired_delta_map50_95
+neu,824,baseline,mild,0.25082,0.28728,0.03645999999999999
+neu,825,baseline,mild,0.25627,0.29175,0.03548000000000001
+neu,826,baseline,mild,0.22772,0.31429,0.08657000000000001
+deeppcb,824,baseline,medium,0.53848,0.63636,0.09788000000000008
+deeppcb,825,baseline,medium,0.54914,0.63168,0.08254000000000006
+deeppcb,826,baseline,medium,0.52139,0.64022,0.11882999999999999

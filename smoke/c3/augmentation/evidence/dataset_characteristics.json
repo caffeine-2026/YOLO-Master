@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-31T14:43:22.933189+00:00",
+  "locked_test_read": false,
+  "datasets": {
+    "neu": {
+      "scope": "fixed 100-shot train membership plus validation directory metadata; locked test not read",
+      "train_images": 100,
+      "validation_images": 180,
+      "image_shapes": {
+        "(200, 200, 3)": 100
+      },
+      "maximum_channel_difference": 0.0,
+      "grayscale_pixels_confirmed": true,
+      "boxes": 231,
+      "boxes_per_image_mean": 2.31,
+      "empty_train_images": 0,
+      "normalized_box_area_quantiles": {
+        "min": 0.00875,
+        "p10": 0.024,
+        "p25": 0.0568125,
+        "p50": 0.1258,
+        "p75": 0.233575,
+        "p90": 0.388,
+        "max": 0.990025
+      },
+      "normalized_box_width_median": 0.3,
+      "normalized_box_height_median": 0.38,
+      "per_class": {
+        "crazing": {
+          "boxes": 42,
+          "normalized_area_median": 0.245775
+        },
+        "inclusion": {
+          "boxes": 60,
+          "normalized_area_median": 0.037225
+        },
+        "patches": {
+          "boxes": 53,
+          "normalized_area_median": 0.094075
+        },
+        "pitted_surface": {
+          "boxes": 25,
+          "normalized_area_median": 0.5355
+        },
+        "rolled-in_scale": {
+          "boxes": 28,
+          "normalized_area_median": 0.173125
+        },
+        "scratches": {
+          "boxes": 23,
+          "normalized_area_median": 0.08600000000000001
+        }
+      },
+      "train_list": "smoke/c3/p2/config/splits/neu_100_seed824.txt",
+      "train_list_sha256": "866509a9beb7bf50a2e81c3ce29043454b400284e065558313827d1854977259",
+      "sample_images": [
+        {
+          "path": "datasets/neu_det_yolo/images/train/crazing_103.jpg",
+          "sha256": "244204c49439f6b663a277e2e8c65344e0f2e51b5c3c763fa02a3ae925933f64"
+        },
+        {
+          "path": "datasets/neu_det_yolo/images/train/crazing_110.jpg",
+          "sha256": "7ee07aebfe8997bd5c57f958e494b9468fd788b10a73a7f390e777e7602f938d"
+        },
+        {
+          "path": "datasets/neu_det_yolo/images/train/crazing_114.jpg",
+          "sha256": "bfbf237d5d9cdd29527db2d4c2a7d825d3cbcf8a188977f812917b6b49519781"
+        },
+        {
+          "path": "datasets/neu_det_yolo/images/train/crazing_119.jpg",
+          "sha256": "812c159da60d62e21e3c1e56b720385cd0b0a2c5dbdd19503612b355915e433e"
+        },
+        {
+          "path": "datasets/neu_det_yolo/images/train/crazing_143.jpg",
+          "sha256": "eb154bae7ada35115e9bb8d2c2a8f9e4d87ab5c9d2b48aaa331814aa62eca3a5"
+        },
+        {
+          "path": "datasets/neu_det_yolo/images/train/crazing_144.jpg",
+          "sha256": "e4a2071037607429d8d859c4b0f3b81141e5e6a450d33831f4a83d5fb240e66b"
+        },
+        {
+          "path": "datasets/neu_det_yolo/images/train/crazing_201.jpg",
+          "sha256": "20ae74412c2c5e1271d975356217412b3a2f8c1c68ced06c5175028fa74566d9"
+        },
+        {
+          "path": "datasets/neu_det_yolo/images/train/crazing_255.jpg",
+          "sha256": "a96b1fd4135862349a69a761e76dfbb3af6faccdc3efb97e0d4e52a1f605076d"
+        }
+      ]
+    },
+    "deeppcb": {
+      "scope": "fixed 100-shot train membership plus validation directory metadata; locked test not read",
+      "train_images": 100,
+      "validation_images": 200,
+      "image_shapes": {
+        "(640, 640)": 99,
+        "(640, 640, 3)": 1
+      },
+      "maximum_channel_difference": 0.0,
+      "grayscale_pixels_confirmed": true,
+      "boxes": 708,
+      "boxes_per_image_mean": 7.08,
+      "empty_train_images": 0,
+      "normalized_box_area_quantiles": {
+        "min": 0.0012890625,
+        "p10": 0.0020685713282,
+        "p25": 0.00241575390625,
+        "p50": 0.00298828125,
+        "p75": 0.00396729375,
+        "p90": 0.005602952344,
+        "max": 0.019570274999999998
+      },
+      "normalized_box_width_median": 0.05625,
+      "normalized_box_height_median": 0.051562,
+      "per_class": {
+        "open": {
+          "boxes": 139,
+          "normalized_area_median": 0.0033031648439999996
+        },
+        "short": {
+          "boxes": 122,
+          "normalized_area_median": 0.0039428890625
+        },
+        "mousebite": {
+          "boxes": 126,
+          "normalized_area_median": 0.00250245625
+        },
+        "spur": {
+          "boxes": 116,
+          "normalized_area_median": 0.0027368156249999998
+        },
+        "copper": {
+          "boxes": 98,
+          "normalized_area_median": 0.003015140625
+        },
+        "pin-hole": {
+          "boxes": 107,
+          "normalized_area_median": 0.00260251875
+        }
+      },
+      "train_list": "smoke/c3/p2/config/splits/deeppcb_100_seed824.txt",
+      "train_list_sha256": "bc1860750bd504ef7735689008305e14f24faf9dc17d2a45cecd23a0e31e3abe",
+      "sample_images": [
+        {
+          "path": "datasets/deeppcb_yolo/images/train/00041001_test.jpg",
+          "sha256": "6f0f9f4ccdf67da6b272b91c82d8e7e0245a1e6230547db0f9dbd2f940410b63"
+        },
+        {
+          "path": "datasets/deeppcb_yolo/images/train/00041015_test.jpg",
+          "sha256": "7f5d8f132976d0d453a7f725a5cfce246e3d0e31d9b184f0a14fc98f06df958e"
+        },
+        {
+          "path": "datasets/deeppcb_yolo/images/train/00041021_test.jpg",
+          "sha256": "4a237be4a4347b3fb37fe8a6f45a1669e310427ff162f5073b013366141cb972"
+        },
+        {
+          "path": "datasets/deeppcb_yolo/images/train/00041037_test.jpg",
+          "sha256": "65f208d740177b7e9d6f92f5bf7754cb220a7a9ed590cd97a5766815bdc83f5a"
+        },
+        {
+          "path": "datasets/deeppcb_yolo/images/train/00041042_test.jpg",
+          "sha256": "eb0e414312d7ae40fe0bd880bae7fcabce8a774a9fffea5e9c822a194de80cdd"
+        },
+        {
+          "path": "datasets/deeppcb_yolo/images/train/00041045_test.jpg",
+          "sha256": "8fc8f14fe87a5f50f006ebd04fe43b8c231bf3e42130e2adc3bd5f737a988d65"
+        },
+        {
+          "path": "datasets/deeppcb_yolo/images/train/00041051_test.jpg",
+          "sha256": "557cf99dee04e0d4a35fa898c5376a56bf5e002195f582b2757acb0e64e02446"
+        },
+        {
+          "path": "datasets/deeppcb_yolo/images/train/00041053_test.jpg",
+          "sha256": "712c1107e6100ff46916a97a506ac2976ddeb015572dbb26a3ff5465f6e3fe15"
+        }
+      ]
+    }
+  },
+  "policy_implications": {
+    "neu": "200x200 grayscale texture; allow bounded orientation and photometric variation.",
+    "deeppcb": "640x640 near-binary imagery with very small defects; restrict geometry and blur/noise.",
+    "both": "Disable hue, saturation, mosaic, mixup, cutmix, and copy-paste in all tested policies."
+  }
+}

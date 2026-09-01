@@ -1,0 +1,8 @@
+time_utc: 2026-08-31T15:04:00Z
+command: ../YOLO-Master/.venv/bin/pytest -q tests/test_c3_augmentation_policy.py tests/test_default_config_integrity.py -x
+exit_code: 1
+failed_test: test_three_seed_interval_uses_paired_t_distribution
+actual_ci95_lower: -0.48413771189497856
+incorrect_expected_ci95_lower: -0.483277
+root_cause: The regression-test fixture used an incorrect hand-calculated expected value. The implementation correctly used t(0.975, df=2)=4.30265273 and sample standard deviation.
+fix: Corrected only the test expectation to -0.484138 and 4.484138; no result or implementation value was adjusted.

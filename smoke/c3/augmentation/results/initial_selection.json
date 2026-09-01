@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "INITIAL_SELECTION_LOCKED",
+  "selected_at": "2026-08-31T15:08:52.573313+00:00",
+  "metric_split": "validation",
+  "test_access_before_selection": false,
+  "selection_rule": "highest primary, then secondary, then lower strength among mild/medium/strong",
+  "datasets": {
+    "neu": {
+      "top_augmentation": "mild",
+      "top_run_id": "search_neu_100_mild_seed824_e100",
+      "top_validation_map50_95": 0.28728,
+      "baseline_validation_map50_95": 0.25082,
+      "initial_delta": 0.03645999999999999
+    },
+    "deeppcb": {
+      "top_augmentation": "medium",
+      "top_run_id": "search_deeppcb_100_medium_seed824_e100",
+      "top_validation_map50_95": 0.63636,
+      "baseline_validation_map50_95": 0.53848,
+      "initial_delta": 0.09788000000000008
+    }
+  },
+  "source_csv": "smoke/c3/augmentation/results/initial_search.csv"
+}

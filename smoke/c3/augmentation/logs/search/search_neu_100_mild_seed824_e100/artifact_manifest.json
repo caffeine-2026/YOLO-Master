@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "run_id": "search_neu_100_mild_seed824_e100",
+  "artifacts": [
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/BoxF1_curve.png",
+      "size_bytes": 291800,
+      "sha256": "3347e1f3d7e58cfd17b9737de9805e7ea01f7b6b90a8776e7570f220b164e5ce"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/BoxPR_curve.png",
+      "size_bytes": 198036,
+      "sha256": "417120d20e60b5e0d55350230fa947b1fe248cff274cb39588ec79c5413e1e1e"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/BoxP_curve.png",
+      "size_bytes": 295906,
+      "sha256": "53e3ce528b763dd90ce038fb63808225ff75f65b9b4f6663bff99d1ab65e410b"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/BoxR_curve.png",
+      "size_bytes": 239213,
+      "sha256": "10a21bd7ecebe2167c462a9829eb9df2683a909f3f5ce957d6fc004cc6f3310a"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/args.yaml",
+      "size_bytes": 10393,
+      "sha256": "0de27f9fc31f700cd6001c7f3036a2b9c3dd244d72a2bd27332f66055b4af3b6"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/confusion_matrix.png",
+      "size_bytes": 184125,
+      "sha256": "ab0c59ac817eac191f45ad25c2ed6659435b9e37928a1ba1b88ced6f56017457"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/confusion_matrix_normalized.png",
+      "size_bytes": 215509,
+      "sha256": "e4be0f019071cfaa1a0a8a174fcfab289316731bdec8cc247b77dcc248a637c6"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/labels.jpg",
+      "size_bytes": 199972,
+      "sha256": "0f33e78ac2a8bc1604d076fc0fda33cf7668cf8b129c55803e58fb3d7a386b33"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/lora_adapter/README.md",
+      "size_bytes": 5074,
+      "sha256": "30f14bc991c08c786976f4a02217ff46bd666e7658dd191dc266d67ca23d2f6b"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/lora_adapter/adapter_config.json",
+      "size_bytes": 4138,
+      "sha256": "419ebb81665cd8df35583cca02f95aa0a67835581a1d23c55b19b65aa4408ef2"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/lora_adapter/adapter_model.safetensors",
+      "size_bytes": 738896,
+      "sha256": "59d98daba6c14e20b380843badbcc00f240d1b91d779101ad29dd45d92e6c4b6"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/lora_adapter/runtime_metadata.json",
+      "size_bytes": 18550,
+      "sha256": "bbd61b10eaebee1549876941106f4f1b03b88effcd0cdab464247ffd4c932b78"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/results.csv",
+      "size_bytes": 16312,
+      "sha256": "c70213e7df5c753a3e548f5458a42a97e6a4c0b8de7afbc7085d8bc4617c3dfa"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/results.png",
+      "size_bytes": 287850,
+      "sha256": "d632953929323db3e1894017a39440b744ace0867f7141a9eeecb4d5e5c97bc0"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/train_batch0.jpg",
+      "size_bytes": 317729,
+      "sha256": "fd222a681f830b985c555381e8c699159334b3ebb8e40243deab4cfd54f914c2"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/train_batch1.jpg",
+      "size_bytes": 352893,
+      "sha256": "d50bc7d79e29207cf4f5ece26632ff3db2d1732ebc4e2ad9a97386220c1cdc1f"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/train_batch2.jpg",
+      "size_bytes": 361063,
+      "sha256": "af4814b1ac1cf590e3fd1ec106ac01b7389e770970c5ca3f8849107736817f5e"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/val_batch0_labels.jpg",
+      "size_bytes": 649644,
+      "sha256": "8b1ac1724a098fa02bf50a32d99ada3c796943ab7404237c851e5713387233aa"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/val_batch0_pred.jpg",
+      "size_bytes": 723157,
+      "sha256": "446ff9f23b861e5d4b9005745b896a66bbf50a0996f90264bbe6e2f20c05c087"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/val_batch1_labels.jpg",
+      "size_bytes": 604437,
+      "sha256": "dd007409e705951164f9e291f23604a2bdcc1237c25116b9925838c199437b11"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/val_batch1_pred.jpg",
+      "size_bytes": 709214,
+      "sha256": "95f0a7f83bf15fb0cb3fbbb2e71b68d65c835ea12fb7adf4b3fa8ce9202faf9e"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/val_batch2_labels.jpg",
+      "size_bytes": 353231,
+      "sha256": "8eac322945819a0698a297826a6bc23d5e491a7cb0693f82357049ded7890219"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/val_batch2_pred.jpg",
+      "size_bytes": 389676,
+      "sha256": "d10ae5b0fd4562df609c46712c45eef32b2c20f6fde9720a6ca1652e61c4492a"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/weights/best.pt",
+      "size_bytes": 6040146,
+      "sha256": "0cf63b4d76ff4760c24ff270947a01b5aad257c43df5918c4fa3677acd5d6746"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/weights/last.pt",
+      "size_bytes": 6040146,
+      "sha256": "0a0a66fb36952a85aa8f803e8ae538c96654d16216b71ddd665d333f0baf4a05"
+    },
+    {
+      "path": "smoke/c3/augmentation/artifacts/search/search_neu_100_mild_seed824_e100/weights/last_healthy.pt",
+      "size_bytes": 15873691,
+      "sha256": "ce48f360a0b0846062319fb7c5b8afcbc37f0c808b26abcd848e34c6e60e2956"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/search/search_neu_100_mild_seed824_e100/command.txt",
+      "size_bytes": 742,
+      "sha256": "5bef57790e81fc93a1bbf6b8f64f3edacbae3c8baa3396fa95717665e5fec3cb"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/search/search_neu_100_mild_seed824_e100/environment.json",
+      "size_bytes": 548,
+      "sha256": "6b92eb10e9c76bb5aa724f60693b49bc09cbfb6f4d2e34136c158f6472bd6035"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/search/search_neu_100_mild_seed824_e100/learning_curve.csv",
+      "size_bytes": 16312,
+      "sha256": "c70213e7df5c753a3e548f5458a42a97e6a4c0b8de7afbc7085d8bc4617c3dfa"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/search/search_neu_100_mild_seed824_e100/metrics.json",
+      "size_bytes": 3708,
+      "sha256": "fe1de0c0c48bf516b4a56b920266cfa8dfb0185bd5643af5b651fda91a8ca1e0"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/search/search_neu_100_mild_seed824_e100/resolved_config.yaml",
+      "size_bytes": 10361,
+      "sha256": "7d70e9e1a4941b99ff103dd5b403cac052b4bb94fc0c41427deb1c80e8d140d8"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/search/search_neu_100_mild_seed824_e100/resource_usage.json",
+      "size_bytes": 224,
+      "sha256": "dfd2c17a825bebc3004b77976afc97c83208a7756e38273c9bf60c68147b3164"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/search/search_neu_100_mild_seed824_e100/stderr.log",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/search/search_neu_100_mild_seed824_e100/stdout.log",
+      "size_bytes": 329225,
+      "sha256": "41884fea3afd0984911eeea410f3e8b2691b8255987e31beaa13eebdfb07829b"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/search/search_neu_100_mild_seed824_e100/timing.json",
+      "size_bytes": 218,
+      "sha256": "f26504986ccdc708546e0aad3d5399f148a7d4337dac93127176220a4405ab20"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/search/search_neu_100_mild_seed824_e100/vpeft_runtime_metadata.json",
+      "size_bytes": 14874,
+      "sha256": "c5d70fad0eb93b58aa78b847459ef5229bc48e86b91ebfa5866aab5aed254e86"
+    }
+  ],
+  "artifact_count": 36
+}

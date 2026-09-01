@@ -1,0 +1,1 @@
+python smoke/c3/augmentation/tools/evaluate_locked_test.py --dataset neu --policy baseline --sample-size 100 --seed 826 --device 5

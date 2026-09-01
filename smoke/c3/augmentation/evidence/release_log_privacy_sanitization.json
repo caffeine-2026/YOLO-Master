@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "files": [
+    {
+      "path": "smoke/c3/augmentation/evidence/release_checks/related_pytest.stdout.log",
+      "before_sha256": "6d462df298afff63f1b80056a430fd23426272c7c2d2f32fba7846334f386b88",
+      "after_sha256": "ccbb2bec181766ff54b4365897520ea019454c8b9c0237b7e8e14bc83ef8c3ec",
+      "replacement_count": 1,
+      "semantic_change": "none; absolute user path redaction only"
+    },
+    {
+      "path": "smoke/c3/augmentation/failures/release_checks_sandbox_socket_failure/related_pytest.stdout.log",
+      "before_sha256": "04ce2bb6cda92d485b68e53768538ef37c9c41208ab4a5ce1a7cf185b29ad8a3",
+      "after_sha256": "2064793813c35d982c08a9d5376db457dd975eaef10f28d926e23db1d235e405",
+      "replacement_count": 1,
+      "semantic_change": "none; absolute user path redaction only"
+    }
+  ],
+  "test_outcomes_modified": false
+}

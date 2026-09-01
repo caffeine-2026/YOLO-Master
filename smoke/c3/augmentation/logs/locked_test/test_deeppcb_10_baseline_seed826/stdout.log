@@ -1,0 +1,47 @@
+Ultralytics 8.4.101 🚀 Python-3.10.12 torch-2.13.0+cu130 CUDA:5 (NVIDIA GeForce RTX 4090, 48510MiB)
+[LoRA] Fusion disabled for LoRADetectionModel.
+val: Fast image access ✅ (ping: 0.0±0.0 ms, read: 1527.0±538.2 MB/s, size: 21.5 KB)
+
+val: Scanning <repo>/datasets/deeppcb_yolo/labels/test.cache... 500 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 500/500 110.4Mit/s 0.0s
+
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 1% ──────────── 1/63 1.5it/s 0.2s<42.3s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 3% ──────────── 2/63 2.6it/s 0.4s<23.8s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 4% ╸─────────── 3/63 3.3it/s 0.6s<18.3s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 6% ╸─────────── 4/63 4.2it/s 0.8s<14.0s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 9% ━─────────── 6/63 8.0it/s 0.9s<7.1s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 14% ━╸────────── 9/63 11.5it/s 1.0s<4.7s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 17% ━━────────── 11/63 13.8it/s 1.1s<3.8s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 20% ━━────────── 13/63 15.6it/s 1.2s<3.2s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 23% ━━╸───────── 15/63 16.8it/s 1.3s<2.9s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 28% ━━━───────── 18/63 17.7it/s 1.5s<2.5s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 31% ━━━╸──────── 20/63 18.2it/s 1.6s<2.4s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 34% ━━━━──────── 22/63 18.7it/s 1.7s<2.2s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 38% ━━━━╸─────── 24/63 19.1it/s 1.8s<2.0s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 41% ━━━━╸─────── 26/63 19.1it/s 1.9s<1.9s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 44% ━━━━━─────── 28/63 19.2it/s 2.0s<1.8s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 47% ━━━━━╸────── 30/63 19.1it/s 2.1s<1.7s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 32/63 19.1it/s 2.2s<1.6s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 53% ━━━━━━────── 34/63 19.2it/s 2.3s<1.5s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 57% ━━━━━━╸───── 36/63 19.2it/s 2.4s<1.4s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 60% ━━━━━━━───── 38/63 19.4it/s 2.5s<1.3s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 63% ━━━━━━━╸──── 40/63 19.2it/s 2.6s<1.2s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 66% ━━━━━━━━──── 42/63 19.1it/s 2.7s<1.1s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 71% ━━━━━━━━╸─── 45/63 19.4it/s 2.9s<0.9s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 76% ━━━━━━━━━─── 48/63 19.6it/s 3.0s<0.8s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 80% ━━━━━━━━━╸── 51/63 19.8it/s 3.2s<0.6s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 84% ━━━━━━━━━━── 53/63 19.6it/s 3.3s<0.5s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 87% ━━━━━━━━━━── 55/63 19.5it/s 3.4s<0.4s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 90% ━━━━━━━━━━╸─ 57/63 19.2it/s 3.5s<0.3s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 93% ━━━━━━━━━━━─ 59/63 19.1it/s 3.6s<0.2s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 96% ━━━━━━━━━━━╸ 61/63 19.2it/s 3.7s<0.1s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 63/63 16.2it/s 3.9s
+                   all        500       3140      0.331      0.436      0.347      0.218
+                  open        482        659      0.276      0.281      0.201     0.0892
+                 short        368        478      0.177      0.144     0.0882     0.0344
+             mousebite        413        586      0.279      0.387      0.236      0.133
+                  spur        373        483      0.246      0.313      0.204      0.115
+                copper        403        464      0.428      0.853       0.75       0.52
+              pin-hole        438        470      0.581       0.64      0.604      0.419
+Speed: 0.3ms preprocess, 2.5ms inference, 0.0ms loss, 0.8ms postprocess per image
+Results saved to <repo>/smoke/c3/augmentation/artifacts/locked_test/test_deeppcb_10_baseline_seed826
+{"eval_id": "test_deeppcb_10_baseline_seed826", "status": "PASS", "overall": {"precision": 0.3313713761446582, "recall": 0.4364925102962795, "map50": 0.3473139760022663, "map50_95": 0.21845082274507857}}

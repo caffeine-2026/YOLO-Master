@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "status": "FAILED_INCOMPLETE",
+  "phase": "locked_test_100_initial_suite",
+  "completed_and_reused": 9,
+  "interrupted": [
+    "test_deeppcb_100_medium_seed824",
+    "test_deeppcb_100_medium_seed825",
+    "test_deeppcb_100_medium_seed826"
+  ],
+  "observed_failure": "The orchestration parent ended while the final three evaluation subprocesses were running. The detached children later completed JSON/plot writes, but parent-owned full stdout, timing, resource summary, and scheduler finish evidence are absent.",
+  "root_cause": "Execution-wrapper/orchestration-parent interruption; no model or CUDA exception was emitted, so a narrower cause cannot be claimed.",
+  "repair": "Preserve the partial parent logs, detached-child JSON/artifacts, and incomplete scheduler under failures/locked_test_100_interrupted; do not treat them as complete delivery evidence; rerun only the three affected DeepPCB medium evaluations.",
+  "test_metrics_used_for_selection": false,
+  "failure_evidence": "smoke/c3/augmentation/failures/locked_test_100_interrupted"
+}

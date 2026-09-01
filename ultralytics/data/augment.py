@@ -1508,6 +1508,68 @@ class RandomHSV(BaseTransform):
         return labels
 
 
+class IndustrialPhotometric(BaseTransform):
+    """Apply grayscale-safe contrast, blur, and noise without changing annotations."""
+
+    def __init__(
+        self,
+        contrast: float = 0.0,
+        blur_prob: float = 0.0,
+        blur_sigma: float = 0.0,
+        noise_prob: float = 0.0,
+        noise_std: float = 0.0,
+    ) -> None:
+        """Initialize bounded industrial photometric augmentation parameters."""
+        if not 0.0 <= contrast <= 1.0:
+            raise ValueError("contrast must be between 0 and 1")
+        if not 0.0 <= blur_prob <= 1.0 or not 0.0 <= noise_prob <= 1.0:
+            raise ValueError("blur_prob and noise_prob must be between 0 and 1")
+        if blur_sigma < 0.0 or noise_std < 0.0:
+            raise ValueError("blur_sigma and noise_std must be non-negative")
+        self.contrast = contrast
+        self.blur_prob = blur_prob
+        self.blur_sigma = blur_sigma
+        self.noise_prob = noise_prob
+        self.noise_std = noise_std
+
+    def get_params(self, labels: dict[str, Any]) -> dict[str, float | bool]:
+        """Sample photometric parameters while leaving geometry deterministic and untouched."""
+        return {
+            "contrast_factor": random.uniform(1.0 - self.contrast, 1.0 + self.contrast),
+            "apply_blur": self.blur_sigma > 0.0 and random.random() < self.blur_prob,
+            "blur_sigma": random.uniform(0.1, self.blur_sigma) if self.blur_sigma > 0.0 else 0.0,
+            "apply_noise": self.noise_std > 0.0 and random.random() < self.noise_prob,
+            "noise_std": random.uniform(0.0, self.noise_std) if self.noise_std > 0.0 else 0.0,
+        }
+
+    def apply_image(self, labels: dict[str, Any], params: dict[str, float | bool] | None = None) -> dict[str, Any]:
+        """Transform pixels only, using shared-channel noise for grayscale inputs."""
+        img = labels["img"]
+        if img.dtype != np.uint8:
+            raise TypeError("IndustrialPhotometric expects uint8 input")
+        work = img.astype(np.float32)
+        factor = float(params["contrast_factor"])
+        if factor != 1.0:
+            mean = work.mean(axis=(0, 1), keepdims=True)
+            work = (work - mean) * factor + mean
+        work = np.clip(work, 0, 255).astype(np.uint8)
+        if bool(params["apply_blur"]):
+            work = cv2.GaussianBlur(work, (0, 0), sigmaX=float(params["blur_sigma"]))
+            if work.ndim == 2:
+                work = work[..., None]
+        if bool(params["apply_noise"]):
+            grayscale = work.ndim == 2 or (
+                work.shape[2] > 1
+                and np.array_equal(work[..., 0], work[..., 1])
+                and np.array_equal(work[..., 0], work[..., 2])
+            )
+            noise_shape = (*work.shape[:2], 1) if work.ndim == 3 and grayscale else work.shape
+            noise = np.random.normal(0.0, float(params["noise_std"]), size=noise_shape).astype(np.float32)
+            work = np.clip(work.astype(np.float32) + noise, 0, 255).astype(np.uint8)
+        labels["img"] = np.ascontiguousarray(work)
+        return labels
+
+
 class RandomFlip(BaseTransform):
     """Apply a random horizontal or vertical flip to an image with a given probability.
 
@@ -2852,6 +2914,13 @@ def v8_transforms(dataset, imgsz: int, hyp: IterableSimpleNamespace):
             CutMix(dataset, pre_transform=pre_transform, p=hyp.cutmix),
             Albumentations(p=1.0, transforms=getattr(hyp, "augmentations", None)),
             RandomHSV(hgain=hyp.hsv_h, sgain=hyp.hsv_s, vgain=hyp.hsv_v),
+            IndustrialPhotometric(
+                contrast=hyp.industrial_contrast,
+                blur_prob=hyp.industrial_blur_prob,
+                blur_sigma=hyp.industrial_blur_sigma,
+                noise_prob=hyp.industrial_noise_prob,
+                noise_std=hyp.industrial_noise_std,
+            ),
             RandomFlip(direction="vertical", p=hyp.flipud, flip_idx=flip_idx),
             RandomFlip(direction="horizontal", p=hyp.fliplr, flip_idx=flip_idx),
         ]

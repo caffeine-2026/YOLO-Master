@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "reason": "privacy scan requires logs not to expose absolute user paths",
+  "scheduler_logs": [
+    {
+      "path": "smoke/c3/augmentation/failures/locked_test_100_interrupted/locked_test_100_scheduler.jsonl",
+      "before_sha256": "b4b7a4b5b0c20e94a1b83d9fb8f39b832f7712fbe0e2895e58c7d3729ab95b62",
+      "after_sha256": "ed30b91c37008157ece6056e267f65f7d1a333476cb1fdfc49279074e04b907b",
+      "replacement_counts": {
+        "repository_root": 24,
+        "user_home": 0
+      },
+      "semantic_change": "none; path redaction only"
+    },
+    {
+      "path": "smoke/c3/augmentation/failures/locked_test_100_retry_guard/locked_test_retry-100-medium_scheduler.jsonl",
+      "before_sha256": "385d4c97c099e26e085b669ec27c1df04cf44638d54c7efb82537b0a8d4dae3b",
+      "after_sha256": "2a139be29fba956c9634c33a3bbfe18539b3ffcfe3491a856fef909de460d87d",
+      "replacement_counts": {
+        "repository_root": 6,
+        "user_home": 0
+      },
+      "semantic_change": "none; path redaction only"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/confirm_scheduler.jsonl",
+      "before_sha256": "faa9919001a08b25f24026901dfa57a12e3044acaa647ee847d11e85b564a226",
+      "after_sha256": "cfa93c6a4cb0af9c3e8526d58a08587cc4d1df3b8417e1d1c6c2c1e5e4e466e9",
+      "replacement_counts": {
+        "repository_root": 16,
+        "user_home": 0
+      },
+      "semantic_change": "none; path redaction only"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/locked_test_retry-100-medium_scheduler.jsonl",
+      "before_sha256": "ba728228dd82484113bb86426c50a36198ab63d34813d38c93e52ab2fb73c076",
+      "after_sha256": "3932072714af162ff0f21ca20cfd7f0443846a1ca323a69bff44577d6594a1c3",
+      "replacement_counts": {
+        "repository_root": 6,
+        "user_home": 0
+      },
+      "semantic_change": "none; path redaction only"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/locked_test_scaling_scheduler.jsonl",
+      "before_sha256": "e8410c08c0017e73480af922b42fa2c5c93d0619db9d8b99daae1b5ca55c71c4",
+      "after_sha256": "f011b0d506409edefac233fa075f6edc4bf0e5ef3fac2419f5ee538618edf7ec",
+      "replacement_counts": {
+        "repository_root": 36,
+        "user_home": 0
+      },
+      "semantic_change": "none; path redaction only"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/scaling_scheduler.jsonl",
+      "before_sha256": "6da08329d6e7c5509924c40f9134fb03b22f4e9edee8eb70378dd84bb1040c28",
+      "after_sha256": "d0f9668a95615c4481be6be113dd45a19708610229834f95d920d9120d4969c9",
+      "replacement_counts": {
+        "repository_root": 36,
+        "user_home": 0
+      },
+      "semantic_change": "none; path redaction only"
+    },
+    {
+      "path": "smoke/c3/augmentation/logs/search_scheduler.jsonl",
+      "before_sha256": "b0b3415eb8cf60df04f3881203cbaf02a77bc53d1809037314f70efdbbe2b941",
+      "after_sha256": "f996344d5d7330ad2fd73219b89d862e1329c158ca240caf6a49e0b94475ba13",
+      "replacement_counts": {
+        "repository_root": 16,
+        "user_home": 0
+      },
+      "semantic_change": "none; path redaction only"
+    }
+  ],
+  "training_stdout_stderr_modified": false,
+  "metrics_modified": false
+}
