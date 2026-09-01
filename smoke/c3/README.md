@@ -9,24 +9,24 @@
 
 当前证据支持以下结论：
 
-1. **V-PEFT 明显减少可训练参数，但不是普遍更准确、更快或更省峰值显存。** 原 accuracy-first V-PEFT 使用 613,602 个可训练参数，比 Full-SFT 减少 76.32%；其精度保持率随数据集和样本数明显变化。
+1. **V-PEFT 明显减少可训练参数，但不是普遍更准确、更快或更省峰值显存。** 原 accuracy-first V-PEFT 使用 613,602 个可训练参数，比 Full-SFT 减少 76.32%，其精度保持率随数据集和样本数明显变化。
 2. **把可训练参数进一步压到 Full-SFT 的 10% 以下会产生明显精度代价。** 新设置使用 195,410 个参数（Full-SFT 的 7.54%），但 8 个单元的平均 mAP50-95 从 0.35181 降至 0.27750。因此这是 parameter–accuracy trade-off，不是精度改进。
-3. **Planner 闭环已经补齐。** 两个数据集均完成 AO、DCO 与 native MIP；MIP 为 OR-Tools SCIP 实际求解，不是 fallback。`ACCEPT / ADAPT / REFUSE` 三个分支均有真实输入、结构化日志和回归测试。
-4. **LOVO 已从 cold-start prior 升级为 learned calibration，但可信度仍很低。** 使用 6 个独立 calibration 单元和 2 个 held-out 单元，confidence 为 0.01667；该结果只能视为有限证据，不能宣传为可靠精度预测器。
-5. **数据增强的效果具有数据集依赖性。** DeepPCB 的 medium augmentation 在 10/50/100/500-shot 均取得显著 paired 提升；NEU-DET mild 未超过历史 accuracy-first baseline，不能称为改善。
+3. **Planner 闭环已经补齐。** 两个数据集均完成 AO、DCO 与 native MIP。MIP 为 OR-Tools SCIP 实际求解，不是 fallback。`ACCEPT / ADAPT / REFUSE` 三个分支均有真实输入、结构化日志和回归测试。
+4. **LOVO 已从 cold-start prior 升级为 learned calibration，但可信度仍很低。** 使用 6 个独立 calibration 单元和 2 个 held-out 单元，confidence 为 0.01667。该结果只能视为有限证据，不能宣传为可靠精度预测器。
+5. **数据增强的效果具有数据集依赖性。** DeepPCB 的 medium augmentation 在 10/50/100/500-shot 均取得显著 paired 提升，NEU-DET mild 未超过历史 accuracy-first baseline，不能称为改善。
 
-因此，本项目已经完成任务书范围内的主要实验、机制补全、受控消融与证据审计；但这不等于导师或主办方已经完成正式验收。最终报告、展示材料和外部验收仍应基于下述限制如实表述。
+因此，本项目已经完成任务书范围内的主要实验、机制补全、受控消融与证据审计，但这不等于导师或主办方已经完成正式验收。最终报告、展示材料和外部验收仍应基于下述限制如实表述。
 
 ## 2. 完成状态
 
 | 模块 | 已完成证据 | 状态 |
 | --- | --- | --- |
 | P0：两数据集 V-PEFT 闭环 | NEU-DET / DeepPCB strict Planner、实际 PEFT、adapter 与 checkpoint 审计 | 完成 |
-| P0：solver | 两数据集 AO / DCO / native MIP；requested/effective/fallback 均记录 | 完成 |
+| P0：solver | 两数据集 AO / DCO / native MIP，requested/effective/fallback 均记录 | 完成 |
 | P0：Planner 分支 | `ACCEPT / ADAPT / REFUSE` 三分支真实复现 | 完成 |
-| LOVO | 6 calibration + 2 held-out learned regression；误差、区间与低 confidence 报告 | 完成（低置信度限制） |
+| LOVO | 6 calibration + 2 held-out learned regression，误差、区间与低 confidence 报告 | 完成（低置信度限制） |
 | P1：三方对照 | Full-SFT / Frozen Backbone / V-PEFT，2 数据集 × 3 seed | 完成 |
-| P1：≤10% 参数目标 | 195,410 trainable，Full-SFT 的 7.54%；24 个 V-PEFT 单元重跑 | 完成（负结果） |
+| P1：≤10% 参数目标 | 195,410 trainable，Full-SFT 的 7.54%，24 个 V-PEFT 单元重跑 | 完成（负结果） |
 | P2：小样本缩放 | 10/50/100/500-shot 三策略矩阵，72/72 核心单元通过 | 完成 |
 | 数据增强消融 | validation-only 搜索、选择冻结、locked test、34/34 训练 run | 完成 |
 | DeepPCB 增强缩放 | 10/50/100/500-shot，3 seed paired 统计 | 完成 |
@@ -34,12 +34,12 @@
 
 ## 3. 统一实验边界
 
-- 数据集：NEU-DET、DeepPCB；
-- 模型与训练：YOLO11n、100 epochs、batch 8、imgsz 640、AdamW、AMP false；
-- seed：824 / 825 / 826；
-- 小样本划分：`10 ⊂ 50 ⊂ 100 ⊂ 500`，validation/test 固定；
-- 设置选择只读取 validation；选择冻结后才运行 locked test；
-- 主指标：mAP50-95；同时报告 mAP50、trainable parameters、peak GPU memory 与 GPU-hours；
+- 数据集：NEU-DET、DeepPCB。
+- 模型与训练：YOLO11n、100 epochs、batch 8、imgsz 640、AdamW、AMP false。
+- seed：824 / 825 / 826。
+- 小样本划分：`10 ⊂ 50 ⊂ 100 ⊂ 500`，validation/test 固定。
+- 设置选择只读取 validation，选择冻结后才运行 locked test。
+- 主指标：mAP50-95，同时报告 mAP50、trainable parameters、peak GPU memory 与 GPU-hours。
 - 统计：3-seed 均值、t 95% CI 和同 seed paired delta。由于只有 3 个 seed，结论不外推为普遍规律。
 
 ## 4. 核心 72-run 结果
@@ -59,9 +59,9 @@
 
 关键解释：
 
-- NEU-DET 上 V-PEFT 与 Full-SFT 的差距较小；
-- DeepPCB 低样本时差距明显，到 500-shot 才接近 Full-SFT；
-- 原 V-PEFT 在 8 个条件中的 5 个高于 Frozen Backbone，但 8 个均值都没有超过 Full-SFT；
+- NEU-DET 上 V-PEFT 与 Full-SFT 的差距较小。
+- DeepPCB 低样本时差距明显，到 500-shot 才接近 Full-SFT。
+- 原 V-PEFT 在 8 个条件中的 5 个高于 Frozen Backbone，但 8 个均值都没有超过 Full-SFT。
 - 峰值显存仅比 Full-SFT 低约 1.2%，训练时间平均反而约增加 13%，因此不能声称当前实现更快或显著更省显存。
 
 原始数据：[P2 summary](p2/results/p2_summary.csv)｜[paired analysis](p2/results/paired_analysis.csv)｜[最终验证](p2/evidence/p2_final_validation.json)
@@ -107,8 +107,8 @@ flowchart TD
     E -->|MIP 依赖缺失| I[AO fallback + requested/effective/reason]
 ```
 
-- ACCEPT：budget 2,100,000，选择 59 个模块；
-- ADAPT：不支持的 attention 请求由 guardrail 调整后继续；
+- ACCEPT：budget 2,100,000，选择 59 个模块。
+- ADAPT：不支持的 attention 请求由 guardrail 调整后继续。
 - REFUSE：budget 1 时无可行 adapter，明确拒绝而不伪造结果。
 
 证据：[solver comparison](completion/evidence/solvers/solver_comparison.json)｜[Planner branches](completion/evidence/planner_branches/planner_branches.json)
@@ -124,7 +124,7 @@ flowchart TD
 | held-out RMSE / MAE | 0.10020 / 0.09888 |
 | prediction interval | [-0.40821, 0.08816] |
 
-它已经使用真实 learned evidence，不再把 cold-start prior 当测量值；但样本很少、design rank 为 1/12、区间很宽，因此只能作为 low-confidence calibration audit。
+它已经使用真实 learned evidence，不再把 cold-start prior 当测量值。但样本很少、design rank 为 1/12、区间很宽，因此只能作为 low-confidence calibration audit。
 
 证据：[LOVO report](completion/evidence/lovo/lovo_calibration_report.json)
 
@@ -150,17 +150,17 @@ flowchart TD
 
 四个 scale 的 paired CI lower 均高于 0，但 500-shot 的增益缩小，说明在**本次测试增强范围内**出现经验性饱和。它不是理论精度上限。500-shot 结果高于历史 Full-SFT 参考值，但 Full-SFT 没有用同一 augmentation 重训，不能据此宣传 V-PEFT 普遍优于 Full-SFT。
 
-资源代价：trainable parameters 与测量 peak memory 不变；训练时间 NEU-DET 增加 56.6%，DeepPCB 增加 57.2%。
+资源代价：trainable parameters 与测量 peak memory 不变。训练时间 NEU-DET 增加 56.6%，DeepPCB 增加 57.2%。
 
 完整结果：[augmentation report](augmentation/docs/AUGMENTATION_ABLATION_REPORT.md)｜[paired statistics](augmentation/results/paired_test_statistics.csv)｜[scaling comparison](augmentation/results/scaling_comparison.csv)｜[frozen selection](augmentation/results/frozen_selection.json)
 
 ## 8. 验证与可复现性
 
-- 核心 P0/P1/P2 与 integrated validators：PASS；
-- 原核心矩阵：72/72；completion 新 V-PEFT：24/24；augmentation：34/34；
-- augmentation 相关 pytest：426 passed / 17 skipped；
-- checkpoint、seed、epoch、resolved config、SHA-256 manifest 均由 delivery validator 交叉检查；
-- 搜索命令、leaf command、stdout/stderr、失败与重跑记录均保存在对应目录；
+- 核心 P0/P1/P2 与 integrated validators：PASS。
+- 原核心矩阵：72/72，completion 新 V-PEFT：24/24，augmentation：34/34。
+- augmentation 相关 pytest：426 passed / 17 skipped。
+- checkpoint、seed、epoch、resolved config、SHA-256 manifest 均由 delivery validator 交叉检查。
+- 搜索命令、leaf command、stdout/stderr、失败与重跑记录均保存在对应目录。
 - 约 1.2 GiB 新 checkpoint 按仓库策略保留在服务器本地并 Git-ignore，Git 中保存 SHA-256 manifest 与验证记录。
 
 复现入口：
@@ -174,21 +174,21 @@ flowchart TD
 
 ## 9. 已知限制
 
-1. 每个条件只有 3 个 seed，部分 95% CI 较宽；
-2. LOVO calibration 样本小且 rank-deficient，confidence 极低；
-3. ≤10% 参数设置达成参数目标，但不是原 accuracy-first V-PEFT 的合理替代；
-4. augmentation 提高了 DeepPCB 精度，同时增加约 57% 训练时间；
-5. NEU-DET 未证明 augmentation 相对历史 baseline 的改进；
-6. Full-SFT 没有在同一 augmentation protocol 下重训，禁止把 500-shot 参考比较解释成普遍方法优势；
-7. adapter-only 文件尚未包含非 adapter predictor head，独立部署仍需要 full checkpoint；
-8. 仓库存在与本课题无关的 legacy Ruff debt；C3 新增代码、critical gate 与 delivery validators 均已通过。
+1. 每个条件只有 3 个 seed，部分 95% CI 较宽。
+2. LOVO calibration 样本小且 rank-deficient，confidence 极低。
+3. ≤10% 参数设置达成参数目标，但不是原 accuracy-first V-PEFT 的合理替代。
+4. augmentation 提高了 DeepPCB 精度，同时增加约 57% 训练时间。
+5. NEU-DET 未证明 augmentation 相对历史 baseline 的改进。
+6. Full-SFT 没有在同一 augmentation protocol 下重训，禁止把 500-shot 参考比较解释成普遍方法优势。
+7. adapter-only 文件尚未包含非 adapter predictor head，独立部署仍需要 full checkpoint。
+8. 仓库存在与本课题无关的 legacy Ruff debt。C3 新增代码、critical gate 与 delivery validators 均已通过。
 
 ## 10. 对任务书的最终回答
 
-V-PEFT 在本实验中实现了显著参数压缩，并在部分小样本条件下保留较高精度；Planner、solver、LOVO 与数据增强机制也已形成可审计证据链。但实验没有证明 V-PEFT 在所有数据集和规模上更准确、更快或显著更省显存。
+V-PEFT 在本实验中实现了显著参数压缩，并在部分小样本条件下保留较高精度。Planner、solver、LOVO 与数据增强机制也已形成可审计证据链。但实验没有证明 V-PEFT 在所有数据集和规模上更准确、更快或显著更省显存。
 
 最可靠的研究结论是：
 
 > **V-PEFT 的价值是可控的参数–精度折中，而不是无条件优于 Full-SFT。数据增强可显著改善 DeepPCB，但该收益具有数据集依赖性并伴随训练时间成本。**
 
-在线展示：[YOLO-V-PEFT](https://yoloc3vpeft.com/)（用于结果浏览和设备端演示；正式研究结论以仓库中的 CSV / JSON / 日志为准）。
+在线展示：[YOLO-V-PEFT](https://yoloc3vpeft.com/)（用于结果浏览和设备端演示，正式研究结论以仓库中的 CSV / JSON / 日志为准）。
