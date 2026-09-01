@@ -65,6 +65,14 @@ def test_disabled_autocast_falls_back_when_device_is_unsupported():
     assert result.item() == 2
 
 
+def test_disabled_autocast_falls_back_when_api_is_unavailable():
+    with patch("torch.autocast", None), patch("torch.amp.autocast_mode.is_autocast_available", return_value=True):
+        with disabled_autocast("cpu"):
+            result = torch.ones(1) + 1
+
+    assert result.item() == 2
+
+
 def test_disabled_autocast_uses_supported_cpu_context():
     with patch("torch.amp.autocast_mode.is_autocast_available", return_value=True), patch(
         "torch.autocast", wraps=torch.autocast

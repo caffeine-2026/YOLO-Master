@@ -11,6 +11,8 @@ import torch.nn as nn
 
 def _autocast_is_available(device_type: str) -> bool:
     """Return whether this PyTorch build exposes autocast for ``device_type``."""
+    if not callable(getattr(torch, "autocast", None)):
+        return False
     checker = getattr(getattr(torch, "amp", None), "autocast_mode", None)
     checker = getattr(checker, "is_autocast_available", None)
     if checker is not None:
