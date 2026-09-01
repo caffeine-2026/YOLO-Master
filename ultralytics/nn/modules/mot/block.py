@@ -349,7 +349,8 @@ class MoTBlock(nn.Module):
         route_mask.scatter_(1, route_ids, True)
         token_mask_sparsity = 1.0 - float(route_mask.float().mean())
         experts_per_sample = route_mask.reshape(B, self.NUM_EXPERTS, -1).any(dim=2).sum(dim=1)
-        batch_expert_union = int(route_mask.any(dim=(0, 2, 3)).sum())
+        # PyTorch 1.8 accepts only one dimension per Tensor.any call.
+        batch_expert_union = int(route_mask.any(dim=3).any(dim=2).any(dim=0).sum())
         if use_sparse:
             expert_calls = 0
             for e_idx, expert in enumerate(self.experts):
