@@ -41,8 +41,11 @@ SLOW_WEIGHTS = [
     "sam2.1_b.pt",
 ]
 
+# The multitask default points at the full COCO 2017 checkout and intentionally
+# has no CI autodownload. Multitask tests build a tiny synthetic fixture instead,
+# so pre-caching the production YAML would fail before pytest can start.
 DATASETS = [
-    *TASK2DATA.values(),
+    *[dataset for task, dataset in TASK2DATA.items() if task != "multitask"],
     *TASK2CALIBRATIONDATA.values(),
     "coco8-grayscale.yaml",
     "coco8-multispectral.yaml",
