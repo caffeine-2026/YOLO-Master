@@ -21,7 +21,11 @@ TASK_MODEL_DATA = sorted(
         for task in TASKS
     ]
 )  # (task, model, data) tuples
-MODELS = sorted([*list(TASK2MODEL.values()), "yolo11n-grayscale.pt"])  # task models plus grayscale variant
+MODELS = sorted(
+    [*[model for model in TASK2MODEL.values() if model.endswith(".pt")], "yolo11n-grayscale.pt"]
+)  # pretrained task weights plus grayscale variant; random YAML configs use TASK_MODEL_DATA and dedicated tests
+
+
 SOLUTION_ASSETS = {
     "demo_video": "solutions_ci_demo.mp4",
     "crop_video": "decelera_landscape_min.mov",

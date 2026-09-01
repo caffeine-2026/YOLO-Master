@@ -703,6 +703,22 @@ class TestMultiTaskHeadForward:
         assert indices.shape == (2, min(head.max_det, 32 * 32 + 16 * 16 + 8 * 8))
         assert indices.dtype == torch.long
 
+    def test_non_end2end_eval_preserves_dense_source_anchor_indices(self):
+        """Standard NMS can map retained detections back to dense mask/keypoint predictions."""
+        head = MultiTaskHead(
+            nc=10,
+            ch=(64, 128, 256),
+            tasks=["detect", "segment", "pose"],
+            nm=16,
+            npr=128,
+            kpt_shape=(5, 3),
+            end2end=False,
+        ).eval()
+        detections, raw_dict = head(_make_fpn_features())
+        indices = raw_dict["candidate_indices"]
+        assert indices.shape == (detections.shape[0], detections.shape[-1])
+        assert torch.equal(indices[0], torch.arange(detections.shape[-1]))
+
     def test_export_emits_named_detection_segment_pose_tensors(self):
         """Export preserves every supervised task in a stable, detection-aligned schema."""
         head = MultiTaskHead(

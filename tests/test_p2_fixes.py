@@ -184,8 +184,13 @@ def test_mot_torchscript_trace():
     assert isinstance(out_orig, tuple) and isinstance(out_traced, tuple)
     weights = block.router._compute_logits(x)
     weights = torch.softmax(weights / block.router.temperature.float(), dim=1).to(x.dtype)
-    dense = sum(expert(x) * weight.unsqueeze(1) for expert, weight in zip(block.experts, weights.unbind(dim=1)))
-    expected = block.out_norm(block.out_proj(dense)) + x
+    _, topk_idx = weights.topk(block.top_k, dim=1)
+    expert_range = torch.arange(block.num_experts, device=x.device).view(1, -1, 1, 1)
+    mask = sum((expert_range == topk_idx[:, k : k + 1]).to(weights.dtype) for k in range(block.top_k))
+    masked = weights * mask.clamp(max=1.0)
+    masked = masked / masked.sum(dim=1, keepdim=True).clamp_min(torch.finfo(masked.dtype).eps)
+    blended = sum(expert(x) * weight.unsqueeze(1) for expert, weight in zip(block.experts, masked.unbind(dim=1)))
+    expected = block.out_norm(block.out_proj(blended)) + x
     assert torch.allclose(expected, out_traced[0], atol=1e-4)
 
 

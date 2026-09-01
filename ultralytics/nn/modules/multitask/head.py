@@ -449,6 +449,11 @@ class MultiTaskHead(Detect):
                 preds["one2one"]["candidate_indices"] = candidate_indices
             else:
                 y = self.postprocess(y.permute(0, 2, 1))
+        elif self.has_task("segment") or self.has_task("pose"):
+            # Standard NMS returns indices into this full dense-anchor axis. Publish an identity source map so the
+            # validator can gather the aligned auxiliary predictions after filtering, just as it does for end-to-end
+            # candidates. Without this metadata, native non-end-to-end validation silently loses mask/keypoint origin.
+            preds["candidate_indices"] = torch.arange(y.shape[-1], device=y.device).expand(y.shape[0], -1)
         return y if self.export else (y, preds)
 
     def _export_outputs(
