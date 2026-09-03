@@ -1,6 +1,6 @@
 # C3 Research Evidence Delivery
 
-이 디렉터리는 웹 데모가 아니라 DeepPCB/NEU-DET C3 연구 실험의 최종 증거 인덱스다. 기존의 유효한 실험은 재실행하지 않고 원본 full log, resolved config, `args.yaml`, epoch CSV, locked-test JSON, resource/timing JSON, artifact SHA-256, checkpoint를 교차검증했다. 최종 통합 validator 결과는 `PASS`이며 72/72 training cells와 72/72 `best.pt` load 검사를 통과했다.
+이 디렉터리는 웹 데모가 아니라 DeepPCB/NEU-DET C3 연구 실험의 최종 증거 인덱스다. 기존의 유효한 실험은 재실행하지 않고 원본 full log, resolved config, `args.yaml`, epoch CSV, locked-test JSON, resource/timing JSON, artifact SHA-256, checkpoint를 교차검증했다. 기초 통합 validator 결과는 `PASS`이며 72/72 training cells와 72/72 `best.pt` load 검사를 통과했다. 이후 수행한 native MIP, Planner 3분기, learned LOVO, ≤10% 파라미터 실험과 데이터 증강 소거 실험은 각각 [completion report](../completion/docs/C3_COMPLETION_REPORT.md)와 [augmentation report](../augmentation/docs/AUGMENTATION_ABLATION_REPORT.md)에 연결한다.
 
 ## 1. P1 three-way comparison
 
@@ -49,12 +49,16 @@ Planner 흐름도는 [Planner flow and solver audit](../p0/docs/PLANNER_FLOW_AND
 | NEU-DET | DCO → DCO | ACCEPT | 2,100,000 | 59 / 52 | 8/16/32/48/64 | completed after fix |
 | DeepPCB | DCO → DCO | ACCEPT | 2,100,000 | 59 / 52 | 8/16/32/48/64 | completed after fix |
 | NEU-DET | MIPR → AO | ACCEPT | 2,100,000 | 59 / 52 | 8 | OR-Tools ImportError fallback |
+| NEU-DET | MIP → MIP | ACCEPT | 2,100,000 | 59 planned | 8/16/32/64 | native SCIP, OPTIMAL |
+| DeepPCB | MIP → MIP | ACCEPT | 2,100,000 | 59 planned | 8/16/32/64 | native SCIP, OPTIMAL |
 
-구조화 근거: [solver audit JSON](../p0/evidence/solver_audit_20260831.json). 실패·수정·재실행 기록은 [FAILURE_REPAIR_RERUN.md](FAILURE_REPAIR_RERUN.md)에 있다.
+기초 구조화 근거는 [solver audit JSON](../p0/evidence/solver_audit_20260831.json), 최신 native MIP 및 Planner 분기 근거는 [solver comparison](../completion/evidence/solvers/solver_comparison.json)과 [Planner branches](../completion/evidence/planner_branches/planner_branches.json)에 있다. 실패·수정·재실행 기록은 [FAILURE_REPAIR_RERUN.md](FAILURE_REPAIR_RERUN.md)에 있다.
 
-## 4. LOVO boundary
+## 4. LOVO learned calibration과 경계
 
-`predicted_delta=0.06602954545454547`, confidence `0`, state `cold_start`, source `default_prior`, observation count `0`, `uses_learned_evidence=false`다. 이는 측정 ΔmAP도 V-PEFT 향상 증거도 아니다. P1/P2의 24개 역사 V-PEFT metadata에는 당시 필드가 `null`이며 원본 그대로 유지했다. test 결과를 calibration에 사용하지 않았고, 서로 독립적인 정식 calibration observation이 5개 미만이므로 **LOVO calibration pending**이다.
+기초 감사 당시 값 `predicted_delta=0.06602954545454547`, confidence `0`, state `cold_start`, source `default_prior`는 측정 ΔmAP도 V-PEFT 향상 증거도 아니다. 이후 locked test를 사용하지 않고 6개 calibration 단위와 2개 held-out 단위로 learned regression을 실행했다. 최신 결과는 predicted ΔmAP50-95 `-0.16002`, confidence `0.01667`, held-out RMSE `0.10020`, prediction interval `[-0.40821, 0.08816]`이다.
+
+따라서 LOVO 구현과 정식 calibration 증거는 완료됐지만, 작은 표본, design rank 1/12와 넓은 구간 때문에 **low-confidence limited evidence**로만 해석한다. P1/P2의 역사 metadata는 당시 값을 원본 그대로 유지한다. 근거는 [LOVO calibration report](../completion/evidence/lovo/lovo_calibration_report.json)에 있다.
 
 ## 5. Evidence index
 
@@ -67,16 +71,21 @@ Planner 흐름도는 [Planner flow and solver audit](../p0/docs/PLANNER_FLOW_AND
 - Checkpoint/adapter SHA-256: 각 run의 `artifact_manifest.json`; 통합 validator가 72개 `best.pt`를 실제 load했다.
 - 실행·검증 명령: [EXECUTED_COMMANDS.md](EXECUTED_COMMANDS.md).
 - GitHub 게시용 중국어 보고서: [GITHUB_PROGRESS_ZH.md](GITHUB_PROGRESS_ZH.md).
+- completion 검증과 최신 보강 결과: [completion report](../completion/docs/C3_COMPLETION_REPORT.md).
+- augmentation 검증과 소거 결과: [augmentation report](../augmentation/docs/AUGMENTATION_ABLATION_REPORT.md).
 
 ## 6. Completion boundary and limitations
 
-- P0: 완료. 두 데이터셋 V-PEFT, AO/DCO, MIPR fallback, 실패 로그, DCO capacity fix 근거를 확인했다.
+- P0: 완료. 두 데이터셋 V-PEFT, AO/DCO/native MIP, MIP 의존성 누락 시 AO fallback, 실패 로그와 DCO capacity fix 근거를 확인했다.
 - P1: 완료. 두 데이터셋 × 세 전략 × 세 seed = 18/18, 동일 protocol, test 분리, mean/95% CI를 확인했다.
 - P2: 완료. 두 데이터셋 × 4 scales × 3 strategies × 3 seeds = 72/72, nested split과 curve/CSV 일치를 확인했다.
-- LOVO: 미완료. 정식 calibration observation이 없으며 cold-start prior만 있다.
+- Planner 분기: 완료. `ACCEPT / ADAPT / REFUSE`의 실제 입력, 구조화 출력과 회귀 테스트를 확인했다.
+- LOVO: 구현 및 calibration 증거 완료. 6 calibration + 2 held-out이지만 confidence 0.01667인 제한적 결과다.
+- 파라미터 효율 보강: 완료. 195,410 trainable parameters로 Full-SFT의 7.54%를 달성했지만 평균 정확도는 하락했다.
+- 데이터 증강: 완료. DeepPCB medium은 locked test에서 개선됐고 NEU-DET mild는 역사적 baseline 대비 개선으로 판단하지 않는다.
 - 통계는 seed 3개라 CI가 넓을 수 있고, 100 fixed epochs는 scale별 optimizer update 수를 동일하게 만들지 않는다.
 - V-PEFT의 trainable-parameter 절감은 크지만 이 구현의 memory/time 이점은 확인되지 않았다.
 
-최종 기계 검증 결과: [research_delivery_validation.json](evidence/research_delivery_validation.json).
+기초 72-cell 기계 검증 결과: [research_delivery_validation.json](evidence/research_delivery_validation.json). 이 JSON은 completion 및 augmentation 이전의 역사적 검증 범위이며, 최신 전체 상태는 [C3 root evidence index](../README.md)와 함께 확인한다.
 
 관련 LoRA/MoLoRA/PEFT/Planner pytest 전체 결과: 295 passed, 7 skipped, 2 warnings, 0 failed. 상세 명령은 [EXECUTED_COMMANDS.md](EXECUTED_COMMANDS.md)에 있다.
