@@ -1,6 +1,2 @@
-# C3 experiment artifacts are versioned; binary payloads are stored through Git LFS.
-!artifacts/
-!artifacts/**
-
-# Checkpoints stay local; compact metrics, manifests, logs, and adapter evidence remain publishable.
-artifacts/**/weights/
+# Training artifacts stay local. Publishable logs, metrics, manifests, reports, and final figures are versioned separately.
+artifacts/
