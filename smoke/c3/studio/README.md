@@ -42,15 +42,9 @@ CUDA_VISIBLE_DEVICES=0 .venv/bin/python smoke/c3/studio/app.py
 CUDA_VISIBLE_DEVICES=0 .venv/bin/python smoke/c3/studio/app.py --port 7861
 ```
 
-## 5. SSH tunnel
+## 5. Remote access
 
-假设服务最终使用 7860：
-
-```bash
-ssh -L 7860:127.0.0.1:7860 pll@10.103.69.211
-```
-
-本地访问 `http://127.0.0.1:7860`。如果服务器使用 7861/7862，请同步替换 tunnel 两侧端口。
+For remote access, configure an SSH tunnel using your environment's approved tooling. Do not commit usernames, hostnames, IP addresses, or credentials. Open the forwarded service at `http://127.0.0.1:7860`; if you use another port, update both tunnel endpoints consistently.
 
 ## 6. GPU / CPU 说明
 
