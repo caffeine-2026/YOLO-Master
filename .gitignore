@@ -238,6 +238,10 @@ wiki/repowiki/*/meta/repowiki-metadata.json
 /tencent_rhino_bird_*.pptx
 /solution_ci_pose_demo.mp4
 /solutions_ci_demo.mp4
+
+# C3 delivery hygiene: keep local training checkpoints and unannotated source samples out of Git.
+smoke/c3/**/artifacts/**/weights/
+smoke/c3/**/visualizations/**/original/
 .qoder/
 agent/logs/
 

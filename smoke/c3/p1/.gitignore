@@ -6,3 +6,6 @@
 !visualizations/convergence_e50/*.png
 !visualizations/convergence_e75/*.png
 !visualizations/convergence_e100/*.png
+
+# Checkpoints stay local; compact metrics, manifests, logs, and adapter evidence remain publishable.
+artifacts/**/weights/
