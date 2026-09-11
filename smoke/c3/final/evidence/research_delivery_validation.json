@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "scope": "C3 P0/P1/P2 raw-evidence cross-check",
-  "feature_branch": "codex/c3-research-evidence-20260831",
+  "feature_branch": "caffeine-c3-delivery",
   "raw_command_manifest": {
     "path": "smoke/c3/final/evidence/raw_command_manifest.json",
     "command_file_count": 79,
@@ -313,8 +313,8 @@
       },
       "json_files_parsed": 717,
       "yaml_files_parsed": 231,
-      "markdown_local_links_checked": 52,
-      "privacy_files_scanned": 1465,
+      "markdown_local_links_checked": 83,
+      "privacy_files_scanned": 1470,
       "privacy_scope": "Publishable C3 logs, docs, configs, evidence, results, and source; raw model artifacts are excluded.",
       "parse_errors": [],
       "broken_links": [],
