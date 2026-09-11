@@ -1,10 +1,10 @@
 # C3 Research Evidence Delivery
 
-이 디렉터리는 웹 데모가 아니라 DeepPCB/NEU-DET C3 연구 실험의 최종 증거 인덱스다. 기존의 유효한 실험은 재실행하지 않고 원본 full log, resolved config, `args.yaml`, epoch CSV, locked-test JSON, resource/timing JSON, artifact SHA-256, checkpoint를 교차검증했다. 기초 통합 validator 결과는 `PASS`이며 72/72 training cells와 72/72 `best.pt` load 검사를 통과했다. 이후 수행한 native MIP, Planner 3분기, learned LOVO, ≤10% 파라미터 실험과 데이터 증강 소거 실험은 각각 [completion report](../completion/docs/C3_COMPLETION_REPORT.md)와 [augmentation report](../augmentation/docs/AUGMENTATION_ABLATION_REPORT.md)에 연결한다.
+This directory is the final evidence index for the DeepPCB/NEU-DET C3 research experiments, not a web demo. Existing valid experiments were not rerun; instead, the original full logs, resolved configs, `args.yaml`, epoch CSVs, locked-test JSON, resource/timing JSON, artifact SHA-256 values, and checkpoints were cross-validated. The final integrated validator returned `PASS`, with all 72/72 training cells and 72/72 `best.pt` load checks passing.
 
 ## 1. P1 three-way comparison
 
-모든 값은 seed 824/825/826, 100 images, 100 epochs, batch 8, imgsz 640, AdamW, FP32, 동일 augmentation 및 고정 test split의 평균이다. 대괄호는 mAP의 two-sided 95% Student-t CI (n=3, df=2)다. Accuracy retention은 같은 데이터셋 Full-SFT mAP50-95 평균 대비 비율이다.
+All values are means over seeds 824/825/826 with 100 images, 100 epochs, batch size 8, imgsz 640, AdamW, FP32, identical augmentation, and a fixed test split. Brackets show the two-sided 95% Student-t CI for mAP (n=3, df=2). Accuracy retention is the ratio to the Full-SFT mAP50-95 mean on the same dataset.
 
 | Dataset | Method | mAP50-95 mean [95% CI] | mAP50 mean [95% CI] | Trainable / total params | Peak MiB | Time s / GPU-h | Retention |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -15,13 +15,13 @@
 | DeepPCB | Frozen Backbone | 0.484355 [0.447318, 0.521391] | 0.805972 [0.763410, 0.848533] | 1,225,522 / 2,591,010 | 1,706.67 | 340.116 / 0.094477 | 74.68% |
 | DeepPCB | V-PEFT | 0.516607 [0.481275, 0.551939] | 0.795849 [0.755903, 0.835795] | 613,602 / 2,772,770 | 2,631.68 | 423.744 / 0.117707 | 79.65% |
 
-V-PEFT는 Full-SFT보다 trainable parameters가 76.32% 적지만 이 구현에서 GPU memory 절감은 NEU 1.16%, DeepPCB 1.28%에 그쳤고 training time은 각각 13.04%, 13.37% 늘었다. 100-shot에서 V-PEFT−Frozen mAP50-95 paired mean은 NEU +0.02679 (95% CI [0.00249, 0.05109]), DeepPCB +0.03225 ([0.02369, 0.04082])다. 따라서 V-PEFT를 보편적 우승자로 표현하지 않고 정확도·학습 가능 파라미터·메모리·시간의 trade-off로 해석한다.
+V-PEFT uses 76.32% fewer trainable parameters than Full-SFT, but under this implementation GPU-memory savings were only 1.16% on NEU and 1.28% on DeepPCB, while training time increased by 13.04% and 13.37%, respectively. At 100 shots, the paired V-PEFT−Frozen mAP50-95 mean difference was +0.02679 on NEU (95% CI [0.00249, 0.05109]) and +0.03225 on DeepPCB ([0.02369, 0.04082]). We therefore interpret V-PEFT as a trade-off across accuracy, trainable parameters, memory, and time, not as a universal winner.
 
-원본/통계: [P1 all runs](../p1/results/p1_all_runs.csv), [P1 summary](../p1/results/p1_summary.csv), [paired analysis](../p1/results/paired_full_vs_vpeft.csv), [P1 report](../p1/docs/C3_P1_REPORT.md).
+Source data and statistics: [P1 all runs](../p1/results/p1_all_runs.csv), [P1 summary](../p1/results/p1_summary.csv), [paired analysis](../p1/results/paired_full_vs_vpeft.csv), [P1 report](../p1/docs/C3_P1_REPORT.md).
 
 ## 2. P2 scaling curve
 
-아래는 seed 824/825/826 mAP50-95 평균이다. 100-shot cells는 검증 후 P1에서 재사용했고, 나머지 54 cells도 기존의 완료된 실험을 검증해 재사용했다.
+The table below reports mean mAP50-95 over seeds 824/825/826. The 100-shot cells were reused from validated P1 results, and the remaining 54 cells were reused after validating the previously completed experiments.
 
 | Dataset | Images | Full-SFT | Frozen Backbone | V-PEFT | V-PEFT retention vs Full |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -40,7 +40,7 @@ V-PEFT는 Full-SFT보다 trainable parameters가 76.32% 적지만 이 구현에�
 
 ## 3. Planner and solver evidence
 
-Planner 흐름도는 [Planner flow and solver audit](../p0/docs/PLANNER_FLOW_AND_SOLVER_AUDIT_20260831.md)에 있다.
+The planner flow diagram is included in [Planner flow and solver audit](../p0/docs/PLANNER_FLOW_AND_SOLVER_AUDIT_20260831.md).
 
 | Dataset | Requested → effective | Decision | Budget | Planned / applied modules | Ranks | Result |
 | --- | --- | --- | ---: | ---: | --- | --- |
@@ -49,43 +49,34 @@ Planner 흐름도는 [Planner flow and solver audit](../p0/docs/PLANNER_FLOW_AND
 | NEU-DET | DCO → DCO | ACCEPT | 2,100,000 | 59 / 52 | 8/16/32/48/64 | completed after fix |
 | DeepPCB | DCO → DCO | ACCEPT | 2,100,000 | 59 / 52 | 8/16/32/48/64 | completed after fix |
 | NEU-DET | MIPR → AO | ACCEPT | 2,100,000 | 59 / 52 | 8 | OR-Tools ImportError fallback |
-| NEU-DET | MIP → MIP | ACCEPT | 2,100,000 | 59 planned | 8/16/32/64 | native SCIP, OPTIMAL |
-| DeepPCB | MIP → MIP | ACCEPT | 2,100,000 | 59 planned | 8/16/32/64 | native SCIP, OPTIMAL |
 
-기초 구조화 근거는 [solver audit JSON](../p0/evidence/solver_audit_20260831.json), 최신 native MIP 및 Planner 분기 근거는 [solver comparison](../completion/evidence/solvers/solver_comparison.json)과 [Planner branches](../completion/evidence/planner_branches/planner_branches.json)에 있다. 실패·수정·재실행 기록은 [FAILURE_REPAIR_RERUN.md](FAILURE_REPAIR_RERUN.md)에 있다.
+Structured evidence: [solver audit JSON](../p0/evidence/solver_audit_20260831.json). Failure, repair, and rerun records are documented in [FAILURE_REPAIR_RERUN.md](FAILURE_REPAIR_RERUN.md).
 
-## 4. LOVO learned calibration과 경계
+## 4. LOVO boundary
 
-기초 감사 당시 값 `predicted_delta=0.06602954545454547`, confidence `0`, state `cold_start`, source `default_prior`는 측정 ΔmAP도 V-PEFT 향상 증거도 아니다. 이후 locked test를 사용하지 않고 6개 calibration 단위와 2개 held-out 단위로 learned regression을 실행했다. 최신 결과는 predicted ΔmAP50-95 `-0.16002`, confidence `0.01667`, held-out RMSE `0.10020`, prediction interval `[-0.40821, 0.08816]`이다.
-
-따라서 LOVO 구현과 정식 calibration 증거는 완료됐지만, 작은 표본, design rank 1/12와 넓은 구간 때문에 **low-confidence limited evidence**로만 해석한다. P1/P2의 역사 metadata는 당시 값을 원본 그대로 유지한다. 근거는 [LOVO calibration report](../completion/evidence/lovo/lovo_calibration_report.json)에 있다.
+`predicted_delta=0.06602954545454547`, confidence `0`, state `cold_start`, source `default_prior`, observation count `0`, and `uses_learned_evidence=false`. This is neither a measured ΔmAP nor evidence of a V-PEFT improvement. The 24 historical V-PEFT metadata records in P1/P2 retain their original `null` fields. Test results were not used for calibration, and there are fewer than five independent formal calibration observations; therefore, **LOVO calibration pending**.
 
 ## 5. Evidence index
 
-- 실제 GPU preflight: [gpu_preflight.json](evidence/gpu_preflight.json).
-- 79개 원본 command files 통합본: [raw_command_manifest.json](evidence/raw_command_manifest.json). 각 run의 `command.txt` SHA-256과 원문을 보존한다.
-- 원본 full logs/config/metrics/resources/time: 각 run의 `smoke/c3/p1/logs/<run_id>/` 또는 `smoke/c3/p2/logs/<run_id>/`; 경로는 [통합 validation JSON](evidence/research_delivery_validation.json)에 기록돼 있다.
-- P0 full train logs: [P0 logs index](../p0/logs/README.md).
-- P1 seed별 결과와 95% CI: [P1 all runs](../p1/results/p1_all_runs.csv), [P1 summary](../p1/results/p1_summary.csv).
-- P2 seed별 결과와 95% CI: [P2 all runs](../p2/results/p2_all_runs.csv), [P2 summary](../p2/results/p2_summary.csv).
-- Checkpoint/adapter SHA-256: 각 run의 `artifact_manifest.json`; 통합 validator가 72개 `best.pt`를 실제 load했다.
-- 실행·검증 명령: [EXECUTED_COMMANDS.md](EXECUTED_COMMANDS.md).
-- GitHub 게시용 중국어 보고서: [GITHUB_PROGRESS_ZH.md](GITHUB_PROGRESS_ZH.md).
-- completion 검증과 최신 보강 결과: [completion report](../completion/docs/C3_COMPLETION_REPORT.md).
-- augmentation 검증과 소거 결과: [augmentation report](../augmentation/docs/AUGMENTATION_ABLATION_REPORT.md).
+- Actual GPU preflight: [gpu_preflight.json](evidence/gpu_preflight.json).
+- Consolidated 79 original command files: [raw_command_manifest.json](evidence/raw_command_manifest.json). Each run's `command.txt` source and SHA-256 are preserved.
+- Original full logs/config/metrics/resources/time: `smoke/c3/p1/logs/<run_id>/` or `smoke/c3/p2/logs/<run_id>/` for each run; paths are recorded in the [integrated validation JSON](evidence/research_delivery_validation.json).
+- P0 full training logs: [P0 logs index](../p0/logs/README.md).
+- P1 per-seed results and 95% CI: [P1 all runs](../p1/results/p1_all_runs.csv), [P1 summary](../p1/results/p1_summary.csv).
+- P2 per-seed results and 95% CI: [P2 all runs](../p2/results/p2_all_runs.csv), [P2 summary](../p2/results/p2_summary.csv).
+- Checkpoint/adapter SHA-256: each run's `artifact_manifest.json`; the integrated validator actually loaded all 72 `best.pt` files.
+- Execution and validation commands: [EXECUTED_COMMANDS.md](EXECUTED_COMMANDS.md).
+- Chinese report for GitHub publication: [GITHUB_PROGRESS_ZH.md](GITHUB_PROGRESS_ZH.md).
 
 ## 6. Completion boundary and limitations
 
-- P0: 완료. 두 데이터셋 V-PEFT, AO/DCO/native MIP, MIP 의존성 누락 시 AO fallback, 실패 로그와 DCO capacity fix 근거를 확인했다.
-- P1: 완료. 두 데이터셋 × 세 전략 × 세 seed = 18/18, 동일 protocol, test 분리, mean/95% CI를 확인했다.
-- P2: 완료. 두 데이터셋 × 4 scales × 3 strategies × 3 seeds = 72/72, nested split과 curve/CSV 일치를 확인했다.
-- Planner 분기: 완료. `ACCEPT / ADAPT / REFUSE`의 실제 입력, 구조화 출력과 회귀 테스트를 확인했다.
-- LOVO: 구현 및 calibration 증거 완료. 6 calibration + 2 held-out이지만 confidence 0.01667인 제한적 결과다.
-- 파라미터 효율 보강: 완료. 195,410 trainable parameters로 Full-SFT의 7.54%를 달성했지만 평균 정확도는 하락했다.
-- 데이터 증강: 완료. DeepPCB medium은 locked test에서 개선됐고 NEU-DET mild는 역사적 baseline 대비 개선으로 판단하지 않는다.
-- 통계는 seed 3개라 CI가 넓을 수 있고, 100 fixed epochs는 scale별 optimizer update 수를 동일하게 만들지 않는다.
-- V-PEFT의 trainable-parameter 절감은 크지만 이 구현의 memory/time 이점은 확인되지 않았다.
+- P0: complete. Evidence covers V-PEFT on both datasets, AO/DCO, the MIPR fallback, failure logs, and the DCO capacity fix.
+- P1: complete. Two datasets × three strategies × three seeds = 18/18, with an identical protocol, isolated test split, and mean/95% CI.
+- P2: complete. Two datasets × four scales × three strategies × three seeds = 72/72, with nested-split and curve/CSV consistency verified.
+- LOVO: incomplete. There are no formal calibration observations, only a cold-start prior.
+- With three seeds, confidence intervals may be wide; 100 fixed epochs do not equalize optimizer update counts across scales.
+- V-PEFT provides a large trainable-parameter reduction, but no memory/time benefit was confirmed in this implementation.
 
-기초 72-cell 기계 검증 결과: [research_delivery_validation.json](evidence/research_delivery_validation.json). 이 JSON은 completion 및 augmentation 이전의 역사적 검증 범위이며, 최신 전체 상태는 [C3 root evidence index](../README.md)와 함께 확인한다.
+Final machine-validation result: [research_delivery_validation.json](evidence/research_delivery_validation.json).
 
-관련 LoRA/MoLoRA/PEFT/Planner pytest 전체 결과: 295 passed, 7 skipped, 2 warnings, 0 failed. 상세 명령은 [EXECUTED_COMMANDS.md](EXECUTED_COMMANDS.md)에 있다.
+The related LoRA/MoLoRA/PEFT/Planner pytest suite completed with 295 passed, 7 skipped, 2 warnings, and 0 failed. Detailed commands are in [EXECUTED_COMMANDS.md](EXECUTED_COMMANDS.md).

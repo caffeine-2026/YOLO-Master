@@ -1,0 +1,75 @@
+page {
+  --bg: #07111f;
+  --panel: rgba(15, 30, 48, 0.92);
+  --panel-soft: rgba(20, 42, 66, 0.78);
+  --line: rgba(148, 163, 184, 0.18);
+  --text: #eef6ff;
+  --muted: #8fa3bb;
+  --cyan: #38bdf8;
+  --green: #22c55e;
+  --amber: #f59e0b;
+  --red: #fb7185;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button {
+  border-radius: 999rpx;
+  font-weight: 700;
+}
+
+button::after {
+  border: 0;
+}
+
+.page-shell {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 24rpx;
+  background:
+    radial-gradient(circle at 85% 4%, rgba(56, 189, 248, 0.16), transparent 34%),
+    linear-gradient(180deg, #081421 0%, #07111f 100%);
+}
+
+.glass-card {
+  border: 1rpx solid var(--line);
+  border-radius: 28rpx;
+  background: var(--panel);
+  box-shadow: 0 20rpx 50rpx rgba(0, 0, 0, 0.2);
+}
+
+.section-title {
+  margin: 10rpx 0 18rpx;
+  font-size: 28rpx;
+  font-weight: 800;
+}
+
+.eyebrow {
+  color: var(--cyan);
+  font-size: 20rpx;
+  font-weight: 800;
+  letter-spacing: 2rpx;
+  text-transform: uppercase;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.primary-button {
+  color: #04111e;
+  background: linear-gradient(135deg, #67e8f9, #38bdf8);
+}
+
+.secondary-button {
+  color: var(--text);
+  border: 1rpx solid var(--line);
+  background: var(--panel-soft);
+}
+
+.danger-button {
+  color: #ffe4e6;
+  background: rgba(190, 24, 93, 0.34);
+}

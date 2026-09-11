@@ -1,0 +1,57 @@
+<view class="page-shell bench-page">
+  <view class="hero glass-card">
+    <text class="eyebrow">On-device Benchmark</text>
+    <view class="hero-title">真实设备 · 模型纯推理</view>
+    <view class="hero-copy">固定 640×640 tensor，预热后报告 p50 / p95 / FPS。微信不公开芯片温度与实际算子放置，因此不伪造温度数据。</view>
+  </view>
+
+  <view class="controls glass-card">
+    <view class="control-row">
+      <text>Model</text>
+      <picker mode="selector" range="{{modelTitles}}" value="{{selectedIndex}}" bindchange="onModelChange">
+        <view class="selector">{{modelTitles[selectedIndex]}} ▾</view>
+      </picker>
+    </view>
+    <view class="control-row">
+      <text>Iterations</text>
+      <picker mode="selector" range="{{iterationOptions}}" value="{{iterationIndex}}" bindchange="onIterationChange">
+        <view class="selector">{{iterationOptions[iterationIndex]}} runs ▾</view>
+      </picker>
+    </view>
+    <view class="control-row">
+      <text>Warmup</text>
+      <text class="value">5 runs</text>
+    </view>
+  </view>
+
+  <view class="action-row">
+    <button class="primary-button" bindtap="runBenchmark" disabled="{{running}}">Run benchmark</button>
+    <button class="danger-button" bindtap="cancelBenchmark" disabled="{{!running}}">Stop</button>
+  </view>
+
+  <view wx:if="{{running}}" class="progress-card glass-card">
+    <view class="progress-header"><text>{{statusText}}</text><text>{{progressPercent}}%</text></view>
+    <view class="progress-track"><view class="progress-fill" style="width: {{progressPercent}}%;"></view></view>
+  </view>
+
+  <view wx:if="{{errorText}}" class="error-card glass-card">{{errorText}}</view>
+
+  <view class="metric-grid" wx:if="{{hasResult}}">
+    <view class="metric-card glass-card accent"><text class="metric-label">Model FPS</text><text class="metric-value">{{summary.fps}}</text></view>
+    <view class="metric-card glass-card"><text class="metric-label">Mean</text><text class="metric-value">{{summary.mean}}</text><text class="metric-unit">ms</text></view>
+    <view class="metric-card glass-card"><text class="metric-label">p50</text><text class="metric-value">{{summary.p50}}</text><text class="metric-unit">ms</text></view>
+    <view class="metric-card glass-card"><text class="metric-label">p95</text><text class="metric-value">{{summary.p95}}</text><text class="metric-unit">ms</text></view>
+    <view class="metric-card glass-card"><text class="metric-label">Min</text><text class="metric-value">{{summary.min}}</text><text class="metric-unit">ms</text></view>
+    <view class="metric-card glass-card"><text class="metric-label">Max</text><text class="metric-value">{{summary.max}}</text><text class="metric-unit">ms</text></view>
+  </view>
+
+  <view wx:if="{{hasResult}}" class="device-card glass-card">
+    <view class="section-title">Test context</view>
+    <view class="context-row"><text>Device</text><text>{{deviceText}}</text></view>
+    <view class="context-row"><text>Engine</text><text>{{engineText}}</text></view>
+    <view class="context-row"><text>Precision</text><text>level 0 · FP16 eligible</text></view>
+    <view class="context-row"><text>NPU</text><text>requested on iOS · placement not exposed</text></view>
+    <view class="context-row"><text>Temperature</text><text>not exposed by WeChat API</text></view>
+    <button class="secondary-button export-button" bindtap="exportReport">Export JSON</button>
+  </view>
+</view>

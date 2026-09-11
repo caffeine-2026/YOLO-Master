@@ -1,0 +1,64 @@
+<view class="live-page">
+  <view class="camera-shell">
+    <camera
+      id="edgeCamera"
+      class="camera-preview"
+      device-position="{{cameraPosition}}"
+      flash="{{flashMode}}"
+      frame-size="medium"
+      binderror="onCameraError"
+    ></camera>
+    <canvas type="2d" id="liveOverlay" class="overlay-canvas"></canvas>
+
+    <view class="top-hud glass-card">
+      <picker mode="selector" range="{{modelTitles}}" value="{{selectedIndex}}" bindchange="onModelChange">
+        <view class="model-picker">
+          <text class="picker-label">MODEL</text>
+          <text class="picker-value">{{modelTitles[selectedIndex]}}</text>
+        </view>
+      </picker>
+      <view class="backend-pill {{engineReady ? 'ready' : ''}}">{{backendText}}</view>
+    </view>
+
+    <view class="camera-controls glass-card">
+      <button class="round-control" size="mini" bindtap="toggleFlash">{{flashMode === 'torch' ? '灯 On' : '灯 Off'}}</button>
+      <button class="round-control" size="mini" bindtap="switchCamera">翻转</button>
+      <button class="run-control {{running ? 'pause' : ''}}" size="mini" bindtap="toggleRun">
+        {{running ? '暂停' : '开始'}}
+      </button>
+    </view>
+
+    <view wx:if="{{loading}}" class="loading-banner glass-card">
+      <text>模型准备中 {{downloadProgress}}%</text>
+      <view class="progress-track"><view class="progress-fill" style="width: {{downloadProgress}}%;"></view></view>
+    </view>
+
+    <view wx:if="{{errorText}}" class="error-banner glass-card" bindtap="openModels">
+      <text>{{errorText}}</text>
+      <text class="error-link">打开 Models →</text>
+    </view>
+
+    <view class="stats-hud glass-card">
+      <view class="fps-gauge">
+        <text class="fps-number">{{fps}}</text>
+        <text class="fps-label">FPS</text>
+      </view>
+      <view class="timing-grid">
+        <view class="timing-row"><text>Pre</text><text>{{preprocessMs}} ms</text></view>
+        <view class="timing-row"><text>Model</text><text>{{inferenceMs}} ms</text></view>
+        <view class="timing-row"><text>NMS</text><text>{{postprocessMs}} ms</text></view>
+        <view class="timing-row total"><text>Total</text><text>{{totalMs}} ms</text></view>
+      </view>
+      <view class="detection-count">
+        <text class="detection-number">{{detectionCount}}</text>
+        <text class="detection-label">dets</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="threshold-bar">
+    <text>Confidence</text>
+    <slider min="5" max="90" step="1" value="{{confidencePercent}}" activeColor="#38bdf8" block-size="18" bindchange="onConfidenceChange" />
+    <text>{{confidenceText}}</text>
+  </view>
+</view>

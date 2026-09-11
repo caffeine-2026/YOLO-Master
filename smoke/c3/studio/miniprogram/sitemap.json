@@ -1,0 +1,9 @@
+{
+  "desc": "C3 Edge Lab sitemap",
+  "rules": [
+    {
+      "action": "disallow",
+      "page": "*"
+    }
+  ]
+}

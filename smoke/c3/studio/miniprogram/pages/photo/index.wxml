@@ -1,0 +1,52 @@
+<view class="page-shell photo-page">
+  <view class="page-heading">
+    <view>
+      <text class="eyebrow">Photo & Batch</text>
+      <view class="title">工业缺陷图片检测</view>
+      <view class="muted subtitle">端侧优先，失败时可使用 HTTPS fallback</view>
+    </view>
+    <picker mode="selector" range="{{modelTitles}}" value="{{selectedIndex}}" bindchange="onModelChange">
+      <view class="model-chip">{{modelTitles[selectedIndex]}} ▾</view>
+    </picker>
+  </view>
+
+  <view class="preview-card glass-card">
+    <block wx:if="{{previewPath}}">
+      <image class="preview-image" src="{{previewPath}}" mode="aspectFit"></image>
+      <canvas type="2d" id="photoOverlay" class="preview-overlay"></canvas>
+    </block>
+    <view wx:else class="empty-preview">
+      <text class="empty-icon">＋</text>
+      <text>相册或相机中选择工业缺陷图像</text>
+    </view>
+  </view>
+
+  <view class="action-row">
+    <button class="primary-button" bindtap="chooseImages" disabled="{{processing}}">选择图片</button>
+    <button class="secondary-button" bindtap="exportReport" disabled="{{!results.length || processing}}">导出 JSON</button>
+  </view>
+
+  <view wx:if="{{processing}}" class="progress-card glass-card">
+    <view class="progress-header"><text>{{statusText}}</text><text>{{processed}} / {{total}}</text></view>
+    <view class="progress-track"><view class="progress-fill" style="width: {{progressPercent}}%;"></view></view>
+  </view>
+
+  <view wx:if="{{errorText}}" class="error-card glass-card">{{errorText}}</view>
+
+  <view class="summary-grid" wx:if="{{results.length}}">
+    <view class="summary-item glass-card"><text class="summary-number">{{results.length}}</text><text class="muted">images</text></view>
+    <view class="summary-item glass-card"><text class="summary-number green">{{totalDetections}}</text><text class="muted">detections</text></view>
+    <view class="summary-item glass-card"><text class="summary-number cyan">{{meanLatency}}</text><text class="muted">ms mean</text></view>
+  </view>
+
+  <view wx:if="{{results.length}}" class="results-card glass-card">
+    <view class="section-title">Batch results</view>
+    <view class="result-row" wx:for="{{results}}" wx:key="id" data-index="{{index}}" bindtap="showResult">
+      <view>
+        <text class="result-name">{{item.name}}</text>
+        <text class="result-backend">{{item.backend}}</text>
+      </view>
+      <view class="result-metrics"><text>{{item.detections.length}} dets</text><text>{{item.totalMs}} ms</text></view>
+    </view>
+  </view>
+</view>

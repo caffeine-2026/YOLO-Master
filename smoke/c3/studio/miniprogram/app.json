@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/live/index",
+    "pages/photo/index",
+    "pages/bench/index",
+    "pages/models/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#07111f",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "C3 Edge Lab",
+    "backgroundColor": "#07111f",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#7c8ca5",
+    "selectedColor": "#38bdf8",
+    "backgroundColor": "#081421",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/live/index",
+        "text": "Live"
+      },
+      {
+        "pagePath": "pages/photo/index",
+        "text": "Photo"
+      },
+      {
+        "pagePath": "pages/bench/index",
+        "text": "Bench"
+      },
+      {
+        "pagePath": "pages/models/index",
+        "text": "Models"
+      }
+    ]
+  },
+  "permission": {
+    "scope.camera": {
+      "desc": "用于工业缺陷实时检测、拍照与端侧性能测试"
+    }
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

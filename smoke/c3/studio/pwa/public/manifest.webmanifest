@@ -1,0 +1,26 @@
+{
+  "name": "YOLO-V-PEFT",
+  "short_name": "YOLO-V-PEFT",
+  "description": "On-device runtime and dataset-scope inference for the C3 V-PEFT research benchmark.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#071019",
+  "theme_color": "#071019",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

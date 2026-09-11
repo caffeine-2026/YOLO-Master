@@ -1,6 +1,5 @@
-# C3 experiment artifacts are versioned; binary payloads are stored through Git LFS.
-!artifacts/
-!artifacts/**
+# Training artifacts stay local. Publishable logs, metrics, manifests, reports, and final figures are versioned separately.
+artifacts/
 !logs/**/*.log
 !visualizations/convergence/*.png
 !visualizations/convergence_e50/*.png

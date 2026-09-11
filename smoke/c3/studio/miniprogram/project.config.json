@@ -1,0 +1,34 @@
+{
+  "description": "C3 Industrial PEFT Edge Lab — WeChat Mini Program",
+  "packOptions": {
+    "ignore": [
+      {
+        "type": "folder",
+        "value": "dist"
+      },
+      {
+        "type": "folder",
+        "value": "tests"
+      },
+      {
+        "type": "folder",
+        "value": "tools"
+      }
+    ]
+  },
+  "setting": {
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "urlCheck": true,
+    "checkInvalidKey": true,
+    "compileHotReLoad": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.7.12",
+  "appid": "touristappid",
+  "projectname": "c3-edge-lab",
+  "miniprogramRoot": "./",
+  "condition": {}
+}
